@@ -1,0 +1,108 @@
+"2.1 (created: 2009/05/21 13:13:06)
+
+
+set "editor=aterm -e vim"
+set guioptions=rnb
+set runtimepath=/home/charly/.vimperator
+set showstatuslinks=2
+set showtabline=2
+"dont focus input automaticallu
+set focuscontent
+" addons downloads help javascript prefs en una nueva tab
+set newtab=all
+"que ponga el foco en las descargas solamente
+set activate=downloads
+"Lo que se baje de megaupload que lo ponga en su dir especifico
+autocmd DownloadPost megaupload.com :!mv "<file>"  ~/descargas/
+autocmd DownloadPost megavideo.com :!mv "<file>"  ~/descargas/
+autocmd DownloadPost stagevu.com :!mv "<file>"  ~/descargas/
+autocmd DownloadPost rapidshare.com :!mv "<file>"  ~/descargas/
+"ponerle atajos al youtube con los ytmute y compañia
+
+" Ver version del history para saltar directamente fuera de la pagina actual con J
+noremap J <Esc>:jumps<CR>:back 
+noremap K <Esc>:closedTabs<CR> 
+noremap D <Esc>:dl<CR> 
+noremap j 10j
+noremap k 10k
+inoremap <C-n> <Esc>:tabnext<CR>
+"inoremap <F9> <Esc>:tabprevious<CR>
+"inoremap <F10> <Esc>:tabnext<CR>
+"show  current url
+let g:buftabs_showCurrentUrl=1
+
+
+style! * .BufTabSelected { font-weight: bold;color:green }
+style! -name statusbar chrome://* <<EOF
+#status-bar statusbarpanel { padding: 0 1px !important; }
+statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
+
+#main-window #content .tabbrowser-tabs {
+ -moz-appearance: none !important;
+ margin-top: -3px!important;
+ margin-bottom: -3px!important;
+ border-top: 0px solid !important;
+ padding:0 !important;
+}
+
+.tabs-bottom {
+ border-top: 0px solid !important;
+ border-bottom: 0px solid !important;
+ margin-bottom: 3px!important;
+ min-height: 21px !important;
+ background: #4e4e4e !important;
+}
+
+.tabbrowser-tab {
+ -moz-appearance: none !important;
+ -moz-border-radius: 0px !important;
+ margin:0 -1px !important;
+ padding:0 !important;
+ padding-top:3px !important;
+ border-right: 0 !important;
+ font-family: monospace !important;
+ font-size: 10pt !important;
+ color: #d7d7af !important;
+ background: #4e4e4e !important;
+}
+
+.tabbrowser-tab[selected="true"] {
+ background: #242421 !important;
+ font-weight: bold !important;
+ color: #d7d7d7 !important;
+}
+
+.tabbrowser-tab .tab-text {
+ border:0px !important;
+}
+
+.tabbrowser-arrowscrollbox {
+ max-height: 21px !important;
+ background: #4e4e4e !important;
+}
+
+.tabs-closebutton-box, .tab-close-button, .tabs-newtab-button, .tabs-alltabs-button, .tabbrowser-arrowscrollbox > .scrollbutton-up, .tabbrowser-arrowscrollbox > .scrollbutton-down {
+ display: none !important;
+}
+EOF
+source! /home/charly/.vimperatorrc.local
+
+" vim: set ft=vimperator:
+" Me pongo mi colorcheme preferido
+colorscheme obsidian
+
+" Para el gmail
+set hinttags="//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @role='link' or @role='button'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //div[contains(@class,'J-K-I J-J5-Ji')]"
+
+" Ajustamos correctamente la cmdline
+highlight CmdLine -append background: white; color: black; -moz-transition: all 0.25s;
+" le ponemos los hints a caracteres sin el plugin 
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+set maxitems=5
+
+javascript <<EOF
+cl = function() {io.system('cd ~/Torrentes/ &&  clive -f best ' + buffer.URL +' &');};
+EOF
+map <C-m> :js cl()<CR>
+
+

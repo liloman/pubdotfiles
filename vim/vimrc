@@ -1,0 +1,23 @@
+set number
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+filetype plugin indent on
+call pathogen#infect() 
+call pathogen#helptags()
+let mapleader=" "
+"Que guarde un historico de cambios incluso cerrando el editor
+set undodir=~/.vim/undodir
+set undofile 
+nnoremap <F5> :GundoToggle<CR>
+let g:lightline = {'colorscheme': 'wombat',}
+set laststatus=2
+if !has('gui_running')
+    set t_Co=256
+endif
+"Para agrupar facilmente desde la linea de comandos
+cmap ;\ \(\)<Left><Left>
+"Para poder editar buffers sin salvar el actual
+set hidden
+colors ChocolateLiquor
