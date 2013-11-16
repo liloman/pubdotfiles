@@ -106,3 +106,5 @@ mplayer-masvolumen "$1" < /dev/null &> /dev/null &
 read -p "¿Borrarlo (s/n)?:" res && [ $res == "s" ] && rm "$1"
 }
 
+#Mode vi
+set -o vi
