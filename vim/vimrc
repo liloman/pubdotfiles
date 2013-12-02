@@ -24,4 +24,6 @@ cmap ;\ \(\)<Left><Left>
 set hidden
 colorscheme BlackSea
 nmap <Leader>e :!lua %<cr>
-
+nmap <c-s> :update<CR>
+vmap <c-s> <Esc><c-s>gv
+imap <c-s> <Esc><c-s>a

@@ -104,8 +104,11 @@ mplayer-masvolumen "$1" < /dev/null &> /dev/null &
 read -p "¿Borrarlo (s/n)?:" res && [ $res == "s" ] && rm "$1"
 }
 
-#Para lua
-#export LUA_PATH='./?.lua;/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;/usr/lib/lua/5.1/?.lua;/usr/lib/lua/5.1/?/init.lua; ~/.config/awesome/?.lua;~/.config/awesome/lib/?.lua;~/.config/awesome/pomodoroTasks/?.lua;~/.config/awesome/rc/?.lua;~/.config/awesome/scratch/?.lua;/usr/share/awesome/lib/?.lua;/usr/share/awesome/lib/awful/?.lua;/usr/share/awesome/lib/awful/layout/?.lua;/usr/share/awesome/lib/awful/layout/suit/?.lua;/usr/share/awesome/lib/awful/mouse/?.lua;/usr/share/awesome/lib/awful/widget/?.lua;/usr/share/awesome/lib/gears/?.lua;/usr/share/awesome/lib/menubar/?.lua;/usr/share/awesome/lib/vicious/?.lua;/usr/share/awesome/lib/vicious/contrib/?.lua;/usr/share/awesome/lib/vicious/widgets/?.lua;/usr/share/awesome/lib/wibox/?.lua;/usr/share/awesome/lib/wibox/layout/?.lua;/usr/share/awesome/lib/wibox/widget/?.lua;/usr/share/awesome/themes/default/?.lua;/usr/share/awesome/themes/sky/?.lua;/usr/share/awesome/themes/zenburn/?.lua;'
-
 #Mode vi
 set -o vi
+
+#Disable <C-s> and <C-q> on terminal. Stop and Start to use <C-s> on vim
+stty stop ''
+stty start ''
+stty -ixon
+stty -ixoff
