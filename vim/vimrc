@@ -11,6 +11,8 @@ let mapleader=" "
 set undodir=~/.vim/undodir
 set undofile 
 nnoremap <F5> :GundoToggle<CR>
+nmap <F4> :TagbarToggle<CR>
+nmap <F3> :NERDTreeToggle<CR>
 let g:lightline = {'colorscheme': 'wombat',}
 set laststatus=2
 if !has('gui_running')
@@ -20,4 +22,6 @@ endif
 cmap ;\ \(\)<Left><Left>
 "Para poder editar buffers sin salvar el actual
 set hidden
-colors ChocolateLiquor
+colorscheme BlackSea
+nmap <Leader>e :!lua %<cr>
+
