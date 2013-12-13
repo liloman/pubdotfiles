@@ -41,6 +41,9 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+#To work with git
+source ~/dotfiles/bash/git-completion.bash
+source ~/dotfiles/bash/git-prompt.sh
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -49,6 +52,7 @@ xterm*)
     PROMPT_COMMAND=''
     ;;
 rxvt*) # En el caso de una aterm le ponemos el numero de aterm lanzadas
+    # I should update this with tmux-session.window-number
     ACTUAL_WORKSPACE=$(wmctrl -ld | grep  \* | cut -d' ' -f 1)
     NATERM=$(wmctrl -lp | grep " $ACTUAL_WORKSPACE "[1-9] | ps -p `cut -d' ' -f 4` | grep -c [a]term)
     SITUACION=$ACTUAL_WORKSPACE.$NATERM
@@ -59,8 +63,7 @@ rxvt*) # En el caso de una aterm le ponemos el numero de aterm lanzadas
 esac
 
 # Comment in the above and uncomment this below for a color prompt
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\][\[\033[00m\]\[\033[01;32m\]\u($SITUACION)->\033[00m\]\[\033[01;34m\]\w]\n>\[\033[00m\]'
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\][\[\033[00m\]\[\033[01;32m\]\u($SITUACION)->\[\033[00m\]\[\033[01;34m\]\w]\n>\[\033[00m\]'
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\][\[\033[00m\]\[\033[01;32m\]\u$(__git_ps1 " (%s)")->\[\033[00m\]\[\033[01;34m\]\w]\n>\[\033[00m\]'
 
 
 # Alias definitions.
@@ -76,12 +79,12 @@ fi
 
 # Interesante, puedo ir a cualquier directorio de casita desde cualquier sitio, peligroso
 # CDPATH=~
-#EDITOR=vim  # update-alternatives --all  era la solucion
+EDITOR=vim  # update-alternatives --all  era la solucion
 HISTSIZE=50000
 HISTFILESIZE=50000
 HISTFILE=~/.bash_historys/history_$SITUACION
 
-# Hace algo de  autocomplete que no se lo que es
+# Do something that it's not what It should be. To be completed...
 bind -m vi-insert "\C-p":dynamic-complete-history
 bind -m vi-insert "\C-n":menu-complete
 
@@ -96,6 +99,7 @@ if [ -d ~/Scripts ] ; then
       PATH=~/.local/bin/:~/Scripts:/usr/NX/bin:/opt/eclipse:/opt/libreoffice3.6/program/:$PATH
 fi
 
+#Z script to get the most common directories and so on
 . ~/Scripts/z.sh
 
 ver(){
@@ -107,7 +111,7 @@ read -p "¿Borrarlo (s/n)?:" res && [ $res == "s" ] && rm "$1"
 #Mode vi
 set -o vi
 
-#Disable <C-s> and <C-q> on terminal. Stop and Start to use <C-s> on vim
+#Disable <C-s> and <C-q> on terminal Stop and Start to use <C-s> on vim (to save a file)
 stty stop ''
 stty start ''
 stty -ixon

@@ -1,0 +1,13 @@
+git submodule add https://github.com/xolox/vim-lua-ftplugin.git vim/bundle/vim-lua-ftplugin.git
+git submodule add https://github.com/xolox/vim-misc.git vim/bundle/vim-misc.git
+git submodule add https://github.com/xolox/vim-lua-inspect.git vim/bundle/vim-lua-inspect.git
+git submodule add https://github.com/Lokaltog/vim-easymotion.git vim/bundle/vim-easymotion.git
+git submodule add http://github.com/sjl/gundo.vim.git vim/bundle/gundo.vim.git
+git submodule add https://github.com/itchyny/lightline.vim vim/bundle/lightline.vim
+git submodule add git://github.com/tpope/vim-surround.git vim/bundle/vim-surround.git
+git submodule add https://github.com/tpope/vim-repeat.git vim/bundle/vim-repeat.git
+git submodule add https://github.com/flazz/vim-colorschemes.git vim/bundle/vim-colorschemes.git
+git submodule add https://github.com/godlygeek/csapprox.git vim/bundle/csapprox.git
+git submodule add git://github.com/msanders/snipmate.vim.git vim/bundle/snipmate.vim.git
+git submodule add git://github.com/majutsushi/tagbar vim/bundle/tagbar
+git submodule add https://github.com/scrooloose/nerdtree.git vim/bundle/nerdtree.git
