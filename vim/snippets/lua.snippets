@@ -1,0 +1,417 @@
+# Lua
+snippet r
+	local $1=require('${1:name}')
+snippet f
+	function ${1}(${2:args})
+		${3}
+	end
+snippet if
+	if ${1:true} then
+		${2}
+	end
+snippet ife
+	if ${1:true} then
+		${2}
+	else
+		${3}
+	end
+snippet ifee
+	if ${1:true} then
+		${2}
+	elseif ${3:false} then
+		${4}
+	else
+		${5}
+	end
+snippet for
+	for ${1:i} = ${2:1}, ${3:max} do
+		${4}
+	end
+snippet fors
+	for ${1:i} = ${2:1}, ${3:max}, ${4:step} do
+		${5}
+	end
+snippet forp
+	for ${1:key}, ${2:value} in pairs(${3}) do
+		${4}
+	end
+snippet fori
+	for ${1:index}, ${2:value} in ipairs(${3}) do
+		${4}
+	end
+snippet wh
+	while ${1:true} do
+		${2}
+	end
+snippet lo
+	local ${1} = ${2}
+snippet pr
+	print(${1})
+# LOVE callbacks
+snippet ld
+	function love.draw()
+		${1}
+	end
+snippet lf
+	function love.focus(f)
+		${1}
+	end
+snippet joyp
+	function love.joystickpressed(joystick, button)
+		${1}
+	end
+snippet joyr
+	function love.joystickreleased(joystick, button)
+		${1}
+	end
+snippet lkp
+	function love.keypressed(key, unicode)
+		${1}
+	end
+snippet lkr
+	function love.keyreleased(key, unicode)
+		${1}
+	end
+snippet ll
+	function love.load()
+		${1}
+	end
+snippet mousep
+	function love.mousepressed(x, y, button)
+		${1}
+	end
+snippet mouser
+	function love.mousepressed(x, y, button)
+		${1}
+	end
+snippet lq
+	function love.quit()
+		${1}
+	end
+snippet lu
+	function love.update(dt)
+		${1}
+	end
+# love.audio
+snippet getnumsources
+	love.audio.getNumSources()
+snippet getorientation
+	love.audio.getOrientation()
+snippet agetposition
+	love.audio.getPosition()
+snippet getvelocity
+	love.audio.getVelocity()
+snippet getvolume
+	love.audio.getVolume()
+snippet newsource
+	love.audio.newSource(${1:file}, ${2:type})
+snippet pause
+	love.audio.pause(${1:source})
+snippet play
+	love.audio.play(${1:source})
+snippet resume
+	love.audio.resume(${1:source})
+snippet rewind
+	love.audio.rewind(${1:source})
+snippet setorientation
+	love.audio.setOrientation(${1:fx}, ${2:fy}, ${3:fz}, ${4:ux}, ${5:uy}, ${6:uz})
+snippet asetposition
+	love.audio.setPosition(${1:x}, ${2:y}, ${3:z})
+snippet setvelocity
+	love.audio.setVelocity(${1:x}, ${2:y}, ${3:z})
+snippet setvolume
+	love.audio.setVolume(${1:volume})
+snippet stop
+	love.audio.stop(${1:source})
+# love.event
+snippet lev
+	love.event.clear()
+snippet lep
+	love.event.poll()
+snippet lep
+	love.event.pump()
+snippet lep
+	love.event.push(${1:event})
+snippet lew
+	love.event.wait()
+# love.filesystem
+snippet enumerate
+	love.filesystem.enumerate(${1:directory})
+snippet exists
+	love.filesystem.exists(${1:filename})
+snippet getappdatadirectory
+	love.filesystem.getAppdataDirectory()
+snippet getlastmodified
+	love.filesystem.getLastModified(${1:filename})
+snippet getsavedirectory
+	love.filesystem.getSaveDirectory()
+snippet getuserdirectory
+	love.filesystem.getUserDirectory()
+snippet getworkingdirectory
+	love.filesystem.getWorkingDirectory()
+snippet isdirectory
+	love.filesystem.isDirectory(${1:filename})
+snippet isfile
+	love.filesystem.isFile(${1:filename})
+snippet lines
+	love.filesystem.lines(${1:name})
+snippet fload
+	love.filesystem.load(${1:name})
+snippet mkdir
+	love.filesystem.mkdir(${1:name})
+snippet newfile
+	love.filesystem.newFile(${1:filename})
+snippet newfiledata
+	love.filesystem.newFileData(${1:contents}, ${2:name}, ${3:decoder})
+snippet read
+	love.filesystem.read(${1:name})
+snippet remove
+	love.filesystem.remove(${1:name})
+snippet setidentity
+	love.filesystem.setIdentity(${1:name})
+snippet setsource
+	love.filesystem.setSource()
+snippet write
+	love.filesystem.write(${1:name}, ${2:data}, ${3:size})
+# love.font
+snippet newfontdata
+	love.font.newFontData(${1:rasterizer})
+snippet newglyphdata
+	love.font.newGlyphData(${1:rasterizer}, ${1:glyph})
+snippet newrasterizer
+	love.font.newRasterizer(${1:imageData}, ${1:glyphs})
+# love.graphics
+snippet checkmode
+	love.graphics.checkMode(${1:width}, ${2:height}, ${3:fullscreen})
+snippet circle
+	love.graphics.circle(${1:mode}, ${2:x}, ${3:y}, ${4:radius}, ${5:segments})
+snippet gclear
+	love.graphics.clear()
+snippet lgd
+	love.graphics.draw(${1:drawable}, ${2:x}, ${3:y}, ${4:r}, ${5:sx}, ${6:sy}, ${7:ox}, ${8:oy})
+snippet drawq
+	love.graphics.drawq(${1:image}, ${2:quad}, ${3:x}, ${4:y}, ${5:r}, ${6:sx}, ${7:sy}, ${8:ox}, ${9:oy})
+snippet getbackgroundcolor
+	love.graphics.getBackgroundColor()
+snippet getblendmode
+	love.graphics.getBlendMode()
+snippet getcaption
+	love.graphics.getCaption()
+snippet getcolor
+	love.graphics.getColor()
+snippet getcolormode
+	love.graphics.getColorMode()
+snippet getfont
+	love.graphics.getFont()
+snippet getheight
+	love.graphics.getHeight()
+snippet getlinestipple
+	love.graphics.getLineStipple()
+snippet getlinestyle
+	love.graphics.getLineStyle()
+snippet getlinewidth
+	love.graphics.getLineWidth()
+snippet getmaxpointsize
+	love.graphics.getMaxPointSize()
+snippet getmodes
+	love.graphics.getModes()
+snippet getpointsize
+	love.graphics.getPointSize()
+snippet getpointstyle
+	love.graphics.getPointStyle
+snippet getscissor
+	love.graphics.getScissor()
+snippet getwidth
+	love.graphics.getWidth()
+snippet iscreated
+	love.graphics.isCreated()
+snippet line
+	love.graphics.line(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})
+snippet newfont
+	love.graphics.newFont(${1:filename}, ${2:size})
+snippet newframebuffer
+	love.graphics.newFramebuffer(${1:width}, ${2:height})
+snippet newimage
+	love.graphics.newImage(${1:filename})
+snippet newimagefont
+	love.graphics.newImageFont(${1:image}, ${2:glyphs})
+snippet newparticlesystem
+	love.graphics.newParticleSystem(${1:image}, ${2:buffer})
+snippet newquad
+	love.graphics.newQuad(${1:x}, ${2:y}, ${3:width}, ${4:height}, ${5:sw}, ${6:sh})
+snippet newscreenshot
+	love.graphics.newScreenshot()
+snippet newspritebatch
+	love.graphics.newSpriteBatch(${1:image}, ${2:size})
+snippet point
+	love.graphics.point(${1:x}, ${2:y})
+snippet polygon
+	love.graphics.polygon(${1:mode}, ${2:vertices})
+snippet pop
+	love.graphics.pop()
+snippet present
+	love.graphics.present()
+snippet print
+	love.graphics.print(${1:text}, ${2:x}, ${3:y}, ${4:r}, ${5:sx}, ${6:sy})
+snippet printf
+	love.graphics.printf(${1:text}, ${2:x}, ${3:y}, ${4:limit}, ${5:limit})
+snippet gpush
+	love.graphics.push()
+snippet quad
+	love.graphics.quad(${1:mode}, ${2:x1}, ${3:y1}, ${4:x2}, ${5:y2}, ${6:x3}, ${7:y3}, ${8:x4}, ${9:y4})
+snippet lgr
+	love.graphics.rectangle(${1:mode}, ${2:x}, ${3:y}, ${4:width}, ${5:height})
+snippet reset
+	love.graphics.reset()
+snippet rotate
+	love.graphics.rotate(${1:angle})
+snippet scale
+	love.graphics.scale(${1:sx}, ${2:sy})
+snippet setbackgroundcolor
+	love.graphics.setBackgroundColor(${1:red}, ${2:green}, ${3:blue})
+snippet setblendmode
+	love.graphics.setBlendMode(${1:mode})
+snippet setcaption
+	love.graphics.setCaption(${1:caption})
+snippet setcolor
+love.graphics.setColor(${1:red}, ${2:green}, ${3:blue}, ${4:alpha})
+snippet setcolormode
+	love.graphics.setColorMode(${1:mode})
+snippet setfont
+	love.graphics.setFont(${1:font})
+snippet seticon
+	love.graphics.setIcon(${1:drawable})
+snippet setline
+	love.graphics.setLine(${1:width}, ${2:style})
+snippet setlinestipple
+	love.graphics.setLineStipple(${1:pattern}, ${2:repeat})
+snippet setlinestyle
+	love.graphics.setLineStyle(${1:style})
+snippet setlinewidth
+	love.graphics.setLineWidth(${1:width})
+snippet setmode
+	love.graphics.setMode(${1:width}, ${1:height}, ${1:fullscreen}, ${1:vsync}, ${1:fsaa})
+snippet setpoint
+	love.graphics.setPoint(${1:size}, ${2:style})
+snippet setpointsize
+	love.graphics.setPointSize(${1:size})
+snippet setpointstyle
+	love.graphics.setPointStyle(${1:style})
+snippet setrendertarget
+	love.graphics.setRenderTarget(${1:framebuffer})
+snippet setscissor
+	love.graphics.setScissor()
+snippet togglefullscreen
+	love.graphics.toggleFullscreen()
+snippet translate
+	love.graphics.translate(${1:dx}, ${2:dy})
+snippet triangle
+	love.graphics.triangle(${1:mode}, ${2:x1}, ${3:y1}, ${4:x2}, ${5:y2}, ${6:x3}, ${7:y3})
+# love.image
+snippet newencodedimagedata
+	love.image.newEncodedImageData(${1:imageData}, ${2:format})
+snippet newimagedata
+	love.image.newImageData(${1:x}, ${2:y})
+# love.joystick
+snippet close
+	love.joystick.close(${1:joystick})
+snippet getaxes
+	love.joystick.getAxes(${1:joystick})
+snippet getaxis
+	love.joystick.getAxis(${1:joystick}, ${2:axis})
+snippet getball
+	love.joystick.getBall(${1:joystick}, ${2:ball})
+snippet gethat
+	love.joystick.getHat(${1:joystick}, ${2:hat})
+snippet getname
+	love.joystick.getName(${1:joystick})
+snippet getnumaxes
+	love.joystick.getNumAxes(${1:joystick})
+snippet getnumballs
+	love.joystick.getNumBalls(${1:joystick})
+snippet getnumbuttons
+	love.joystick.getNumButtons(${1:joystick})
+snippet getnumhats
+	love.joystick.getNumHats(${1:joystick})
+snippet getnumjoysticks
+	love.joystick.getNumJoysticks()
+snippet jisdown
+	love.joystick.isDown(${1:joystick}, ${2:button})
+snippet isopen
+	love.joystick.isOpen(${1:joystick})
+snippet open
+	love.joystick.open(${1:joystick})
+# love.keyboard
+snippet getkeyrepeat
+	love.keyboard.getKeyRepeat()
+snippet lki
+	love.keyboard.isDown(${1:key})
+snippet setkeyrepeat
+	love.keyboard.setKeyRepeat(${1:delay}, ${2:interval})
+# love.mouse
+snippet getposition
+	love.mouse.getPosition()
+snippet getx
+	love.mouse.getX()
+snippet gety
+	love.mouse.getY()
+snippet misdown
+	love.mouse.isDown(${1:button})
+snippet isgrabbed
+	love.mouse.isGrabbed()
+snippet isvisible
+	love.mouse.isVisible()
+snippet setgrab
+	love.mouse.setGrab(${1:grab})
+snippet setposition
+	love.mouse.setPosition(${1:x}, ${2:y})
+snippet setvisible
+	love.mouse.setVisible(${1:visible})
+# love.physics
+snippet newbody
+	love.physics.newBody(${1:world}, ${2:x}, ${3:y}, ${4:m}, ${5:i})
+snippet newcircleshape
+	love.physics.newCircleShape(${1:body}, ${2:x}, ${3:y}, ${4:radius})
+snippet newdistancejoint
+	love.physics.newDistanceJoint(${1:body1}, ${2:body2}, ${3:x1}, ${4:y1}, ${5:x2}, ${6:y2})
+snippet newgearjoint
+	love.physics.newGearJoint(${1:joint1}, ${2:joint2}, ${3:ratio})
+snippet newmousejoint
+	love.physics.newMouseJoint(${1:body}, ${2:x}, ${3:y})
+snippet newpolygonshape
+	love.physics.newPolygonShape(${1:body}, ${2:...})
+snippet newprismaticjoint
+	love.physics.newPrismaticJoint(${1:body1}, ${2:body2}, ${3:x}, ${4:y}, ${5:ax}, ${6:ay})
+snippet newpulleyjoint
+	love.physics.newPulleyJoint(${1:body1}, ${2:body2}, ${3:gx1}, ${4:gy1}, ${5:gx2}, ${6:gy2}, ${7:x1}, ${8:y1}, ${9:x2}, ${10:y2}, ${11:ratio})
+snippet newrectangleshape
+	love.physics.newRectangleShape(${1:body}, ${2:x}, ${3:y}, ${4:width}, ${5:height}, ${6:angle})
+snippet newrevolutejoint
+	love.physics.newRevoluteJoint(${1:body1}, ${2:body2}, ${3:x}, ${4:y})
+snippet newworld
+	love.physics.newWorld(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})
+# love.sound
+snippet newdecoder
+	love.sound.newDecoder(${1:file}, ${2:buffer})
+snippet newsounddata
+	love.sound.newSoundData(${1:decoder})
+# love.thread
+snippet getthread
+	love.thread.getThread(${1:name})
+snippet getthreads
+	love.thread.getThreads()
+snippet newthread
+	love.thread.newThread(${1:name}, ${2:filename})
+# love.timer
+snippet ltd
+	love.timer.getDelta()
+snippet ltf
+	love.timer.getFPS()
+snippet getmicrotime
+	love.timer.getMicroTime()
+snippet gettime
+	love.timer.getTime()
+snippet lts
+	love.timer.sleep(${1:milliseconds})
+snippet step
+	love.timer.step()
