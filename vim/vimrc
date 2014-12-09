@@ -35,5 +35,22 @@ vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
 
 " Enable built-in matchit plugin
- runtime macros/matchit.vim
+runtime macros/matchit.vim
+nmap <Leader>m :!make <cr>
+nmap <Leader>r :!./% <cr>
 
+" to change the macro storage location use the following
+let marvim_store='/home/charly/.vim/.macros'
+let marvim_find_key = '<Leader>1' " busca macro Space+F2
+let marvim_store_key = '<Leader>0'     " guardar macro Space+F3 
+let marvim_register = 'c'       " change used register from 'q' to 'c'
+let marvim_prefix = 1           " disable default syntax based prefix 
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+"
+" " Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+
+" " Delete current buffer without delete window
+" nmap <leader>k :bn|bd#<CR>

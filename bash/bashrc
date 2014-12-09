@@ -116,3 +116,6 @@ stty stop ''
 stty start ''
 stty -ixon
 stty -ixoff
+
+#Disable bloq mayuscula
+ setxkbmap -option ctrl:nocaps

@@ -105,4 +105,5 @@ cl = function() {io.system('cd ~/Torrentes/ &&  clive -f best ' + buffer.URL +' 
 EOF
 map <C-m> :js cl()<CR>
 
+set! network.http.sendRefererHeader=0
 
