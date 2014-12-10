@@ -101,7 +101,7 @@ set hintchars=hjklasdfgyuiopqwertnmzxcvb
 set maxitems=5
 
 javascript <<EOF
-cl = function() {io.system('cd ~/Torrentes/ &&  clive -f best ' + buffer.URL +' &');};
+cl = function() {io.system('cd ~/Descargas/ &&  youtube-dl ' + buffer.URL +' -o videoFlash &');};
 EOF
 map <C-m> :js cl()<CR>
 
