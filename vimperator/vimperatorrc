@@ -3,7 +3,7 @@
 
 set "editor=aterm -e vim"
 set guioptions=rnb
-set runtimepath=/home/charly/.vimperator
+set runtimepath=~/.vimperator
 set showstatuslinks=2
 set showtabline=2
 "dont focus input automaticallu
@@ -17,7 +17,7 @@ autocmd DownloadPost megaupload.com :!mv "<file>"  ~/descargas/
 autocmd DownloadPost megavideo.com :!mv "<file>"  ~/descargas/
 autocmd DownloadPost stagevu.com :!mv "<file>"  ~/descargas/
 autocmd DownloadPost rapidshare.com :!mv "<file>"  ~/descargas/
-"ponerle atajos al youtube con los ytmute y compañia
+
 
 " Ver version del history para saltar directamente fuera de la pagina actual con J
 noremap J <Esc>:jumps<CR>:back 
@@ -85,24 +85,19 @@ statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
  display: none !important;
 }
 EOF
-source! /home/charly/.vimperatorrc.local
-
-" vim: set ft=vimperator:
-" Me pongo mi colorcheme preferido
-colorscheme obsidian
-
-" Para el gmail
-set hinttags="//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @role='link' or @role='button'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //div[contains(@class,'J-K-I J-J5-Ji')]"
 
 " Ajustamos correctamente la cmdline
 highlight CmdLine -append background: white; color: black; -moz-transition: all 0.25s;
 " le ponemos los hints a caracteres sin el plugin 
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
 set maxitems=5
+" Que no busque las ficheros locales y tire con el selinux sin darle permisos ...
+set complete=sl
 
-javascript <<EOF
-cl = function() {io.system('cd ~/Torrentes/ &&  clive -f best ' + buffer.URL +' &');};
-EOF
+javascript cl = function() {io.system('~/Scripts/descarga.sh  ' + buffer.URL +' &');};
 map <C-m> :js cl()<CR>
 
 
+" vim: set ft=vimperator:
+" Me pongo mi colorcheme preferido
+colorscheme obsidian

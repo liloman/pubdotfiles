@@ -27,7 +27,7 @@ shopt -s cmdhist
 shopt -s histappend
 
 # Permitir regexp en el macheado de la consola
-#shopt -s extglob
+shopt -s extglob
 
 # No hay necesidad de hacer hash -r cuando modificas directorios
 # shopt -s checkhash

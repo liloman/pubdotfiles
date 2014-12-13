@@ -36,3 +36,6 @@ imap <c-s> <Esc><c-s>
 
 " Enable built-in matchit plugin
  runtime macros/matchit.vim
+ syntax on
+
+nmap <Leader>m :!make<cr>
