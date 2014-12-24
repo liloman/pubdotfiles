@@ -8,6 +8,5 @@ git submodule add git://github.com/tpope/vim-surround.git vim/bundle/vim-surroun
 git submodule add https://github.com/tpope/vim-repeat.git vim/bundle/vim-repeat.git
 git submodule add https://github.com/flazz/vim-colorschemes.git vim/bundle/vim-colorschemes.git
 git submodule add https://github.com/godlygeek/csapprox.git vim/bundle/csapprox.git
-git submodule add git://github.com/msanders/snipmate.vim.git vim/bundle/snipmate.vim.git
 git submodule add git://github.com/majutsushi/tagbar vim/bundle/tagbar
 git submodule add https://github.com/scrooloose/nerdtree.git vim/bundle/nerdtree.git

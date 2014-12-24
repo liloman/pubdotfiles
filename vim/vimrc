@@ -20,13 +20,13 @@ call pathogen#helptags()
 let mapleader=" "
 let g:lightline = {'colorscheme': 'wombat',}
 filetype plugin indent on
-colorscheme BlackSea
+colorscheme Monokai
 
 
 nnoremap <F5> :GundoToggle<CR>
 "To group with ease from the command line
 cmap ;\ \(\)<Left><Left>
-nmap <Leader>e :!lua %<cr>
+nmap <Leader>e :!./%<cr>
 nmap <F3> :NERDTreeToggle<CR>
 nmap <F4> :TagbarToggle<CR>
 "Save with C-S
@@ -36,8 +36,10 @@ imap <c-s> <Esc><c-s>
 
 " Enable built-in matchit plugin
 runtime macros/matchit.vim
-nmap <Leader>m :!make <cr>
-nmap <Leader>r :!./% <cr>
+"nmap <Leader>m :clear && make <cr>
+nmap <Leader>m :make <cr>
+nmap <Leader>r :!./run.sh <cr>
+nmap <Leader>d :!./run.sh debug <cr>
 
 " to change the macro storage location use the following
 let marvim_store='/home/charly/.vim/.macros'
@@ -46,11 +48,36 @@ let marvim_store_key = '<Leader>0'     " guardar macro Space+F3
 let marvim_register = 'c'       " change used register from 'q' to 'c'
 let marvim_prefix = 1           " disable default syntax based prefix 
 
-" Move to the next buffer
-nmap <leader>l :bnext<CR>
-"
-" " Move to the previous buffer
-nmap <leader>h :bprevious<CR>
+" Move between buffers
+nmap <Leader>l :bnext<CR>
+nmap <Leader>h :bprevious<CR>
+nmap <Leader>k :b#<CR>
+nmap <Leader>j :blast<CR>
+" Delete current buffer without delete window
+nmap <leader>b :bn\|bd#<CR>
 
-" " Delete current buffer without delete window
-" nmap <leader>k :bn|bd#<CR>
+" Autofocus en tagbar
+let g:tagbar_autofocus = 1
+
+"Para que funcione gf en ficheros en otras rutas
+set path=.,include/,src/ ",** no recursivo.--> :tag nombrefile.c
+
+"Undo en insert mode 
+inoremap <silent> <C-W> <C-\><C-O>db
+inoremap <silent> <C-U> <C-\><C-O>d0
+"Paste what you've deleted in insert mode
+inoremap <silent> <C-Y> <C-R>" 
+
+"Easymotion power
+let g:EasyMotion_smartcase=1
+map <Leader><Leader>l <Plug>(easymotion-lineforward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><Leader>h <Plug>(easymotion-linebackward)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+"Ultimate snipper
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsListSnippets="<tab><tab>"
