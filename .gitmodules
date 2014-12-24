@@ -28,12 +28,18 @@
 [submodule "vim/bundle/csapprox.git"]
 	path = vim/bundle/csapprox.git
 	url = https://github.com/godlygeek/csapprox.git
-[submodule "vim/bundle/snipmate.vim.git"]
-	path = vim/bundle/snipmate.vim.git
-	url = git://github.com/msanders/snipmate.vim.git
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
 [submodule "vim/bundle/nerdtree.git"]
 	path = vim/bundle/nerdtree.git
 	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
+	url = git://github.com/SirVer/ultisnips.git
+[submodule "vim/bundle/vim-snippets"]
+	path = vim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "vim/bundle/tcomment"]
+	path = vim/bundle/tcomment
+	url = https://github.com/tomtom/tcomment_vim.git

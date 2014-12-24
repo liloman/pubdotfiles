@@ -116,3 +116,7 @@ stty stop ''
 stty start ''
 stty -ixon
 stty -ixoff
+
+#Disable bloq mayuscula
+setxkbmap -option ctrl:nocaps
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
