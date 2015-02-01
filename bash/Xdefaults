@@ -1,0 +1,12 @@
+aterm*loginShell:false
+Aterm*fading:90
+aterm*scrollBar:false
+aterm*saveLines:32767
+aterm*geometry:110x24
+aterm*backgroundPixmap:/usr/share/pixmaps/Eagle.xpm
+aterm*backgroundType:center
+aterm*cursorColor:cyan
+aterm*tinting:white
+aterm*shading:30
+aterm*transparent:on
+aterm*borderwidth:0

@@ -116,8 +116,9 @@ set -o vi
 #Disable <C-s> and <C-q> on terminal Stop and Start to use <C-s> on vim (to save a file)
 stty stop ''
 stty start ''
-stty -ixon
-stty -ixoff
+#Para que no funcione ctl+s y despues hayq eu usar ctl+q para desbloquear
+stty -ixon 
+#stty -ixoff
 
 #Disable bloq mayuscula
 setxkbmap -option ctrl:nocaps

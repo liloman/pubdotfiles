@@ -45,7 +45,7 @@ imap <c-s> <Esc><c-s>
 " Enable built-in matchit plugin
 runtime macros/matchit.vim
 syntax on
-
+set clipboard=unnamedplus
 nmap <Leader>m :!make<cr>
 runtime macros/matchit.vim
 "nmap <Leader>m :clear && make <cr>
@@ -54,6 +54,12 @@ nmap <Leader>r :!./run.sh <cr>
 nmap <Leader>d :!./run.sh -d 1 <cr>
 " nmap J Jx
 nmap <Leader>t :tag 
+"Toggle la numeracion de lineas (para copy...)
+nmap <Leader>n :set invnumber<CR> 
+"Toggle highlight para busquedas
+let hlstate=0
+nnoremap <Leader>s :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
+
 
 " to change the macro storage location use the following
 let marvim_store='/home/charly/.vim/.macros'
@@ -107,3 +113,7 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=2
 set expandtab
+
+
+"Disable Lua inspect...
+let g:loaded_luainspect = 1

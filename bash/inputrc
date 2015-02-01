@@ -1,0 +1,23 @@
+#My own things
+set input-meta On
+set show-all-if-ambiguous On
+set mark-directories On
+set horizontal-scroll-mode On
+set visible-stats On
+set editing-mode vi
+set keymap vi-insert
+set bell-style none
+
+# Para que funcionen las ñ :D 
+set convert-meta off
+
+Control-p:history-search-backward
+Control-n:history-search-forward
+
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+"\e[C":forward-char
+"\e[D":backward-char
+
+# Para que autocomplete y muestre en la primera TAB
+set show-all-if-ambiguous on

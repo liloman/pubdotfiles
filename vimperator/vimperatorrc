@@ -104,6 +104,8 @@ EOF
 map <C-m> :js cl()<CR>
 
 set! network.http.sendRefererHeader=0
+"Un buen zoom para todas las paginas 
+set! browser.zoom.siteSpecific=false
 
 " vim: set ft=vimperator:
 " Me pongo mi colorcheme preferido
