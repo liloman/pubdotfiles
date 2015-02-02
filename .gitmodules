@@ -1,45 +1,45 @@
-[submodule "vim/bundle/vim-lua-ftplugin.git"]
-	path = vim/bundle/vim-lua-ftplugin.git
+[submodule "vim/vim/bundle/vim-lua-ftplugin.git"]
+	path = vim/vim/bundle/vim-lua-ftplugin.git
 	url = https://github.com/xolox/vim-lua-ftplugin.git
-[submodule "vim/bundle/vim-misc.git"]
-	path = vim/bundle/vim-misc.git
+[submodule "vim/vim/bundle/vim-misc.git"]
+	path = vim/vim/bundle/vim-misc.git
 	url = https://github.com/xolox/vim-misc.git
-[submodule "vim/bundle/vim-lua-inspect.git"]
-	path = vim/bundle/vim-lua-inspect.git
+[submodule "vim/vim/bundle/vim-lua-inspect.git"]
+	path = vim/vim/bundle/vim-lua-inspect.git
 	url = https://github.com/xolox/vim-lua-inspect.git
-[submodule "vim/bundle/vim-easymotion.git"]
-	path = vim/bundle/vim-easymotion.git
+[submodule "vim/vim/bundle/vim-easymotion.git"]
+	path = vim/vim/bundle/vim-easymotion.git
 	url = https://github.com/Lokaltog/vim-easymotion.git
-[submodule "vim/bundle/gundo.vim.git"]
-	path = vim/bundle/gundo.vim.git
+[submodule "vim/vim/bundle/gundo.vim.git"]
+	path = vim/vim/bundle/gundo.vim.git
 	url = http://github.com/sjl/gundo.vim.git
-[submodule "vim/bundle/lightline.vim"]
-	path = vim/bundle/lightline.vim
+[submodule "vim/vim/bundle/lightline.vim"]
+	path = vim/vim/bundle/lightline.vim
 	url = https://github.com/itchyny/lightline.vim
-[submodule "vim/bundle/vim-surround.git"]
-	path = vim/bundle/vim-surround.git
+[submodule "vim/vim/bundle/vim-surround.git"]
+	path = vim/vim/bundle/vim-surround.git
 	url = git://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/vim-repeat.git"]
-	path = vim/bundle/vim-repeat.git
+[submodule "vim/vim/bundle/vim-repeat.git"]
+	path = vim/vim/bundle/vim-repeat.git
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/vim-colorschemes.git"]
-	path = vim/bundle/vim-colorschemes.git
+[submodule "vim/vim/bundle/vim-colorschemes.git"]
+	path = vim/vim/bundle/vim-colorschemes.git
 	url = https://github.com/flazz/vim-colorschemes.git
-[submodule "vim/bundle/csapprox.git"]
-	path = vim/bundle/csapprox.git
+[submodule "vim/vim/bundle/csapprox.git"]
+	path = vim/vim/bundle/csapprox.git
 	url = https://github.com/godlygeek/csapprox.git
-[submodule "vim/bundle/tagbar"]
-	path = vim/bundle/tagbar
+[submodule "vim/vim/bundle/tagbar"]
+	path = vim/vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
-[submodule "vim/bundle/nerdtree.git"]
-	path = vim/bundle/nerdtree.git
+[submodule "vim/vim/bundle/nerdtree.git"]
+	path = vim/vim/bundle/nerdtree.git
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vim/bundle/ultisnips"]
-	path = vim/bundle/ultisnips
+[submodule "vim/vim/bundle/ultisnips"]
+	path = vim/vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
-[submodule "vim/bundle/vim-snippets"]
-	path = vim/bundle/vim-snippets
+[submodule "vim/vim/bundle/vim-snippets"]
+	path = vim/vim/bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
-[submodule "vim/bundle/tcomment"]
-	path = vim/bundle/tcomment
+[submodule "vim/vim/bundle/tcomment"]
+	path = vim/vim/bundle/tcomment
 	url = https://github.com/tomtom/tcomment_vim.git
