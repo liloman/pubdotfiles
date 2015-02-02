@@ -1,6 +1,6 @@
 #!/bin/bash
 BACKUP=dotfiles_backup
-BASH=" bashrc inputrc bash_profile bash_logout git-completion.bash git-prompt.sh"
+BASH=" bashrc inputrc bash_profile bash_logout git-completion.bash git-prompt.sh ctags"
 X=" Xresources Xdefaults Xmodmap"
 TMUX=" tmux.conf"
 VIM=" vim vimrc"
@@ -42,7 +42,6 @@ shift $(($OPTIND-1))
 echo $type $INSTALL
 #Backup first
 cd ~
-# git clone https://github.com/liloman/dotfiles.git || { echo No git? ; exit 1; }
 mkdir $BACKUP
 for file in $INSTALL; do
     mv .$file $BACKUP
@@ -71,8 +70,8 @@ for file in $TMUX; do
     ln -s dotfiles/tmux/$file .$file
 done
 
-#cd dotfiles
+cd dotfiles
 
-#git submodule init
-#
-# git submodule update --remote --merge
+git submodule init
+
+git submodule update 
