@@ -106,6 +106,8 @@ map <C-m> :js cl()<CR>
 set! network.http.sendRefererHeader=0
 "Un buen zoom para todas las paginas 
 set! browser.zoom.siteSpecific=false
+"Fuera tracking desde la pagina default
+set! browser.newtab.url=about:blank
 
 " vim: set ft=vimperator:
 " Me pongo mi colorcheme preferido
