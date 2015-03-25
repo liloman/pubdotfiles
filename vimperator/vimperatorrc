@@ -97,9 +97,6 @@ set complete=sl
 <<<<<<< HEAD
 javascript cl = function() {io.system('~/Scripts/descarga.sh  ' + buffer.URL +' &');};
 =======
-javascript <<EOF
-cl = function() {io.system('~/Scripts/descarga.sh ' + buffer.URL +' &');};
-EOF
 >>>>>>> features
 map <C-m> :js cl()<CR>
 
@@ -108,6 +105,8 @@ set! network.http.sendRefererHeader=0
 set! browser.zoom.siteSpecific=false
 "Fuera tracking desde la pagina default
 set! browser.newtab.url=about:blank
+"No mensaje de confirmacion en html5 fullscreen
+set! full-screen-api.approval-required=false
 
 " vim: set ft=vimperator:
 " Me pongo mi colorcheme preferido
