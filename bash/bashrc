@@ -102,7 +102,7 @@ if [ -d ~/Scripts ] ; then
 fi
 
 #Z script to get the most common directories and so on
-. ~/Scripts/z.sh
+. ~/Scripts/z/z.sh
 
 ver(){
 [ -z "$1" ] && return
@@ -120,6 +120,15 @@ stty start ''
 stty -ixon 
 #stty -ixoff
 
+
 #Disable bloq mayuscula
 # setxkbmap -option ctrl:nocaps
 #xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+# Set z.sh https://github.com/rupa/z files prefix
+#z foo         cd to most frecent dir matching foo
+#z foo bar     cd to most frecent dir matching foo, then bar
+#z -r foo      cd to highest ranked dir matching foo
+#z -t foo      cd to most recently accessed dir matching foo
+#z -l foo      list all dirs matching foo (by 'frecency')
+_Z_DATA=$HOME/.zs/.z
