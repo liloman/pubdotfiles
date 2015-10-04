@@ -103,6 +103,7 @@ map <C-b> :js openMidori()<CR>
 set! network.http.sendRefererHeader=0
 "Un buen zoom para todas las paginas 
 set! browser.zoom.siteSpecific=false
+set! font.minimum-size.x-western=16
 "Fuera tracking desde la pagina default
 set! browser.newtab.url=about:blank
 "No mensaje de confirmacion en html5 fullscreen
