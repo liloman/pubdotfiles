@@ -94,11 +94,11 @@ set maxitems=5
 " Que no busque las ficheros locales y tire con el selinux sin darle permisos ...
 set complete=sl
 
-<<<<<<< HEAD
-javascript cl = function() {io.system('~/Scripts/descarga.sh  ' + buffer.URL +' &');};
-=======
->>>>>>> features
-map <C-m> :js cl()<CR>
+javascript youtubedl = function() {io.system('~/Scripts/descarga.sh  ' + buffer.URL +' &');};
+map <C-m> :youtubedl()<CR>
+
+javascript openMidori = function() {io.system('midori -p ' + buffer.URL +' &');};
+map <C-b> :js openMidori()<CR>
 
 set! network.http.sendRefererHeader=0
 "Un buen zoom para todas las paginas 
