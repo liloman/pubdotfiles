@@ -94,10 +94,10 @@ set maxitems=5
 " Que no busque las ficheros locales y tire con el selinux sin darle permisos ...
 set complete=sl
 
-javascript youtubedl = function() {io.system('~/Scripts/descarga.sh  ' + buffer.URL +' &');};
-map <C-m> :youtubedl()<CR>
+javascript function youtubedl() {io.system('~/Scripts/descarga.sh  ' + buffer.URL +' &');};
+map <C-m>  :js youtubedl()<CR>
 
-javascript openMidori = function() {io.system('midori -p ' + buffer.URL +' &');};
+javascript function openMidori() {io.system('midori -p ' + buffer.URL +' &');};
 map <C-b> :js openMidori()<CR>
 
 set! network.http.sendRefererHeader=0
