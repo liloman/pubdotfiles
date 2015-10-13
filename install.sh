@@ -72,6 +72,8 @@ done
 
 cd dotfiles
 
-git submodule init
+echo Installing submodules
+git submodule --init --recursive
 
-git submodule update 
+echo Updating submodules 
+git submodule update  --init --remote
