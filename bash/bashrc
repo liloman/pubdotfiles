@@ -9,7 +9,10 @@
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
 # Le pone el porcentaje less
-export LESS='-m' # N (numero de lineas no me interesa,feo)
+#export LESS='-m' # N (numero de lineas no me interesa,feo)
+export LESS="-eirMX" #-e quit at 2 eof, -i case insensitive search
+#-r raw control displayed (colors), -M long prompt
+# -X dont send de/initialization strings to the terminal
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
