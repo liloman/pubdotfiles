@@ -98,7 +98,8 @@ javascript function youtubedl() {io.system('~/Scripts/descarga.sh  ' + buffer.UR
 map <C-m>  :js youtubedl()<CR>
 
 javascript function openMidori() {io.system('midori -p ' + buffer.URL +' &');};
-map <C-b> :js openMidori()<CR>
+javascript function openFirefoxPrivate() {io.system('firefox -P Limpio --private-window ' + buffer.URL +' &');};
+map <C-b> :js openFirefoxPrivate()<CR>
 
 set! network.http.sendRefererHeader=0
 "Un buen zoom para todas las paginas 

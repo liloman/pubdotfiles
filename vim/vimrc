@@ -118,3 +118,6 @@ set expandtab
 
 "Disable Lua inspect...
 let g:loaded_luainspect = 1
+
+" autocmd! BufEnter, BufNewFile colo zellner
+autocmd FileType tex colorscheme zellner | colo zellner
