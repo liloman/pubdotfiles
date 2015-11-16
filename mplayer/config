@@ -1,0 +1,34 @@
+#General setup
+
+# really-quiet="1" #Very very little console output
+
+zoom="1" #Allow sofware scaling if I use x11 for vo
+ao=pulse
+
+#Display
+
+double="yes"	#double buffering(recommended for subtitles)
+framedrop="1"	# For slow machines
+hardframedrop="0"  #Make sure hard frame drop is off but can turn on easily now
+
+#subtitle code
+#Truetype fonts rock! (sudo apt-get msttcorefonts)
+ font=/usr/share/fonts/truetype/msttcorefonts/impact.ttf
+
+ffactor="10" #black outline
+sub-bg-alpha="0" #background color ala closed captions
+sub-bg-color="0" #black to white
+subfont-text-scale="4"	
+subfont-osd-scale="4"	
+subfont-autoscale="1" # el osd segun la altura 
+subfont-blur="1" #Slight blur
+osdlevel="3"
+
+#This sets the postprocessing into overdrive using all possible spare cpu cycles to make the movie look better
+autoq=100
+vf=pp=de,hqdn3d
+
+
+subpos="90"	#By default subtitles are too low
+subalign="2"
+
