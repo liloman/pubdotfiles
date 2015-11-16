@@ -5,6 +5,7 @@ X=" Xresources Xdefaults Xmodmap"
 TMUX=" tmux.conf"
 VIM=" vim vimrc"
 WEB=" vimperatorrc"
+MPLAYER=" input.conf config"
 __ScriptVersion="0.1"
 
 function usage ()
@@ -70,7 +71,12 @@ for file in $TMUX; do
     ln -s dotfiles/tmux/$file .$file
 done
 
-cd dotfiles
+cd ~/.mplayer/
+for file in $MPLAYER; do
+    ln -s dotfiles/mplayer/$file $file
+done
+
+cd ~/dotfiles
 
 echo Installing submodules
 git submodule --init --recursive
