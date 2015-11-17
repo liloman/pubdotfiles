@@ -123,6 +123,8 @@ stty start ''
 stty -ixon 
 #stty -ixoff
 
+#Default vagrant provider to virtualbox otherwise libvirt (fedora 22)
+VAGRANT_DEFAULT_PROVIDER="virtualbox"
 
 #Disable bloq mayuscula
 # setxkbmap -option ctrl:nocaps
