@@ -5,8 +5,9 @@ X=" Xresources Xdefaults Xmodmap"
 TMUX=" tmux.conf"
 VIM=" vim vimrc"
 WEB=" vimperatorrc"
-MPLAYER=" input.conf config"
-__ScriptVersion="0.1"
+__ScriptVersion="0.2"
+#version 0.1 "basic" config
+#version 0.2 Added mplayer config
 
 function usage ()
 {
@@ -72,9 +73,7 @@ for file in $TMUX; do
 done
 
 cd ~/.mplayer/
-for file in $MPLAYER; do
-    ln -s dotfiles/mplayer/$file $file
-done
+ln -s ~/dotfiles/mplayer/* .
 
 cd ~/dotfiles
 
