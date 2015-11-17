@@ -104,9 +104,6 @@ if [ -d ~/Scripts ] ; then
       PATH=~/.local/bin/:~/Scripts:/usr/NX/bin:/opt/eclipse:/opt/libreoffice3.6/program/:$PATH
 fi
 
-#Z script to get the most common directories and so on
-. ~/Scripts/z/z.sh
-
 ver(){
 [ -z "$1" ] && return
 mplayer-masvolumen "$1" < /dev/null &> /dev/null &
@@ -124,12 +121,14 @@ stty -ixon
 #stty -ixoff
 
 #Default vagrant provider to virtualbox otherwise libvirt (fedora 22)
-VAGRANT_DEFAULT_PROVIDER="virtualbox"
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
 #Disable bloq mayuscula
 # setxkbmap -option ctrl:nocaps
 #xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
+#Z script to get the most common directories and so on
+. ~/Scripts/z/z.sh
 # Set z.sh https://github.com/rupa/z files prefix
 #z foo         cd to most frecent dir matching foo
 #z foo bar     cd to most frecent dir matching foo, then bar
