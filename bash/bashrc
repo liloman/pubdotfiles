@@ -71,13 +71,10 @@ function dirsbash {
 local i=0; 
 local msg=""
 for dir in $(dirs -l); do
-    #[ "$i" -gt 0 ] && echo -ne "\e[00;33m [\e[00m$i-$dir\e[00;33m ]\e[00m";
-    msg=$msg"\e[00;33m [\e[00m$i-$dir\e[00;33m] \e[00m";
+    [ "$i" -gt 0 ] && echo -ne "\e[00;33m [\e[00m$i-$dir\e[00;33m ]\e[00m";
     i=$(($i+1))
 done
-if [ "$i" -gt 1 ]; then 
-    echo -ne $msg;
-else
+if [ "$i" -eq 1 ]; then 
     echo -ne "\e[00;33mEmpty dir stack(a add,d delete,g go number,~num alias) \e[00m";
 fi
 }
@@ -114,16 +111,10 @@ bind -m vi-insert "\C-l":clear-screen
 #Para que autocomplete tambien !$,!*,!!,!cat ... despues de un space ... :)
 bind Space:magic-space
 
-# Ponemos mis scripts y el libreoffice
+# Add my scripts
 if [ -d ~/Scripts ] ; then
-    PATH=~/.local/bin/:~/Scripts:/usr/NX/bin:/opt/eclipse:/opt/libreoffice3.6/program/:$PATH
+    PATH=~/Scripts:$PATH
 fi
-
-ver(){
-    [ -z "$1" ] && return
-    mplayer-masvolumen "$1" < /dev/null &> /dev/null &
-    read -p "¿Borrarlo (s/n)?:" res && [ $res == "s" ] && rm "$1"
-}
 
 #Mode vi
 set -o vi

@@ -18,7 +18,7 @@ cat <<- EOT
   Options:
   -h|help       Display this message
   -v|version    Display script version
-  -u|user       Full version  (BASH,VIM,TMUX,WEB)
+  -u|user       Full version  (BASH,VIM,TMUX,WEB, MPLAYER)
   -s|server     Server version (BASH, VIM)
 
 EOT
@@ -36,7 +36,7 @@ do
   esac 
 done
 shift $(($OPTIND-1))
-[[ -z "$type" ]] && echo $0 need arguments. Execute $0 -h for help. &&  exit 0
+[[ -z "$type" ]] && echo $0 needs arguments. Execute $0 -h for help. &&  exit 0
 
 [[ "$type" == "user" ]] && INSTALL=$BASH$VIM$WEB$X$TMUX
 [[ "$type" == "server" ]] && INSTALL=$BASH$VIM 
@@ -72,13 +72,14 @@ for file in $TMUX; do
     ln -s dotfiles/tmux/$file .$file
 done
 
+mkdir ~/.mplayer/
 cd ~/.mplayer/
 ln -s ~/dotfiles/mplayer/* .
 
 cd ~/dotfiles
 
 echo Installing submodules
-git submodule --init --recursive
+git submodule init
 
 echo Updating submodules 
 git submodule update  --init --remote
