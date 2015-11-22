@@ -73,8 +73,19 @@ alias verflashl="tail -f /tmp/youtube.log"
 
 
 #Functions 
-a () { DIR="."; [ $1 ] && DIR=$1; cd $DIR; pushd $DIR >/dev/null; }
-d () { DIR=0; [ $1 ] && DIR=$1; popd -n +$DIR >/dev/null; }
-#Go to a dir stack number of dirs -v, ~ is not interpreted within the function
-g () { DIR=$(dirs +$1); [[ $DIR =~ ~* ]] && DIR=${DIR/\~/$HOME} ; cd $DIR; }
+a () { 
+    local DIR=$(pwd -L); [ "$1" ] && DIR="$(realpath "$1")"
+    local i=0; 
+    cd "${DIR}"
+    local com="dirs -l -p"
+    while IFS= read -r line; do 
+        [ "$i" -gt 0 -a "$line" == "$DIR" ] && return;
+        let i++
+    done < <($com)
+    pushd "${DIR}" >/dev/null; 
+}
+
+d () { local DIR=0; [ $1 ] && DIR=$1; popd -n +$DIR >/dev/null; }
+#Go to a dir stack number of dirs -l (no ~ symbol)
+g () { local DIR=$(dirs -l +$1); cd "${DIR}"; }
 tam () { du -hs $* | sort -h; }

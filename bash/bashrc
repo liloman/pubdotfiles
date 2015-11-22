@@ -68,12 +68,12 @@ rxvt*) # En el caso de una aterm le ponemos el numero de aterm lanzadas
 esac
 
 function dirsbash {
-local i=0; 
-local msg=""
-for dir in $(dirs -l); do
-    [ "$i" -gt 0 ] && echo -ne "\e[00;33m [\e[00m$i-$dir\e[00;33m ]\e[00m";
-    i=$(($i+1))
-done
+local i=0 
+local com="dirs -p"
+while IFS= read -r line; do 
+    [ "$i" -gt 0 ] && echo -ne "\e[00;33m [\e[00m$i-$line\e[00;33m ]\e[00m";
+    let i++
+done < <($com)
 if [ "$i" -eq 1 ]; then 
     echo -ne "\e[00;33mEmpty dir stack(a add,d delete,g go number,~num alias) \e[00m";
 fi
