@@ -134,11 +134,13 @@ export VAGRANT_DEFAULT_PROVIDER=virtualbox
 #xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
 #Z script to get the most common directories and so on
-. ~/Scripts/z/z.sh
-# Set z.sh https://github.com/rupa/z files prefix
-#z foo         cd to most frecent dir matching foo
-#z foo bar     cd to most frecent dir matching foo, then bar
-#z -r foo      cd to highest ranked dir matching foo
-#z -t foo      cd to most recently accessed dir matching foo
-#z -l foo      list all dirs matching foo (by 'frecency')
-_Z_DATA=$HOME/.zs/.z
+if [ -e ~/Scripts/z/z.sh ]; then
+    . ~/Scripts/z/z.sh
+    # Set z.sh https://github.com/rupa/z files prefix
+    #z foo         cd to most frecent dir matching foo
+    #z foo bar     cd to most frecent dir matching foo, then bar
+    #z -r foo      cd to highest ranked dir matching foo
+    #z -t foo      cd to most recently accessed dir matching foo
+    #z -l foo      list all dirs matching foo (by 'frecency')
+    _Z_DATA=$HOME/.zs/.z
+fi

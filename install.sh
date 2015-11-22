@@ -46,8 +46,10 @@ echo $type $INSTALL
 cd ~
 mkdir $BACKUP
 for file in $INSTALL; do
-    mv .$file $BACKUP
+    mv --backup=t .$file $BACKUP 2>/dev/null
 done
+
+[ -e ~/.mplayer/ ] && mv --backup=t ~/.mplayer/* $BACKUP 2>/dev/null
 
 for file in $BASH; do
     ln -s dotfiles/bash/$file .$file
