@@ -1,6 +1,6 @@
 #!/bin/bash
 BACKUP=dotfiles_backup
-BASH=" bashrc inputrc bash_profile bash_logout git-completion.bash git-prompt.sh ctags"
+BASH=" bashrc inputrc bash_profile bash_logout git-completion.bash git-prompt.sh ctags bash_aliases"
 X=" Xresources Xdefaults Xmodmap"
 TMUX=" tmux.conf"
 VIM=" vim vimrc"
