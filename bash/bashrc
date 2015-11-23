@@ -1,146 +1,138 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
+# vim: set filetype=sh :
+# My bashrc for non-login shells
+# see /usr/share/doc/bash/examples/startup-files for examples
+# Copyright Â© 2015 liloman
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
+#
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# Le pone el porcentaje less
-#export LESS='-m' # N (numero de lineas no me interesa,feo)
-export LESS="-eirMX" #-e quit at 2 eof, -i case insensitive search
-#-r raw control displayed (colors), -M long prompt
-# -X dont send de/initialization strings to the terminal
+###################
+#  Shell options  #
+###################
+#Set vi Mode 
+set -o vi
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Corrige los errores en el cd 
+# Fix cd spelling
 shopt -s cdspell
 
-# Los comandos multilinea los salva como un solo comando
+# Save multiline commands in one line
 shopt -s cmdhist
 
-# No borrar el historial al crear uno nuevo
+# Dont delete history
 shopt -s histappend
 
-# Permitir regexp en el macheado de la consola
+# Regexp in bash prompt
 shopt -s extglob
 
-# No hay necesidad de hacer hash -r cuando modificas directorios
+# Dont need to hash -r when modify directories
 # shopt -s checkhash
 
+#Disable <C-s>(stop) and <C-q>(start) on terminal. To use <C-s> on vim (to save a file)
+stty stop undef
+stty start undef
+#Disable control flow completely and press any key to start
+stty -ixon -ixoff ixany
 
+#Disable bloq mayuscula
+# setxkbmap -option ctrl:nocaps
+#xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+
+#######################
+#  INTERNAL VARIABLES #
+#######################
+
+PROMPT_COMMAND=exitbash
+PS1='$(dirsbash)\n\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\u$(__git_ps1 "(%s)")->\[\e[00m\]\[\e[01;34m\]\w]\n[H:\#]>\[\e[00m\] ' 
+
+#Default editor
+EDITOR=vim  
+HISTSIZE=50000
+HISTFILESIZE=50000
+#Maybe I should to rework this dinamic again...
+HISTFILE=~/.bash_historys/history_
+
+########################
+#  EXPORTED VARIABLES  #
+########################
+
+# don't put duplicate lines in the history.
+export HISTCONTROL=ignoredups
+#Default vagrant provider to virtualbox otherwise libvirt
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+
+#less options applied
+export LESS="-eIrMX" 
+#-e quit at 2 eof, -I case insensitive search
+#-r raw control displayed (colors), -M long prompt
+# -X dont send de/initialization strings to the terminal
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+###########
+#  Binds  #
+###########
 
-#To work with git
-source ~/dotfiles/bash/git-completion.bash
-source ~/dotfiles/bash/git-prompt.sh
-
-#Autocompletions --> Demasiados años sin ellas. Oh my god...
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && 
-            . /usr/share/bash-completion/bash_completion
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*)
-    #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    PROMPT_COMMAND=''
-    ;;
-rxvt*) # En el caso de una aterm le ponemos el numero de aterm lanzadas
-    # I should update this with tmux-session.window-number
-    ACTUAL_WORKSPACE=$(wmctrl -ld | grep  \* | cut -d' ' -f 1)
-    NATERM=$(wmctrl -lp | grep " $ACTUAL_WORKSPACE "[1-9] | ps -p `cut -d' ' -f 4` | grep -c [a]term)
-    SITUACION=$ACTUAL_WORKSPACE.$NATERM
-    PROMPT_COMMAND='history -a;echo -en "\033];Aterm $SITUACION\007"'
-    ;;
-*)
-    ;;
-esac
-
-function dirsbash {
-local i=0 
-local com="dirs -p"
-while IFS= read -r line; do 
-    [ "$i" -gt 0 ] && echo -ne "\e[00;33m [\e[00m$i-$line\e[00;33m ]\e[00m";
-    let i++
-done < <($com)
-if [ "$i" -eq 1 ]; then 
-    echo -ne "\e[00;33mEmpty dir stack(a add,d delete,g go number,~num alias) \e[00m";
-fi
-}
-
-# Comment in the above and uncomment this below for a color prompt
-PS1='$(dirsbash)\n\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\u$(__git_ps1 "(%s)")->\[\e[00m\]\[\e[01;34m\]\w]\n>\[\e[00m\]'
-
-
-# Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto -CF'
-fi
-
-# Interesante, puedo ir a cualquier directorio de casita desde cualquier sitio, peligroso
-# CDPATH=~
-EDITOR=vim  # update-alternatives --all  era la solucion
-HISTSIZE=50000
-HISTFILESIZE=50000
-HISTFILE=~/.bash_historys/history_$SITUACION
-
-# Do something that it's not what It should be. To be completed...
+# Kind of work for history autocompletition (needs work)
 bind -m vi-insert "\C-p":dynamic-complete-history
 bind -m vi-insert "\C-n":menu-complete
 
-# ctrl l hace un clear como en el emacs mode
+# ctrl l make clear the screen on vi mode
 bind -m vi-insert "\C-l":clear-screen
 
 #Para que autocomplete tambien !$,!*,!!,!cat ... despues de un space ... :)
 bind Space:magic-space
+
+###########
+#  Files  #
+###########
 
 # Add my scripts
 if [ -d ~/Scripts ] ; then
     PATH=~/Scripts:$PATH
 fi
 
-#Mode vi
-set -o vi
-
-#Disable <C-s> and <C-q> on terminal Stop and Start to use <C-s> on vim (to save a file)
-stty stop ''
-stty start ''
-#Para que no funcione ctl+s y despues hayq eu usar ctl+q para desbloquear
-stty -ixon 
-#stty -ixoff
-
-#Default vagrant provider to virtualbox otherwise libvirt (fedora 22)
-export VAGRANT_DEFAULT_PROVIDER=virtualbox
-
-#Disable bloq mayuscula
-# setxkbmap -option ctrl:nocaps
-#xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-
 #Z script to get the most common directories and so on
-if [ -e ~/Scripts/z/z.sh ]; then
+#git clone https://github.com/rupa/z 
+if [ -f ~/Scripts/z/z.sh ]; then
     . ~/Scripts/z/z.sh
-    # Set z.sh https://github.com/rupa/z files prefix
-    #z foo         cd to most frecent dir matching foo
-    #z foo bar     cd to most frecent dir matching foo, then bar
-    #z -r foo      cd to highest ranked dir matching foo
-    #z -t foo      cd to most recently accessed dir matching foo
-    #z -l foo      list all dirs matching foo (by 'frecency')
     _Z_DATA=$HOME/.zs/.z
 fi
+
+# Alias definitions
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Function definitions
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
+#Enable Autocompletions 
+[ -f /usr/share/bash-completion/bash_completion ] && 
+            . /usr/share/bash-completion/bash_completion
+
+#To work with git
+source ~/dotfiles/bash/git-completion.bash
+source ~/dotfiles/bash/git-prompt.sh
+
+

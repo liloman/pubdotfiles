@@ -1,0 +1,106 @@
+# vim: set filetype=sh :
+# My bash functions
+# Copyright © 2015 liloman
+#
+# This library is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published
+# by the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+######################
+#  Dir stack prompt  #
+######################
+
+#Show the dir stack below the bash prompt
+function dirsbash {
+local i=0 
+local com="dirs -p"
+while read -r line; do 
+    [ "$i" -gt 0 ] && echo -ne "\e[00;33m [\e[00m$i-$line\e[00;33m ]\e[00m";
+    let i++
+done < <($com)
+if [ "$i" -eq 1 ]; then 
+    echo -ne "\e[00;33mEmpty dir stack(a add,d delete,g go number,~num alias) \e[00m";
+fi
+}
+
+#Insert into dir stack checking repetitions
+a () { 
+    local DIR=$(pwd -L); [ "$1" ] && DIR="$(realpath "$1")"
+    local com="dirs -l -p"
+    local i=0; 
+    cd "${DIR}"
+    while IFS= read -r line; do 
+        [ "$i" -gt 0 -a "$line" == "$DIR" ] && return;
+        let i++
+    done < <($com)
+    pushd "${DIR}" >/dev/null; 
+}
+
+#Delete dir stack whithout cd
+d () { local NUM=0; [ $1 ] && NUM=$1; popd -n +$NUM >/dev/null; }
+#Go to a dir stack number of dirs -l (long format,no ~ symbol)
+g () { local DIR=$(dirs -l +$1); cd "${DIR}"; }
+
+
+###########
+# General #
+###########
+
+# PROMPT_COMMAND Show the exit value
+function exitbash {
+    local last="$?" # Must come first
+    [ "$last" -eq 0 ] && echo -ne "\e[01;38m" ||  echo -en "\e[01;31m"
+    echo -en "($last)\e[00m "
+}
+
+
+#Show the size of something
+tam () { du -hs $* | sort -h; }
+
+#############
+#  Desktop  #
+#############
+
+# cd() { builtin cd "$@" && xtitle $HOST: $PWD }
+
+#Listen to several radios
+function radios(){
+[ "$1" = "xfm" ] && mplayer http://mediasrv-sov.musicradio.com/XFMLondon
+[ "$1" = "virgin" ] && mplayer http://www.smgradio.com/core/audio/ogg/live.pls?service=vrbb
+[ "$1" = "capital" ] && mplayer http://mediasrv-the.musicradio.com/CapitalRadio
+[ "$1" = "bbcworld" ] && mplayer -playlist  http://bbc.co.uk/radio/worldservice/meta/tx/nb/live_infent_au_nb.asx
+[ "$1" = "bbc1" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r1.asx
+[ "$1" = "bbc1x" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r1x.asx
+[ "$1" = "bbc2" ] && mplayer -softvol -softvol-max 200 -playlist  http://bbc.co.uk/radio/listen/live/r2.asx
+[ "$1" = "bbc3" ] && mplayer -softvol -softvol-max 200 -playlist  http://bbc.co.uk/radio/listen/live/r3.asx
+[ "$1" = "bbc4" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r4.asx
+[ "$1" = "bbc5" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r5.asx
+[ "$1" = "bbc6" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r6.asx
+[ "$1" = "bbcman" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/bbcmanchester.asx
+[ "$1" = "vaughan" ] && mplayer http://server01.streaming-pro.com:8012 
+[ "$1" = "radio3" ] && mplayer -cache 500 -playlist http://rtve.stream.flumotion.com/rtve/radio3.mp3.m3u
+[ "$1" = "folk-eu" ] && mplayer http://www.live365.com/play/wumb919fast
+[ "$1" = "folk" ] && mplayer -cache 500 -playlist http://public.wavepanel.net/3LACLKLS7UVKONE4/listen/m3u
+# alias folkradio_graba='mplayer -cache 500 http://www.live365.com/play/wumb919fast -ao pcm:file=radio.wav -vo null -vc null'
+#FRANCE
+[ "$1" = "nrj" ] && mplayer mms://vipnrj.yacast.fr/encodernrj
+[ "$1" = "rtl" ] && mplayer http://streaming.radio.rtl.fr/rtl-1-44-96
+[ "$1" = "rtl2" ] && mplayer http://streaming.radio.rtl.fr/rtl2-1-44-96
+[ "$1" = "europe2" ] && mplayer mms://vipmms9.yacast.fr/encodereurope2
+[ "$1" = "fip" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/fip_hd.m3u
+[ "$1" = "franceculture" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/franceculture_hd.m3u
+[ "$1" = "franceinter" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/franceculture_hd.m3u
+[ "$1" = "lemouv" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/lemouv_hd.m3u
+echo "Posibles opciones: xfm virgin capital bbcworld bbc1 bbc1x bbc2 bbc3 bbc4 bbc5 bbc6 vaughan radio3 folk-eu folk rtl rtl2 nostalgie europe2 (broken links galore) "
+}
+
+

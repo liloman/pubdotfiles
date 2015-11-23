@@ -12,6 +12,6 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d ~/Scripts ] ; then
-    PATH=~/Scripts:/usr/NX/bin:/opt/libreoffice3.5/program/:"${PATH}"
+    PATH=~/Scripts:"${PATH}"
 fi
 

@@ -1,13 +1,30 @@
 #!/bin/bash
-BACKUP=dotfiles_backup
-BASH=" bashrc inputrc bash_profile bash_logout git-completion.bash git-prompt.sh ctags bash_aliases"
+# Install script for my dotfiles
+# Copyright © 2015 liloman
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#version 0.1 "basic" config
+#version 0.2 Added mplayer files
+#version 0.3 Refactoring and bash_functions
+
+BACKUP=~/.dotfiles_backup/
+BASH=" bashrc inputrc bash_profile bash_logout git-completion.bash git-prompt.sh ctags bash_aliases bash_functions"
 X=" Xresources Xdefaults Xmodmap"
 TMUX=" tmux.conf"
 VIM=" vim vimrc"
 WEB=" vimperatorrc"
-__ScriptVersion="0.2"
-#version 0.1 "basic" config
-#version 0.2 Added mplayer config
+__ScriptVersion="0.3"
 
 function usage ()
 {
@@ -36,48 +53,62 @@ do
   esac 
 done
 shift $(($OPTIND-1))
+
 [[ -z "$type" ]] && echo $0 needs arguments. Execute $0 -h for help. &&  exit 0
 
 [[ "$type" == "user" ]] && INSTALL=$BASH$VIM$WEB$X$TMUX
 [[ "$type" == "server" ]] && INSTALL=$BASH$VIM 
 
 echo $type $INSTALL
-#Backup first
-cd ~
-mkdir $BACKUP
+############
+#  Backup  #
+############
+
+echo Backing up the dotfiles
+cd 
+[ -d $BACKUP ] || mkdir $BACKUP
+#general dotfiles
 for file in $INSTALL; do
-    mv --backup=t .$file $BACKUP 2>/dev/null
+    cp -r --backup=t -L .$file $BACKUP$file 
 done
+#mplayer files
+[ -d ~/.mplayer/ ] && cp --backup=t -L ~/.mplayer/* $BACKUP 2>/dev/null
 
-[ -e ~/.mplayer/ ] && mv --backup=t ~/.mplayer/* $BACKUP 2>/dev/null
+#############
+#  INSTALL  #
+#############
 
+echo Installing dotfiles for $type
 for file in $BASH; do
-    ln -s dotfiles/bash/$file .$file
+    ln -f -s dotfiles/bash/$file .$file
 done
 
-for file in $VIM; do
-    ln -s dotfiles/vim/$file .$file
-done
+#VIM (nasty error... )
+ln -f -s dotfiles/vim/vim/ .vim
+ln -f -s dotfiles/vim/vimrc .vimrc
 
 #If server exit
 [[ "$type" == "server" ]] && exit 0
 
 for file in $X; do
-    ln -s dotfiles/X/$file .$file
+    ln -f -s dotfiles/X/$file .$file
 done
 
 for file in $WEB; do
-    ln -s dotfiles/vimperator/$file .$file
+    ln -f -s dotfiles/vimperator/$file .$file
 done
 
 for file in $TMUX; do
-    ln -s dotfiles/tmux/$file .$file
+    ln -f -s dotfiles/tmux/$file .$file
 done
 
-mkdir ~/.mplayer/
+[ -d ~/.mplayer/ ] || mkdir ~/.mplayer/
 cd ~/.mplayer/
-ln -s ~/dotfiles/mplayer/* .
+ln -f -s ~/dotfiles/mplayer/* .
 
+#######################
+#  UPDATE SUBMODULES  #
+#######################
 cd ~/dotfiles
 
 echo Installing submodules
@@ -85,3 +116,5 @@ git submodule init
 
 echo Updating submodules 
 git submodule update  --init --remote
+
+echo Install script Done!.

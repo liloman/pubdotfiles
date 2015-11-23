@@ -1,0 +1,5 @@
+*Fix **** git submodules
+*Include git prompt in sub/cron/x
+*Fix inputrc <->  bash_aliases
+*Better color handling
+*Fix nasty loop link for .vim on install.sh

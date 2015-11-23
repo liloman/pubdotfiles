@@ -1,91 +1,80 @@
-alias tarc='tar -I lbzip2'
-#Dont crash the computer on endless loop
-alias make='make -j 4'
+# vim: set filetype=sh :
+# My bash aliases
+# Copyright © 2015 liloman
+#
+# This library is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published
+# by the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+#############
+#  General  # 
+############# 
+
+#Possible endless loop with make -j
+[ $(nproc) -gt 4 ] && alias make='make -j 4'
+
+#git aliases
+alias gtb='git branch -a'
 alias gtc='git commit -a'
+alias gt1='git commit '
 alias gts='git status'
 alias gta='git add '
-alias gtl='git log'
+alias gtl='git log --graph --abbrev-commit --decorate --date=relative --all'
 alias gtpush='git commit -a && git push'
-alias ps='ps -Z'
-alias less='less -I'
-# some more ls aliases
-alias ll='ls -latrh'
-alias la='ls -A'
-alias l='ls -CF'
-alias ls='ls -lSh'
+
+
+# enable color support of ls 
+eval "`dircolors -b`"
+#handy ls aliases
+alias l='\ls -CF --color=auto'
+alias ls='\ls -lShF --color=auto'
+alias la='\ls -A --color=auto'
+alias ll='\ls -lAtrh --color=auto'
+#General
+alias vi='vim'
+alias grep='grep --color=auto'
+alias cp="cp -v"
+alias cpfolder='rsync --progress -rv'
+alias tarc='tar -I lbzip2'
+
+#############
+#  Desktop  # 
+############# 
+
 alias fotos='geeqie'
 alias fotos2='feh -rFd'
-#alias mocp='(nohup $HOME/Scripts/lastfm-moc.sh >/dev/null &); mocp'
-alias genera_iso='genisoimage -J -r -o '
-#alias graba_iso='cdrskin -v dev=/dev/hda speed=16 fs=14m driveropts=burnfree -sao -eject padsize=300k'
-alias graba_iso='brasero'
-alias lista_iso='isoinfo -f -R -i'
-# alias graba_dvd='growisofs -dvd-compat -Z /dev/hda'
-alias vi='vim'
-alias activar-tvout='sudo xrandr --output TV --mode 1024x768 --set TV_FORMAT PAL'
-alias pega_seleccion='xsel -o -p'
-alias pega_clipboard='xsel -o -b'
-alias dl='dirs -v'
-alias cp_folder='rsync --progress -rv'
-alias cp="cp -v"
-alias cambia_fondo='wmsetbg --center --maxscale "$(ls ~/.wallpapers/* | shuf -n1)"'
-
-function radios(){
-[ "$1" = "xfm" ] && mplayer http://mediasrv-sov.musicradio.com/XFMLondon
-[ "$1" = "virgin" ] && mplayer http://www.smgradio.com/core/audio/ogg/live.pls?service=vrbb
-[ "$1" = "capital" ] && mplayer http://mediasrv-the.musicradio.com/CapitalRadio
-[ "$1" = "bbcworld" ] && mplayer -playlist  http://bbc.co.uk/radio/worldservice/meta/tx/nb/live_infent_au_nb.asx
-[ "$1" = "bbc1" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r1.asx
-[ "$1" = "bbc1x" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r1x.asx
-[ "$1" = "bbc2" ] && mplayer -softvol -softvol-max 200 -playlist  http://bbc.co.uk/radio/listen/live/r2.asx
-[ "$1" = "bbc3" ] && mplayer -softvol -softvol-max 200 -playlist  http://bbc.co.uk/radio/listen/live/r3.asx
-[ "$1" = "bbc4" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r4.asx
-[ "$1" = "bbc5" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r5.asx
-[ "$1" = "bbc6" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r6.asx
-[ "$1" = "bbcman" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/bbcmanchester.asx
-[ "$1" = "vaughan" ] && mplayer http://server01.streaming-pro.com:8012 
-[ "$1" = "radio3" ] && mplayer -cache 500 -playlist http://rtve.stream.flumotion.com/rtve/radio3.mp3.m3u
-[ "$1" = "folk-eu" ] && mplayer http://www.live365.com/play/wumb919fast
-[ "$1" = "folk" ] && mplayer -cache 500 -playlist http://public.wavepanel.net/3LACLKLS7UVKONE4/listen/m3u
-# alias folkradio_graba='mplayer -cache 500 http://www.live365.com/play/wumb919fast -ao pcm:file=radio.wav -vo null -vc null'
-#FRANCE
- [ "$1" = "nrj" ] && mplayer mms://vipnrj.yacast.fr/encodernrj
- [ "$1" = "rtl" ] && mplayer http://streaming.radio.rtl.fr/rtl-1-44-96
- [ "$1" = "rtl2" ] && mplayer http://streaming.radio.rtl.fr/rtl2-1-44-96
- [ "$1" = "europe2" ] && mplayer mms://vipmms9.yacast.fr/encodereurope2
- [ "$1" = "fip" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/fip_hd.m3u
- [ "$1" = "franceculture" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/franceculture_hd.m3u
- [ "$1" = "franceinter" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/franceculture_hd.m3u
- [ "$1" = "lemouv" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/lemouv_hd.m3u
-echo "Posibles opciones: xfm virgin capital bbcworld bbc1 bbc1x bbc2 bbc3 bbc4 bbc5 bbc6 vaughan radio3 folk-eu folk rtl rtl2 nostalgie europe2 (broken links galore) "
-}
-
 alias mplayer-masvolumen='mplayer -softvol -softvol-max 300'
-alias suspender='sudo s2ram --force -a 3'
 alias univ='cd ~/Dropbox/Dropbox/GradoMio/'
-#Grep_options deja de existir, pasado a alias
-alias grep='grep --color=auto'
-alias identa-c='indent -kr -i8 -ts8 -sob -l80 -ss -bs -psl'
 alias fastboot="fastboot  -i 0x1f3a" 
 alias verflash="mplayer -fs ~/Descargas/videoFlash*" 
 alias verflashgui="smplayer  ~/Descargas/videoFlash*" 
 alias verflashl="tail -f /tmp/youtube.log" 
 
 
-#Functions 
-a () { 
-    local DIR=$(pwd -L); [ "$1" ] && DIR="$(realpath "$1")"
-    local i=0; 
-    cd "${DIR}"
-    local com="dirs -l -p"
-    while IFS= read -r line; do 
-        [ "$i" -gt 0 -a "$line" == "$DIR" ] && return;
-        let i++
-    done < <($com)
-    pushd "${DIR}" >/dev/null; 
-}
+#################
+#  Old aliases  # 
+################# 
 
-d () { local DIR=0; [ $1 ] && DIR=$1; popd -n +$DIR >/dev/null; }
-#Go to a dir stack number of dirs -l (no ~ symbol)
-g () { local DIR=$(dirs -l +$1); cd "${DIR}"; }
-tam () { du -hs $* | sort -h; }
+#Show selinux context
+#alias ps='ps -Z'
+#alias activar-tvout='sudo xrandr --output TV --mode 1024x768 --set TV_FORMAT PAL'
+#alias pega_seleccion='xsel -o -p'
+#alias pega_clipboard='xsel -o -b'
+# #alias mocp='(nohup $HOME/Scripts/lastfm-moc.sh >/dev/null &); mocp'
+# alias genera_iso='genisoimage -J -r -o '
+# alias graba_iso='brasero'
+# alias lista_iso='isoinfo -f -R -i'
+# # alias graba_dvd='growisofs -dvd-compat -Z /dev/hda'
+# alias cambia_fondo='wmsetbg --center --maxscale "$(ls ~/.wallpapers/* | shuf -n1)"'
+# alias identa-c='indent -kr -i8 -ts8 -sob -l80 -ss -bs -psl'
+# alias suspender='sudo s2ram --force -a 3'
+
