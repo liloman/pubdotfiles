@@ -21,6 +21,11 @@ if !has('gui_running')
     set t_Co=256
 endif
 
+"set modelines for custom file settings
+set modeline
+set modelines=5
+
+
 "Pathogen
 call pathogen#infect() 
 call pathogen#helptags()
