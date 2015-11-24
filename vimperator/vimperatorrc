@@ -1,4 +1,4 @@
-" vim: set ft=javascript:
+" vim: set ft=vimperator:
 "2.1 Initial
 "3.0 Refactoring 
 
@@ -50,17 +50,22 @@ inoremap <C-n> <Esc>:tabnext<CR>
 "noremap K <Esc>:closedTabs<CR> 
 
 "===[ Custom function mappings ]=================================================
+
 javascript function showFSVideo(url) {io.system('~/Scripts/descarga.sh  ' + url +' &');};
 javascript function Midori() {io.system('midori -p ' + buffer.URL +' &');};
 
 "For multiline javascript, to remember it...
 :js <<EOF
-FirefoxPrivate = function(opt) {
-    io.system('firefox -P Limpio --private-window ' + opt +' &');
+FirefoxPrivate = function(url) {
+    io.system('firefox -P Limpio --private-window ' + url +' &');
 };
 EOF
 
+"Execute priveate window and delete buffer in origin
 map <C-b> :js FirefoxPrivate(buffer.URL)<CR><Esc>:bd<CR>
+
+"Show the current video in FullScreen through youtube-dl and mplayer
+"works for youtube,vimeo,rtve...
 map <C-m>  :js showFSVideo(buffer.URL)<CR>
 
 "Change newtab.url in firefox>40
@@ -73,20 +78,25 @@ map <C-m>  :js showFSVideo(buffer.URL)<CR>
     // newTabService.newTabURL = 'about:blank';
 EOF
 
-
 "===[ Custom commands ]=================================================
+
 "help :command to see options
 " Run :pf to open the url in a new private session 
 command! -nargs=1 -complete=history -description "Open in private" pf :js FirefoxPrivate("<args>");
 
 "===[ Custom autocommands ]=================================================
+
 "Old trickery for megaupload and cia
 "autocmd DownloadPost megaupload.com :!mv "<file>"  ~/descargas/
 "autocmd DownloadPost megavideo.com :!mv "<file>"  ~/descargas/
 "autocmd DownloadPost stagevu.com :!mv "<file>"  ~/descargas/
 "autocmd DownloadPost rapidshare.com :!mv "<file>"  ~/descargas/
 
+"Actually delete storage on start.Dont put quotes otherwise wont be executed!
+autocmd VimperatorEnter .* silent !rm -rf ~/.mozilla/firefox/*.default/storage/* &
+
 "===[ Custom firefox config ]=================================================
+
 "Dont send referer
 set! network.http.sendRefererHeader=0
 "Nice default zoom level
@@ -118,11 +128,10 @@ set! datareporting.healthreport.service.firstRun=false
 "Go away cisco plugin
 set! openH264.provider.enabled=false
 
-"Actually delete storage
-:js io.system('rm -rf ~/.mozilla/firefox/*.default/storage/ &');
+"Dont start in insert mode
+set! browser.startup.homepage="liberator://help/intro"
 
-"https://github.com/EvanHahn/dotfiles/blob/master/resources/vimperatorrc
-
+"Ideas from https://github.com/EvanHahn/dotfiles/blob/master/resources/vimperatorrc
 " enable pipelining
 set! network.http.pipelining=true
 set! network.http.pipelining.abtest=false
@@ -135,7 +144,6 @@ set! network.http.pipelining.reschedule-on-timeout=true
 set! network.http.pipelining.reschedule-timeout=15000
 set! network.http.max-connections=256
 set! network.http.max-connections-per-server=6
-
 " what if Google...couldn't see everything I downloaded?
 set! breakpad.reportURL=""
 set! browser.safebrowsing.appRepURL=""
@@ -155,13 +163,12 @@ set! browser.safebrowsing.reportURL=""
 set! browser.safebrowsing.updateURL=""
 set! browser.send_pings.require_same_host=true
 set! browser.send_pings=false
-
-
 " send referrer headers only to the same domain
 set! network.http.sendRefererHeader=1
 set! network.http.referer.XOriginPolicy=1
 set! network.http.referer.spoofSource=true
 set! network.http.referer.trimmingPolicy=2
+"end from
 
 "===[ Custom style ]=================================================
 
@@ -221,4 +228,7 @@ EOF
 
 " Ajustamos correctamente la cmdline
 highlight CmdLine -append background: white; color: black; -moz-transition: all 0.25s;
+
+
+
 

@@ -21,6 +21,7 @@
 
 #Show the dir stack below the bash prompt
 function dirsbash {
+[ $DIRSTACK_ENABLED == false ] && return
 local i=0 
 local com="dirs -p"
 while read -r line; do 
@@ -37,13 +38,27 @@ a () {
     local DIR=$(pwd -L); [ "$1" ] && DIR="$(realpath "$1")"
     local com="dirs -l -p"
     local i=0; 
-    cd "${DIR}"
-    while IFS= read -r line; do 
-        [ "$i" -gt 0 -a "$line" == "$DIR" ] && return;
+    builtin cd "${DIR}"
+    IFS=":"; arr=($DIRSTACK_EXCLUDE); unset IFS
+    while read -r line; do 
+        #Check duplicates
+        [ +$i -gt 0 -a "$line" == "$DIR" ] && return;
+        #Check exclusions
+        [ "${arr[i]}" == "$DIR" ] && return;
         let i++
     done < <($com)
+    #Check limit
+    [ +$i -gt +$DIRSTACK_LIMIT ] && d $DIRSTACK_LIMIT
     pushd "${DIR}" >/dev/null; 
 }
+
+#Hack builtin cd to work with dir stack
+cd() { 
+   [ $DIRSTACK_ENABLED == false ] && { unset cd;  cd "$@" ; return; }
+   #Dont break default cd behavior
+   [ $1 ] && a "$1" || a ~ 
+}
+
 
 #Delete dir stack whithout cd
 d () { local NUM=0; [ $1 ] && NUM=$1; popd -n +$NUM >/dev/null; }
@@ -55,7 +70,7 @@ g () { local DIR=$(dirs -l +$1); cd "${DIR}"; }
 # General #
 ###########
 
-# PROMPT_COMMAND Show the exit value
+# Show the exit value in PROMPT_COMMAND 
 function exitbash {
     local last="$?" # Must come first
     [ "$last" -eq 0 ] && echo -ne "\e[01;38m" ||  echo -en "\e[01;31m"
@@ -64,13 +79,12 @@ function exitbash {
 
 
 #Show the size of something
+#rework with tree or alike
 tam () { du -hs $* | sort -h; }
 
 #############
 #  Desktop  #
 #############
-
-# cd() { builtin cd "$@" && xtitle $HOST: $PWD }
 
 #Listen to several radios
 function radios(){

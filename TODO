@@ -2,3 +2,4 @@
 *Include git prompt in sub/cron/x
 *Better color handling
 *Fix nasty loop link for .vim on install.sh
+*Fix \n in PS1 when DIRSTACK_ENABLED=false
