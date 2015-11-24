@@ -19,9 +19,56 @@
 #  Dir stack prompt  #
 ######################
 
+#Insert into dir stack checking repetitions
+_add_dir_stack () { 
+    local DIR="$(realpath -P "${2:-"."}" 2>/dev/null)"
+    [ ! -d "${DIR}" ] && return 
+    # If executed _del_dir_stack and keep working in it...
+    [ $1 == false -a "${_DIR_STACK_LDIR}" == "${DIR}" ] && return
+    _DIR_STACK_LDIR=$DIR
+    local com="dirs -l -p"
+    local i=0; 
+    #Check exclusions
+    IFS=":"; excl=($DIRSTACK_EXCLUDE); unset IFS
+    [[ " ${excl[@]} " =~ " ${DIR} " ]] && return
+    #Check duplicates
+    readarray -t dup <<<"$(dirs -p)"
+    #First entry (0) is always $PWD
+    dup="${dup[@]:1}"
+    [[ " ${dup[@]} " =~ " ${DIR} " ]] && return
+    #Check limit
+    [ +${#dup[@]} -gt +$DIRSTACK_LIMIT ] && _del_dir_stack $DIRSTACK_LIMIT silent
+    pushd -n "${DIR}" >/dev/null; 
+}
+
+
+#Delete dir stack whithout changing dir
+_del_dir_stack () { 
+    #Get dir 1 by default
+    local NUM=${1:-1}
+    local CUR="$(dirs -l +1 2>/dev/null)"
+    [ "${CUR}" ] || return 
+    # check that you want to delete current dir actually
+    [ ! $1 ] && [ "$PWD" != "$CUR"  ] && return
+    popd -n +$NUM >/dev/null
+    [ +$? -eq 0 ] && [ ! $2 ] && echo Deleted "$CUR" from dir stack
+}
+
+#Go to a dir stack number. 
+_go_dir_stack () { 
+    #Get absolute path
+    local DIR=$(dirs -l +$1) 
+    [ "${DIR}" ] || return 
+    cd "${DIR}" && echo Changed dir to "${DIR}"
+}
+
+#Less control over errors
+# _go_dir_stack () { eval cd "~$1" && echo Changed dir to "${PWD}"; }
+
 #Show the dir stack below the bash prompt
-function dirsbash {
-[ $DIRSTACK_ENABLED == false ] && return
+function _list_dir_stack {
+[ "${DIRSTACK_ENABLED}" != true ] && return
+_add_dir_stack false "$(pwd -P)"
 local i=0 
 local com="dirs -p"
 while read -r line; do 
@@ -31,49 +78,28 @@ done < <($com)
 if [ "$i" -eq 1 ]; then 
     echo -ne "\e[00;33mEmpty dir stack(a add,d delete,g go number,~num alias) \e[00m";
 fi
-}
-
-#Insert into dir stack checking repetitions
-a () { 
-    local DIR=$(pwd -L); [ "$1" ] && DIR="$(realpath "$1")"
-    local com="dirs -l -p"
-    local i=0; 
-    builtin cd "${DIR}"
-    IFS=":"; arr=($DIRSTACK_EXCLUDE); unset IFS
-    while read -r line; do 
-        #Check duplicates
-        [ +$i -gt 0 -a "$line" == "$DIR" ] && return;
-        #Check exclusions
-        [ "${arr[i]}" == "$DIR" ] && return;
-        let i++
-    done < <($com)
-    #Check limit
-    [ +$i -gt +$DIRSTACK_LIMIT ] && d $DIRSTACK_LIMIT
-    pushd "${DIR}" >/dev/null; 
-}
-
-#Hack builtin cd to work with dir stack
-cd() { 
-   [ $DIRSTACK_ENABLED == false ] && { unset cd;  cd "$@" ; return; }
-   #Dont break default cd behavior
-   [ $1 ] && a "$1" || a ~ 
+    #Use $'string' expansion to get a newline without new characters printed
+    echo -n $'\n\r'
 }
 
 
-#Delete dir stack whithout cd
-d () { local NUM=0; [ $1 ] && NUM=$1; popd -n +$NUM >/dev/null; }
-#Go to a dir stack number of dirs -l (long format,no ~ symbol)
-g () { local DIR=$(dirs -l +$1); cd "${DIR}"; }
+if [ "${DIRSTACK_ENABLED}" == true ]; then
+    [ -v DIRSTACK_LIMIT ] || echo DIRSTACK_LIMIT must be a number
+    [ -v DIRSTACK_EXCLUDE ] || echo DIRSTACK_EXCLUDE must be a string
+    alias a="_add_dir_stack true"
+    alias d=_del_dir_stack
+    alias g=_go_dir_stack
+fi
 
 
 ###########
 # General #
 ###########
 
-# Show the exit value in PROMPT_COMMAND 
-function exitbash {
+# Show the last command exit value in PROMPT_COMMAND 
+function _exitbash {
     local last="$?" # Must come first
-    [ "$last" -eq 0 ] && echo -ne "\e[01;38m" ||  echo -en "\e[01;31m"
+    [ "${last}" -eq 0 ] && echo -ne "\e[01;38m" ||  echo -en "\e[01;31m"
     echo -en "($last)\e[00m "
 }
 
@@ -85,6 +111,62 @@ tam () { du -hs $* | sort -h; }
 #############
 #  Desktop  #
 #############
+
+#Alternate between on/off states of a VM
+function alternateVBox {
+local machine="$1"
+local saved="$2"
+local com="VBoxManage showvminfo "$machine""
+#Not Greedy state
+local regex='(State:)([[:space:]]*)([-[:alnum:][:space:]]*)([[:space:]].*)'
+
+#Get the VM info
+readarray -t info <<< "$(VBoxManage showvminfo "$machine")" 
+#Search regex onto full array
+[[ ${info[@]} =~ ${regex} ]] || return 
+
+local state="${BASH_REMATCH[3]}"
+echo $machine State was:"\"$state\""
+
+[ "$state" == "paused" ] && VBoxManage controlvm "$machine" resume 
+[[ "$state" = "saved" || "$state" = "powered off"  ]] && VBoxManage startvm "$machine" --type headless
+
+if [ "$state" == "running" ]; then
+    [ "$saved" ] &&  VBoxManage controlvm "$machine" savestate && return
+    VBoxManage controlvm "$machine" pause
+fi
+}
+
+
+#Download vid and play it in FS from bash or vimperator or whatever
+function descarga {
+local DEST=~/Descargas/videoFlash
+local URL="$1"
+killall -q youtube-dl
+cd ~ # youtube-dl dont get DEST right ¿?
+rm "$DEST"
+#My temporal local latest version of youtube-dl for rtve
+[ -e "~/Scripts/youtube-dl" ] && wget https://yt-dl.org/latest/youtube-dl -O ~/Scripts/youtube-dl
+~/Scripts/youtube-dl "$URL" --verbose -o "$DEST" -f best --no-part >/tmp/youtube.log &
+sleep 4 
+mplayer -fs "$DEST" 
+}
+
+
+#Download and install the current extension pack for virtualbox 
+function virtualboxGetExtensionPack() {
+local VERSION=$(VBoxManage --version)
+local VER=${VERSION:0:6}
+local BASE="http://download.virtualbox.org/virtualbox"
+local PKG="Oracle_VM_VirtualBox_Extension_Pack-$VER-${VERSION: -6}.vbox-extpack"
+local URL="$BASE/$VER/$PKG"
+cd /tmp/
+wget "$URL" || { echo "URL:$URL not found"; return; }
+echo Downloaded /tmp/"$PKG" 
+VBoxManage extpack install /tmp/"$PKG"
+VBoxManage list extpacks
+}
+
 
 #Listen to several radios
 function radios(){

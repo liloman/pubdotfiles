@@ -51,7 +51,7 @@ inoremap <C-n> <Esc>:tabnext<CR>
 
 "===[ Custom function mappings ]=================================================
 
-javascript function showFSVideo(url) {io.system('~/Scripts/descarga.sh  ' + url +' &');};
+javascript function showFSVideo(url) {io.system('~/Scripts/runBash.sh descarga ' + url +' &');};
 javascript function Midori() {io.system('midori -p ' + buffer.URL +' &');};
 
 "For multiline javascript, to remember it...
@@ -82,7 +82,7 @@ EOF
 
 "help :command to see options
 " Run :pf to open the url in a new private session 
-command! -nargs=1 -complete=history -description "Open in private" pf :js FirefoxPrivate("<args>");
+command! -nargs=1 -complete=url -description "Open in private" pf :js FirefoxPrivate("<args>");
 
 "===[ Custom autocommands ]=================================================
 
@@ -92,8 +92,8 @@ command! -nargs=1 -complete=history -description "Open in private" pf :js Firefo
 "autocmd DownloadPost stagevu.com :!mv "<file>"  ~/descargas/
 "autocmd DownloadPost rapidshare.com :!mv "<file>"  ~/descargas/
 
-"Actually delete storage on start.Dont put quotes otherwise wont be executed!
-autocmd VimperatorEnter .* silent !rm -rf ~/.mozilla/firefox/*.default/storage/* &
+"Actually delete storage on quit.Dont put quotes otherwise wont be executed!
+autocmd VimperatorLeave .* silent !rm -rf ~/.mozilla/firefox/*.default/storage/*/* &
 
 "===[ Custom firefox config ]=================================================
 

@@ -56,8 +56,8 @@ stty -ixon -ixoff ixany
 # INTERNAL VARIABLES  #
 #######################
 
-PROMPT_COMMAND=exitbash
-PS1='$(dirsbash)\n\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\u$(__git_ps1 "(%s)")->\[\e[00m\]\[\e[01;34m\]\w]\n[H:\#]>\[\e[00m\] ' 
+PROMPT_COMMAND='_exitbash;_list_dir_stack'
+PS1='\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\u$(__git_ps1 "(%s)")->\[\e[00m\]\[\e[01;34m\]\w]\n[H:\#]>\[\e[00m\] ' 
 
 #Default editor
 EDITOR=vim  
@@ -70,9 +70,9 @@ HISTFILE=~/.bash_historys/history_
 #Enable dir stack behavior
 DIRSTACK_ENABLED=true
 #Maximum dir stack size
-DIRSTACK_LIMIT=5
+DIRSTACK_LIMIT=3
 # Full paths to exclude from dir stack
-DIRSTACK_EXCLUDE="$HOME:/dev/null"
+DIRSTACK_EXCLUDE="$HOME:/foobar"
 
 
 ########################
@@ -117,6 +117,8 @@ bind Space:magic-space
 if [ -f ~/Scripts/z/z.sh ]; then
     . ~/Scripts/z/z.sh
     _Z_DATA=$HOME/.zs/.z
+    #no clobber my $PROMPT_COMMAND
+    _Z_NO_PROMPT_COMMAND=true
 fi
 
 # Alias definitions
