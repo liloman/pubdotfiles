@@ -97,6 +97,30 @@ set! font.minimum-size.x-western=16
 "No html5 fullscreen confirmation msg
 set! full-screen-api.approval-required=false
 
+"Dont do any telemetry about:telemetry
+"Sadly needs chmod -w in saved-telemetry-pings dir as well
+set! toolkit.telemetry.enabled=false
+set! toolkit.telemetry.archive.enable=false
+set! toolkit.telemetry.unifie=false
+
+"Disable any data reporting about:healthreport
+"Sadly needs chmod -w in datareporting dir as well
+"Sadly needs chmod -w in healthreport dir as well
+set! datareporting.policy.dataSubmissionEnabled=false
+set! datareporting.policy.dataSubmissionEnabled.v2=false
+set! datareporting.healthreport.uploadEnabled=false
+set! datareporting.healthreport.service.enabled=false
+set! datareporting.healthreport.about.reportUrl=localhost
+set! datareporting.healthreport.about.reportUrlUnified=localhost
+set! datareporting.healthreport.documentServerURI=localhost
+set! datareporting.healthreport.service.firstRun=false
+
+"Go away cisco plugin
+set! openH264.provider.enabled=false
+
+"Actually delete storage
+:js io.system('rm -rf ~/.mozilla/firefox/*.default/storage/ &');
+
 "https://github.com/EvanHahn/dotfiles/blob/master/resources/vimperatorrc
 
 " enable pipelining

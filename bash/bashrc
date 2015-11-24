@@ -23,27 +23,24 @@
 ###################
 #  Shell options  #
 ###################
-#Set vi Mode 
-set -o vi
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
 # Fix cd spelling
 shopt -s cdspell
-
 # Save multiline commands in one line
 shopt -s cmdhist
-
 # Dont delete history
 shopt -s histappend
-
 # Regexp in bash prompt
 shopt -s extglob
 
-# Dont need to hash -r when modify directories
-# shopt -s checkhash
+#Disable <C-s>(stop) and <C-q>(start) on terminal. To use <C-s> on vim (to save file)
+stty stop undef
+stty start undef
+#Disable control flow completely and press any key to start
+stty -ixon -ixoff ixany
 
 #Disable <C-s>(stop) and <C-q>(start) on terminal. To use <C-s> on vim (to save a file)
 stty stop undef
@@ -51,10 +48,9 @@ stty start undef
 #Disable control flow completely and press any key to start
 stty -ixon -ixoff ixany
 
-#Disable bloq mayuscula
+#Disable caps bloq  (needs work)
 # setxkbmap -option ctrl:nocaps
 #xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-
 
 #######################
 #  INTERNAL VARIABLES #
@@ -67,7 +63,7 @@ PS1='$(dirsbash)\n\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\u$(__git_ps1 "(%s)")->\[
 EDITOR=vim  
 HISTSIZE=50000
 HISTFILESIZE=50000
-#Maybe I should to rework this dinamic again...
+#Maybe I should rework this to make it dinamic again...
 HISTFILE=~/.bash_historys/history_
 
 ########################

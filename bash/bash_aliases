@@ -35,8 +35,8 @@ alias gtpush='git commit -a && git push'
 # enable color support of ls 
 eval "`dircolors -b`"
 #handy ls aliases
-alias l='\ls -CF --color=auto'
-alias ls='\ls -lShF --color=auto'
+alias ls='\ls -CF --color=auto'
+alias l='\ls -lShF --color=auto'
 alias la='\ls -A --color=auto'
 alias ll='\ls -lAtrh --color=auto'
 #General

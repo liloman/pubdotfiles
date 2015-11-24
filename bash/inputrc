@@ -1,23 +1,28 @@
-#My own things
+#My shell settings
+#see help set,help shopt ...
 set input-meta On
-set show-all-if-ambiguous On
 set mark-directories On
 set horizontal-scroll-mode On
 set visible-stats On
 set editing-mode vi
 set keymap vi-insert
 set bell-style none
-
+# Para que autocomplete y muestre en la primera TAB
+set show-all-if-ambiguous On
+#Set vi Mode 
+set -o vi
 # Para que funcionen las ñ :D 
 set convert-meta off
 
 Control-p:history-search-backward
 Control-n:history-search-forward
 
+#Incremental search in history with arrow
 "\e[A":history-search-backward
 "\e[B":history-search-forward
+#Ensure left/right work properly
 "\e[C":forward-char
 "\e[D":backward-char
 
-# Para que autocomplete y muestre en la primera TAB
-set show-all-if-ambiguous on
+#Dont add any stty or shopt command here. It'll block the s key
+
