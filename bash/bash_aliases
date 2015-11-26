@@ -35,10 +35,15 @@ alias gtpush='git commit -a && git push'
 # enable color support of ls 
 eval "`dircolors -b`"
 #handy ls aliases
-alias ls='\ls -CF --color=auto'
-alias l='\ls -lShF --color=auto'
-alias la='\ls -A --color=auto'
-alias ll='\ls -lAtrh --color=auto'
+LS_COMMAND="/bin/ls -Fh --color=auto"
+alias ls='$LS_COMMAND -C'
+#sorted by access time
+alias l='$LS_COMMAND -ltur'
+#extended listings sorted by name by default
+alias la='$LS_COMMAND -CA'
+alias ll='$LS_COMMAND -lA'
+#extended listing with access time 
+alias lt='ll -utr'
 #General
 alias vi='vim'
 alias grep='grep --color=auto'
@@ -58,6 +63,7 @@ alias fastboot="fastboot  -i 0x1f3a"
 alias verflash="mplayer -fs ~/Descargas/videoFlash*" 
 alias verflashgui="smplayer  ~/Descargas/videoFlash*" 
 alias verflashl="tail -f /tmp/youtube.log" 
+alias spotify="alternateVBox Spotify" 
 
 
 #################

@@ -66,6 +66,8 @@ HISTFILESIZE=50000
 #Maybe I should rework this to make it dinamic again...
 HISTFILE=~/.bash_historys/history_
 
+# to work properly with shopt -s extglob  (ls -d .*)
+GLOBIGNORE=.:..
 
 #Enable dir stack behavior
 DIRSTACK_ENABLED=true

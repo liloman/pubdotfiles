@@ -24,6 +24,7 @@ X=" Xresources Xdefaults Xmodmap"
 TMUX=" tmux.conf"
 VIM=" vim vimrc"
 WEB=" vimperatorrc"
+LXDE=" lxde-rc.xml"
 __ScriptVersion="0.3"
 
 function usage ()
@@ -59,7 +60,8 @@ shift $(($OPTIND-1))
 [[ "$type" == "user" ]] && INSTALL=$BASH$VIM$WEB$X$TMUX
 [[ "$type" == "server" ]] && INSTALL=$BASH$VIM 
 
-echo $type $INSTALL
+echo Lets install type:$type for $USER then!
+
 ############
 #  Backup  #
 ############
@@ -73,6 +75,8 @@ for file in $INSTALL; do
 done
 #mplayer files
 [ -d ~/.mplayer/ ] && cp --backup=t -L ~/.mplayer/* $BACKUP 2>/dev/null
+#lxde files
+[ -d ~/.config/openbox ] && cp --backup=t -L ~/.config/openbox/* $BACKUP 2>/dev/null
 
 #############
 #  INSTALL  #
@@ -105,6 +109,10 @@ done
 [ -d ~/.mplayer/ ] || mkdir ~/.mplayer/
 cd ~/.mplayer/
 ln -f -s ~/dotfiles/mplayer/* .
+
+[ -d ~/.config/openbox/ ] || mkdir -p ~/.config/openbox/
+cd ~/.config/openbox/ 
+ln -f -s ~/dotfiles/lxde/* .
 
 #######################
 #  UPDATE SUBMODULES  #

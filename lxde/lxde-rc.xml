@@ -261,6 +261,16 @@
             <command>firefox</command>
         </action>
     </keybind>
+    <keybind key="W-m">
+        <action name="Execute">
+            <command>thunderbird</command>
+        </action>
+    </keybind>
+    <keybind key="W-p">
+        <action name="Execute">
+            <command>~/Scripts/runBash.sh alternateVBox Spotify</command>
+        </action>
+    </keybind>
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
         <action name="If">

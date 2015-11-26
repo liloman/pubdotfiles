@@ -105,8 +105,8 @@ function _exitbash {
 
 
 #Show the size of something
-#rework with tree or alike
-tam () { du -hs $* | sort -h; }
+#maybe rework with tree or alike
+tam () { du -hs "$@" | sort -h; }
 
 #############
 #  Desktop  #
