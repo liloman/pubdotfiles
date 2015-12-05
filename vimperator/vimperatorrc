@@ -88,12 +88,20 @@ command! -nargs=1 -complete=url -description "Open in private" pf :js FirefoxPri
 
 "Old trickery for megaupload and cia
 "autocmd DownloadPost megaupload.com :!mv "<file>"  ~/descargas/
-"autocmd DownloadPost megavideo.com :!mv "<file>"  ~/descargas/
-"autocmd DownloadPost stagevu.com :!mv "<file>"  ~/descargas/
-"autocmd DownloadPost rapidshare.com :!mv "<file>"  ~/descargas/
 
+"This event is released AFTER firefox is started. 
+"Sync firefox profile from RAM each 10 minutes (600 secs)
+autocmd VimperatorEnter .* every -interval 600 silent !~/Scripts/runBash.sh firefox_sync &
+
+"This event is released BEFORE firefox is closed
+command! -nargs=+ CleanFirefox autocmd VimperatorLeave .* <args>
 "Actually delete storage on quit.Dont put quotes otherwise wont be executed!
-autocmd VimperatorLeave .* silent !rm -rf ~/.mozilla/firefox/*.default/storage/*/* &
+CleanFirefox silent !rm -rf ~/.mozilla/firefox/*.default/storage/*/* &
+"Sync firefox profile from RAM before exit
+CleanFirefox silent !~/Scripts/runBash.sh firefox_sync &
+"Actually delete cache on quit.
+CleanFirefox silent !rm -rf ~/.cache/mozilla/firefox/*.default/ &
+
 
 "===[ Custom firefox config ]=================================================
 
@@ -130,6 +138,12 @@ set! openH264.provider.enabled=false
 
 "Dont start in insert mode
 set! browser.startup.homepage="liberator://help/intro"
+
+"Cache only onto tmpfs (RAM)
+set! browser.cache.disk.enable=false
+set! browser.cache.memory.enable=true
+set! browser.cache.memory.capacity=-1
+set! browser.cache.disk.parent_directory="/tmp/firefox-cache"
 
 "Ideas from https://github.com/EvanHahn/dotfiles/blob/master/resources/vimperatorrc
 " enable pipelining
@@ -169,6 +183,48 @@ set! network.http.referer.XOriginPolicy=1
 set! network.http.referer.spoofSource=true
 set! network.http.referer.trimmingPolicy=2
 "end from
+
+"Remove tracking with sync activated also
+" set about:networking 
+set! services.sync.prefs.sync.browser.safebrowsing.enabled=false
+set! services.sync.prefs.sync.browser.safebrowsing.malware.enabled=false
+
+"Go away heartbeat (more tracking...)
+set! browser.selfsupport.url=""
+
+"no thumbnails ... :O
+set! browser.pagethumbnails.capturing_disabled=true. 
+
+"disable tiles urls
+set! browser.newtabpage.directory.source=""
+set! browser.newtabpage.directory.ping=""
+
+"search for single words 
+set! browser.fixup.alternate.enabled=false
+"disable suggestions
+set! browser.search.suggest.enabled=false
+"dont ping each day to mozilla with startup times...
+set! extensions.getAddons.cache.enabled=false
+"Disable geolocalization
+set! geo.enabled=false
+set! geo.wifi.uri=""
+"Disable webrtc
+set! media.peerconnection.enabled=false
+set! loop.enabled=false
+
+"Disable flash!! oh god
+set! plugin.state.flash=0
+"Disable java plugin
+set! plugin.state.java=0
+
+"Let me choose when refresh the webpage for god sake
+set! accessibility.blockautorefresh=true
+
+
+set! browser.pocket.enabled=false
+set! browser.pocket.api=""
+
+
 
 "===[ Custom style ]=================================================
 

@@ -23,7 +23,7 @@ BASH=" bashrc inputrc bash_profile bash_logout git-completion.bash git-prompt.sh
 X=" Xresources Xdefaults Xmodmap"
 TMUX=" tmux.conf"
 VIM=" vim vimrc"
-WEB=" vimperatorrc"
+WEB=" vimperatorrc vimperator/plugin"
 LXDE=" lxde-rc.xml"
 __ScriptVersion="0.3"
 
@@ -69,9 +69,10 @@ echo Lets install type:$type for $USER then!
 echo Backing up the dotfiles
 cd 
 [ -d $BACKUP ] || mkdir $BACKUP
+[ -d $BACKUP/vimperator/plugin ] || mkdir -p $BACKUP/vimperator/plugin
 #general dotfiles
 for file in $INSTALL; do
-    cp -r --backup=t -L .$file $BACKUP$file 
+    cp -ru --backup=t -L .$file $BACKUP$file 
 done
 #mplayer files
 [ -d ~/.mplayer/ ] && cp --backup=t -L ~/.mplayer/* $BACKUP 2>/dev/null
@@ -87,7 +88,7 @@ for file in $BASH; do
     ln -f -s dotfiles/bash/$file .$file
 done
 
-#VIM (nasty error... )
+#VIM (nasty loop error... )
 ln -f -s dotfiles/vim/vim/ .vim
 ln -f -s dotfiles/vim/vimrc .vimrc
 

@@ -167,6 +167,47 @@ VBoxManage extpack install /tmp/"$PKG"
 VBoxManage list extpacks
 }
 
+#Sync & set firefox profile between RAM and non-voltatile storage
+function firefox_sync() {
+hash rsync || { echo rsync must be installed!; return; }
+#Firefox home
+local FIRHOME="$HOME/.mozilla/firefox"
+#Firefox default profile
+local PROFILE=($FIRHOME/*.default)
+#RAM directory 
+local VOLATILE="/tmp/firefox-$USER"
+#My profile name
+local LINK=${PROFILE##*/}
+local STATIC=${LINK}.solid
+
+#Changed to firefox home dir
+cd "$FIRHOME"
+
+#First run of the day
+[[ -d $VOLATILE ]] || mkdir -m0700 "$VOLATILE"
+[[ -e $LINK ]] || { echo $LINK must exist!. ; return; }
+
+#if not already soft linked
+if [[ $(readlink $LINK) != $VOLATILE ]]; then
+    files=($LINK/*)
+    #Move and make backup if not empty dir
+    if (( ${#files[@]} > 1 )); then
+        mv $LINK $STATIC
+        local CACHE=${HOME}/.cache/mozilla/firefox/
+        [[ -d $CACHE ]] || mkdir -p "$CACHE"
+        tar zcfp ${CACHE}/firefox_profile_backup.tar.gz $STATIC
+    fi
+    ln -s $VOLATILE $LINK
+fi
+
+
+if [[ -f $LINK/.unpacked ]]; then
+    rsync -a --delete --exclude .unpacked ./$LINK/ ./$STATIC/
+else
+    rsync -a ./$STATIC/ ./$LINK/
+    touch $LINK/.unpacked
+fi
+}
 
 #Listen to several radios
 function radios(){
