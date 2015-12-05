@@ -1,4 +1,4 @@
-*Fix **** git submodules
+*Fork needed submodules
 *Include git prompt in sub/cron/x
 *Fix nasty loop link for .vim on install.sh
 *Better color handling and reporting 
