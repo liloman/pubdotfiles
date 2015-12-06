@@ -35,6 +35,10 @@ shopt -s cmdhist
 shopt -s histappend
 # Regexp in bash prompt
 shopt -s extglob
+#Report expansion errors
+shopt -s failglob
+#Allow dot expansion by globbing
+shopt -s dotglob
 
 #Disable <C-s>(stop) and <C-q>(start) on terminal. To use <C-s> on vim (to save file)
 stty stop undef
@@ -57,7 +61,7 @@ stty -ixon -ixoff ixany
 #######################
 
 PROMPT_COMMAND='_exitbash;_list_dir_stack'
-PS1='\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\u$(__git_ps1 "(%s)")->\[\e[00m\]\[\e[01;34m\]\w]\n[H:\#]>\[\e[00m\] ' 
+PS1='\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\u$(__git_ps1 "(%s)")->\[\e[00m\]\[\e[01;34m\]\w]\n[C:\#]>\[\e[00m\] ' 
 
 #Default editor
 EDITOR=vim  
@@ -72,7 +76,7 @@ GLOBIGNORE=.:..
 #Enable dir stack behavior
 DIRSTACK_ENABLED=true
 #Maximum dir stack size
-DIRSTACK_LIMIT=3
+DIRSTACK_LIMIT=5
 # Full paths to exclude from dir stack
 DIRSTACK_EXCLUDE="$HOME:/foobar"
 

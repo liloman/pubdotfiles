@@ -21,45 +21,45 @@
 
 #Insert into dir stack checking repetitions
 _add_dir_stack () { 
-    local DIR="$(realpath -P "${2:-"."}" 2>/dev/null)"
-    [ ! -d "${DIR}" ] && return 
+    local dir="$(realpath -P "${2:-"."}" 2>/dev/null)"
+    [[ -d $dir ]] || { echo "Dir $dir not found";return;}
     # If executed _del_dir_stack and keep working in it...
-    [ $1 == false -a "${_DIR_STACK_LDIR}" == "${DIR}" ] && return
-    _DIR_STACK_LDIR=$DIR
-    local com="dirs -l -p"
-    local i=0; 
+    [[ $1 == false && $_DIR_STACK_LDIR == $dir ]] && return
+    _DIR_STACK_LDIR="$dir"
     #Check exclusions
     IFS=":"; excl=($DIRSTACK_EXCLUDE); unset IFS
-    [[ " ${excl[@]} " =~ " ${DIR} " ]] && return
+    for elem in "${excl[@]}"; do [[ $elem = $dir ]]&& return; done
     #Check duplicates
-    readarray -t dup <<<"$(dirs -p)"
+    readarray -t dup <<<"$(dirs -p -l 2>/dev/null)"
     #First entry (0) is always $PWD
-    dup="${dup[@]:1}"
-    [[ " ${dup[@]} " =~ " ${DIR} " ]] && return
+    dup=${dup[@]:1}
+    for elem in "${dup[@]}"; do [[ $elem = $dir ]]&& return; done
     #Check limit
-    [ +${#dup[@]} -gt +$DIRSTACK_LIMIT ] && _del_dir_stack $DIRSTACK_LIMIT silent
-    pushd -n "${DIR}" >/dev/null; 
+    (( ${#dup[@]} > $DIRSTACK_LIMIT )) && _del_dir_stack $DIRSTACK_LIMIT silent
+    pushd -n "${dir}" >/dev/null; 
 }
 
 
 #Delete dir stack whithout changing dir
 _del_dir_stack () { 
     #Get dir 1 by default
-    local NUM=${1:-1}
-    local CUR="$(dirs -l +1 2>/dev/null)"
-    [ "${CUR}" ] || return 
-    # check that you want to delete current dir actually
-    [ ! $1 ] && [ "$PWD" != "$CUR"  ] && return
-    popd -n +$NUM >/dev/null
-    [ +$? -eq 0 ] && [ ! $2 ] && echo Deleted "$CUR" from dir stack
+    local num=${1:-1}
+    (( $num == 0 )) && num=-1
+    local dest="$(dirs -l +$num 2>/dev/null)"
+    #Empty dir stack, out of range dir index or index=0
+    [[ $dest ]] || { echo "Incorrect dir stack index or empty stack";return;}
+    # check if you want to delete current dir actually (no args)
+    [[ ! $1  &&  $PWD != $dest ]] && return
+    popd -n +$num >/dev/null
+    (( $? == 0 )) && [[ ! $2 ]] && echo Deleted "$dest" from dir stack
 }
 
 #Go to a dir stack number. 
 _go_dir_stack () { 
     #Get absolute path
-    local DIR=$(dirs -l +$1) 
-    [ "${DIR}" ] || return 
-    cd "${DIR}" && echo Changed dir to "${DIR}"
+    local dir="$(dirs -l +$1 2>/dev/null)"
+    [[ $dir ]] || { echo "Incorrect dir stack index or empty stack";return;}
+    cd "$dir" && echo Changed dir to "$dir"
 }
 
 #Less control over errors
@@ -71,11 +71,12 @@ function _list_dir_stack {
 _add_dir_stack false "$(pwd -P)"
 local i=0 
 local com="dirs -p"
-while read -r line; do 
-    [ "$i" -gt 0 ] && echo -ne "\e[00;33m [\e[00m$i-$line\e[00;33m ]\e[00m";
+#Must use IFS= to not remove trailing whitespaces by process substitution
+while IFS= read -r line; do 
+    (( $i > 0 )) && echo -ne "\e[00;33m [\e[00m$i-$line\e[00;33m]\e[00m";
     let i++
 done < <($com)
-if [ "$i" -eq 1 ]; then 
+if (( $i == 1 )); then 
     echo -ne "\e[00;33mEmpty dir stack(a add,d delete,g go number,~num alias) \e[00m";
 fi
     #Use $'string' expansion to get a newline without new characters printed
@@ -116,7 +117,6 @@ tam () { du -hs "$@" | sort -h; }
 function alternateVBox {
 local machine="$1"
 local saved="$2"
-local com="VBoxManage showvminfo "$machine""
 #Not Greedy state
 local regex='(State:)([[:space:]]*)([-[:alnum:][:space:]]*)([[:space:]].*)'
 
@@ -140,30 +140,30 @@ fi
 
 #Download vid and play it in FS from bash or vimperator or whatever
 function descarga {
-local DEST=~/Descargas/videoFlash
-local URL="$1"
+local dest=~/Descargas/videoFlash
+local url="$1"
 killall -q youtube-dl
-cd ~ # youtube-dl dont get DEST right ¿?
-rm "$DEST"
+cd ~ # youtube-dl doesn't get DEST right ¿?
+rm "$dest"
 #My temporal local latest version of youtube-dl for rtve
 [ -e "~/Scripts/youtube-dl" ] && wget https://yt-dl.org/latest/youtube-dl -O ~/Scripts/youtube-dl
-~/Scripts/youtube-dl "$URL" --verbose -o "$DEST" -f best --no-part >/tmp/youtube.log &
+~/Scripts/youtube-dl "$url" --verbose -o "$dest" -f best --no-part >/tmp/youtube.log &
 sleep 4 
-mplayer -fs "$DEST" 
+mplayer -fs "$dest" 
 }
 
 
 #Download and install the current extension pack for virtualbox 
 function virtualboxGetExtensionPack() {
-local VERSION=$(VBoxManage --version)
-local VER=${VERSION:0:6}
-local BASE="http://download.virtualbox.org/virtualbox"
-local PKG="Oracle_VM_VirtualBox_Extension_Pack-$VER-${VERSION: -6}.vbox-extpack"
-local URL="$BASE/$VER/$PKG"
+local version=$(VBoxManage --version)
+local ver=${version:0:6}
+local base="http://download.virtualbox.org/virtualbox"
+local pkg="Oracle_VM_VirtualBox_Extension_Pack-$ver-${version: -6}.vbox-extpack"
+local url="$base/$ver/$pkg"
 cd /tmp/
-wget "$URL" || { echo "URL:$URL not found"; return; }
-echo Downloaded /tmp/"$PKG" 
-VBoxManage extpack install /tmp/"$PKG"
+wget "$url" || { echo "URL:$url not found"; return; }
+echo Downloaded /tmp/"$pkg" 
+VBoxManage extpack install /tmp/"$pkg"
 VBoxManage list extpacks
 }
 
@@ -171,41 +171,41 @@ VBoxManage list extpacks
 function firefox_sync() {
 hash rsync || { echo rsync must be installed!; return; }
 #Firefox home
-local FIRHOME="$HOME/.mozilla/firefox"
+local firhome="$HOME/.mozilla/firefox"
 #Firefox default profile
-local PROFILE=($FIRHOME/*.default)
+local profile=($firhome/*.default)
 #RAM directory 
-local VOLATILE="/tmp/firefox-$USER"
+local volatile="/tmp/firefox-$USER"
 #My profile name
-local LINK=${PROFILE##*/}
-local STATIC=${LINK}.solid
+local link=${profile##*/}
+local static=${link}.solid
 
 #Changed to firefox home dir
-cd "$FIRHOME"
+cd "$firhome"
 
 #First run of the day
-[[ -d $VOLATILE ]] || mkdir -m0700 "$VOLATILE"
-[[ -e $LINK ]] || { echo $LINK must exist!. ; return; }
+[[ -d $volatile ]] || mkdir -m0700 "$volatile"
+[[ -e $link ]] || { echo $link must exist!. ; return; }
 
 #if not already soft linked
-if [[ $(readlink $LINK) != $VOLATILE ]]; then
-    files=($LINK/*)
+if [[ $(readlink $link) != $volatile ]]; then
+    files=($link/*)
     #Move and make backup if not empty dir
     if (( ${#files[@]} > 1 )); then
-        mv $LINK $STATIC
-        local CACHE=${HOME}/.cache/mozilla/firefox/
-        [[ -d $CACHE ]] || mkdir -p "$CACHE"
-        tar zcfp ${CACHE}/firefox_profile_backup.tar.gz $STATIC
+        mv $link $static
+        local cache=${HOME}/.cache/mozilla/firefox/
+        [[ -d $cache ]] || mkdir -p "$cache"
+        tar zcfp ${cache}/firefox_profile_backup.tar.gz $static
     fi
-    ln -s $VOLATILE $LINK
+    ln -s $volatile $link
 fi
 
 
-if [[ -f $LINK/.unpacked ]]; then
-    rsync -a --delete --exclude .unpacked ./$LINK/ ./$STATIC/
+if [[ -f $link/.unpacked ]]; then
+    rsync -a --delete --exclude .unpacked ./$link/ ./$static/
 else
-    rsync -a ./$STATIC/ ./$LINK/
-    touch $LINK/.unpacked
+    rsync -a ./$static/ ./$link/
+    touch $link/.unpacked
 fi
 }
 
