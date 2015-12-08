@@ -35,8 +35,9 @@ shopt -s cmdhist
 shopt -s histappend
 # Regexp in bash prompt
 shopt -s extglob
-#Report expansion errors
-shopt -s failglob
+#Disable report expansion errors (lot of problems...)
+#like wget http://url or tab completition
+shopt -u failglob
 #Allow dot expansion by globbing
 shopt -s dotglob
 
@@ -60,15 +61,15 @@ stty -ixon -ixoff ixany
 # INTERNAL VARIABLES  #
 #######################
 
-PROMPT_COMMAND='_exitbash;_list_dir_stack'
-PS1='\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\u$(__git_ps1 "(%s)")->\[\e[00m\]\[\e[01;34m\]\w]\n[C:\#]>\[\e[00m\] ' 
+PROMPT_COMMAND='_exitbash;_list_dir_stack;'
+PS1='\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\H@\u$(__git_ps1 "(%s)")->\[\e[00m\]\[\e[01;34m\]\w]\n[C:\#]>>>\[\e[00m\] ' 
 
-#Default editor
-EDITOR=vim  
 HISTSIZE=50000
 HISTFILESIZE=50000
 #Maybe I should rework this to make it dinamic again...
 HISTFILE=~/.bash_historys/history_
+#Ignore from history dumb commands as duplicates and exits
+HISTIGNORE="&:exit"
 
 # to work properly with shopt -s extglob  (ls -d .*)
 GLOBIGNORE=.:..
@@ -80,6 +81,21 @@ DIRSTACK_LIMIT=5
 # Full paths to exclude from dir stack
 DIRSTACK_EXCLUDE="$HOME:/foobar"
 
+
+###################
+#  Stderr in red  #
+###################
+# exec 9>&2
+# exec 8> >(
+# while IFS= read -r line || [[ -n $line ]]; do
+#     echo -e "\[\e[00;31m\]${line}\[\e[00m\]"
+# done
+# )
+#
+# function undirect(){ exec 2>&9; }
+# function redirect(){ exec 2>&8; }
+# trap "redirect;" DEBUG
+# PROMPT_COMMAND+='undirect;'
 
 ########################
 #  EXPORTED VARIABLES  #
@@ -98,6 +114,12 @@ export LESS="-eIrMX"
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
+#Default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+export GIT_EDITOR=vim
+
+
 ###########
 #  Binds  #
 ###########
@@ -109,8 +131,8 @@ bind -m vi-insert "\C-n":menu-complete
 # ctrl l make clear the screen on vi mode
 bind -m vi-insert "\C-l":clear-screen
 
-#Para que autocomplete tambien !$,!*,!!,!cat ... despues de un space ... :)
-bind Space:magic-space
+#Autocomplete !$,!*,!!,!cat ... before de un space ... :)
+# bind Space:magic-space
 
 ###########
 #  Files  #

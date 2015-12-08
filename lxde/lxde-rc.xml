@@ -258,6 +258,7 @@
     </keybind>
     <keybind key="W-f">
         <action name="Execute">
+            <!--command>~/Scripts/runBash.sh firefox_sync</command-->
             <command>firefox</command>
         </action>
     </keybind>
@@ -271,14 +272,19 @@
             <command>~/Scripts/runBash.sh alternateVBox Spotify</command>
         </action>
     </keybind>
+    <keybind key="W-A-p">
+        <action name="Execute">
+            <command>~/Scripts/runBash.sh alternateVBox Spotify paused</command>
+        </action>
+    </keybind>
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
         <action name="If">
-            <title type="regex">*@*| LXTerminal </title>
-            <then> <!-- Do nothing for foo --> </then>
-            <else>
-                <action name="Close"/>
-            </else>
+            <query>
+                <class type="exact">Lxterminal</class>
+            </query>
+            <then> <!-- Do nothing for lxterminal --> </then>
+            <else> <action name="Close"/> </else>
         </action>
     </keybind>
     <keybind key="A-Escape">
