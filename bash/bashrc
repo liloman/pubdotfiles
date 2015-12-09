@@ -142,8 +142,8 @@ bind -m vi-insert "\C-l":clear-screen
 
 #Z script to get the most common directories and so on
 #git clone https://github.com/rupa/z 
-if [ -f ~/Scripts/z/z.sh ]; then
-    . ~/Scripts/z/z.sh
+if [ -f ~/Clones/z/z.sh ]; then
+    . ~/Clones/z/z.sh
     _Z_DATA=$HOME/.zs/.z
     #no clobber my $PROMPT_COMMAND
     _Z_NO_PROMPT_COMMAND=true

@@ -10,8 +10,14 @@ if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
-# set PATH so it includes user's private bin if it exists
+# set PATH so it includes user's private bins if them exists
 if [ -d ~/Scripts ] ; then
-    PATH=~/Scripts:"${PATH}"
+     PATH+=":~/Scripts"
 fi
+if [ -d ~/.local/bin ] ; then
+     PATH+=":~/.local/bin"
+fi
+
+export PATH
+export MANPATH=$HOME/.local/share/man:$(manpath -gq)
 

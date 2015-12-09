@@ -167,3 +167,4 @@ colorscheme Monokai
 " Set zellnet for tex files. Not working properly :(
 autocmd FileType tex colorscheme zellner | colo zellner
 
+au BufRead,BufNewFile *.bats set filetype=sh

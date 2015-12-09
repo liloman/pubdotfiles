@@ -18,6 +18,8 @@ set activate=downloads
 "let g:buftabs_showCurrentUrl=1
 " Proper hints
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
+let g:hintsio="io"
+
 "No more than 5 items in statusline
 set maxitems=5
 " No autocomplete local files for selinux jail...

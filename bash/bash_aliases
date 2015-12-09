@@ -54,8 +54,8 @@ alias xargs='xargs -0'
 alias open='xdg-open'
 alias pgrep='pgrep -aw'
 alias tree='tree -C'
-alias rm='~/Scripts/rmtrash/rmtrash -v'
-alias rmdir='~/Scripts/rmtrash/rmdirtrash -v'
+alias rm='rmtrash -v'
+alias rmdir='rmdirtrash -v'
 
 
 #############
