@@ -1,6 +1,12 @@
 #My shell settings
-#see help set,help shopt ...
+#see help set,help bind ...
 #https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
+#http://linux.about.com/library/cmd/blcmdl3_readline.htm
+
+#########################################################################
+# Dont add any stty or shopt command here. It'll block the s key!!!!!   #
+#########################################################################
+
 set input-meta On
 set mark-directories On
 set horizontal-scroll-mode On
@@ -26,18 +32,96 @@ set show-mode-in-prompt on
 set skip-completed-text on
 #Replace prefixes on autocompletions larger than 3
 set completion-prefix-display-length 3
+#Dont working. Lets wait for bash 4.4 ... :(
 set vi-ins-mode-string \1\e[32;1m\2(ins)\1\e[0m\2
 set vi-cmd-mode-string \1\e[33;1m\2(cmd)\1\e[0m\2
 
-Control-p:history-search-backward
-Control-n:history-search-forward
+# Control-p:history-search-backward
+# Control-n:history-search-forward
 
-#Incremental search in history with arrow
+#Incremental search in history with up/down arrows
 "\e[A":history-search-backward
 "\e[B":history-search-forward
 #Ensure left/right work properly
 "\e[C":forward-char
 "\e[D":backward-char
 
-#Dont add any stty or shopt command here. It'll block the s key
+#vi mode from
+#https://raw.githubusercontent.com/minos-org/bash-minos-settings/master/etc.inputrc
+# Work with ciw, diw ...
+$if mode=vi
+set keymap vi-command
+Control-l: clear-screen
+"#": insert-comment
+".": "i !*\r"
+"|": "A | "
+"D":kill-line
+"C": "Da"
+"dw": kill-word
+"dd": kill-whole-line
+"db": backward-kill-word
+"cc": "ddi"
+"cw": "dwi"
+"cb": "dbi"
+"daw": "lbdW"
+"yaw": "lbyW"
+"caw": "lbcW"
+"diw": "lbdw"
+"yiw": "lbyw"
+"ciw": "lbcw"
+"da\"": "lF\"df\""
+"di\"": "lF\"lmtf\"d`t"
+"ci\"": "di\"i"
+"ca\"": "da\"i"
+"da'": "lF'df'"
+"di'": "lF'lmtf'd`t"
+"ci'": "di'i"
+"ca'": "da'i"
+"da`": "lF\`df\`"
+"di`": "lF\`lmtf\`d`t"
+"ci`": "di`i"
+"ca`": "da`i"
+"da(": "lF(df)"
+"di(": "lF(lmtf)d`t"
+"ci(": "di(i"
+"ca(": "da(i"
+"da)": "lF(df)"
+"di)": "lF(lmtf)d`t"
+"ci)": "di(i"
+"ca)": "da(i"
+"da{": "lF{df}"
+"di{": "lF{lmtf}d`t"
+"ci{": "di{i"
+"ca{": "da{i"
+"da}": "lF{df}"
+"di}": "lF{lmtf}d`t"
+"ci}": "di}i"
+"ca}": "da}i"
+"da[": "lF[df]"
+"di[": "lF[lmtf]d`t"
+"ci[": "di[i"
+"ca[": "da[i"
+"da]": "lF[df]"
+"di]": "lF[lmtf]d`t"
+"ci]": "di]i"
+"ca]": "da]i"
+"da<": "lF<df>"
+"di<": "lF<lmtf>d`t"
+"ci<": "di<i"
+"ca<": "da<i"
+"da>": "lF<df>"
+"di>": "lF<lmtf>d`t"
+"ci>": "di>i"
+"ca>": "da>i"
+"gg": beginning-of-history
+"G": end-of-history
+?: reverse-search-history
+/: forward-search-history
 
+set keymap vi-insert
+Control-l: clear-screen
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+$endif

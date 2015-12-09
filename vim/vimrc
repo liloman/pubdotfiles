@@ -78,6 +78,9 @@ let mapleader=" "
 nmap <F3> :NERDTreeToggle<CR>
 nmap <F4> :TagbarToggle<CR>
 " nnoremap <F5> :GundoToggle<CR>
+"Execute current file with Bexec plugin
+nmap <silent> <unique> <Leader>e :Bexec()<CR>
+vmap <silent> <unique> <Leader>e :BexecVisual()<CR>
 
 "To group with ease from the command line
 cmap ;\ \(\)<Left><Left>
@@ -122,6 +125,9 @@ call pathogen#helptags()
 
 " Enable built-in matchit plugin
 runtime macros/matchit.vim
+"Enable :Man to read manpages ... :)
+runtime! ftplugin/man.vim
+
 
 " to change the macro storage location use the following
 let marvim_store='/home/charly/.vim/.macros'
@@ -168,3 +174,4 @@ colorscheme Monokai
 autocmd FileType tex colorscheme zellner | colo zellner
 
 au BufRead,BufNewFile *.bats set filetype=sh
+

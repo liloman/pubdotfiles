@@ -56,6 +56,9 @@ alias pgrep='pgrep -aw'
 alias tree='tree -C'
 alias rm='rmtrash -v'
 alias rmdir='rmdirtrash -v'
+alias gd='cd ~/dotfiles/'
+alias gt='cd /tmp/'
+alias gu='cd ~/Dropbox/Dropbox/GradoMio/'
 
 
 #############
@@ -65,13 +68,12 @@ alias rmdir='rmdirtrash -v'
 alias fotos='geeqie'
 alias fotos2='feh -rFd'
 alias mplayer-masvolumen='mplayer -softvol -softvol-max 300'
-alias univ='cd ~/Dropbox/Dropbox/GradoMio/'
-alias fastboot="fastboot  -i 0x1f3a" 
 alias verflash="mplayer -fs ~/Descargas/videoFlash" 
 alias verflashgui="smplayer  ~/Descargas/videoFlash" 
 alias verflashl="tail -f /tmp/youtube.log" 
 alias spotify="alternateVBox Spotify" 
 alias webshare='python -m SimpleHTTPServer'
+alias fastboot="fastboot  -i 0x1f3a" 
 
 
 #################

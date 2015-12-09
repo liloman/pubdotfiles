@@ -61,8 +61,9 @@ stty -ixon -ixoff ixany
 # INTERNAL VARIABLES  #
 #######################
 
-PROMPT_COMMAND='_exitbash;_list_dir_stack;'
-PS1='\[\e[01;34m\][\[\e[00m\]\[\e[01;32m\]\H@\u$(__git_ps1 "(%s)")->\[\e[00m\]\[\e[01;34m\]\w]\n[C:\#]>>>\[\e[00m\] ' 
+KERNEL=$(uname -r)
+TTY=$(tty)
+PROMPT_COMMAND='show_ps1;list_dir_stack'
 
 HISTSIZE=50000
 HISTFILESIZE=50000
@@ -77,9 +78,9 @@ GLOBIGNORE=.:..
 #Enable dir stack behavior
 DIRSTACK_ENABLED=true
 #Maximum dir stack size
-DIRSTACK_LIMIT=5
-# Full paths to exclude from dir stack
-DIRSTACK_EXCLUDE="$HOME:/foobar"
+DIRSTACK_LIMIT=8
+# Full paths to exclude from dir stack separated by colon
+DIRSTACK_EXCLUDE="/foobar:/foobar2"
 
 
 ###################
@@ -107,7 +108,10 @@ export HISTCONTROL=ignoredups
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
 #less options applied
-export LESS="-eIrMX" 
+export LESS=" -eIRMX " 
+#less colored when possible... :S
+#needs customs cases...
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 #-e quit at 2 eof, -I case insensitive search
 #-r raw control displayed (colors), -M long prompt
 # -X dont send de/initialization strings to the terminal
@@ -118,21 +122,28 @@ export LESS="-eIrMX"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export GIT_EDITOR=vim
+#Let's use less 
+export PAGER="less" 
 
 
 ###########
 #  Binds  #
 ###########
 
-# Kind of work for history autocompletition (needs work)
-bind -m vi-insert "\C-p":dynamic-complete-history
-bind -m vi-insert "\C-n":menu-complete
+#see .inputrc :)
 
-# ctrl l make clear the screen on vi mode
-bind -m vi-insert "\C-l":clear-screen
+# Interesting autocompletions
+#Complete filename against complete history! :D
+bind -m vi-insert "\C-n":dynamic-complete-history
+#Complete filename/commands/... same as TAB
+bind -m vi-insert "\C-p":menu-complete
 
-#Autocomplete !$,!*,!!,!cat ... before de un space ... :)
-# bind Space:magic-space
+#Custom mappings ...
+#Should clean leaving prompt_command...
+#bind -x '"\C-l":/bin/clear'
+
+#Autocomplete !$,!*,!!,!cat ... before of space ... :)
+bind Space:magic-space
 
 ###########
 #  Files  #

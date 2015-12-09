@@ -1,4 +1,15 @@
+FIXIT
+=============
 *Fork needed submodules
 *Include git prompt in sub/cron/x
 *Fix nasty loop link for .vim on install.sh
+
+TODO
+=============
 *Better color handling and reporting 
+*Rework install.sh
+*clean script for firefox
+*include completions for all commands
+*command vi mode j/k for history-search-back/up-wards
+
+
