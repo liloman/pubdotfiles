@@ -10,6 +10,4 @@ TODO
 *Rework install.sh
 *clean script for firefox
 *include completions for all commands
-*command vi mode j/k for history-search-back/up-wards
-
 

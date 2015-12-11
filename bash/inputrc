@@ -117,6 +117,8 @@ Control-l: clear-screen
 "G": end-of-history
 ?: reverse-search-history
 /: forward-search-history
+"k": history-search-backward
+"j": history-search-forward
 
 set keymap vi-insert
 Control-l: clear-screen
