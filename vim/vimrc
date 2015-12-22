@@ -142,6 +142,8 @@ let g:tagbar_autofocus = 1
 "gf search in local paths also
 set path=.,include/,src/ ",** recursive:better --> :tag filename.c
 
+"Bexec shows the stdout on below window
+set splitbelow
 "
 " ================ Easymotion power ======================
 let g:EasyMotion_smartcase=1
@@ -164,6 +166,7 @@ let g:loaded_luainspect = 1
 
 let g:lightline = {'colorscheme': 'wombat',}
 colorscheme Monokai
+
 
 
 """"""""""""""

@@ -129,7 +129,7 @@ show_ps1() {
     PS1=" ${Blue}[${Reset}C:${White}\#${Reset}-E:${error}"
 
     # Reset the text color to the default at the end.
-    PS1+="${Blue}]${Green}${arrow}${Reset}"
+    PS1+="${Blue}:${Red}\w]${Green}${arrow}${Reset}"
 }
 
 

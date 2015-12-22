@@ -80,7 +80,7 @@ DIRSTACK_ENABLED=true
 #Maximum dir stack size
 DIRSTACK_LIMIT=8
 # Full paths to exclude from dir stack separated by colon
-DIRSTACK_EXCLUDE="/foobar:/foobar2"
+DIRSTACK_EXCLUDE="/foobar:$HOME"
 
 
 ###################

@@ -227,6 +227,11 @@ set! browser.pocket.enabled=false
 set! browser.pocket.api=""
 
 
+"https://wiki.archlinux.org/index.php/Firefox_Tips_and_Tweaks#Defragment_the_profile.27s_SQLite_databases
+set! layers.acceleration.force-enabled=true
+set! layers.offmainthreadcomposition.enabled=true
+
+
 
 "===[ Custom style ]=================================================
 
