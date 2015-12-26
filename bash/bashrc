@@ -18,7 +18,7 @@
 #
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[[ -z $PS1 ]] && return
 
 ###################
 #  Shell options  #
@@ -116,7 +116,7 @@ export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 #-r raw control displayed (colors), -M long prompt
 # -X dont send de/initialization strings to the terminal
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+[[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
 
 #Default editor
 export VISUAL=vim
@@ -153,7 +153,7 @@ bind Space:magic-space
 
 #Z script to get the most common directories and so on
 #git clone https://github.com/rupa/z 
-if [ -f ~/Clones/z/z.sh ]; then
+if [[ -f ~/Clones/z/z.sh ]]; then
     . ~/Clones/z/z.sh
     _Z_DATA=$HOME/.zs/.z
     #no clobber my $PROMPT_COMMAND
@@ -161,21 +161,20 @@ if [ -f ~/Clones/z/z.sh ]; then
 fi
 
 # Alias definitions
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
 # Function definitions
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
+[[ -f ~/.bash_functions ]] && . ~/.bash_functions
 
 #Enable Autocompletions 
-[ -f /usr/share/bash-completion/bash_completion ] && 
+[[ -f /usr/share/bash-completion/bash_completion ]] && 
             . /usr/share/bash-completion/bash_completion
 
 #To work with git
 source ~/dotfiles/bash/git-completion.bash
 source ~/dotfiles/bash/git-prompt.sh
+
+# added by travis gem
+[[ -f /home/charly/.travis/travis.sh ]] && source /home/charly/.travis/travis.sh
 
 
