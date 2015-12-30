@@ -40,6 +40,8 @@ shopt -s extglob
 shopt -u failglob
 #Allow dot expansion by globbing
 shopt -s dotglob
+#Allow ** globbing
+shopt -s globstar
 
 #Disable <C-s>(stop) and <C-q>(start) on terminal. To use <C-s> on vim (to save file)
 stty stop undef

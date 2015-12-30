@@ -45,7 +45,8 @@ alias ll='$LS_COMMAND -lA'
 #extended listing with access time 
 alias lt='ll -utr'
 #General
-alias vi='vim'
+# To use the clipboard  from vim...
+alias vi='vimx'
 alias grep='grep --color=auto'
 alias cp="cp -v"
 alias cpfolder='rsync --progress -rv'
