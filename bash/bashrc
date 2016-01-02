@@ -124,8 +124,10 @@ export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export GIT_EDITOR=vim
-#Let's use less 
-export PAGER="less" 
+#Let's use most 
+export PAGER="most" 
+# to open  the manpages in a brower with man -H command :)
+export BROWSER="firefox" 
 
 
 ###########
