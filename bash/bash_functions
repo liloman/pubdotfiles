@@ -148,6 +148,23 @@ get_octal() {
 }
 
 
+bak() {
+ local arg="$1" ; shift
+ [[ -e $arg ]] || { echo "file/dir:$arg must exist"; return 1; }
+ arg=${arg%/}
+ local bak="$arg.bak"
+ if [[ ${arg: -4} != .bak ]]; then 
+     \cp -r "$arg" "$bak" && \
+     echo "Copied $arg to $bak"
+ else 
+     bak="${arg%.bak}" && \
+     \rm -rf "$bak" && \
+     \mv "$arg" "$bak" && \
+     echo "Moved $arg to $bak"
+ fi
+}
+
+
 #############
 #  Desktop  #
 #############

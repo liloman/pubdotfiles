@@ -20,7 +20,8 @@
 ############# 
 
 #Possible endless loop with make -j
-[ $(nproc) -gt 4 ] && alias make='make -j 4'
+#nproc also possible
+alias make='make -j $(( $(getconf _NPROCESSORS_ONLN)-1 ))'
 
 #git aliases
 alias gtb='git branch -a'
@@ -49,12 +50,12 @@ alias lt='ll -utr'
 alias vi='vimx'
 alias grep='grep --color=auto'
 alias cp="cp -v"
-alias cpfolder='rsync --progress -rv'
+alias cpfolder='rsync --progress -rva'
 alias tarc='tar -I lbzip2'
 alias xargs='xargs -0'
 alias open='xdg-open'
 alias pgrep='pgrep -aw'
-alias tree='tree -C'
+alias tree='tree -CF'
 alias rm='rmtrash -v'
 alias rmdir='rmdirtrash -v'
 alias gd='cd ~/dotfiles/'
