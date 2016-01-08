@@ -1,13 +1,11 @@
 FIXIT
 =============
 *Fork needed submodules
-*Include git prompt in sub/cron/x
-*Fix nasty loop link for .vim on install.sh
 
 TODO
 =============
-*Better color handling and reporting 
-*Rework install.sh
+*Rework install.sh (doing with stow...)
 *clean script for firefox
-*include completions for all commands
+*Better color handling and reporting 
+*include completions for all commands (generate-autocompletion...)
 *for my dir stack, maybe it needs a repo for itself ... :) http://vincent.bernat.im/en/blog/2015-zsh-directory-bookmarks.html

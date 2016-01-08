@@ -181,8 +181,8 @@ fi
             . /usr/share/bash-completion/bash_completion
 
 #To work with git
-source ~/dotfiles/bash/git-completion.bash
-source ~/dotfiles/bash/git-prompt.sh
+source /usr/share/doc/git/contrib/completion/git-completion.bash
+source /usr/share/doc/git/contrib/completion/git-prompt.sh
 
 # added by travis gem
 [[ -f /home/charly/.travis/travis.sh ]] && source /home/charly/.travis/travis.sh

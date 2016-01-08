@@ -164,6 +164,12 @@ bak() {
  fi
 }
 
+#Add new executable symlink to ~/.local/bin dir
+sbin() {
+    local file="$(realpath "$1" 2>/dev/null)"; shift
+    [[ -z $file ]] && { echo "Must pass a valid file"; return; }
+    ln -sfv  $file ~/.local/bin/
+}
 
 #############
 #  Desktop  #
