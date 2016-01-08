@@ -70,6 +70,9 @@ map <C-b> :js FirefoxPrivate(buffer.URL)<CR><Esc>:bd<CR>
 "works for youtube,vimeo,rtve...
 map <C-m>  :js showFSVideo(buffer.URL)<CR>
 
+"toggle temporary  noscript perms for the current buffer
+map <C-j>  :noscript toggletemp<CR>
+
 "Change newtab.url in firefox>40
 "defaultPage()
 :js <<EOF

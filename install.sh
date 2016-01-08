@@ -17,15 +17,11 @@
 #version 0.1 "basic" config
 #version 0.2 Added mplayer files
 #version 0.3 Refactoring and bash_functions
+#version 0.4 Changed to stow
 
-BACKUP=~/.dotfiles_backup/
-BASH=" bashrc inputrc bash_profile bash_logout git-completion.bash git-prompt.sh ctags bash_aliases bash_functions"
-X=" Xresources Xdefaults Xmodmap"
-TMUX=" tmux.conf"
-VIM=" vim vimrc"
-WEB=" vimperatorrc vimperator/plugin"
-LXDE=" lxde-rc.xml"
-__ScriptVersion="0.3"
+__ScriptVersion="0.4"
+
+hash stow || { echo "Must install stow first"; exit 1; }
 
 function usage ()
 {
@@ -55,70 +51,34 @@ do
 done
 shift $(($OPTIND-1))
 
-[[ -z "$type" ]] && echo $0 needs arguments. Execute $0 -h for help. &&  exit 0
+[[ -z $type ]] && { echo "Needs arguments, execute $0 -h for help"; exit 1; }
 
-[[ "$type" == "user" ]] && INSTALL=$BASH$VIM$WEB$X$TMUX
-[[ "$type" == "server" ]] && INSTALL=$BASH$VIM 
+
+cd ~/dotfiles
 
 echo Lets install type:$type for $USER then!
-
-############
-#  Backup  #
-############
-
-echo Backing up the dotfiles
-cd 
-[ -d $BACKUP ] || mkdir $BACKUP
-[ -d $BACKUP/vimperator/plugin ] || mkdir -p $BACKUP/vimperator/plugin
-#general dotfiles
-for file in $INSTALL; do
-    cp -ru --backup=t -L .$file $BACKUP$file 
-done
-#mplayer files
-[ -d ~/.mplayer/ ] && cp --backup=t -L ~/.mplayer/* $BACKUP 2>/dev/null
-#lxde files
-[ -d ~/.config/openbox ] && cp --backup=t -L ~/.config/openbox/* $BACKUP 2>/dev/null
 
 #############
 #  INSTALL  #
 #############
 
 echo Installing dotfiles for $type
-for file in $BASH; do
-    ln -f -s dotfiles/bash/$file .$file
-done
 
-#VIM (nasty loop error... )
-ln -f -s dotfiles/vim/vim/ .vim
-ln -f -s dotfiles/vim/vimrc .vimrc
+stow -vS bash
+stow -vS vim
+stow -vS tmux
 
 #If server exit
 [[ "$type" == "server" ]] && exit 0
 
-for file in $X; do
-    ln -f -s dotfiles/X/$file .$file
-done
-
-for file in $WEB; do
-    ln -f -s dotfiles/vimperator/$file .$file
-done
-
-for file in $TMUX; do
-    ln -f -s dotfiles/tmux/$file .$file
-done
-
-[ -d ~/.mplayer/ ] || mkdir ~/.mplayer/
-cd ~/.mplayer/
-ln -f -s ~/dotfiles/mplayer/* .
-
-[ -d ~/.config/openbox/ ] || mkdir -p ~/.config/openbox/
-cd ~/.config/openbox/ 
-ln -f -s ~/dotfiles/lxde/* .
+stow -vS X
+stow -vS vimperator
+stow -vS mplayer
+stow -vS lxde
 
 #######################
 #  UPDATE SUBMODULES  #
 #######################
-cd ~/dotfiles
 
 echo Installing submodules
 git submodule init

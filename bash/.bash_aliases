@@ -59,8 +59,9 @@ alias tree='tree -CFa'
 alias rm='rmalias -v'
 alias rmdir='rmdiralias -v'
 alias gd='cd ~/dotfiles/'
+alias gc='cd ~/Clones/'
 alias gt='cd /tmp/'
-alias gu='cd ~/Dropbox/Dropbox/GradoMio/'
+alias tmux='tmux -u2'
 
 
 #############

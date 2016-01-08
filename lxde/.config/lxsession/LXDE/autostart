@@ -1,0 +1,11 @@
+#!/bin/bash
+#Autostart setting for LXDE
+
+@lxpanel --profile LXDE
+@pcmanfm --desktop --profile LXDE
+@xscreensaver -no-splash
+
+#Notifications up with respawning 
+@/usr/libexec/notification-daemon
+#Dont respawn it 
+$HOME/Scripts/runBash.sh firefox_sync

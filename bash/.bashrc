@@ -131,7 +131,7 @@ export BROWSER="firefox"
 # to show file, line and func when set -x
 export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '
 #show messages in english
-export LANG=C
+#export LANG=C
 
 
 
