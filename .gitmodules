@@ -60,5 +60,5 @@
     ignore = all
 [submodule "vim/.vim/bundle/bexec"]
     path = vim/.vim/bundle/bexec
-    url = https://github.com/tomtom/bexec.git
+    url = https://github.com/fboender/bexec.git
     ignore = all
