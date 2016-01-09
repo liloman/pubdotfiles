@@ -2,6 +2,7 @@
 #My dotfiles. 
 ============
 
+Managed with stow (wonderful symlink farm).
 
 ##INSTALL
 
@@ -9,15 +10,15 @@
 ```bash
 git clone https://github.com/liloman/dotfiles.git 
 cd dotfiles 
-./install.sh -u (for all files)
-./install -s (for server/minimal files)
+./install.sh -u (for desktop use)
+./install.sh -s  (for server use)
 ```
 
 ## TODO
 - [] Make a repo for my dir stack itself [dir bookmarks](http://vincent.bernat.im/en/blog/2015-zsh-directory-bookmarks.html)
-- [] clean bash script for firefox cache/...
-- [] Better color handling and reporting 
-- [] include completions for all commands (generate-autocompletion...)
+- [x] clean bash script for firefox cache/ (cleanFirefox)
+- [] Better color handling and reporting for .bash_functions
+- [] include completions for all functions (generate-autocompletion...)
 - [x] Fork needed submodules
 - [x] Rework install.sh 
 

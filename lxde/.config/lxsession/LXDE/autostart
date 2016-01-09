@@ -1,11 +1,25 @@
 #!/bin/bash
 #Autostart setting for LXDE
 
-@lxpanel --profile LXDE
+
+##################
+#  Respawn them  #
+##################
+
+#Execute pcmanfm as desktop manager to use doWallpaper
 @pcmanfm --desktop --profile LXDE
+@lxpanel --profile LXDE
 @xscreensaver -no-splash
 
-#Notifications up with respawning 
+#Notifications for notify et al with respawning 
 @/usr/libexec/notification-daemon
-#Dont respawn it 
+
+
+########################
+#  Don't respawn them  #
+########################
+
+#Move firefox profile to RAM
 $HOME/Scripts/runBash.sh firefox_sync
+#Set wallpaper from national geographic photo of today
+$HOME/Scripts/runBash.sh doWallpaper

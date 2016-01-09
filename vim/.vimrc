@@ -21,7 +21,12 @@
 set number
 set columns=80
 set colorcolumn=80
-set textwidth=80
+
+" this enables "visual" wrapping
+set wrap
+" set textwidth=80
+" this turns off physical line wrapping (ie: automatic insertion of newlines)
+set textwidth=0 wrapmargin=0
 
 " enable per-directory .vimrc files 
 set exrc        

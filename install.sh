@@ -67,6 +67,7 @@ echo Installing dotfiles for $type
 stow -vS bash
 stow -vS vim
 stow -vS tmux
+stow -vS gem
 
 #If server exit
 [[ "$type" == "server" ]] && exit 0

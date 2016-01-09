@@ -100,12 +100,11 @@ autocmd VimperatorEnter .* every -interval 600 silent !~/Scripts/runBash.sh fire
 
 "This event is released BEFORE firefox is closed
 command! -nargs=+ CleanFirefox autocmd VimperatorLeave .* <args>
-"Actually delete STORAGE on quit.Don't use quotes otherwise won't be executed!
-CleanFirefox silent !rm -rf ~/.mozilla/firefox/*.default/storage/*/* &
-"Sync firefox PROFILE from RAM before exit
-CleanFirefox silent !~/Scripts/runBash.sh firefox_sync &
-"Actually delete CACHE on quit.
-CleanFirefox silent !rm -rf ~/.cache/mozilla/firefox/*.default/ &
+"Actually clean firefox profiles. Don't use quotes otherwise won't be executed!
+CleanFirefox silent !~/Scripts/runBash.sh cleanFirefox default 
+CleanFirefox silent !~/Scripts/runBash.sh cleanFirefox Privado 
+"At last sync firefox PROFILE from RAM before quit
+CleanFirefox silent !~/Scripts/runBash.sh firefox_sync 
 
 
 "===[ Custom firefox config ]=================================================

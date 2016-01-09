@@ -1,0 +1,4 @@
+gem:
+ --bindir ~/.gem/ruby/bin 
+ --no-ri 
+ --no-rdoc

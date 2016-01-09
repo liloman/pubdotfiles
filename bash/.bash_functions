@@ -175,12 +175,21 @@ sbin() {
 #  Desktop  #
 #############
 
+#Notify of events transient
 notify(){
     local title="${FUNCNAME[1]:-"Info message"}"
-    local text="${1:-"Info text"}"
+    local text="${1:-"Notification text"}"
     local icon="${2:-"user-info"}"
     local timeout=4
     # zenity --timeout $timeout --info --title "$title" --text "$text"
+    notify-send -t $(($timeout*1000)) --hint=int:transient:1 --icon="$icon" "$title" "$text" 
+}
+
+notify-err(){
+    local title="${FUNCNAME[1]:-"Info message"}"
+    local text="${1:-"Error text"}"
+    local icon="${2:-"user-info"}"
+    local timeout=4
     notify-send -t $(($timeout*1000)) --icon="$icon" "$title" "$text" 
 }
 
@@ -314,8 +323,68 @@ firefox_sync() {
     fi
 }
 
-#Let's use vim to read manpages right!
-# function man() { vim -c "Man $*" -c "silent! only";  }
+#get the photo of today from nationalgeographic and use it as wallpaper
+doWallpaper() {
+#wallpaper url and title, need to be got from $com
+local url= title= line=
+local regex='<img src="([^"]*)".*alt="([^"]*)" />'
+local wallpaper=$HOME/.wallpaper-of-the-day
+local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
+local com="wget $web --quiet -O-"
+
+while IFS= read -r line; do
+    if [[ $line =~ $regex ]]; then
+        url="http:${BASH_REMATCH[1]}"
+        title="${BASH_REMATCH[2]}"
+        break
+    fi
+done < <($com)
+
+if [[ -z $url ]]; then
+    notify-err "doWallpaper failed.Couldn't retrieve the url" preferences-desktop-wallpaper
+    return
+fi
+
+wget $url --quiet -O $wallpaper 
+pcmanfm -w  $wallpaper && notify "Background changed to:\n $title!" preferences-desktop-wallpaper
+}
+
+
+#Clean firefox profiles
+cleanFirefox() {
+local profile="$1"; shift
+local wdirs="storage/  minidumps/"
+local rdirs="crashes/ datareporting healthreport/ saved-telemetry-pings/"
+[[ -z $profile ]] && { echo "Needs a profile"; return ; }
+
+cd ~/.mozilla/firefox/*.$profile 2>/dev/null || { echo "Profile:$profile incorrect"; return ; }
+
+
+echo "Doing clean up in firefox $profile"
+
+echo "Wiping readonly dirs..."
+for dir in $rdirs; do
+    [[ -d $dir ]] || continue
+    echo "Doing $dir"
+    chmod a+w $dir
+    rm -rfv $dir/*
+    chmod a-w $dir
+done
+
+echo "Wiping writable dirs..."
+
+for dir in $wdirs; do
+    [[ -d $dir ]] || continue
+    echo "Doing $dir"
+    rm -rfv $dir/*
+done
+
+echo "Wiping cache for $profile..."
+rm -rf ~/.cache/mozilla/firefox/*.$profile
+
+echo "Done!"
+}
+
 
 #Listen to several radios
 radios(){
@@ -348,4 +417,7 @@ radios(){
     echo "Posibles opciones: xfm virgin capital bbcworld bbc1 bbc1x bbc2 bbc3 bbc4 bbc5 bbc6 vaughan radio3 folk-eu folk rtl rtl2 nostalgie europe2 (broken links galore) "
 }
 
+
+#Let's use vim to read manpages right!
+# function man() { vim -c "Man $*" -c "silent! only";  }
 

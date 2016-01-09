@@ -181,9 +181,14 @@ fi
 [[ -f /usr/share/bash-completion/bash_completion ]] && 
             . /usr/share/bash-completion/bash_completion
 
-#To work with git
+#To work with git 
+if [[ -d /usr/share/doc/git-core-doc/contrib/completion ]]; then
 source /usr/share/doc/git-core-doc/contrib/completion/git-completion.bash
 source /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh
+else #Fedora 22
+source /usr/share/doc/git/contrib/completion/git-completion.bash
+source /usr/share/doc/git/contrib/completion/git-prompt.sh
+fi
 
 # added by travis gem
 [[ -f /home/charly/.travis/travis.sh ]] && source /home/charly/.travis/travis.sh

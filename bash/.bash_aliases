@@ -20,7 +20,7 @@
 ############# 
 
 #Possible endless loop with make -j
-#nproc also possible
+#nproc command also possible
 alias make='make -j $(( $(getconf _NPROCESSORS_ONLN)-1 ))'
 
 #git aliases
@@ -37,14 +37,14 @@ alias gtpush='git commit -a && git push'
 eval "`dircolors -b`"
 #handy ls aliases
 LS_COMMAND="/bin/ls -Fh --color=auto"
+#normal listing 
 alias ls='$LS_COMMAND -C'
-#sorted by access time
-alias l='$LS_COMMAND -ltur'
-#extended listings sorted by name by default
-alias la='$LS_COMMAND -CA'
+#extended column listing sorted by name by default
+alias lc='$LS_COMMAND -CA'
+#extended flat listing sorted by name by default
 alias ll='$LS_COMMAND -lA'
-#extended listing with access time 
-alias lt='ll -utr'
+
+
 #General
 # To use the clipboard  from vim...
 alias vi='vimx'
@@ -62,6 +62,7 @@ alias gd='cd ~/dotfiles/'
 alias gc='cd ~/Clones/'
 alias gt='cd /tmp/'
 alias tmux='tmux -u2'
+alias df='df -h'
 
 
 #############
