@@ -133,6 +133,7 @@ export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '
 #show messages in english
 #export LANG=C
 
+[[ $TERM == xterm ]] && TERM=xterm-256color
 
 
 

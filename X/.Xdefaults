@@ -1,5 +1,5 @@
 aterm*loginShell:false
-Aterm*fading:90
+aterm*fading:90
 aterm*scrollBar:false
 aterm*saveLines:32767
 aterm*geometry:110x24
@@ -10,3 +10,4 @@ aterm*tinting:white
 aterm*shading:30
 aterm*transparent:on
 aterm*borderwidth:0
+XTerm*termName:xterm-256color

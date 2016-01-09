@@ -62,3 +62,11 @@
     path = vim/.vim/bundle/bexec
     url = https://github.com/fboender/bexec.git
     ignore = all
+[submodule "vim/.vim/bundle/powerline-fonts"]
+    path = vim/.vim/bundle/powerline-fonts
+    url = https://github.com/powerline/fonts
+    ignore = all
+[submodule "vim/.vim/bundle/vim-git-branch-info"]
+    path = vim/.vim/bundle/vim-git-branch-info
+    url = https://github.com/taq/vim-git-branch-info
+    ignore = all
