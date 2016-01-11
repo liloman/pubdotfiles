@@ -23,3 +23,5 @@
 $HOME/Scripts/runBash.sh firefox_sync
 #Set wallpaper from national geographic photo of today
 $HOME/Scripts/runBash.sh doWallpaper
+#Get current song from Spotify VB
+$HOME/Scripts/runBash.sh currentSpotifySon
