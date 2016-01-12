@@ -1,5 +1,6 @@
-#!/bin/bash
 #Autostart setting for LXDE
+#Not a bash script just a Vala command parser ...
+#No spaces forced... :(
 
 
 ##################
@@ -19,9 +20,11 @@
 #  Don't respawn them  #
 ########################
 
+#Fedora 23 lxsession don't get $HOME here ...
+
 #Move firefox profile to RAM
-$HOME/Scripts/runBash.sh firefox_sync
+/home/charly/Scripts/runBash.sh firefox_sync
 #Set wallpaper from national geographic photo of today
-$HOME/Scripts/runBash.sh doWallpaper
+/home/charly/Scripts/runBash.sh doWallpaper
 #Get current song from Spotify VB
-$HOME/Scripts/runBash.sh currentSpotifySon
+/home/charly/Scripts/runBash.sh currentSpotifySong

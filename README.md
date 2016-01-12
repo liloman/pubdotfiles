@@ -10,7 +10,7 @@ Managed with stow (wonderful symlink farm).
 ```bash
 git clone https://github.com/liloman/dotfiles.git 
 cd dotfiles 
-./install.sh -u (for desktop use)
+./install.sh -d (for desktop use)
 ./install.sh -s  (for server use)
 ```
 

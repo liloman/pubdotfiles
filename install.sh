@@ -32,18 +32,18 @@ cat <<- EOT
   Options:
   -h|help       Display this message
   -v|version    Display script version
-  -u|user       Full version  (BASH,VIM,TMUX,WEB, MPLAYER)
-  -s|server     Server version (BASH, VIM)
+  -d|desktop    Full version  
+  -s|server     Server version
 
 EOT
 }   
 
-while getopts ":hvus" opt
+while getopts ":hvds" opt
 do
   case $opt in
     h|help     )  usage; exit 0   ;;
     v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
-    u|user     )  type=user ; break ;;
+    d|desktop  )  type=desktop ; break ;;
     s|server   )  type=server ; break ;;
     \? )  echo -e "\n  Option does not exist : $OPTARG\n"; usage; exit 1   ;;
      : )  echo "Option -$OPTARG needs an argument"; exit 1 ;;
@@ -72,6 +72,7 @@ stow -vS gem
 #If server exit
 [[ "$type" == "server" ]] && exit 0
 
+stow -vS xdg
 stow -vS X
 stow -vS vimperator
 stow -vS mplayer

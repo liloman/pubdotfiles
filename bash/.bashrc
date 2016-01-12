@@ -132,6 +132,9 @@ export BROWSER="firefox"
 export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '
 #show messages in english
 #export LANG=C
+#Fix broken lxsession config dirs
+export XDG_CONFIG_DIRS=$HOME/.config
+
 
 [[ $TERM == xterm ]] && TERM=xterm-256color
 
