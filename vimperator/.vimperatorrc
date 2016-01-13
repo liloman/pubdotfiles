@@ -59,7 +59,7 @@ javascript function Midori() {io.system('midori -p ' + buffer.URL +' &');};
 "For multiline javascript, to remember it...
 :js <<EOF
 FirefoxPrivate = function(url) {
-    io.system('firefox -P Limpio --private-window ' + url +' &');
+    io.system('firefox -P Privado  --private-window ' + url +' &');
 };
 EOF
 
