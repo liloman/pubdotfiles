@@ -73,6 +73,8 @@ HISTFILESIZE=50000
 HISTFILE=~/.bash_historys/history_
 #Ignore from history dumb commands as duplicates and exits
 HISTIGNORE="&:exit"
+#Store history with timestamp
+HISTTIMEFORMAT='%F %T '
 
 # to work properly with shopt -s extglob  (ls -d .*)
 GLOBIGNORE=.:..
@@ -157,7 +159,9 @@ bind -m vi-insert "\C-p":menu-complete
 #bind -x '"\C-l":/bin/clear'
 
 #Autocomplete !$,!*,!!,!cat ... before of space ... :)
-bind Space:magic-space
+# bind Space:magic-space
+#Don't execute history autocompletions but print it. Better than magic-space
+shopt -s histverify
 
 ###########
 #  Files  #
