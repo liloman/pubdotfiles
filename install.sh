@@ -72,6 +72,7 @@ stow -vS gem
 #If server exit
 [[ "$type" == "server" ]] && exit 0
 
+stow -vS most
 stow -vS xdg
 stow -vS X
 stow -vS vimperator

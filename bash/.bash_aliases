@@ -25,7 +25,7 @@ alias make='make -j $(( $(getconf _NPROCESSORS_ONLN)-1 ))'
 
 #git aliases
 alias gtb='git branch -a'
-alias gtc='git commit -a'
+alias gtc='git commit -av'
 alias gt1='git commit '
 alias gts='git status'
 alias gta='git add '
