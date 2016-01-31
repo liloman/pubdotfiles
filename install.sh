@@ -73,11 +73,11 @@ stow -vS gem
 [[ "$type" == "server" ]] && exit 0
 
 stow -vS most
-stow -vS xdg
 stow -vS X
 stow -vS vimperator
 stow -vS mplayer
 stow -vS lxde
+cd xdg/.config/ &&  { stow -vS . -t ~/.config/ && cd - ; }
 
 #######################
 #  UPDATE SUBMODULES  #
