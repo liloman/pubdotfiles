@@ -32,7 +32,10 @@ set toolbars=nomenu,nobookmarks
 set messagetimeout=5000
 
 "Favorite colorcheme (broken compMore)
-"colorscheme obsidian
+"colorscheme obsidianç
+
+"Don't close firefox on with last tab
+set! browser.tabs.closeWindowWithLastTab=false
 
 "===[ Custom mappings]=================================================
 
