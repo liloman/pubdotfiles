@@ -69,15 +69,15 @@ stow -vS vim
 stow -vS tmux
 stow -vS gem
 
-#If server exit
-[[ "$type" == "server" ]] && exit 0
-
-stow -vS most
-stow -vS X
-stow -vS vimperator
-stow -vS mplayer
-stow -vS lxde
-cd xdg/.config/ &&  { stow -vS . -t ~/.config/ && cd - ; }
+#If not server
+if [[ $type != server ]]; then
+    stow -vS most
+    stow -vS X
+    stow -vS vimperator
+    stow -vS mplayer
+    stow -vS lxde
+    cd xdg/.config/ &&  { stow -vS . -t ~/.config/ && cd - ; }
+fi
 
 #######################
 #  UPDATE SUBMODULES  #

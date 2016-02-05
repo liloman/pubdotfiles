@@ -94,7 +94,11 @@ cmap ;\ \(\)<Left><Left>
 nmap <c-s> :update<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
-" nmap <Leader>m :!make<cr>
+" Command Make will call make and then cwindow which
+" opens a 3 line error window if any errors are found.
+" If no errors, it closes any open cwindow.
+:command -nargs=* Make make <args> | cwindow 3
+nmap <Leader>m :Make<cr>
 
 " nmap J Jx
 nmap <Leader>t :tag 
