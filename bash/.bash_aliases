@@ -47,7 +47,8 @@ alias ll='$LS_COMMAND -lA'
 
 #General
 # To use the clipboard  from vim...
-alias vi='vimx'
+hash vimx 2>/dev/null && alias vi='vimx'
+hash vim.gtk 2>/dev/null && alias vi='vim.gtk'
 alias grep='grep --color=auto'
 alias cp="cp -v"
 alias cpfolder='rsync --progress -rva'

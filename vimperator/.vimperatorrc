@@ -56,13 +56,13 @@ inoremap <C-n> <Esc>:tabnext<CR>
 
 "===[ Custom function mappings ]=================================================
 
-javascript function showFSVideo(url) {io.system('~/Scripts/runBash.sh descarga ' + url +' &');};
+javascript function showFSVideo(url) {io.system('~/Scripts/vimperatorCmd.sh descarga ' + url +' &');};
 javascript function Midori() {io.system('midori -p ' + buffer.URL +' &');};
 
 "For multiline javascript, to remember it...
 :js <<EOF
 FirefoxPrivate = function(url) {
-    io.system('firefox -P Privado  --private-window ' + url +' &');
+    io.system('firefox -P Privado  --no-remote --private-window ' + url +' &');
 };
 EOF
 
@@ -99,15 +99,15 @@ command! -nargs=1 -complete=url -description "Open in private" pf :js FirefoxPri
 
 "This event is released AFTER firefox is started. 
 "Sync firefox profile from RAM each 10 minutes (600 secs)
-autocmd VimperatorEnter .* every -interval 600 silent !~/Scripts/runBash.sh firefox_sync &
+autocmd VimperatorEnter .* every -interval 600 silent !~/Scripts/vimperatorCmd.sh firefox_sync &
 
 "This event is released BEFORE firefox is closed
 command! -nargs=+ CleanFirefox autocmd VimperatorLeave .* <args>
 "Actually clean firefox profiles. Don't use quotes otherwise won't be executed!
-CleanFirefox silent !~/Scripts/runBash.sh cleanFirefox default 
-CleanFirefox silent !~/Scripts/runBash.sh cleanFirefox Privado 
+CleanFirefox silent !~/Scripts/vimperatorCmd.sh cleanFirefox default 
+CleanFirefox silent !~/Scripts/vimperatorCmd.sh cleanFirefox Privado 
 "At last sync firefox PROFILE from RAM before quit
-CleanFirefox silent !~/Scripts/runBash.sh firefox_sync 
+CleanFirefox silent !~/Scripts/vimperatorCmd.sh firefox_sync 
 
 
 "===[ Custom firefox config ]=================================================

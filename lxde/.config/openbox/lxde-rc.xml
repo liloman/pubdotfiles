@@ -258,13 +258,12 @@
     </keybind>
     <keybind key="W-f">
       <action name="Execute">
-        <!--command>~/Scripts/runBash.sh firefox_sync</command-->
-        <command>firefox</command>
+        <command>firejail --blacklist=/mnt/ --noroot --whitelist=~/Scripts/vimperatorCmd.sh --whitelist=~/.bash_functions firefox</command>
       </action>
     </keybind>
     <keybind key="W-m">
       <action name="Execute">
-        <command>thunderbird</command>
+        <command>firejail thunderbird</command>
       </action>
     </keybind>
     <keybind key="W-p">
