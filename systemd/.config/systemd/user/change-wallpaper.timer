@@ -1,0 +1,10 @@
+[Unit]
+Description=Change wallpaper everyday 
+
+[Timer]
+#Daily at 6:05PM
+OnCalendar=*-*-* 18:05:00
+Persistent=True
+
+[Install]
+WantedBy=graphical.target

@@ -1,0 +1,8 @@
+
+[Unit]
+Description=Change wallpaper from national geographic photo of today 
+
+[Service]
+Type=oneshot
+ExecStart=/home/charly/Scripts/runBash.sh doWallpaper
+

@@ -57,8 +57,6 @@ shift $(($OPTIND-1))
 cd ~/dotfiles
 
 echo Lets install type:$type for $USER then!
-#get real target dir without symlinks
-r=$(realpath $HOME/.config) && target=${r%/*} || echo "Error!!"
 
 #############
 #  INSTALL  #
@@ -70,7 +68,7 @@ stow -vS bash
 stow -vS vim
 stow -vS tmux
 stow -vS gem
-stow -vS htop -t $target 
+stow -vS htop 
 
 #If not server
 if [[ $type != server ]]; then
@@ -78,8 +76,13 @@ if [[ $type != server ]]; then
     stow -vS X
     stow -vS vimperator
     stow -vS mplayer
-    stow -vS xdg -t $target
-    stow -vS lxde -t $target
+    stow -vS xdg 
+    stow -vS lxde 
+    stow -vS systemd && { 
+    systemctl --user daemon-reload;
+    systemctl --user enable change-wallpaper.service;
+    systemctl --user start change-wallpaper.service;
+    }
 fi
 
 #######################
