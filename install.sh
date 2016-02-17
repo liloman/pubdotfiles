@@ -78,10 +78,11 @@ if [[ $type != server ]]; then
     stow -vS mplayer
     stow -vS xdg 
     stow -vS lxde 
-    stow -vS systemd && { 
+    shopt -s dotglob
+    cp -rvP $PWD/systemd/* $HOME && { 
     systemctl --user daemon-reload;
-    systemctl --user enable change-wallpaper.service;
-    systemctl --user start change-wallpaper.service;
+    systemctl --user enable change-wallpaper.timer;
+    systemctl --user start change-wallpaper.timer;
     }
 fi
 
