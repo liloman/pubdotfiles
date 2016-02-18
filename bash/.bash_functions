@@ -165,10 +165,14 @@ bak() {
 }
 
 #Add new executable symlink to ~/.local/bin dir
-sbin() {
-    local file="$(realpath "$1" 2>/dev/null)"; shift
-    [[ -z $file ]] && { echo "Must pass a valid file"; return; }
-    ln -sfv  $file ~/.local/bin/
+lbin() {
+    local dest=~/.local/bin/
+    for arg; do
+        local file="$(realpath "$arg" 2>/dev/null)"
+        [[ -n $file ]] || { echo "Must pass a valid file"; return; }
+        [[ ! -d $dest ]] && mkdir -p $dest
+        ln -sfv  $file $dest
+    done
 }
 
 #############
@@ -186,35 +190,35 @@ notify(){
 }
 
 notify-err(){
-    local title="${FUNCNAME[1]:-"Info message"}"
-    local text="${1:-"Error text"}"
-    local icon="${2:-"user-info"}"
-    local timeout=4
-    notify-send -t $(($timeout*1000)) --icon="$icon" "$title" "$text" 
+local title="${FUNCNAME[1]:-"Info message"}"
+local text="${1:-"Error text"}"
+local icon="${2:-"user-info"}"
+local timeout=4
+notify-send -t $(($timeout*1000)) --icon="$icon" "$title" "$text" 
 }
 
 #Show current song from a Spotify generated file from a Windows VirtualBox
 currentSpotifySong() {
-local file=/tmp/.spotify/title.txt
-local title= artist= song=
-[[ -d ${file%/*} ]] || mkdir ${file%/*}
-[[ -e $file ]] || touch $file
-while true; do 
-    if inotifywait -e modify $file; then
-        #let's give chance to release the file to the batch (sync)
-        sleep 2
-        read -r title < $file
-        title=${title//^\"/}
-        #ctl-v + ctl-m  not ^M!
-        title=${title///}
-        [[ $title == Spotify ]] && { notify "PAUSED!" folder-music ; continue; }
-        artist=${title%%-*}
-        song=${title#*-}
-        echo "title:$title artist:$artist song:$song"
-        # covert art from http://www.last.fm/music/Joe+Farrell/_/Follow+Your+Heart
-        notify "$title" folder-music
-    fi
-done
+    local file=/tmp/.spotify/title.txt
+    local title= artist= song=
+    [[ -d ${file%/*} ]] || mkdir ${file%/*}
+    [[ -e $file ]] || touch $file
+    while true; do 
+        if inotifywait -e modify $file; then
+            #let's give chance to release the file to the batch (sync)
+            sleep 2
+            read -r title < $file
+            title=${title//^\"/}
+            #ctl-v + ctl-m  not ^M!
+            title=${title///}
+            [[ $title == Spotify ]] && { notify "PAUSED!" folder-music ; continue; }
+            artist=${title%%-*}
+            song=${title#*-}
+            echo "title:$title artist:$artist song:$song"
+            # covert art from http://www.last.fm/music/Joe+Farrell/_/Follow+Your+Heart
+            notify "$title" folder-music
+        fi
+    done
 }
 
 #Alternate between running/saved/paused/power off states of a VMVB
@@ -349,64 +353,64 @@ firefox_sync() {
 
 #get the photo of today from nationalgeographic and use it as wallpaper
 doWallpaper() {
-#wallpaper url and title, need to be got from $com
-local url= title= line=
-local regex='<img src="([^"]*)".*alt="([^"]*)" />'
-local wallpaper=$HOME/.wallpaper-of-the-day
-local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
-local com="wget $web --quiet -O-"
+    #wallpaper url and title, need to be got from $com
+    local url= title= line=
+    local regex='<img src="([^"]*)".*alt="([^"]*)" />'
+    local wallpaper=$HOME/.wallpaper-of-the-day
+    local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
+    local com="wget $web --quiet -O-"
 
-while IFS= read -r line; do
-    if [[ $line =~ $regex ]]; then
-        url="http:${BASH_REMATCH[1]}"
-        title="${BASH_REMATCH[2]}"
-        break
+    while IFS= read -r line; do
+        if [[ $line =~ $regex ]]; then
+            url="http:${BASH_REMATCH[1]}"
+            title="${BASH_REMATCH[2]}"
+            break
+        fi
+    done < <($com)
+
+    if [[ -z $url ]]; then
+        notify-err "doWallpaper failed.Couldn't retrieve the url" preferences-desktop-wallpaper
+        return
     fi
-done < <($com)
 
-if [[ -z $url ]]; then
-    notify-err "doWallpaper failed.Couldn't retrieve the url" preferences-desktop-wallpaper
-    return
-fi
-
-wget $url --quiet -O $wallpaper 
-pcmanfm -w  $wallpaper && notify "Background changed to:\n $title!" preferences-desktop-wallpaper
+    wget $url --quiet -O $wallpaper 
+    pcmanfm -w  $wallpaper && notify "Background changed to:\n $title!" preferences-desktop-wallpaper
 }
 
 
 #Clean firefox profiles
 cleanFirefox() {
-local profile="$1"; shift
-local wdirs="storage/  minidumps/"
-local rdirs="crashes/ datareporting healthreport/ saved-telemetry-pings/"
-[[ -z $profile ]] && { echo "Needs a profile"; return ; }
+    local profile="$1"; shift
+    local wdirs="storage/  minidumps/"
+    local rdirs="crashes/ datareporting healthreport/ saved-telemetry-pings/"
+    [[ -z $profile ]] && { echo "Needs a profile"; return ; }
 
-cd ~/.mozilla/firefox/*.$profile 2>/dev/null || { echo "Profile:$profile incorrect"; return ; }
+    cd ~/.mozilla/firefox/*.$profile 2>/dev/null || { echo "Profile:$profile incorrect"; return ; }
 
 
-echo "Doing clean up in firefox $profile"
+    echo "Doing clean up in firefox $profile"
 
-echo "Wiping readonly dirs..."
-for dir in $rdirs; do
-    [[ -d $dir ]] || continue
-    echo "Doing $dir"
-    chmod a+w $dir
-    rm -rfv $dir/*
-    chmod a-w $dir
-done
+    echo "Wiping readonly dirs..."
+    for dir in $rdirs; do
+        [[ -d $dir ]] || continue
+        echo "Doing $dir"
+        chmod a+w $dir
+        rm -rfv $dir/*
+        chmod a-w $dir
+    done
 
-echo "Wiping writable dirs..."
+    echo "Wiping writable dirs..."
 
-for dir in $wdirs; do
-    [[ -d $dir ]] || continue
-    echo "Doing $dir"
-    rm -rfv $dir/*
-done
+    for dir in $wdirs; do
+        [[ -d $dir ]] || continue
+        echo "Doing $dir"
+        rm -rfv $dir/*
+    done
 
-echo "Wiping cache for $profile..."
-rm -rf ~/.cache/mozilla/firefox/*.$profile
+    echo "Wiping cache for $profile..."
+    rm -rf ~/.cache/mozilla/firefox/*.$profile
 
-echo "Done!"
+    echo "Done!"
 }
 
 
