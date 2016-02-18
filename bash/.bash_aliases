@@ -70,8 +70,9 @@ alias df='df -h'
 #  Desktop  # 
 ############# 
 
-alias fotos='geeqie'
-alias fotos2='feh -rFd'
+alias fotos='gpicview'
+# alias fotos='geeqie'
+# alias fotos2='feh -rFd'
 alias mplayer-masvolumen='mplayer -softvol -softvol-max 300'
 alias verflash="mplayer -fs ~/Descargas/videoFlash" 
 alias verflashgui="smplayer  ~/Descargas/videoFlash" 
