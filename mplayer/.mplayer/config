@@ -31,4 +31,5 @@ vf=pp=de,hqdn3d
 
 subpos="90"	#By default subtitles are too low
 subalign="2"
-
+#disable screensaver while playing
+heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
