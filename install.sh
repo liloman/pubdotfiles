@@ -79,7 +79,7 @@ if [[ $type != server ]]; then
     stow -vS xdg 
     stow -vS lxde 
     shopt -s dotglob
-    cp -rvP $PWD/systemd/* $HOME && { 
+    cp -rvuP $PWD/systemd/* $HOME && { 
     systemctl --user daemon-reload;
     systemctl --user enable change-wallpaper.timer;
     systemctl --user start change-wallpaper.timer;

@@ -7,4 +7,4 @@ OnCalendar=*-*-* 06:05:00
 Persistent=True
 
 [Install]
-WantedBy=graphical.target
+WantedBy=timers.target
