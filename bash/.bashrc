@@ -200,4 +200,6 @@ fi
 # added by travis gem
 [[ -f /home/charly/.travis/travis.sh ]] && source /home/charly/.travis/travis.sh
 
+#Load z
+[[ -f ~/Clones/z/z.sh ]] && . ~/Clones/z/z.sh
 
