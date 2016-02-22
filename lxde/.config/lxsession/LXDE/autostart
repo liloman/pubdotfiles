@@ -28,3 +28,5 @@
 /home/charly/Scripts/runBash.sh doWallpaper
 #Get current song from Spotify VB
 /home/charly/Scripts/runBash.sh currentSpotifySong
+#Launch pomodoroTasks daemon
+/home/charly/Clones/pomodoroTasks/pomodoro-daemon.sh
