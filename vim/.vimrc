@@ -83,6 +83,9 @@ let mapleader=" "
 nmap <F3> :NERDTreeToggle<CR>
 nmap <F4> :TagbarToggle<CR>
 " nnoremap <F5> :GundoToggle<CR>
+" Search whole word CWORD under cursor
+nnoremap <F5> :let @/.='<'.expand("<CWORD>").'\>'<CR>n
+
 "Execute current file with Bexec plugin
 nmap <silent> <unique> <Leader>e :Bexec()<CR>
 vmap <silent> <unique> <Leader>e :BexecVisual()<CR>
