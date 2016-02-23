@@ -273,7 +273,7 @@
     </keybind>
     <keybind key="W-A-p">
       <action name="Execute">
-        <command>~/Scripts/alternate_vbox Spotify paused</command>
+        <command>~/Scripts/alternate_vbox.sh Spotify paused</command>
       </action>
     </keybind>
     <!-- Keybindings for windows -->
