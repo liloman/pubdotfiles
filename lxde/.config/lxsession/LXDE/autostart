@@ -24,8 +24,6 @@
 
 #Move firefox profile to RAM
 /home/charly/Scripts/firefox_sync.sh
-#Set wallpaper from national geographic photo of today
-/home/charly/Scripts/change_wallpaper.sh
 #Get current song from Spotify VB
 /home/charly/Scripts/current_spotify_song.sh
 #Launch pomodoroTasks daemon
