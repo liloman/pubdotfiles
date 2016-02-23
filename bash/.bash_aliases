@@ -53,7 +53,8 @@ needs vimx && alias vi='vimx'
 needs vim.gtk && alias vi='vim.gtk'
 needs rmalias && alias rm='rmalias -v'
 needs rmdiralias && alias rmdir='rmdiralias -v'
-alias grep='grep --color=auto --exclude-dir=.git -rin '
+alias grep='grep --color=auto'
+alias s='grep --color=auto --exclude-dir=.git -rin '
 alias cp="cp -v"
 alias cpfolder='rsync --progress -rva'
 alias tarc='tar -I lbzip2'
@@ -74,7 +75,7 @@ alias df='df -h'
 
 needs smplayer && alias verflashgui="smplayer  ~/Descargas/videoFlash" 
 needs fastboot && alias fastboot="fastboot  -i 0x1f3a" 
-alias fotos='gpicview'
+needs gpicview && alias fotos='gpicview'
 alias mplayer-masvolumen='mplayer -softvol -softvol-max 300'
 alias verflash="mplayer -fs ~/Descargas/videoFlash" 
 alias verflashl="tail -f /tmp/youtube.log" 
