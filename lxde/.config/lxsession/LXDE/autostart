@@ -23,10 +23,10 @@
 #Fedora 23 lxsession don't get $HOME here ...
 
 #Move firefox profile to RAM
-/home/charly/Scripts/runBash.sh firefox_sync
+/home/charly/Scripts/firefox_sync.sh
 #Set wallpaper from national geographic photo of today
-/home/charly/Scripts/runBash.sh doWallpaper
+/home/charly/Scripts/change_wallpaper.sh
 #Get current song from Spotify VB
-/home/charly/Scripts/runBash.sh currentSpotifySong
+/home/charly/Scripts/current_spotify_song.sh
 #Launch pomodoroTasks daemon
 /home/charly/Clones/pomodoroTasks/pomodoro-daemon.sh

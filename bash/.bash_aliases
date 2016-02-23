@@ -1,6 +1,6 @@
 # vim: set filetype=sh :
 # My bash aliases
-# Copyright © 2015 liloman
+# Copyright © 2016 liloman
 #
 # This library is free software; you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published
@@ -21,7 +21,7 @@
 
 #Possible endless loop with make -j
 #nproc command also possible
-alias make='make -j $(( $(getconf _NPROCESSORS_ONLN)-1 ))'
+(( $(getconf _NPROCESSORS_ONLN) > 2 )) && alias make='make -j $(( $(getconf _NPROCESSORS_ONLN)-1 ))'
 
 #git aliases
 alias gtb='git branch -a'
@@ -45,10 +45,14 @@ alias lc='$LS_COMMAND -CA'
 alias ll='$LS_COMMAND -lA'
 
 
+needs(){ hash $1 2>/dev/null; return $?; }
+
 #General
 # To use the clipboard  from vim...
-hash vimx 2>/dev/null && alias vi='vimx'
-hash vim.gtk 2>/dev/null && alias vi='vim.gtk'
+needs vimx && alias vi='vimx'
+needs vim.gtk && alias vi='vim.gtk'
+needs rmalias && alias rm='rmalias -v'
+needs rmdiralias && alias rmdir='rmdiralias -v'
 alias grep='grep --color=auto --exclude-dir=.git -rin '
 alias cp="cp -v"
 alias cpfolder='rsync --progress -rva'
@@ -57,8 +61,6 @@ alias xargs='xargs -0'
 alias open='xdg-open'
 alias pgrep='pgrep -aw'
 alias tree='tree -CFa'
-alias rm='rmalias -v'
-alias rmdir='rmdiralias -v'
 alias gd='cd ~/dotfiles/'
 alias gc='cd ~/Clones/'
 alias gt='cd /tmp/'
@@ -70,16 +72,14 @@ alias df='df -h'
 #  Desktop  # 
 ############# 
 
+needs smplayer && alias verflashgui="smplayer  ~/Descargas/videoFlash" 
+needs fastboot && alias fastboot="fastboot  -i 0x1f3a" 
 alias fotos='gpicview'
-# alias fotos='geeqie'
-# alias fotos2='feh -rFd'
 alias mplayer-masvolumen='mplayer -softvol -softvol-max 300'
 alias verflash="mplayer -fs ~/Descargas/videoFlash" 
-alias verflashgui="smplayer  ~/Descargas/videoFlash" 
 alias verflashl="tail -f /tmp/youtube.log" 
-alias spotify="alternateVBox Spotify" 
+alias spotify="~/Scripts/alternate_vbox.sh Spotify" 
 alias webshare='python -m SimpleHTTPServer'
-alias fastboot="fastboot  -i 0x1f3a" 
 
 
 #################

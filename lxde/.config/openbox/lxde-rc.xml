@@ -258,7 +258,7 @@
     </keybind>
     <keybind key="W-f">
       <action name="Execute">
-        <command>firejail --blacklist=/mnt/ --noroot --whitelist=~/Scripts/vimperatorCmd.sh --whitelist=~/.bash_functions firefox</command>
+        <command>firejail --blacklist=/mnt/ --noroot --whitelist=~/Scripts/clean_firefox.sh --whitelist=~/Scripts/firefox_sync.sh --whitelist=~/Scripts/descarga.sh firefox</command>
       </action>
     </keybind>
     <keybind key="W-m">
@@ -268,12 +268,12 @@
     </keybind>
     <keybind key="W-p">
       <action name="Execute">
-        <command>~/Scripts/runBash.sh alternateVBox Spotify</command>
+        <command>~/Scripts/alternate_vbox.sh Spotify</command>
       </action>
     </keybind>
     <keybind key="W-A-p">
       <action name="Execute">
-        <command>~/Scripts/runBash.sh alternateVBox Spotify paused</command>
+        <command>~/Scripts/alternate_vbox Spotify paused</command>
       </action>
     </keybind>
     <!-- Keybindings for windows -->

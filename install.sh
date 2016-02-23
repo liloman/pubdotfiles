@@ -78,6 +78,7 @@ if [[ $type != server ]]; then
     stow -vS mplayer
     stow -vS xdg 
     stow -vS lxde 
+    stow -vS Scripts 
     shopt -s dotglob
     cp -rvuP $PWD/systemd/* $HOME && { 
     systemctl --user daemon-reload;

@@ -1,6 +1,6 @@
 # vim: set filetype=sh :
 # My bash functions
-# Copyright © 2015 liloman
+# Copyright © 2016 liloman
 #
 # This library is free software; you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published
@@ -175,6 +175,14 @@ lbin() {
     done
 }
 
+#Remove executable symlink from ~/.local/bin dir
+rbin() {
+    local dest=~/.local/bin/
+    for arg; do
+        rm -v $dest/$arg
+    done
+}
+
 #############
 #  Desktop  #
 #############
@@ -185,7 +193,6 @@ notify(){
     local text="${1:-"Notification text"}"
     local icon="${2:-"user-info"}"
     local timeout=4
-    # zenity --timeout $timeout --info --title "$title" --text "$text"
     notify-send -t $(($timeout*1000)) --hint=int:transient:1 --icon="$icon" "$title" "$text" 
 }
 
@@ -195,222 +202,6 @@ local text="${1:-"Error text"}"
 local icon="${2:-"user-info"}"
 local timeout=4
 notify-send -t $(($timeout*1000)) --icon="$icon" "$title" "$text" 
-}
-
-#Show current song from a Spotify generated file from a Windows VirtualBox
-currentSpotifySong() {
-    local file=/tmp/.spotify/title.txt
-    local title= artist= song=
-    [[ -d ${file%/*} ]] || mkdir ${file%/*}
-    [[ -e $file ]] || touch $file
-    while true; do 
-        if inotifywait -e modify $file; then
-            #let's give chance to release the file to the batch (sync)
-            sleep 2
-            read -r title < $file
-            title=${title//^\"/}
-            #ctl-v + ctl-m  not ^M!
-            title=${title///}
-            [[ $title == Spotify ]] && { notify "PAUSED!" folder-music ; continue; }
-            artist=${title%%-*}
-            song=${title#*-}
-            echo "title:$title artist:$artist song:$song"
-            # covert art from http://www.last.fm/music/Joe+Farrell/_/Follow+Your+Heart
-            notify "$title" folder-music
-        fi
-    done
-}
-
-#Alternate between running/saved/paused/power off states of a VMVB
-alternateVBox() {
-    local machine="${1? $0 Needs a machine name}"
-    local pause="$2"
-    #Not Greedy state
-    local regex='(State:)([[:space:]]*)([-[:alnum:][:space:]]*)([[:space:]].*)'
-
-    #Get the VM info
-    readarray -t info <<< "$(VBoxManage showvminfo "$machine" 2>/dev/null)" 
-    #Search regex onto full array
-    [[ ${info[@]} =~ ${regex} ]] || { echo "$machine not found"; return; }
-
-    local state="${BASH_REMATCH[3]}"
-    echo $machine State was:"\"$state\""
-
-    if [[ $state == "paused" ]]; then
-        VBoxManage controlvm "$machine" resume && \ 
-        notify  "$machine resumed!" virtualbox
-    fi
-
-    case $state in saved|"powered off") VBoxManage startvm "$machine" --type headless && \
-        notify  "$machine started!" virtualbox ;;
-    esac
-
-    if [[ $state == "running" ]]; then
-        if [[ $pause ]]; then
-            VBoxManage controlvm "$machine" pause && \
-                notify  "$machine paused!" virtualbox
-        else # Save state to hard disk
-            VBoxManage controlvm "$machine" savestate && \
-                notify  "$machine was saved!" virtualbox
-        fi
-    fi
-}
-
-
-#Download a vid and play it in FS from bash or vimperator or whatever
-descarga() {
-    local latest=false
-    local dest=$HOME/Descargas/videoFlash
-    local url="$1"
-    # local options=" $url --add-metadata  --verbose -o $dest -f best --no-part "
-    # failing --add-metadata option
-    local options=" $url --verbose -o $dest -f best --no-part "
-    killall -q youtube-dl
-    cd ~ # youtube-dl doesn't get DEST right ¿?
-    \rm -f $dest
-    > $dest
-    #Failback for latest youtube-dl in case of errors on fedora's one
-    if [[ $latest = true ]]; then
-        if [[ ! -x "~/Scripts/youtube-dl" ]]; then 
-            wget https://yt-dl.org/latest/youtube-dl -O ~/Scripts/youtube-dl
-            chmod +x ~/Scripts/youtube-dl
-        fi
-        ~/Scripts/youtube-dl $options >/tmp/youtube.log &
-    else
-        youtube-dl $options >/tmp/youtube.log &
-    fi
-    local downloading=$!
-    # echo  "pgrep: $(pgrep -aw youtube-dl) downloading pid:$downloading" 
-    read tam _ <<< $(du -b $dest)
-    # Wait for 1M file
-    while (( $tam < 1000000 )); do 
-        read tam _ <<< $(du -b $dest)
-        sleep 0.5
-    done
-    #It needs nohup to work on bash cli also
-    nohup mplayer -fs $dest >/dev/null & 
-    #it'd be better get the metadata working on local file but it doesn't work already
-    local title="$(youtube-dl -e "$url")"
-    wait $downloading && notify "Video downloaded for $title!" smplayer
-}
-
-
-#Download and install the current extension pack for virtualbox 
-virtualboxGetExtensionPack() {
-    local version=$(VBoxManage --version)
-    local ver=${version:0:6}
-    local base="http://download.virtualbox.org/virtualbox"
-    local pkg="Oracle_VM_VirtualBox_Extension_Pack-$ver-${version: -6}.vbox-extpack"
-    local url="$base/$ver/$pkg"
-    cd /tmp/
-    wget "$url" || { echo "URL:$url not found"; return; }
-    echo Downloaded /tmp/"$pkg" 
-    VBoxManage extpack install /tmp/"$pkg"
-    VBoxManage list extpacks
-}
-
-#Sync & set firefox profile between RAM and non-voltatile storage
-firefox_sync() {
-    hash rsync || { echo rsync must be installed!; return; }
-    #Firefox home
-    local firhome="$HOME/.mozilla/firefox"
-    #Firefox default profile
-    local profile=($firhome/*.default)
-    #RAM directory 
-    local volatile="/tmp/firefox-$USER"
-    #My profile name
-    local link=${profile##*/}
-    local static=${link}.solid
-
-    #Changed to firefox home dir
-    cd "$firhome"
-
-    #First run of the day
-    [[ -d $volatile ]] || mkdir -m0700 "$volatile"
-    [[ -e $link ]] || { echo $link must exist!. ; return; }
-
-    #if not already soft linked
-    if [[ $(readlink $link) != $volatile ]]; then
-        files=($link/*)
-        #Move and make backup if not empty dir
-        if (( ${#files[@]} > 1 )); then
-            mv $link $static
-            local cache=${HOME}/.cache/mozilla/firefox/
-            [[ -d $cache ]] || mkdir -p "$cache"
-            tar zcfp ${cache}/firefox_profile_backup.tar.gz $static
-        fi
-        ln -s $volatile $link
-    fi
-
-
-    if [[ -f $link/.unpacked ]]; then
-        rsync -a --delete --exclude .unpacked ./$link/ ./$static/
-    else
-        rsync -a ./$static/ ./$link/
-        touch $link/.unpacked
-    fi
-}
-
-#get the photo of today from nationalgeographic and use it as wallpaper
-doWallpaper() {
-    #wallpaper url and title, need to be got from $com
-    local url= title= line=
-    local regex='<img src="([^"]*)".*alt="([^"]*)" />'
-    local wallpaper=$HOME/.wallpaper-of-the-day
-    local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
-    local com="wget $web --quiet -O-"
-
-    while IFS= read -r line; do
-        if [[ $line =~ $regex ]]; then
-            url="http:${BASH_REMATCH[1]}"
-            title="${BASH_REMATCH[2]}"
-            break
-        fi
-    done < <($com)
-
-    if [[ -z $url ]]; then
-        notify-err "doWallpaper failed.Couldn't retrieve the url" preferences-desktop-wallpaper
-        return
-    fi
-
-    wget $url --quiet -O $wallpaper 
-    pcmanfm -w  $wallpaper && notify "Background changed to:\n $title!" preferences-desktop-wallpaper
-}
-
-
-#Clean firefox profiles
-cleanFirefox() {
-    local profile="$1"; shift
-    local wdirs="storage/  minidumps/"
-    local rdirs="crashes/ datareporting healthreport/ saved-telemetry-pings/"
-    [[ -z $profile ]] && { echo "Needs a profile"; return ; }
-
-    cd ~/.mozilla/firefox/*.$profile 2>/dev/null || { echo "Profile:$profile incorrect"; return ; }
-
-
-    echo "Doing clean up in firefox $profile"
-
-    echo "Wiping readonly dirs..."
-    for dir in $rdirs; do
-        [[ -d $dir ]] || continue
-        echo "Doing $dir"
-        chmod a+w $dir
-        rm -rfv $dir/*
-        chmod a-w $dir
-    done
-
-    echo "Wiping writable dirs..."
-
-    for dir in $wdirs; do
-        [[ -d $dir ]] || continue
-        echo "Doing $dir"
-        rm -rfv $dir/*
-    done
-
-    echo "Wiping cache for $profile..."
-    rm -rf ~/.cache/mozilla/firefox/*.$profile
-
-    echo "Done!"
 }
 
 
