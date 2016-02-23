@@ -5,6 +5,7 @@
 # Take a video capture, in GIF format, of a single window.
 #
 # Written in 2010 by Suraj N. Kurapati <https://github.com/sunaku>
+#needs work with script and scriptreplay
 
 gif=/tmp/cast.gif
 echo 'Select the window you want to video capture...'
