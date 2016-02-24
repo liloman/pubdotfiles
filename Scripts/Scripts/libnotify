@@ -10,9 +10,9 @@ notify() {
 }
 
 notify_err() {
-    local title="${FUNCNAME[1]:-"Info message"}"
+    local title="${FUNCNAME[1]:-"Error message"}"
         local text="${1:-"Error text"}"
-        local icon="${2:-"user-info"}"
+        local icon="${2:-"user-busy"}"
         local timeout=4
         notify-send -t $(($timeout*1000)) --icon="$icon" "$title" "$text" 
 }

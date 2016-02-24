@@ -21,10 +21,4 @@
 ########################
 
 #Fedora 23 lxsession don't get $HOME here ...
-
-#Move firefox profile to RAM
-/home/charly/Scripts/firefox_sync.sh
-#Get current song from Spotify VB
-/home/charly/Scripts/current_spotify_song.sh
-#Launch pomodoroTasks daemon
-/home/charly/Clones/pomodoroTasks/pomodoro-daemon.sh
+/home/charly/Scripts/autostart.sh
