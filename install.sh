@@ -69,6 +69,11 @@ stow -vS vim
 stow -vS tmux
 stow -vS gem
 stow -vS htop 
+completions=~/.local/share/bash-completion/completions
+#if not a symlink
+[[ -d $completions && ! -L $completions ]] && rmdir $completions
+#make it a symlink 
+stow -vS bash_completions
 
 #If not server
 if [[ $type != server ]]; then
