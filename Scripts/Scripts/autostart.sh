@@ -3,8 +3,8 @@
 
 . ~/Scripts/libnotify
 
-#Associative array
-declare -A pids
+#Associative array for processes indexed by pid
+declare -A procs
 #Enable job control
 set -m
 
@@ -12,12 +12,12 @@ set -m
 control_child() {
     local tmp=()
     local com
-    for pid in "${!pids[@]}"; do
-        com="${pids[$pid]}"
+    for pid in "${!procs[@]}"; do
+        com="${procs[$pid]}"
         if [ ! -d /proc/$pid ]; then
             wait $pid
-            (($?!=0)) && notify_err "Autostart process failed.\n$com" 
-            unset pids[$pid]
+            (($?)) && notify_err "Autostart process failed.\n$com" 
+            unset procs[$pid]
         fi
     done
 }
@@ -29,7 +29,7 @@ launch() {
     echo Launching in background:$com
     $com &
     #Grab its pid and command 
-    pids[$!]="$com"
+    procs[$!]="$com"
 }
 
 #Trap sigchild signal (see kill -l)
@@ -44,6 +44,5 @@ launch /home/charly/Scripts/current_spotify_song.sh
 #Launch pomodoroTasks daemon
 launch /home/charly/Clones/pomodoroTasks/pomodoro-daemon.sh 
 
-
 # Wait until all (background) processes are done!
-while (( ${#pids[@]}> 0)); do sleep 1; done
+while (( ${#procs[@]}> 0)); do sleep 1; done
