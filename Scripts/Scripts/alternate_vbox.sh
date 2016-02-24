@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #Alternate between running/saved/paused/power off states of a VMVB
 
-. ~/.bash_functions
+. ~/Scripts/libnotify
 
 alternate_vbox() {
     local machine="${1? $0 Needs a machine name}"

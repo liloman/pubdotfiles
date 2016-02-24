@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #Download a vid and play it in FS from bash or vimperator or whatever
 
-. ~/.bash_functions 
+. ~/Scripts/libnotify
 
 descarga() {
     local latest=false

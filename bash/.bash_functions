@@ -187,22 +187,6 @@ rbin() {
 #  Desktop  #
 #############
 
-#Notify of events transient
-notify(){
-    local title="${FUNCNAME[1]:-"Info message"}"
-    local text="${1:-"Notification text"}"
-    local icon="${2:-"user-info"}"
-    local timeout=4
-    notify-send -t $(($timeout*1000)) --hint=int:transient:1 --icon="$icon" "$title" "$text" 
-}
-
-notify-err(){
-local title="${FUNCNAME[1]:-"Info message"}"
-local text="${1:-"Error text"}"
-local icon="${2:-"user-info"}"
-local timeout=4
-notify-send -t $(($timeout*1000)) --icon="$icon" "$title" "$text" 
-}
 
 
 #Listen to several radios

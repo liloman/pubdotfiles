@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 #get the photo of today from nationalgeographic and use it as wallpaper
 
+. ~/Scripts/libnotify
+
+
+
 change_wallpaper() {
     #wallpaper url and title, need to be got from $com
     local url= title= line=

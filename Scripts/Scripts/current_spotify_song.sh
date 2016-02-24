@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #Show current song from a Spotify generated file from a Windows VirtualBox
 
-. ~/.bash_functions
+. ~/.Scripts/libnotify
 
 current_spotify_song() {
     local file=/tmp/.spotify/title.txt
