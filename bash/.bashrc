@@ -1,7 +1,7 @@
 # vim: set filetype=sh :
 # My bashrc for non-login shells
 # see /usr/share/doc/bash/examples/startup-files for examples
-# Copyright © 2015 liloman
+# Copyright © 2016 liloman
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,12 +49,6 @@ stty start undef
 #Disable control flow completely and press any key to start
 stty -ixon -ixoff ixany
 
-#Disable <C-s>(stop) and <C-q>(start) on terminal. To use <C-s> on vim (to save a file)
-stty stop undef
-stty start undef
-#Disable control flow completely and press any key to start
-stty -ixon -ixoff ixany
-
 #Disable caps bloq  (needs work)
 # setxkbmap -option ctrl:nocaps
 #xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
@@ -71,7 +65,7 @@ HISTSIZE=50000
 HISTFILESIZE=50000
 #Maybe I should rework this to make it dinamic again...
 HISTFILE=~/.bash_history
-#Ignore from history dumb commands as duplicates and exits
+#Ignore from history duplicate commands and exits
 HISTIGNORE="&:exit"
 #Store history with timestamp
 HISTTIMEFORMAT='%F %T '
@@ -115,7 +109,7 @@ export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export LESS=" -eIRMX " 
 #less colored when possible... :S
 #needs customs cases...
-export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+[[ -f /usr/bin/src-hilite-lesspipe.sh ]] && export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 #-e quit at 2 eof, -I case insensitive search
 #-r raw control displayed (colors), -M long prompt
 # -X dont send de/initialization strings to the terminal
@@ -128,9 +122,9 @@ export EDITOR="$VISUAL"
 export GIT_EDITOR=vim
 #Let's use most 
 export PAGER="most" 
-# to open  the manpages in a brower with man -H command :)
+# open  the manpages in a brower with man -H command :)
 export BROWSER="firefox" 
-# to show file, line and func when set -x
+# show file, line and func when set -x
 export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '
 #show messages in english
 #export LANG=C
@@ -170,7 +164,7 @@ shopt -s histverify
 # PATH modified in ~/.bash_profile
 
 #Z script to get the most common directories and so on
-#git clone https://github.com/rupa/z 
+#  https://github.com/rupa/z 
 if [[ -f ~/Clones/z/z.sh ]]; then
     . ~/Clones/z/z.sh
     _Z_DATA=$HOME/.zs/.z
@@ -183,6 +177,9 @@ fi
 
 # Function definitions
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
+
+# Function definitions
+[[ -f ~/Scripts/libnotify ]] && . ~/Scripts/libnotify
 
 #Enable Autocompletions 
 [[ -f /usr/share/bash-completion/bash_completion ]] && 
@@ -198,5 +195,5 @@ if [[ -d /usr/share/doc/git-core-doc/contrib/completion ]]; then
 fi
 
 # added by travis gem
-[[ -f /home/charly/.travis/travis.sh ]] && source /home/charly/.travis/travis.sh
+[[ -f /home/charly/.travis/travis.sh ]] && . /home/charly/.travis/travis.sh
 
