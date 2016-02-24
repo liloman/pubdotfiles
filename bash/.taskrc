@@ -29,5 +29,8 @@ include /usr/share/doc/task/rc/dark-blue-256.theme
 #include /usr/share/doc/task/rc/solarized-light-256.theme
 #include /usr/share/doc/task/rc/no-color.theme
 
+#From https://github.com/kostajh/taskwarrior-time-tracking-hook
+#pip install taskwarrior-time-tracking-hook --user
+#ln -s `which taskwarrior_time_tracking_hook` ~/.task/hooks/on-modify.timetracking
 uda.totalactivetime.type=duration
 uda.totalactivetime.values=
