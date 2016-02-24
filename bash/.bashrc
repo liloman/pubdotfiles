@@ -70,7 +70,7 @@ PROMPT_COMMAND='show_ps1;list_dir_stack'
 HISTSIZE=50000
 HISTFILESIZE=50000
 #Maybe I should rework this to make it dinamic again...
-HISTFILE=~/.bash_historys/history_
+HISTFILE=~/.bash_history
 #Ignore from history dumb commands as duplicates and exits
 HISTIGNORE="&:exit"
 #Store history with timestamp
@@ -82,7 +82,7 @@ GLOBIGNORE=.:..
 #Enable dir stack behavior
 DIRSTACK_ENABLED=true
 #Maximum dir stack size
-DIRSTACK_LIMIT=8
+DIRSTACK_LIMIT=5
 # Full paths to exclude from dir stack separated by colon
 DIRSTACK_EXCLUDE="/foobar:$HOME"
 
