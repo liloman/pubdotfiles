@@ -20,3 +20,5 @@ fi
 export PATH
 export MANPATH=$HOME/.local/share/man:$(manpath -gq)
 
+#Launch tmux if installed
+hash tmux &> /dev/null && tmux -u2
