@@ -32,7 +32,7 @@ launch() {
     procs[$!]="$com"
 }
 
-#Trap sigchild signal (see kill -l)
+#Execute control_child after each job exit (see kill -l)
 trap "control_child" SIGCHLD
 
 #Move firefox profile to RAM
