@@ -65,7 +65,7 @@ alias tree='tree -CFpa'
 alias gd='cd ~/dotfiles/'
 alias gc='cd ~/Clones/'
 alias gt='cd /tmp/'
-alias tmux='tmux -u2'
+alias tmux='history -w; tmux -u2'
 alias df='df -h'
 
 

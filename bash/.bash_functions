@@ -183,16 +183,18 @@ rbin() {
     done
 }
 
-#Return the process tree of a process name
+#Return the process tree of a command/pid
+#-l to long output
+#-s to go till pid 1
 ptree() {
     [[ -z $1 ]] && { echo "You must pass a command name"; return 1; }
-    local arg="-aSpuU" 
+    arg="-aSpuU" 
 
     #Get extra pstree arguments
     OPTIND=1 #important reset!!
     while getopts ":AlcsgGZnNh" opt
     do
-        case $opt in #pass -l to long output
+        case $opt in 
             A|l|c|s|g|G|Z|n|N|h)  
                 arg+=" -$opt"
                 ;;
@@ -203,14 +205,23 @@ ptree() {
     done
     shift $(($OPTIND-1))
 
-    pids=($(\pgrep -f $1))
+    show_tree() {
+        local -a pids
+        local ppid
+        #Check if pid
+        [[ $1 =~ ^[0-9]+$ ]] && pids=($1) || pids=($(\pgrep -f $1))
 
-    for pid in ${pids[@]}; do
-        #trim ppid 
-        read ppid <<< $(ps hoppid $pid)
-        # if not parent on pids then pstree it
-        [[ " ${pids[@]} " =~ " $ppid " ]] || \pstree $arg -H $pid $pid 
-    done 
+        for pid in ${pids[@]}; do
+            #trim ppid 
+            read ppid <<< $(ps hoppid $pid)
+            # if not parent on pids then pstree it
+            [[ " ${pids[@]} " =~ " $ppid " ]] || \pstree $arg -H $pid $pid 
+        done 
+    }
+
+    for com;do
+        show_tree $com
+    done
 }
 
 #############
