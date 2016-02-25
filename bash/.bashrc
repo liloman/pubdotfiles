@@ -145,14 +145,14 @@ export XDG_CONFIG_DIRS=$HOME/.config
 # Interesting autocompletions
 #Complete filename against complete history! :D
 bind -m vi-insert "\C-n":dynamic-complete-history
-#Complete filename/commands/... same as TAB
+#Complete filename/commands/... same than TAB but put the completion on the cli
 bind -m vi-insert "\C-p":menu-complete
 
 #Custom mappings ...
-#Should clean leaving prompt_command...
+#Should clean leaving my prompt_command...
 #bind -x '"\C-l":/bin/clear'
 
-#Autocomplete !$,!*,!!,!cat ... before of space ... :)
+#Autocomplete !$,!*,!!,!cat ... after space ... :)
 # bind Space:magic-space
 #Don't execute history autocompletions but print it. Better than magic-space
 shopt -s histverify
