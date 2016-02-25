@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 #Execute these command once login in X
 
+#Load notification library
 . ~/Scripts/libnotify
 
 #Associative array for processes indexed by pid
 declare -A procs
 #Enable job control
 set -m
+#Execute control_child each 1 sec till jobs remaining (see kill -l for signals)
+trap "control_child" SIGCHLD
 
 #Control the childs notifying on error 
 control_child() {
     local tmp=()
     local com
     for pid in "${!procs[@]}"; do
-        com="${procs[$pid]}"
         if [ ! -d /proc/$pid ]; then
+            com="${procs[$pid]}"
             wait $pid
             (($?)) && notify_err "Autostart process failed.\n$com" 
             unset procs[$pid]
@@ -23,26 +26,31 @@ control_child() {
 }
 
 
-#Launch on background and monitor it until finish
-launch() { 
+#Launch on background $com and monitor it for errors until it finishes
+monitor() { 
     local com="$*"
     echo Launching in background:$com
-    $com &
+    #eval for if you want to launch several commands at one :S
+    eval $com &
     #Grab its pid and command 
     procs[$!]="$com"
 }
 
-#Execute control_child after each job exit (see kill -l)
-trap "control_child" SIGCHLD
+
 
 #Move firefox profile to RAM
-launch /home/charly/Scripts/firefox_sync.sh 
+monitor /home/charly/Scripts/firefox_sync.sh 
 
-#Get current song from Spotify VB
-launch /home/charly/Scripts/current_spotify_song.sh
+#Get current song from Spotify VB daemon
+monitor /home/charly/Scripts/current_spotify_song.sh
 
-#Launch pomodoroTasks daemon
-launch /home/charly/Clones/pomodoroTasks/pomodoro-daemon.sh 
+#Launch pomodoroTasks daemon 
+monitor /home/charly/Clones/pomodoroTasks/pomodoro-daemon.sh 
 
-# Wait until all (background) processes are done!
-while (( ${#procs[@]}> 0)); do sleep 1; done
+
+# This script ($$) will run forever cause the jobs above are daemons
+# so maybe you can reutilize it to do some other tasks in the final loop ... :D
+
+
+# Wait until all jobs are done!
+while (( ${#procs[@]}> 0)); do sleep 10; done
