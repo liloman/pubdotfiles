@@ -66,8 +66,7 @@ echo Installing dotfiles for $type
 
 stow -vS bash
 stow -vS vim
-stow -vS tmux
-stow -vS gem
+stow -vS home
 stow -vS htop 
 completions=~/.local/share/bash-completion/completions
 #if not a symlink
@@ -77,7 +76,6 @@ stow -vS bash_completions
 
 #If not server
 if [[ $type != server ]]; then
-    stow -vS most
     stow -vS X
     stow -vS vimperator
     stow -vS mplayer
