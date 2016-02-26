@@ -79,7 +79,10 @@ DIRSTACK_ENABLED=true
 DIRSTACK_LIMIT=5
 # Full paths to exclude from dir stack separated by colon
 DIRSTACK_EXCLUDE="/foobar:$HOME"
-
+#State for FSM (default excluded)
+DIRSTACK_STATE="exc"
+#"OLDPWD" for cd - wise
+DIRSTACK_OLDPWD=
 
 ###################
 #  Stderr in red  #
@@ -125,7 +128,7 @@ export PAGER="most"
 # open  the manpages in a brower with man -H command :)
 export BROWSER="firefox" 
 # show file, line and func when set -x
-export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '
+export PS4='(${BASH_SOURCE}:${LINENO})(${FUNCNAME[0]}): '
 #show messages in english
 #export LANG=C
 #Fix broken lxsession config dirs

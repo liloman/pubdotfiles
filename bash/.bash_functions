@@ -19,24 +19,70 @@
 #  Dir stack prompt  #
 ######################
 
+
 #Insert into dir stack checking repetitions
 add_dir_stack() { 
     local dir="$(realpath -P "${2:-"."}" 2>/dev/null)"
-    [[ -d $dir ]] || { echo "Dir $dir not found";return;}
+    [[ -d $dir ]] || { echo "Dir $dir not found";return; }
     # If executed del_dir_stack and keep working in it...
     [[ $1 == false && $_DIR_STACK_LDIR == $dir ]] && return
     _DIR_STACK_LDIR="$dir"
-    #Check exclusions
+
+    # Push $DIRSTACK_OLDPWD 
+    push_dir_stack() {
+        local dir="$1"
+        #Check duplicates
+        readarray -t dup <<<"$(dirs -p -l 2>/dev/null)"
+        #First entry (0) is always $PWD
+        dup=${dup[@]:1}
+        for elem in "${dup[@]}"; do [[ $elem = $dir ]]&& { return; } done
+        #Check limit
+        (( ${#dup[@]} > $DIRSTACK_LIMIT )) && del_dir_stack $DIRSTACK_LIMIT silent
+        pushd -n "$dir" >/dev/null; 
+    }
+
+    #Don't register $DIRSTACK_OLDPWD into dir stack till lost from cd - (OLDPWD)
+    # FSM of two states
+    # exc -> new = push old if allowed. set $DIRSTACK_OLDPWD = $dir
+    # new -> new = push old if allowed. set $DIRSTACK_OLDPWD = $OLDPWD
+    # exc -> exc = push old. set $DIRSTACK_OLDPWD = 
+    # new -> exc = push old. set $DIRSTACK_OLDPWD = OLDPWD
+    push_old_dir_stack() {
+        local dir="$1"
+        #exc -> new
+        if  [[ $DIRSTACK_STATE == exc ]]; then
+            if [[ -n $DIRSTACK_OLDPWD && $DIRSTACK_OLDPWD != $dir ]]; then 
+                push_dir_stack "$DIRSTACK_OLDPWD"
+            fi
+            DIRSTACK_OLDPWD="$dir"
+        else #new -> new 
+            if [[ $DIRSTACK_OLDPWD != $OLDPWD && $DIRSTACK_OLDPWD != $dir ]]; then
+                push_dir_stack "$DIRSTACK_OLDPWD"
+            fi
+            DIRSTACK_OLDPWD="$OLDPWD"
+        fi
+
+        DIRSTACK_STATE="new"
+    }
+
+    #Set exclusions
     IFS=":"; excl=($DIRSTACK_EXCLUDE); unset IFS
-    for elem in "${excl[@]}"; do [[ $elem = $dir ]]&& return; done
-    #Check duplicates
-    readarray -t dup <<<"$(dirs -p -l 2>/dev/null)"
-    #First entry (0) is always $PWD
-    dup=${dup[@]:1}
-    for elem in "${dup[@]}"; do [[ $elem = $dir ]]&& return; done
-    #Check limit
-    (( ${#dup[@]} > $DIRSTACK_LIMIT )) && del_dir_stack $DIRSTACK_LIMIT silent
-    pushd -n "${dir}" >/dev/null; 
+    #Check exclusions
+    for elem in "${excl[@]}"; do 
+        if [[ $elem = $dir ]]; then
+            # $DIRSTACK_STATE - > exc  (FSM two events, see push_old_dir_stack)
+            if [[ -n $DIRSTACK_OLDPWD ]]; then
+                #Don't be wise and push it!
+                [[ $DIRSTACK_OLDPWD != $OLDPWD ]] && push_dir_stack "$DIRSTACK_OLDPWD"
+                [[ $DIRSTACK_STATE = exc ]] && DIRSTACK_OLDPWD=  || DIRSTACK_OLDPWD=$OLDPWD
+            fi
+            DIRSTACK_STATE="exc"
+            return
+        fi
+    done
+
+    #Be savvy with the stack dirs
+    push_old_dir_stack "$dir"
 }
 
 
@@ -149,19 +195,19 @@ get_octal() {
 
 
 bak() {
- local arg="$1" ; shift
- [[ -e $arg ]] || { echo "file/dir:$arg must exist"; return 1; }
- arg=${arg%/}
- local bak="$arg.bak"
- if [[ ${arg: -4} != .bak ]]; then 
-     \cp -r "$arg" "$bak" && \
-     echo "Copied $arg to $bak"
- else 
-     bak="${arg%.bak}" && \
-     \rm -rf "$bak" && \
-     \mv "$arg" "$bak" && \
-     echo "Moved $arg to $bak"
- fi
+    local arg="$1" ; shift
+    [[ -e $arg ]] || { echo "file/dir:$arg must exist"; return 1; }
+    arg=${arg%/}
+    local bak="$arg.bak"
+    if [[ ${arg: -4} != .bak ]]; then 
+        \cp -r "$arg" "$bak" && \
+            echo "Copied $arg to $bak"
+    else 
+        bak="${arg%.bak}" && \
+            \rm -rf "$bak" && \
+            \mv "$arg" "$bak" && \
+            echo "Moved $arg to $bak"
+    fi
 }
 
 #Add new executable symlink to ~/.local/bin dir
