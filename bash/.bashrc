@@ -59,7 +59,7 @@ stty -ixon -ixoff ixany
 
 KERNEL=$(uname -r)
 TTY=$(tty)
-PROMPT_COMMAND='show_ps1;list_dir_stack'
+PROMPT_COMMAND='show_ps1'
 
 HISTSIZE=50000
 HISTFILESIZE=50000
@@ -73,16 +73,6 @@ HISTTIMEFORMAT='%F %T '
 # to work properly with shopt -s extglob  (ls -d .*)
 GLOBIGNORE=.:..
 
-#Enable dir stack behavior
-DIRSTACK_ENABLED=true
-#Maximum dir stack size
-DIRSTACK_LIMIT=5
-# Full paths to exclude from dir stack separated by colon
-DIRSTACK_EXCLUDE="/foobar:$HOME"
-#State for FSM (default excluded)
-DIRSTACK_STATE="exc"
-#"OLDPWD" for cd - wise
-DIRSTACK_OLDPWD=
 
 ###################
 #  Stderr in red  #
@@ -166,6 +156,9 @@ shopt -s histverify
 
 # PATH modified in ~/.bash_profile
 
+#Load dir stack plugin
+[[ -f ~/Clones/dirStack/dirStack.sh ]] && .  ~/Clones/dirStack/dirStack.sh
+
 #Z script to get the most common directories and so on
 #  https://github.com/rupa/z 
 if [[ -f ~/Clones/z/z.sh ]]; then
@@ -174,6 +167,7 @@ if [[ -f ~/Clones/z/z.sh ]]; then
     #no clobber my $PROMPT_COMMAND
     _Z_NO_PROMPT_COMMAND=true
 fi
+
 
 # Alias definitions
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
