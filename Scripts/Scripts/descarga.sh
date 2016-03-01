@@ -27,10 +27,13 @@ descarga() {
     local downloading=$!
     # echo  "pgrep: $(pgrep -aw youtube-dl) downloading pid:$downloading" 
     read tam _ <<< $(du -b $dest)
-    # Wait for 1M file
-    while (( $tam < 1000000 )); do 
+    # Wait for 1M file or 1 minute
+    local count=0
+    while (( $tam < 1000000   )); do 
         read tam _ <<< $(du -b $dest)
         sleep 0.5
+        ((count++))
+        ((  count > 120 )) && break
     done
     #It needs nohup to work on bash cli also
     nohup mplayer -fs $dest >/dev/null & 
