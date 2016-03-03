@@ -34,3 +34,8 @@ include /usr/share/doc/task/rc/dark-blue-256.theme
 #ln -s `which taskwarrior_time_tracking_hook` ~/.task/hooks/on-modify.timetracking
 uda.totalactivetime.type=duration
 uda.totalactivetime.values=
+taskd.server=freecinc.com:53589
+taskd.key=\/home\/charly\/.task\/freecinc_d3f452c3.key.pem
+taskd.certificate=\/home\/charly\/.task\/freecinc_d3f452c3.cert.pem
+taskd.ca=\/home\/charly\/.task\/freecinc_d3f452c3.ca.pem
+taskd.credentials=FreeCinc\/freecinc_d3f452c3\/e9ddb336-d858-49ad-8ffb-480c8cb1fcf1

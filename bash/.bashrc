@@ -158,6 +158,7 @@ shopt -s histverify
 
 #Load dir stack plugin
 [[ -f ~/Clones/dirStack/dirStack.sh ]] && .  ~/Clones/dirStack/dirStack.sh
+DIRSTACK_EXCLUDE+=":$HOME/dotfiles"
 
 #Z script to get the most common directories and so on
 #  https://github.com/rupa/z 

@@ -80,10 +80,10 @@ map <C-j>  :noscript toggletemp<CR>
 "defaultPage()
 :js <<EOF
     //For firefox 40-43
-    Cu.import('resource:///modules/NewTabURL.jsm').NewTabURL.override('about:blank');
+    /* Cu.import('resource:///modules/NewTabURL.jsm').NewTabURL.override('about:blank'); */
     //For the next Firefox 44
-    // var newTabService=Components.classes['@mozilla.org/browser/aboutnewtab-service;1'].getService(Ci.nsIAboutNewTabService);
-    // newTabService.newTabURL = 'about:blank';
+    var newTabService=Components.classes['@mozilla.org/browser/aboutnewtab-service;1'].getService(Ci.nsIAboutNewTabService);
+    newTabService.newTabURL = 'about:blank';
 EOF
 
 "===[ Custom commands ]=================================================
