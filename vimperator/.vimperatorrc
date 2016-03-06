@@ -236,6 +236,8 @@ set! browser.pocket.api=""
 set! layers.acceleration.force-enabled=true
 set! layers.offmainthreadcomposition.enabled=true
 
+"Disable pdf.js viewer
+set! pdfjs.disabled=true
 
 
 "===[ Custom style ]=================================================
