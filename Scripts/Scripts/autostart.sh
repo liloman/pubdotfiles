@@ -4,6 +4,7 @@
 #Load notification library
 . ~/Scripts/libnotify
 
+
 #Associative array for processes indexed by pid
 declare -A procs
 #Enable job control
@@ -36,6 +37,9 @@ monitor() {
     procs[$!]="$com"
 }
 
+
+#Sync tasks
+task sync
 
 #Sync local repos with origin for my repos ...
 monitor ~/Scripts/sync_repos.sh 
