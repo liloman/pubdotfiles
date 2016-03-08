@@ -124,6 +124,7 @@ export PS4='(${BASH_SOURCE}:${LINENO})(${FUNCNAME[0]}): '
 #Fix broken lxsession config dirs
 export XDG_CONFIG_DIRS=$HOME/.config
 
+export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig/"
 
 [[ $TERM == xterm ]] && TERM=xterm-256color
 
