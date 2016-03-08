@@ -37,18 +37,20 @@ monitor() {
 }
 
 
+#Sync local repos with origin for my repos ...
+monitor ~/Scripts/sync_repos.sh 
 
 #Move firefox profile to RAM
-monitor /home/charly/Scripts/firefox_sync.sh 
+monitor ~/Scripts/firefox_sync.sh 
 
-#Get current song from Spotify VB daemon
-monitor /home/charly/Scripts/current_spotify_song.sh
+#Get current song from Spotify VB (daemon)
+monitor ~/Scripts/current_spotify_song.sh
 
-#Launch pomodoroTasks daemon 
-monitor /home/charly/Clones/pomodoroTasks/pomodoro-daemon.sh 
+#Launch pomodoroTasks (daemon) 
+monitor ~/Clones/pomodoroTasks/pomodoro-daemon.sh 
 
 
-# This script ($$) will run forever cause the jobs above are daemons
+# This script ($$) will run forever cause the some jobs above are daemons
 # so maybe you can reutilize it to do some other tasks in the final loop ... :D
 
 
