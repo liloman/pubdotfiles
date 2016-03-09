@@ -45,7 +45,7 @@ update_repo() {
 do_mines() {
     #Repos
     local mines="dirty dirStack checkUndocumented generate-autocompletion pomodoroTasks "
-    mines+=" rmalias easyPcRecovery"
+    mines+=" rmalias easyPcRecovery Proyecto OliVision"
     for dir in $mines; do
         echo "**********************************"
         echo "Doing $dir"
