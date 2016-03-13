@@ -1,0 +1,1457 @@
+
+** (lxpanel:9348): WARNING **: XDG_TEMPLATES_DIR is set to invalid path, ignoring it
+
+** (lxpanel:9348): WARNING **: launchbar: desktop entry does not exist
+
+
+** (lxpanel:9348): WARNING **: launchtaskbar: can't init button
+
+
+** (lxpanel:9348): WARNING **: launchbar: desktop entry does not exist
+
+
+** (lxpanel:9348): WARNING **: launchtaskbar: can't init button
+
+
+** (lxpanel:9348): WARNING **: ltbp: fgets 'cat /proc/2/cmdline'
+
+** (lxpanel:9348): WARNING **: ltbp: fgets 'cat /proc/2/cmdline'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e59f3a][engine]: running on unix-linux-amd64
+[56e59f3a][engine]: arch is little endian
+[56e59f3a][storage]: couldn't open storage.cfg
+[56e59f3a][storage]: using standard paths
+[56e59f3a][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e59f3a][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e59f3a][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e59f3a][binds]: bound f1 (282) = toggle_local_console
+[56e59f3a][binds]: bound f2 (283) = toggle_remote_console
+[56e59f3a][binds]: bound tab (9) = +scoreboard
+[56e59f3a][binds]: bound u (117) = +show_chat
+[56e59f3a][binds]: bound f10 (291) = screenshot
+[56e59f3a][binds]: bound a (97) = +left
+[56e59f3a][binds]: bound d (100) = +right
+[56e59f3a][binds]: bound space (32) = +jump
+[56e59f3a][binds]: bound mouse1 (323) = +fire
+[56e59f3a][binds]: bound mouse2 (324) = +hook
+[56e59f3a][binds]: bound lshift (304) = +emote
+[56e59f3a][binds]: bound rshift (303) = +spectate
+[56e59f3a][binds]: bound right (275) = spectate_next
+[56e59f3a][binds]: bound left (276) = spectate_previous
+[56e59f3a][binds]: bound 1 (49) = +weapon1
+[56e59f3a][binds]: bound 2 (50) = +weapon2
+[56e59f3a][binds]: bound 3 (51) = +weapon3
+[56e59f3a][binds]: bound 4 (52) = +weapon4
+[56e59f3a][binds]: bound 5 (53) = +weapon5
+[56e59f3a][binds]: bound mousewheelup (331) = +prevweapon
+[56e59f3a][binds]: bound mousewheeldown (332) = +nextweapon
+[56e59f3a][binds]: bound t (116) = chat all
+[56e59f3a][binds]: bound y (121) = chat team
+[56e59f3a][binds]: bound f3 (284) = vote yes
+[56e59f3a][binds]: bound f4 (285) = vote no
+[56e59f3a][console]: executing 'settings.cfg'
+[56e59f3a][binds]: bound tab (9) = +scoreboard
+[56e59f3a][binds]: bound space (32) = +jump
+[56e59f3a][binds]: bound 1 (49) = +weapon1
+[56e59f3a][binds]: bound 2 (50) = +weapon2
+[56e59f3a][binds]: bound 3 (51) = +weapon3
+[56e59f3a][binds]: bound 4 (52) = +weapon4
+[56e59f3a][binds]: bound 5 (53) = +weapon5
+[56e59f3a][binds]: bound a (97) = +left
+[56e59f3a][binds]: bound d (100) = +right
+[56e59f3a][binds]: bound s (115) = +prevweapon
+[56e59f3a][binds]: bound t (116) = chat all
+[56e59f3a][binds]: bound u (117) = +show_chat
+[56e59f3a][binds]: bound w (119) = +nextweapon
+[56e59f3a][binds]: bound y (121) = chat team
+[56e59f3a][binds]: bound right (275) = spectate_next
+[56e59f3a][binds]: bound left (276) = spectate_previous
+[56e59f3a][binds]: bound f1 (282) = toggle_local_console
+[56e59f3a][binds]: bound f2 (283) = toggle_remote_console
+[56e59f3a][binds]: bound f3 (284) = vote yes
+[56e59f3a][binds]: bound f4 (285) = vote no
+[56e59f3a][binds]: bound f10 (291) = screenshot
+[56e59f3a][binds]: bound f11 (292) = kill
+[56e59f3a][binds]: bound rshift (303) = +spectate
+[56e59f3a][binds]: bound lshift (304) = +emote
+[56e59f3a][binds]: bound mouse1 (323) = +fire
+[56e59f3a][binds]: bound mouse2 (324) = +hook
+[56e59f3a][console]: failed to open 'autoexec.cfg'
+[56e59f3a][client]: starting...
+[56e59f3a][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e59f3a][localization]: loaded 'languages/spanish.txt'
+[56e59f3a][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e59f3a][textrender]: default pFont set 0xfdb230
+[56e59f3a][]: pFont memory usage: 2097152
+[56e59f3a][gameclient]: initialisation finished after 419.38ms
+[56e59f3a][client]: version 0.6 626fce9a778df4d4
+[56e59f3a][engine/mastersrv]: saving addresses
+[56e59f3a][]: pFont memory usage: 2621440
+[56e59f3a][]: pFont memory usage: 2883584
+[56e59f3a][]: pFont memory usage: 3014656
+[56e59f3a][]: pFont memory usage: 3276800
+[56e59f3a][]: pFont memory usage: 3407872
+[56e59f3a][]: pFont memory usage: 3538944
+[56e59f3a][]: pFont memory usage: 3801088
+[56e59f3e][client]: disconnecting. reason='unknown'
+[56e59f3e][client]: connecting to '62.75.240.14:8303'
+[56e59f3f][]: pFont memory usage: 4849664
+[56e59f3f][client]: connected, sending info
+[56e59f40][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e59f40][datafile]: loading. filename='maps/ctf5.map'
+[56e59f40][datafile]: allocsize=1516
+[56e59f40][datafile]: readsize=1276
+[56e59f40][datafile]: swaplen=1296
+[56e59f40][datafile]: item_size=1008
+[56e59f40][datafile]: loading done. datafile='maps/ctf5.map'
+[56e59f40][client]: loaded map 'maps/ctf5.map'
+[56e59f40][client/network]: loading done
+[56e59f40][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e59f40][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e59f40][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e59f40][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e59f40][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e59f40][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e59f40][datafile]: loading data index=0 size=18 uncompressed=10
+[56e59f40][datafile]: loading data index=1 size=18 uncompressed=10
+[56e59f40][datafile]: loading data index=2 size=18 uncompressed=10
+[56e59f40][datafile]: loading data index=3 size=27 uncompressed=19
+[56e59f40][datafile]: loading data index=4 size=22 uncompressed=14
+[56e59f40][datafile]: loading data index=5 size=19 uncompressed=11
+[56e59f41][chat]: *** 'guau-guaU!' entered and joined the spectators
+[56e59f41][datafile]: loading data index=6 size=79 uncompressed=152
+[56e59f41][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e59f41][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e59f46][]: pFont memory usage: 4980736
+[56e59f68][chat]: *** 'PLB' has left the game
+[56e59f6c][chat]: *** 'Captain' has left the game
+[56e59fa5][client]: saved screenshot to '/home/charly/.teeworlds/screenshots/screenshot_2016-03-13_18-13-09.png'
+[56e59faa][chat]: *** 'Bly' entered and joined the spectators
+[56e59fad][chat]: *** The red flag was captured by 'TeeTux' (32.56 seconds)
+[56e59fb2][chat]: *** 'Helping TEE' entered and joined the spectators
+[56e59fc0][chat]: *** 'Cheater' entered and joined the spectators
+[56e59fc3][chat]: *** 'Helping TEE' has left the game
+[56e59fc6][binds]: unbound f10 (291)
+[56e59fc6][binds]: bound delete (127) = screenshot
+[56e59fc9][binds]: unbound delete (127)
+[56e59fc9][binds]: bound print (316) = screenshot
+[56e59fd1][chat]: *** The red flag was captured by 'qwere' (34.09 seconds)
+[56e59fd7][chat]: *** 'Cheater' joined the blue team
+[56e59fd9][chat]: *** 'Bly' joined the red team
+[56e59fdb][chat]: *** 'TROLOLO' has left the game
+[56e59fde][chat]: *** 'sumrf spyxan' entered and joined the spectators
+[56e59fe4][chat]: *** 'Suiluj' entered and joined the spectators
+[56e59feb][chat]: *** 'Suiluj' joined the blue team
+[56e59ff2][chat]: *** 'sumrf spyxan' has left the game
+[56e5a00c][chat]: *** 'owl' entered and joined the spectators
+[56e5a013][chat]: *** 'owl' joined the red team
+[56e5a019][chat]: *** '(1)' entered and joined the spectators
+[56e5a020][chat]: *** 'Cheater' has left the game
+[56e5a021][chat]: owl: hi
+[56e5a024][chat]: Larra: hi
+[56e5a027][chat]: Bly: hi
+[56e5a029][chat]: qwere: привет сова )
+[56e5a02d][chat]: *** 'TROLOLO' entered and joined the spectators
+[56e5a030][chat]: *** 'TROLOLO' has left the game
+[56e5a046][chat]: *** 'Marti' entered and joined the spectators
+[56e5a046][chat]: *** 'TheGhoulGamer87' has left the game
+[56e5a05c][chat]: *** 'Marti' has left the game
+[56e5a066][chat]: *** '(1)' has left the game
+[56e5a068][chat]: [NoFear]-: Larra:  я вот думаю какого нибудь другого бота юзать
+[56e5a06d][chat]: *** '(1)' entered and joined the spectators
+[56e5a071][chat]: *** 'He4To' entered and joined the spectators
+[56e5a071][]: pFont memory usage: 5111808
+[56e5a071][chat]: [NoFear]-: А то этот хреново работает
+[56e5a072][chat]: Larra: хорошо)
+[56e5a077][chat]: [NoFear]-: не посоветуешь какой нибудь?
+[56e5a082][chat]: *** 'Bly' joined the blue team
+[56e5a082][chat]: *** Teams have been balanced
+[56e5a083][chat]: Larra: я не умею ими пользоваться)
+[56e5a08e][chat]: [NoFear]-: Не, я вообще только на ботах и играю
+[56e5a09b][chat]: *** 'Caledfwlch' entered and joined the spectators
+[56e5a09c][chat]: [NoFear]-: Просто так самому нереал убивать сильных игроков)
+[56e5a09f][chat]: *** 'Caledfwlch' joined the red team
+[56e5a0ab][chat]: *** '(1)' joined the blue team
+[56e5a0b5][chat]: qwere: в этой игре вообще не нужно убивать
+[56e5a0c4][chat]: owl: лучший бот brain&arms
+[56e5a0c6][chat]: [NoFear]-: А как же "Воруй Убивай"
+[56e5a0d0][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a13d][engine]: running on unix-linux-amd64
+[56e5a13d][engine]: arch is little endian
+[56e5a13d][storage]: couldn't open storage.cfg
+[56e5a13d][storage]: using standard paths
+[56e5a13d][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e5a13d][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e5a13d][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e5a13d][binds]: bound f1 (282) = toggle_local_console
+[56e5a13d][binds]: bound f2 (283) = toggle_remote_console
+[56e5a13d][binds]: bound tab (9) = +scoreboard
+[56e5a13d][binds]: bound u (117) = +show_chat
+[56e5a13d][binds]: bound f10 (291) = screenshot
+[56e5a13d][binds]: bound a (97) = +left
+[56e5a13d][binds]: bound d (100) = +right
+[56e5a13d][binds]: bound space (32) = +jump
+[56e5a13d][binds]: bound mouse1 (323) = +fire
+[56e5a13d][binds]: bound mouse2 (324) = +hook
+[56e5a13d][binds]: bound lshift (304) = +emote
+[56e5a13d][binds]: bound rshift (303) = +spectate
+[56e5a13d][binds]: bound right (275) = spectate_next
+[56e5a13d][binds]: bound left (276) = spectate_previous
+[56e5a13d][binds]: bound 1 (49) = +weapon1
+[56e5a13d][binds]: bound 2 (50) = +weapon2
+[56e5a13d][binds]: bound 3 (51) = +weapon3
+[56e5a13d][binds]: bound 4 (52) = +weapon4
+[56e5a13d][binds]: bound 5 (53) = +weapon5
+[56e5a13d][binds]: bound mousewheelup (331) = +prevweapon
+[56e5a13d][binds]: bound mousewheeldown (332) = +nextweapon
+[56e5a13d][binds]: bound t (116) = chat all
+[56e5a13d][binds]: bound y (121) = chat team
+[56e5a13d][binds]: bound f3 (284) = vote yes
+[56e5a13d][binds]: bound f4 (285) = vote no
+[56e5a13d][console]: executing 'settings.cfg'
+[56e5a13d][binds]: bound tab (9) = +scoreboard
+[56e5a13d][binds]: bound space (32) = +jump
+[56e5a13d][binds]: bound 1 (49) = +weapon1
+[56e5a13d][binds]: bound 2 (50) = +weapon2
+[56e5a13d][binds]: bound 3 (51) = +weapon3
+[56e5a13d][binds]: bound 4 (52) = +weapon4
+[56e5a13d][binds]: bound 5 (53) = +weapon5
+[56e5a13d][binds]: bound a (97) = +left
+[56e5a13d][binds]: bound d (100) = +right
+[56e5a13d][binds]: bound s (115) = +prevweapon
+[56e5a13d][binds]: bound t (116) = chat all
+[56e5a13d][binds]: bound u (117) = +show_chat
+[56e5a13d][binds]: bound w (119) = +nextweapon
+[56e5a13d][binds]: bound y (121) = chat team
+[56e5a13d][binds]: bound right (275) = spectate_next
+[56e5a13d][binds]: bound left (276) = spectate_previous
+[56e5a13d][binds]: bound f1 (282) = toggle_local_console
+[56e5a13d][binds]: bound f2 (283) = toggle_remote_console
+[56e5a13d][binds]: bound f3 (284) = vote yes
+[56e5a13d][binds]: bound f4 (285) = vote no
+[56e5a13d][binds]: bound f11 (292) = kill
+[56e5a13d][binds]: bound rshift (303) = +spectate
+[56e5a13d][binds]: bound lshift (304) = +emote
+[56e5a13d][binds]: bound print (316) = screenshot
+[56e5a13d][binds]: bound mouse1 (323) = +fire
+[56e5a13d][binds]: bound mouse2 (324) = +hook
+[56e5a13d][console]: failed to open 'autoexec.cfg'
+[56e5a13d][client]: starting...
+[56e5a13d][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a13d][localization]: loaded 'languages/spanish.txt'
+[56e5a13d][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e5a13d][textrender]: default pFont set 0x16c9210
+[56e5a13d][]: pFont memory usage: 2097152
+[56e5a13d][gameclient]: initialisation finished after 366.26ms
+[56e5a13d][client]: version 0.6 626fce9a778df4d4
+[56e5a13d][]: pFont memory usage: 2621440
+[56e5a13d][]: pFont memory usage: 2883584
+[56e5a13d][]: pFont memory usage: 3014656
+[56e5a13d][]: pFont memory usage: 3276800
+[56e5a13d][]: pFont memory usage: 3407872
+[56e5a13d][]: pFont memory usage: 3538944
+[56e5a13d][]: pFont memory usage: 3801088
+[56e5a13d][engine/mastersrv]: saving addresses
+[56e5a142][client]: disconnecting. reason='unknown'
+[56e5a142][client]: connecting to '37.187.73.154:8307'
+[56e5a142][]: pFont memory usage: 4849664
+[56e5a142][client]: connected, sending info
+[56e5a143][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e5a143][datafile]: loading. filename='maps/ctf5.map'
+[56e5a143][datafile]: allocsize=1516
+[56e5a143][datafile]: readsize=1276
+[56e5a143][datafile]: swaplen=1296
+[56e5a143][datafile]: item_size=1008
+[56e5a143][datafile]: loading done. datafile='maps/ctf5.map'
+[56e5a143][client]: loaded map 'maps/ctf5.map'
+[56e5a143][client/network]: loading done
+[56e5a143][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e5a143][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e5a143][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e5a143][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e5a143][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e5a143][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e5a143][datafile]: loading data index=0 size=18 uncompressed=10
+[56e5a143][datafile]: loading data index=1 size=18 uncompressed=10
+[56e5a143][datafile]: loading data index=2 size=18 uncompressed=10
+[56e5a143][datafile]: loading data index=3 size=27 uncompressed=19
+[56e5a143][datafile]: loading data index=4 size=22 uncompressed=14
+[56e5a143][datafile]: loading data index=5 size=19 uncompressed=11
+[56e5a144][chat]: *** 'guau-guaU!' entered and joined the red team
+[56e5a144][datafile]: loading data index=6 size=79 uncompressed=152
+[56e5a144][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e5a144][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e5a14b][chat]: *** 'qlwcfgg' entered and joined the red team
+[56e5a14e][chat]: *** The red flag was captured by 'JeyKey|abc' (17.45 seconds)
+[56e5a14f][]: pFont memory usage: 4980736
+[56e5a157][chat]: *** 'Nobody' entered and joined the blue team
+[56e5a157][]: pFont memory usage: 5111808
+[56e5a15a][chat]: Teepool: du hast an!!!!11! elf
+[56e5a15d][chat]: JeyKey|abc: No Problem :3
+[56e5a15e][chat]: JeyKey|abc: xD
+[56e5a165][chat]: JeyKey|abc: ich hab immer an
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a172][chat]: *** 'RwesT' has left the game
+[56e5a178][chat]: *** 'Kossilver' entered and joined the blue team
+[56e5a182][chat]: Dr Pounder: did they change the physics?
+[56e5a18a][chat]: *** 'nameless tee' has left the game
+[56e5a18b][chat]: JeyKey|abc: xD
+[56e5a18f][chat]: *** 'nameless tee' entered and joined the red team
+[56e5a190][chat]: *** 'Kossilver' has left the game
+[56e5a193][chat]: Teepool: yeah, its quantendynamics now
+[56e5a197][chat]: *** 'qlwcfgg' has left the game (Timeout)
+[56e5a19b][chat]: *** 'Rayanox' entered and joined the red team
+[56e5a1a8][chat]: Dr Pounder: mechanics
+[56e5a1ac][chat]: *** 'ZONE' entered and joined the blue team
+[56e5a1b1][chat]: Lag: sorryx
+[56e5a1bc][chat]: *** 'impossiblefork' has left the game
+[56e5a1bd][chat]: Teepool: you know the different?
+[56e5a1d0][chat]: *** 'qlwcfgg' entered and joined the blue team
+[56e5a1da][chat]: *** The red flag was captured by 'mnvijbhu'
+[56e5a1e0][chat]: *** 'micah' has left the game
+[56e5a1e7][chat]: Teepool: bin nur wegen nem lag gestorben!
+[56e5a1f6][chat]: Dr Pounder: quantum dynamics is the topic, quantum mechanics are the elementary rules
+[56e5a1f9][chat]: mnvijbhu: xD
+[56e5a1ff][chat]: guau-guaU!: alphago
+[56e5a203][chat]: *** 'qlwcfgg' has left the game (Timeout)
+[56e5a205][chat]: Dr Pounder: lol
+[56e5a20e][chat]: guau-guaU!: joint learing D
+[56e5a215][chat]: Teepool: :D
+[56e5a227][chat]: POL-KCIUK: gw
+[56e5a228][chat]: *** The red flag was captured by 'Nobody' (16.42 seconds)
+[56e5a22e][chat]: Tim0: :)
+[56e5a236][chat]: guau-guaU!: one day the perfect bot :
+[56e5a236][chat]: *** The red flag was captured by 'Lag' (12.88 seconds)
+[56e5a23f][chat]: *** 'Rayanox' joined the blue team
+[56e5a23f][chat]: *** Teams have been balanced
+[56e5a24e][chat]: *** '[K]allys' has left the game
+[56e5a253][chat]: mnvijbhu: :)
+[56e5a25e][chat]: *** 'Chachoux' entered and joined the blue team
+[56e5a270][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a44b][engine]: running on unix-linux-amd64
+[56e5a44b][engine]: arch is little endian
+[56e5a44b][storage]: couldn't open storage.cfg
+[56e5a44b][storage]: using standard paths
+[56e5a44b][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e5a44b][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e5a44b][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e5a44b][binds]: bound f1 (282) = toggle_local_console
+[56e5a44b][binds]: bound f2 (283) = toggle_remote_console
+[56e5a44b][binds]: bound tab (9) = +scoreboard
+[56e5a44b][binds]: bound u (117) = +show_chat
+[56e5a44b][binds]: bound f10 (291) = screenshot
+[56e5a44b][binds]: bound a (97) = +left
+[56e5a44b][binds]: bound d (100) = +right
+[56e5a44b][binds]: bound space (32) = +jump
+[56e5a44b][binds]: bound mouse1 (323) = +fire
+[56e5a44b][binds]: bound mouse2 (324) = +hook
+[56e5a44b][binds]: bound lshift (304) = +emote
+[56e5a44b][binds]: bound rshift (303) = +spectate
+[56e5a44b][binds]: bound right (275) = spectate_next
+[56e5a44b][binds]: bound left (276) = spectate_previous
+[56e5a44b][binds]: bound 1 (49) = +weapon1
+[56e5a44b][binds]: bound 2 (50) = +weapon2
+[56e5a44b][binds]: bound 3 (51) = +weapon3
+[56e5a44b][binds]: bound 4 (52) = +weapon4
+[56e5a44b][binds]: bound 5 (53) = +weapon5
+[56e5a44b][binds]: bound mousewheelup (331) = +prevweapon
+[56e5a44b][binds]: bound mousewheeldown (332) = +nextweapon
+[56e5a44b][binds]: bound t (116) = chat all
+[56e5a44b][binds]: bound y (121) = chat team
+[56e5a44b][binds]: bound f3 (284) = vote yes
+[56e5a44b][binds]: bound f4 (285) = vote no
+[56e5a44b][console]: executing 'settings.cfg'
+[56e5a44b][binds]: bound tab (9) = +scoreboard
+[56e5a44b][binds]: bound space (32) = +jump
+[56e5a44b][binds]: bound 1 (49) = +weapon1
+[56e5a44b][binds]: bound 2 (50) = +weapon2
+[56e5a44b][binds]: bound 3 (51) = +weapon3
+[56e5a44b][binds]: bound 4 (52) = +weapon4
+[56e5a44b][binds]: bound 5 (53) = +weapon5
+[56e5a44b][binds]: bound a (97) = +left
+[56e5a44b][binds]: bound d (100) = +right
+[56e5a44b][binds]: bound s (115) = +prevweapon
+[56e5a44b][binds]: bound t (116) = chat all
+[56e5a44b][binds]: bound u (117) = +show_chat
+[56e5a44b][binds]: bound w (119) = +nextweapon
+[56e5a44b][binds]: bound y (121) = chat team
+[56e5a44b][binds]: bound right (275) = spectate_next
+[56e5a44b][binds]: bound left (276) = spectate_previous
+[56e5a44b][binds]: bound f1 (282) = toggle_local_console
+[56e5a44b][binds]: bound f2 (283) = toggle_remote_console
+[56e5a44b][binds]: bound f3 (284) = vote yes
+[56e5a44b][binds]: bound f4 (285) = vote no
+[56e5a44b][binds]: bound f11 (292) = kill
+[56e5a44b][binds]: bound rshift (303) = +spectate
+[56e5a44b][binds]: bound lshift (304) = +emote
+[56e5a44b][binds]: bound print (316) = screenshot
+[56e5a44b][binds]: bound mouse1 (323) = +fire
+[56e5a44b][binds]: bound mouse2 (324) = +hook
+[56e5a44b][console]: failed to open 'autoexec.cfg'
+[56e5a44b][client]: starting...
+[56e5a44b][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a44b][localization]: loaded 'languages/spanish.txt'
+[56e5a44b][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e5a44b][textrender]: default pFont set 0x1234210
+[56e5a44b][]: pFont memory usage: 2097152
+[56e5a44b][gameclient]: initialisation finished after 382.07ms
+[56e5a44b][client]: version 0.6 626fce9a778df4d4
+[56e5a44b][engine/mastersrv]: saving addresses
+[56e5a44b][]: pFont memory usage: 2621440
+[56e5a44b][]: pFont memory usage: 2883584
+[56e5a44b][]: pFont memory usage: 3014656
+[56e5a44b][]: pFont memory usage: 3276800
+[56e5a44b][]: pFont memory usage: 3407872
+[56e5a44b][]: pFont memory usage: 3538944
+[56e5a44b][]: pFont memory usage: 3801088
+[56e5a44e][]: pFont memory usage: 3932160
+[56e5a451][client]: disconnecting. reason='unknown'
+[56e5a451][client]: connecting to '37.187.73.154:8307'
+[56e5a451][]: pFont memory usage: 4980736
+[56e5a451][client]: disconnecting. reason='unknown'
+[56e5a451][client]: offline error='This server is full'
+[56e5a4b7][client]: disconnecting. reason='unknown'
+[56e5a4b7][client]: connecting to '37.187.73.154:8307'
+[56e5a4b7][client]: disconnecting. reason='unknown'
+[56e5a4b7][client]: offline error='This server is full'
+[56e5a4b9][client]: disconnecting. reason='unknown'
+[56e5a4b9][client]: connecting to '173.248.146.35:4051'
+[56e5a4b9][client]: connected, sending info
+[56e5a4b9][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e5a4b9][datafile]: loading. filename='maps/ctf5.map'
+[56e5a4b9][datafile]: allocsize=1516
+[56e5a4b9][datafile]: readsize=1276
+[56e5a4b9][datafile]: swaplen=1296
+[56e5a4b9][datafile]: item_size=1008
+[56e5a4b9][datafile]: loading done. datafile='maps/ctf5.map'
+[56e5a4b9][client]: loaded map 'maps/ctf5.map'
+[56e5a4b9][client/network]: loading done
+[56e5a4ba][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e5a4ba][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e5a4ba][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e5a4ba][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e5a4ba][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e5a4ba][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e5a4ba][datafile]: loading data index=0 size=18 uncompressed=10
+[56e5a4ba][datafile]: loading data index=1 size=18 uncompressed=10
+[56e5a4ba][datafile]: loading data index=2 size=18 uncompressed=10
+[56e5a4ba][datafile]: loading data index=3 size=27 uncompressed=19
+[56e5a4ba][datafile]: loading data index=4 size=22 uncompressed=14
+[56e5a4ba][datafile]: loading data index=5 size=19 uncompressed=11
+[56e5a4ba][chat]: *** 'guau-guaU!' entered and joined the blue team
+[56e5a4ba][datafile]: loading data index=6 size=79 uncompressed=152
+[56e5a4ba][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e5a4ba][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e5a4bc][chat]: *** The blue flag was captured by 'Anchpop' (8.00 seconds)
+[56e5a4cc][]: pFont memory usage: 5111808
+[56e5a4d6][chat]: *** 'Claytonomore' called for vote to kick 'TROLLINGYOU' (trolling)
+[56e5a4e9][chat]: *** 'Ñârûtõ' entered and joined the red team
+[56e5a4ef][chat]: *** Vote failed
+[56e5a4fd][chat]: *** 'nameless tee' entered and joined the blue team
+[56e5a4ff][chat]: *** 'nameless tee' has left the game
+[56e5a504][chat]: *** 'Greent' called vote to change server option 'Team killing ON' (No reason given)
+[56e5a513][chat]: Greent: f3
+[56e5a518][chat]: *** Vote passed
+[56e5a51b][chat]: guau-guaU!: cool
+[56e5a532][chat]: *** The blue flag was captured by 'Anchpop'
+[56e5a533][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a53e][engine]: running on unix-linux-amd64
+[56e5a53e][engine]: arch is little endian
+[56e5a53e][storage]: couldn't open storage.cfg
+[56e5a53e][storage]: using standard paths
+[56e5a53e][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e5a53e][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e5a53e][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e5a53e][binds]: bound f1 (282) = toggle_local_console
+[56e5a53e][binds]: bound f2 (283) = toggle_remote_console
+[56e5a53e][binds]: bound tab (9) = +scoreboard
+[56e5a53e][binds]: bound u (117) = +show_chat
+[56e5a53e][binds]: bound f10 (291) = screenshot
+[56e5a53e][binds]: bound a (97) = +left
+[56e5a53e][binds]: bound d (100) = +right
+[56e5a53e][binds]: bound space (32) = +jump
+[56e5a53e][binds]: bound mouse1 (323) = +fire
+[56e5a53e][binds]: bound mouse2 (324) = +hook
+[56e5a53e][binds]: bound lshift (304) = +emote
+[56e5a53e][binds]: bound rshift (303) = +spectate
+[56e5a53e][binds]: bound right (275) = spectate_next
+[56e5a53e][binds]: bound left (276) = spectate_previous
+[56e5a53e][binds]: bound 1 (49) = +weapon1
+[56e5a53e][binds]: bound 2 (50) = +weapon2
+[56e5a53e][binds]: bound 3 (51) = +weapon3
+[56e5a53e][binds]: bound 4 (52) = +weapon4
+[56e5a53e][binds]: bound 5 (53) = +weapon5
+[56e5a53e][binds]: bound mousewheelup (331) = +prevweapon
+[56e5a53e][binds]: bound mousewheeldown (332) = +nextweapon
+[56e5a53e][binds]: bound t (116) = chat all
+[56e5a53e][binds]: bound y (121) = chat team
+[56e5a53e][binds]: bound f3 (284) = vote yes
+[56e5a53e][binds]: bound f4 (285) = vote no
+[56e5a53e][console]: executing 'settings.cfg'
+[56e5a53e][binds]: bound tab (9) = +scoreboard
+[56e5a53e][binds]: bound space (32) = +jump
+[56e5a53e][binds]: bound 1 (49) = +weapon1
+[56e5a53e][binds]: bound 2 (50) = +weapon2
+[56e5a53e][binds]: bound 3 (51) = +weapon3
+[56e5a53e][binds]: bound 4 (52) = +weapon4
+[56e5a53e][binds]: bound 5 (53) = +weapon5
+[56e5a53e][binds]: bound a (97) = +left
+[56e5a53e][binds]: bound d (100) = +right
+[56e5a53e][binds]: bound s (115) = +prevweapon
+[56e5a53e][binds]: bound t (116) = chat all
+[56e5a53e][binds]: bound u (117) = +show_chat
+[56e5a53e][binds]: bound w (119) = +nextweapon
+[56e5a53e][binds]: bound y (121) = chat team
+[56e5a53e][binds]: bound right (275) = spectate_next
+[56e5a53e][binds]: bound left (276) = spectate_previous
+[56e5a53e][binds]: bound f1 (282) = toggle_local_console
+[56e5a53e][binds]: bound f2 (283) = toggle_remote_console
+[56e5a53e][binds]: bound f3 (284) = vote yes
+[56e5a53e][binds]: bound f4 (285) = vote no
+[56e5a53e][binds]: bound f11 (292) = kill
+[56e5a53e][binds]: bound rshift (303) = +spectate
+[56e5a53e][binds]: bound lshift (304) = +emote
+[56e5a53e][binds]: bound print (316) = screenshot
+[56e5a53e][binds]: bound mouse1 (323) = +fire
+[56e5a53e][binds]: bound mouse2 (324) = +hook
+[56e5a53e][console]: failed to open 'autoexec.cfg'
+[56e5a53e][client]: starting...
+[56e5a53e][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a53e][localization]: loaded 'languages/spanish.txt'
+[56e5a53e][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e5a53e][textrender]: default pFont set 0x26cc230
+[56e5a53e][]: pFont memory usage: 2097152
+[56e5a53e][gameclient]: initialisation finished after 367.47ms
+[56e5a53e][client]: version 0.6 626fce9a778df4d4
+[56e5a53e][engine/mastersrv]: saving addresses
+[56e5a53e][]: pFont memory usage: 2621440
+[56e5a53e][]: pFont memory usage: 2883584
+[56e5a53e][]: pFont memory usage: 3014656
+[56e5a53e][]: pFont memory usage: 3276800
+[56e5a53e][]: pFont memory usage: 3407872
+[56e5a53e][]: pFont memory usage: 3538944
+[56e5a53e][]: pFont memory usage: 3801088
+[56e5a542][]: pFont memory usage: 3932160
+[56e5a544][client]: disconnecting. reason='unknown'
+[56e5a544][client]: connecting to '87.106.188.234:1303'
+[56e5a544][]: pFont memory usage: 4980736
+[56e5a544][client]: connected, sending info
+[56e5a545][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e5a545][datafile]: loading. filename='maps/ctf5.map'
+[56e5a545][datafile]: allocsize=1516
+[56e5a545][datafile]: readsize=1276
+[56e5a545][datafile]: swaplen=1296
+[56e5a545][datafile]: item_size=1008
+[56e5a545][datafile]: loading done. datafile='maps/ctf5.map'
+[56e5a545][client]: loaded map 'maps/ctf5.map'
+[56e5a545][client/network]: loading done
+[56e5a545][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e5a545][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e5a545][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e5a545][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e5a545][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e5a545][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e5a545][datafile]: loading data index=0 size=18 uncompressed=10
+[56e5a545][datafile]: loading data index=1 size=18 uncompressed=10
+[56e5a545][datafile]: loading data index=2 size=18 uncompressed=10
+[56e5a545][datafile]: loading data index=3 size=27 uncompressed=19
+[56e5a545][datafile]: loading data index=4 size=22 uncompressed=14
+[56e5a545][datafile]: loading data index=5 size=19 uncompressed=11
+[56e5a546][chat]: *** 'guau-guaU!' entered and joined the red team
+[56e5a546][datafile]: loading data index=6 size=79 uncompressed=152
+[56e5a546][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e5a546][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e5a549][]: pFont memory usage: 5111808
+[56e5a54d][chat]: *** The blue flag was captured by 'Badass' (12.64 seconds)
+[56e5a559][chat]: *** The blue flag was captured by 'guau-guaU!' (10.43 seconds)
+[56e5a560][chat]: *** The blue flag was captured by 'kentasso' (5.50 seconds)
+[56e5a573][chat]: *** The blue flag was captured by 'Sir Gunther' (18.10 seconds)
+[56e5a577][chat]: *** 'nameless tee' has left the game
+[56e5a584][chat]: *** The blue flag was captured by 'kentasso' (13.47 seconds)
+[56e5a58c][chat]: *** 'Friki' has left the game
+[56e5a592][chat]: *** The blue flag was captured by 'HeKoHHeKT' (11.93 seconds)
+[56e5a596][chat]: *** 'kentasso' has left the game
+[56e5a5a7][chat]: *** The blue flag was captured by 'Sir Gunther' (20.86 seconds)
+[56e5a5a8][chat]: *** 'Lars' has left the game
+[56e5a5aa][chat]: *** 'Spoohny' has left the game
+[56e5a5b3][chat]: *** The blue flag was captured by 'Badass' (11.77 seconds)
+[56e5a5b4][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a5f5][engine]: running on unix-linux-amd64
+[56e5a5f5][engine]: arch is little endian
+[56e5a5f5][storage]: couldn't open storage.cfg
+[56e5a5f5][storage]: using standard paths
+[56e5a5f5][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e5a5f5][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e5a5f5][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e5a5f5][binds]: bound f1 (282) = toggle_local_console
+[56e5a5f5][binds]: bound f2 (283) = toggle_remote_console
+[56e5a5f5][binds]: bound tab (9) = +scoreboard
+[56e5a5f5][binds]: bound u (117) = +show_chat
+[56e5a5f5][binds]: bound f10 (291) = screenshot
+[56e5a5f5][binds]: bound a (97) = +left
+[56e5a5f5][binds]: bound d (100) = +right
+[56e5a5f5][binds]: bound space (32) = +jump
+[56e5a5f5][binds]: bound mouse1 (323) = +fire
+[56e5a5f5][binds]: bound mouse2 (324) = +hook
+[56e5a5f5][binds]: bound lshift (304) = +emote
+[56e5a5f5][binds]: bound rshift (303) = +spectate
+[56e5a5f5][binds]: bound right (275) = spectate_next
+[56e5a5f5][binds]: bound left (276) = spectate_previous
+[56e5a5f5][binds]: bound 1 (49) = +weapon1
+[56e5a5f5][binds]: bound 2 (50) = +weapon2
+[56e5a5f5][binds]: bound 3 (51) = +weapon3
+[56e5a5f5][binds]: bound 4 (52) = +weapon4
+[56e5a5f5][binds]: bound 5 (53) = +weapon5
+[56e5a5f5][binds]: bound mousewheelup (331) = +prevweapon
+[56e5a5f5][binds]: bound mousewheeldown (332) = +nextweapon
+[56e5a5f5][binds]: bound t (116) = chat all
+[56e5a5f5][binds]: bound y (121) = chat team
+[56e5a5f5][binds]: bound f3 (284) = vote yes
+[56e5a5f5][binds]: bound f4 (285) = vote no
+[56e5a5f5][console]: executing 'settings.cfg'
+[56e5a5f5][binds]: bound tab (9) = +scoreboard
+[56e5a5f5][binds]: bound space (32) = +jump
+[56e5a5f5][binds]: bound 1 (49) = +weapon1
+[56e5a5f5][binds]: bound 2 (50) = +weapon2
+[56e5a5f5][binds]: bound 3 (51) = +weapon3
+[56e5a5f5][binds]: bound 4 (52) = +weapon4
+[56e5a5f5][binds]: bound 5 (53) = +weapon5
+[56e5a5f5][binds]: bound a (97) = +left
+[56e5a5f5][binds]: bound d (100) = +right
+[56e5a5f5][binds]: bound s (115) = +prevweapon
+[56e5a5f5][binds]: bound t (116) = chat all
+[56e5a5f5][binds]: bound u (117) = +show_chat
+[56e5a5f5][binds]: bound w (119) = +nextweapon
+[56e5a5f5][binds]: bound y (121) = chat team
+[56e5a5f5][binds]: bound right (275) = spectate_next
+[56e5a5f5][binds]: bound left (276) = spectate_previous
+[56e5a5f5][binds]: bound f1 (282) = toggle_local_console
+[56e5a5f5][binds]: bound f2 (283) = toggle_remote_console
+[56e5a5f5][binds]: bound f3 (284) = vote yes
+[56e5a5f5][binds]: bound f4 (285) = vote no
+[56e5a5f5][binds]: bound f11 (292) = kill
+[56e5a5f5][binds]: bound rshift (303) = +spectate
+[56e5a5f5][binds]: bound lshift (304) = +emote
+[56e5a5f5][binds]: bound print (316) = screenshot
+[56e5a5f5][binds]: bound mouse1 (323) = +fire
+[56e5a5f5][binds]: bound mouse2 (324) = +hook
+[56e5a5f5][console]: failed to open 'autoexec.cfg'
+[56e5a5f5][client]: starting...
+[56e5a5f5][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a5f5][localization]: loaded 'languages/spanish.txt'
+[56e5a5f5][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e5a5f5][textrender]: default pFont set 0x12cb200
+[56e5a5f5][]: pFont memory usage: 2097152
+[56e5a5f5][gameclient]: initialisation finished after 342.01ms
+[56e5a5f5][client]: version 0.6 626fce9a778df4d4
+[56e5a5f5][engine/mastersrv]: saving addresses
+[56e5a5f5][]: pFont memory usage: 2621440
+[56e5a5f5][]: pFont memory usage: 2883584
+[56e5a5f5][]: pFont memory usage: 3014656
+[56e5a5f5][]: pFont memory usage: 3276800
+[56e5a5f5][]: pFont memory usage: 3407872
+[56e5a5f5][]: pFont memory usage: 3538944
+[56e5a5f5][]: pFont memory usage: 3801088
+[56e5a5f8][]: pFont memory usage: 3932160
+[56e5a5ff][client]: disconnecting. reason='unknown'
+[56e5a5ff][client]: connecting to '149.202.127.138:8303'
+[56e5a5ff][]: pFont memory usage: 4980736
+[56e5a5ff][client]: connected, sending info
+[56e5a5ff][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e5a5ff][datafile]: loading. filename='maps/ctf5.map'
+[56e5a5ff][datafile]: allocsize=1516
+[56e5a5ff][datafile]: readsize=1276
+[56e5a5ff][datafile]: swaplen=1296
+[56e5a5ff][datafile]: item_size=1008
+[56e5a5ff][datafile]: loading done. datafile='maps/ctf5.map'
+[56e5a5ff][client]: loaded map 'maps/ctf5.map'
+[56e5a5ff][client/network]: loading done
+[56e5a5ff][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e5a5ff][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e5a5ff][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e5a5ff][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e5a5ff][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e5a5ff][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e5a5ff][datafile]: loading data index=0 size=18 uncompressed=10
+[56e5a5ff][datafile]: loading data index=1 size=18 uncompressed=10
+[56e5a5ff][datafile]: loading data index=2 size=18 uncompressed=10
+[56e5a5ff][datafile]: loading data index=3 size=27 uncompressed=19
+[56e5a600][datafile]: loading data index=4 size=22 uncompressed=14
+[56e5a600][datafile]: loading data index=5 size=19 uncompressed=11
+[56e5a600][chat]: *** 'guau-guaU!' entered and joined the red team
+[56e5a600][datafile]: loading data index=6 size=79 uncompressed=152
+[56e5a600][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e5a600][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e5a60d][chat]: *** 'Tomi' has left the game
+[56e5a60f][chat]: *** 'Jorge e Mateus' entered and joined the red team
+[56e5a629][chat]: *** 'Jorge e Mateus' has left the game
+[56e5a629][]: pFont memory usage: 5111808
+[56e5a671][chat]: *** The blue flag was captured by 'HAKA3ATOP'
+[56e5a676][chat]: king Killer;2: GG
+[56e5a677][chat]: guau-guaU!: dont ever try
+[56e5a67e][chat]: *** 'king Killer;2' has left the game
+[56e5a6a3][chat]: *** The red flag was captured by 'Friend' (30.38 seconds)
+[56e5a6a8][chat]: *** 'HAKA3ATOP' has left the game
+[56e5a6ad][chat]: *** The red flag was captured by 'Victarion' (5.70 seconds)
+[56e5a6af][chat]: *** 'nameless tee' entered and joined the red team
+[56e5a6b9][chat]: *** 'nameless tee' has left the game
+[56e5a6bd][chat]: *** 'gpd22' entered and joined the red team
+[56e5a6c8][chat]: *** 'teesane' entered and joined the red team
+[56e5a6e7][chat]: *** 'Friend' has left the game
+[56e5a6e9][chat]: *** 'Kenji' entered and joined the blue team
+[56e5a715][chat]: *** 'tee phi 0660' entered and joined the red team
+[56e5a75d][chat]: *** 'Toto' entered and joined the blue team
+[56e5a75e][chat]: *** 'Kenji' has left the game
+[56e5a786][chat]: *** 'Toto' has left the game (Timeout)
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5a796][chat]: *** 'papa24' entered and joined the blue team
+[56e5a7be][chat]: *** 'Toto' entered and joined the blue team
+[56e5a7e4][chat]: *** 'Toto' has left the game (Timeout)
+[56e5a7ed][chat]: *** 'STAR_KILLER' entered and joined the blue team
+[56e5a7f2][chat]: *** 'Shreek' entered and joined the red team
+[56e5a7fb][chat]: *** 'brangel' entered and joined the blue team
+[56e5a845][chat]: *** 'radioman' entered and joined the red team
+[56e5a849][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5ab2b][engine]: running on unix-linux-amd64
+[56e5ab2b][engine]: arch is little endian
+[56e5ab2b][storage]: couldn't open storage.cfg
+[56e5ab2b][storage]: using standard paths
+[56e5ab2b][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e5ab2b][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e5ab2b][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e5ab2b][binds]: bound f1 (282) = toggle_local_console
+[56e5ab2b][binds]: bound f2 (283) = toggle_remote_console
+[56e5ab2b][binds]: bound tab (9) = +scoreboard
+[56e5ab2b][binds]: bound u (117) = +show_chat
+[56e5ab2b][binds]: bound f10 (291) = screenshot
+[56e5ab2b][binds]: bound a (97) = +left
+[56e5ab2b][binds]: bound d (100) = +right
+[56e5ab2b][binds]: bound space (32) = +jump
+[56e5ab2b][binds]: bound mouse1 (323) = +fire
+[56e5ab2b][binds]: bound mouse2 (324) = +hook
+[56e5ab2b][binds]: bound lshift (304) = +emote
+[56e5ab2b][binds]: bound rshift (303) = +spectate
+[56e5ab2b][binds]: bound right (275) = spectate_next
+[56e5ab2b][binds]: bound left (276) = spectate_previous
+[56e5ab2b][binds]: bound 1 (49) = +weapon1
+[56e5ab2b][binds]: bound 2 (50) = +weapon2
+[56e5ab2b][binds]: bound 3 (51) = +weapon3
+[56e5ab2b][binds]: bound 4 (52) = +weapon4
+[56e5ab2b][binds]: bound 5 (53) = +weapon5
+[56e5ab2b][binds]: bound mousewheelup (331) = +prevweapon
+[56e5ab2b][binds]: bound mousewheeldown (332) = +nextweapon
+[56e5ab2b][binds]: bound t (116) = chat all
+[56e5ab2b][binds]: bound y (121) = chat team
+[56e5ab2b][binds]: bound f3 (284) = vote yes
+[56e5ab2b][binds]: bound f4 (285) = vote no
+[56e5ab2b][console]: executing 'settings.cfg'
+[56e5ab2b][binds]: bound tab (9) = +scoreboard
+[56e5ab2b][binds]: bound space (32) = +jump
+[56e5ab2b][binds]: bound 1 (49) = +weapon1
+[56e5ab2b][binds]: bound 2 (50) = +weapon2
+[56e5ab2b][binds]: bound 3 (51) = +weapon3
+[56e5ab2b][binds]: bound 4 (52) = +weapon4
+[56e5ab2b][binds]: bound 5 (53) = +weapon5
+[56e5ab2b][binds]: bound a (97) = +left
+[56e5ab2b][binds]: bound d (100) = +right
+[56e5ab2b][binds]: bound s (115) = +prevweapon
+[56e5ab2b][binds]: bound t (116) = chat all
+[56e5ab2b][binds]: bound u (117) = +show_chat
+[56e5ab2b][binds]: bound w (119) = +nextweapon
+[56e5ab2b][binds]: bound y (121) = chat team
+[56e5ab2b][binds]: bound right (275) = spectate_next
+[56e5ab2b][binds]: bound left (276) = spectate_previous
+[56e5ab2b][binds]: bound f1 (282) = toggle_local_console
+[56e5ab2b][binds]: bound f2 (283) = toggle_remote_console
+[56e5ab2b][binds]: bound f3 (284) = vote yes
+[56e5ab2b][binds]: bound f4 (285) = vote no
+[56e5ab2b][binds]: bound f11 (292) = kill
+[56e5ab2b][binds]: bound rshift (303) = +spectate
+[56e5ab2b][binds]: bound lshift (304) = +emote
+[56e5ab2b][binds]: bound print (316) = screenshot
+[56e5ab2b][binds]: bound mouse1 (323) = +fire
+[56e5ab2b][binds]: bound mouse2 (324) = +hook
+[56e5ab2b][console]: failed to open 'autoexec.cfg'
+[56e5ab2b][client]: starting...
+[56e5ab2b][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5ab2b][localization]: loaded 'languages/spanish.txt'
+[56e5ab2b][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e5ab2b][textrender]: default pFont set 0x26a81a0
+[56e5ab2b][]: pFont memory usage: 2097152
+[56e5ab2b][gameclient]: initialisation finished after 113.34ms
+[56e5ab2b][client]: version 0.6 626fce9a778df4d4
+[56e5ab2b][engine/mastersrv]: saving addresses
+[56e5ab2b][]: pFont memory usage: 2621440
+[56e5ab2b][]: pFont memory usage: 2883584
+[56e5ab2b][]: pFont memory usage: 3014656
+[56e5ab2b][]: pFont memory usage: 3276800
+[56e5ab2b][]: pFont memory usage: 3407872
+[56e5ab2b][]: pFont memory usage: 3538944
+[56e5ab2b][]: pFont memory usage: 3801088
+[56e5ab2e][]: pFont memory usage: 3932160
+[56e5ab30][client]: disconnecting. reason='unknown'
+[56e5ab30][client]: connecting to '178.62.47.177:8307'
+[56e5ab30][]: pFont memory usage: 4980736
+[56e5ab30][client]: connected, sending info
+[56e5ab30][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e5ab30][datafile]: loading. filename='maps/ctf5.map'
+[56e5ab30][datafile]: allocsize=1516
+[56e5ab30][datafile]: readsize=1276
+[56e5ab30][datafile]: swaplen=1296
+[56e5ab30][datafile]: item_size=1008
+[56e5ab30][datafile]: loading done. datafile='maps/ctf5.map'
+[56e5ab30][client]: loaded map 'maps/ctf5.map'
+[56e5ab30][client/network]: loading done
+[56e5ab30][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e5ab30][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e5ab30][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e5ab30][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e5ab30][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e5ab30][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e5ab30][datafile]: loading data index=0 size=18 uncompressed=10
+[56e5ab30][datafile]: loading data index=1 size=18 uncompressed=10
+[56e5ab30][datafile]: loading data index=2 size=18 uncompressed=10
+[56e5ab30][datafile]: loading data index=3 size=27 uncompressed=19
+[56e5ab30][datafile]: loading data index=4 size=22 uncompressed=14
+[56e5ab30][datafile]: loading data index=5 size=19 uncompressed=11
+[56e5ab31][chat]: *** 'guau-guaU!' entered and joined the red team
+[56e5ab31][datafile]: loading data index=6 size=79 uncompressed=152
+[56e5ab31][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e5ab31][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e5ab32][chat]: *** 'Satellite' entered and joined the blue team
+[56e5ab4a][]: pFont memory usage: 5111808
+[56e5ab4d][chat]: *** The red flag was captured by 'keitoaino' (24.44 seconds)
+[56e5ab6a][chat]: Satellite: =)
+[56e5ab72][chat]: guau-guaU!: lol?
+[56e5ab74][chat]: *** The red flag was captured by 'keitoaino' (13.26 seconds)
+[56e5ab77][chat]: Satellite: y
+[56e5ab7d][chat]: guau-guaU!: xD
+[56e5aba2][chat]: *** 'Satellite' has left the game
+[56e5aba5][chat]: TaToTan: Satellite: ita?
+[56e5abae][chat]: *** 'TaToTan' has left the game
+[56e5abba][chat]: *** 'Switchblade' joined the blue team
+[56e5abd6][chat]: *** 'Stanluminium' entered and joined the red team
+[56e5abd9][chat]: guau-guaU!: is it possible the ddnet client will be slower than vainilla???
+[56e5abe2][chat]: *** 'slickdock' has left the game
+[56e5abed][chat]: *** 'Sergi' entered and joined the blue team
+[56e5ac0e][chat]: *** The blue flag was captured by 'Alpacini0oo'
+[56e5ac1a][chat]: *** 'Switchblade' has left the game
+[56e5ac1c][chat]: guau-guaU!: ill say yes
+[56e5ac2b][chat]: *** 'keitoaino' has left the game
+[56e5ac37][chat]: *** 'xXluckybaumXx' has left the game
+[56e5ac43][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5b73a][engine]: running on unix-linux-amd64
+[56e5b73a][engine]: arch is little endian
+[56e5b73a][storage]: couldn't open storage.cfg
+[56e5b73a][storage]: using standard paths
+[56e5b73a][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e5b73a][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e5b73a][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e5b73a][binds]: bound f1 (282) = toggle_local_console
+[56e5b73a][binds]: bound f2 (283) = toggle_remote_console
+[56e5b73a][binds]: bound tab (9) = +scoreboard
+[56e5b73a][binds]: bound u (117) = +show_chat
+[56e5b73a][binds]: bound f10 (291) = screenshot
+[56e5b73a][binds]: bound a (97) = +left
+[56e5b73a][binds]: bound d (100) = +right
+[56e5b73a][binds]: bound space (32) = +jump
+[56e5b73a][binds]: bound mouse1 (323) = +fire
+[56e5b73a][binds]: bound mouse2 (324) = +hook
+[56e5b73a][binds]: bound lshift (304) = +emote
+[56e5b73a][binds]: bound rshift (303) = +spectate
+[56e5b73a][binds]: bound right (275) = spectate_next
+[56e5b73a][binds]: bound left (276) = spectate_previous
+[56e5b73a][binds]: bound 1 (49) = +weapon1
+[56e5b73a][binds]: bound 2 (50) = +weapon2
+[56e5b73a][binds]: bound 3 (51) = +weapon3
+[56e5b73a][binds]: bound 4 (52) = +weapon4
+[56e5b73a][binds]: bound 5 (53) = +weapon5
+[56e5b73a][binds]: bound mousewheelup (331) = +prevweapon
+[56e5b73a][binds]: bound mousewheeldown (332) = +nextweapon
+[56e5b73a][binds]: bound t (116) = chat all
+[56e5b73a][binds]: bound y (121) = chat team
+[56e5b73a][binds]: bound f3 (284) = vote yes
+[56e5b73a][binds]: bound f4 (285) = vote no
+[56e5b73a][console]: executing 'settings.cfg'
+[56e5b73a][binds]: bound tab (9) = +scoreboard
+[56e5b73a][binds]: bound space (32) = +jump
+[56e5b73a][binds]: bound 1 (49) = +weapon1
+[56e5b73a][binds]: bound 2 (50) = +weapon2
+[56e5b73a][binds]: bound 3 (51) = +weapon3
+[56e5b73a][binds]: bound 4 (52) = +weapon4
+[56e5b73a][binds]: bound 5 (53) = +weapon5
+[56e5b73a][binds]: bound a (97) = +left
+[56e5b73a][binds]: bound d (100) = +right
+[56e5b73a][binds]: bound s (115) = +prevweapon
+[56e5b73a][binds]: bound t (116) = chat all
+[56e5b73a][binds]: bound u (117) = +show_chat
+[56e5b73a][binds]: bound w (119) = +nextweapon
+[56e5b73a][binds]: bound y (121) = chat team
+[56e5b73a][binds]: bound right (275) = spectate_next
+[56e5b73a][binds]: bound left (276) = spectate_previous
+[56e5b73a][binds]: bound f1 (282) = toggle_local_console
+[56e5b73a][binds]: bound f2 (283) = toggle_remote_console
+[56e5b73a][binds]: bound f3 (284) = vote yes
+[56e5b73a][binds]: bound f4 (285) = vote no
+[56e5b73a][binds]: bound f11 (292) = kill
+[56e5b73a][binds]: bound rshift (303) = +spectate
+[56e5b73a][binds]: bound lshift (304) = +emote
+[56e5b73a][binds]: bound print (316) = screenshot
+[56e5b73a][binds]: bound mouse1 (323) = +fire
+[56e5b73a][binds]: bound mouse2 (324) = +hook
+[56e5b73a][console]: failed to open 'autoexec.cfg'
+[56e5b73a][client]: starting...
+[56e5b73a][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5b73a][localization]: loaded 'languages/spanish.txt'
+[56e5b73a][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e5b73a][textrender]: default pFont set 0x10af1c0
+[56e5b73a][]: pFont memory usage: 2097152
+[56e5b73b][gameclient]: initialisation finished after 327.96ms
+[56e5b73b][client]: version 0.6 626fce9a778df4d4
+[56e5b73b][engine/mastersrv]: saving addresses
+[56e5b73b][]: pFont memory usage: 2621440
+[56e5b73b][]: pFont memory usage: 2883584
+[56e5b73b][]: pFont memory usage: 3014656
+[56e5b73b][]: pFont memory usage: 3276800
+[56e5b73b][]: pFont memory usage: 3407872
+[56e5b73b][]: pFont memory usage: 3538944
+[56e5b73b][]: pFont memory usage: 3801088
+[56e5b73e][client]: disconnecting. reason='unknown'
+[56e5b73e][client]: connecting to '62.75.240.83:8306'
+[56e5b73e][]: pFont memory usage: 4849664
+[56e5b73e][client]: connected, sending info
+[56e5b73e][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e5b73e][datafile]: loading. filename='maps/ctf5.map'
+[56e5b73e][datafile]: allocsize=1516
+[56e5b73e][datafile]: readsize=1276
+[56e5b73e][datafile]: swaplen=1296
+[56e5b73e][datafile]: item_size=1008
+[56e5b73e][datafile]: loading done. datafile='maps/ctf5.map'
+[56e5b73e][client]: loaded map 'maps/ctf5.map'
+[56e5b73e][client/network]: loading done
+[56e5b73e][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e5b73e][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e5b73e][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e5b73e][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e5b73e][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e5b73e][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e5b73e][datafile]: loading data index=0 size=18 uncompressed=10
+[56e5b73e][datafile]: loading data index=1 size=18 uncompressed=10
+[56e5b73e][datafile]: loading data index=2 size=18 uncompressed=10
+[56e5b73e][datafile]: loading data index=3 size=27 uncompressed=19
+[56e5b73e][datafile]: loading data index=4 size=22 uncompressed=14
+[56e5b73e][datafile]: loading data index=5 size=19 uncompressed=11
+[56e5b73f][chat]: *** 'guau-guaU!' entered and joined the blue team
+[56e5b73f][datafile]: loading data index=6 size=79 uncompressed=152
+[56e5b73f][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e5b73f][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e5b741][chat]: riley: =')
+[56e5b751][]: pFont memory usage: 4980736
+[56e5b758][chat]: riley: #rekt
+[56e5b762][chat]: *** The blue flag was captured by 'RedBull'
+[56e5b762][chat]: riley: #rekt
+[56e5b77a][chat]: *** 'GameDaniLP' entered and joined the red team
+[56e5b790][chat]: *** 'Av@ron0ne' entered and joined the blue team
+[56e5b795][chat]: *** '(2)nameless tee' entered and joined the red team
+[56e5b798][]: pFont memory usage: 5111808
+[56e5b7a4][chat]: *** The red flag was captured by '|Bl  eB  w|' (10.64 seconds)
+[56e5b7a6][chat]: knnnnnn: Я ЮТУБЕР
+[56e5b7bf][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5b84c][engine]: running on unix-linux-amd64
+[56e5b84c][engine]: arch is little endian
+[56e5b84c][storage]: couldn't open storage.cfg
+[56e5b84c][storage]: using standard paths
+[56e5b84c][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e5b84c][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e5b84c][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e5b84c][binds]: bound f1 (282) = toggle_local_console
+[56e5b84c][binds]: bound f2 (283) = toggle_remote_console
+[56e5b84c][binds]: bound tab (9) = +scoreboard
+[56e5b84c][binds]: bound u (117) = +show_chat
+[56e5b84c][binds]: bound f10 (291) = screenshot
+[56e5b84c][binds]: bound a (97) = +left
+[56e5b84c][binds]: bound d (100) = +right
+[56e5b84c][binds]: bound space (32) = +jump
+[56e5b84c][binds]: bound mouse1 (323) = +fire
+[56e5b84c][binds]: bound mouse2 (324) = +hook
+[56e5b84c][binds]: bound lshift (304) = +emote
+[56e5b84c][binds]: bound rshift (303) = +spectate
+[56e5b84c][binds]: bound right (275) = spectate_next
+[56e5b84c][binds]: bound left (276) = spectate_previous
+[56e5b84c][binds]: bound 1 (49) = +weapon1
+[56e5b84c][binds]: bound 2 (50) = +weapon2
+[56e5b84c][binds]: bound 3 (51) = +weapon3
+[56e5b84c][binds]: bound 4 (52) = +weapon4
+[56e5b84c][binds]: bound 5 (53) = +weapon5
+[56e5b84c][binds]: bound mousewheelup (331) = +prevweapon
+[56e5b84c][binds]: bound mousewheeldown (332) = +nextweapon
+[56e5b84c][binds]: bound t (116) = chat all
+[56e5b84c][binds]: bound y (121) = chat team
+[56e5b84c][binds]: bound f3 (284) = vote yes
+[56e5b84c][binds]: bound f4 (285) = vote no
+[56e5b84c][console]: executing 'settings.cfg'
+[56e5b84c][binds]: bound tab (9) = +scoreboard
+[56e5b84c][binds]: bound space (32) = +jump
+[56e5b84c][binds]: bound 1 (49) = +weapon1
+[56e5b84c][binds]: bound 2 (50) = +weapon2
+[56e5b84c][binds]: bound 3 (51) = +weapon3
+[56e5b84c][binds]: bound 4 (52) = +weapon4
+[56e5b84c][binds]: bound 5 (53) = +weapon5
+[56e5b84c][binds]: bound a (97) = +left
+[56e5b84c][binds]: bound d (100) = +right
+[56e5b84c][binds]: bound s (115) = +prevweapon
+[56e5b84c][binds]: bound t (116) = chat all
+[56e5b84c][binds]: bound u (117) = +show_chat
+[56e5b84c][binds]: bound w (119) = +nextweapon
+[56e5b84c][binds]: bound y (121) = chat team
+[56e5b84c][binds]: bound right (275) = spectate_next
+[56e5b84c][binds]: bound left (276) = spectate_previous
+[56e5b84c][binds]: bound f1 (282) = toggle_local_console
+[56e5b84c][binds]: bound f2 (283) = toggle_remote_console
+[56e5b84c][binds]: bound f3 (284) = vote yes
+[56e5b84c][binds]: bound f4 (285) = vote no
+[56e5b84c][binds]: bound f11 (292) = kill
+[56e5b84c][binds]: bound rshift (303) = +spectate
+[56e5b84c][binds]: bound lshift (304) = +emote
+[56e5b84c][binds]: bound print (316) = screenshot
+[56e5b84c][binds]: bound mouse1 (323) = +fire
+[56e5b84c][binds]: bound mouse2 (324) = +hook
+[56e5b84c][console]: failed to open 'autoexec.cfg'
+[56e5b84c][client]: starting...
+[56e5b84c][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5b84c][localization]: loaded 'languages/spanish.txt'
+[56e5b84c][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e5b84c][textrender]: default pFont set 0x17169d0
+[56e5b84c][]: pFont memory usage: 2097152
+[56e5b84d][gameclient]: initialisation finished after 365.17ms
+[56e5b84d][client]: version 0.6 626fce9a778df4d4
+[56e5b84d][engine/mastersrv]: saving addresses
+[56e5b84d][]: pFont memory usage: 2621440
+[56e5b84d][]: pFont memory usage: 2883584
+[56e5b84d][]: pFont memory usage: 3014656
+[56e5b84d][]: pFont memory usage: 3276800
+[56e5b84d][]: pFont memory usage: 3407872
+[56e5b84d][]: pFont memory usage: 3538944
+[56e5b84d][]: pFont memory usage: 3801088
+[56e5b850][]: pFont memory usage: 3932160
+[56e5b851][client]: disconnecting. reason='unknown'
+[56e5b851][client]: connecting to '37.187.73.154:8307'
+[56e5b851][]: pFont memory usage: 4980736
+[56e5b851][client]: connected, sending info
+[56e5b851][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e5b851][datafile]: loading. filename='maps/ctf5.map'
+[56e5b851][datafile]: allocsize=1516
+[56e5b851][datafile]: readsize=1276
+[56e5b851][datafile]: swaplen=1296
+[56e5b851][datafile]: item_size=1008
+[56e5b851][datafile]: loading done. datafile='maps/ctf5.map'
+[56e5b851][client]: loaded map 'maps/ctf5.map'
+[56e5b851][client/network]: loading done
+[56e5b851][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e5b851][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e5b851][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e5b851][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e5b851][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e5b851][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e5b851][datafile]: loading data index=0 size=18 uncompressed=10
+[56e5b851][datafile]: loading data index=1 size=18 uncompressed=10
+[56e5b851][datafile]: loading data index=2 size=18 uncompressed=10
+[56e5b851][datafile]: loading data index=3 size=27 uncompressed=19
+[56e5b851][datafile]: loading data index=4 size=22 uncompressed=14
+[56e5b851][datafile]: loading data index=5 size=19 uncompressed=11
+[56e5b852][chat]: *** 'guau-guaU!' entered and joined the red team
+[56e5b852][datafile]: loading data index=6 size=79 uncompressed=152
+[56e5b852][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e5b852][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e5b859][chat]: *** 'ITM' entered and joined the red team
+[56e5b85b][chat]: *** '();();();();();' joined the blue team
+[56e5b85b][]: pFont memory usage: 5111808
+[56e5b85d][chat]: *** The red flag was captured by 'kofoladotrojky' (24.80 seconds)
+[56e5b86b][chat]: *** The red flag was captured by 'Av@ron0ne' (12.44 seconds)
+[56e5b873][chat]: *** 'AllDayEveryday' joined the red team
+[56e5b8d2][chat]: *** The red flag was captured by 'Wolfwood.N'
+[56e5b8f8][chat]: *** 'El Chihuaracan' has left the game (Kicked for inactivity)
+[56e5b8fb][chat]: *** 'El Chihuaracan' entered and joined the red team
+[56e5b901][chat]: *** The blue flag was captured by 'Kraftig' (19.21 seconds)
+[56e5b914][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5b973][engine]: running on unix-linux-amd64
+[56e5b973][engine]: arch is little endian
+[56e5b973][storage]: couldn't open storage.cfg
+[56e5b973][storage]: using standard paths
+[56e5b973][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e5b973][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e5b973][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e5b973][binds]: bound f1 (282) = toggle_local_console
+[56e5b973][binds]: bound f2 (283) = toggle_remote_console
+[56e5b973][binds]: bound tab (9) = +scoreboard
+[56e5b973][binds]: bound u (117) = +show_chat
+[56e5b973][binds]: bound f10 (291) = screenshot
+[56e5b973][binds]: bound a (97) = +left
+[56e5b973][binds]: bound d (100) = +right
+[56e5b973][binds]: bound space (32) = +jump
+[56e5b973][binds]: bound mouse1 (323) = +fire
+[56e5b973][binds]: bound mouse2 (324) = +hook
+[56e5b973][binds]: bound lshift (304) = +emote
+[56e5b973][binds]: bound rshift (303) = +spectate
+[56e5b973][binds]: bound right (275) = spectate_next
+[56e5b973][binds]: bound left (276) = spectate_previous
+[56e5b973][binds]: bound 1 (49) = +weapon1
+[56e5b973][binds]: bound 2 (50) = +weapon2
+[56e5b973][binds]: bound 3 (51) = +weapon3
+[56e5b973][binds]: bound 4 (52) = +weapon4
+[56e5b973][binds]: bound 5 (53) = +weapon5
+[56e5b973][binds]: bound mousewheelup (331) = +prevweapon
+[56e5b973][binds]: bound mousewheeldown (332) = +nextweapon
+[56e5b973][binds]: bound t (116) = chat all
+[56e5b973][binds]: bound y (121) = chat team
+[56e5b973][binds]: bound f3 (284) = vote yes
+[56e5b973][binds]: bound f4 (285) = vote no
+[56e5b973][console]: executing 'settings.cfg'
+[56e5b973][binds]: bound tab (9) = +scoreboard
+[56e5b973][binds]: bound space (32) = +jump
+[56e5b973][binds]: bound 1 (49) = +weapon1
+[56e5b973][binds]: bound 2 (50) = +weapon2
+[56e5b973][binds]: bound 3 (51) = +weapon3
+[56e5b973][binds]: bound 4 (52) = +weapon4
+[56e5b973][binds]: bound 5 (53) = +weapon5
+[56e5b973][binds]: bound a (97) = +left
+[56e5b973][binds]: bound d (100) = +right
+[56e5b973][binds]: bound s (115) = +prevweapon
+[56e5b973][binds]: bound t (116) = chat all
+[56e5b973][binds]: bound u (117) = +show_chat
+[56e5b973][binds]: bound w (119) = +nextweapon
+[56e5b973][binds]: bound y (121) = chat team
+[56e5b973][binds]: bound right (275) = spectate_next
+[56e5b973][binds]: bound left (276) = spectate_previous
+[56e5b973][binds]: bound f1 (282) = toggle_local_console
+[56e5b973][binds]: bound f2 (283) = toggle_remote_console
+[56e5b973][binds]: bound f3 (284) = vote yes
+[56e5b973][binds]: bound f4 (285) = vote no
+[56e5b973][binds]: bound f11 (292) = kill
+[56e5b973][binds]: bound rshift (303) = +spectate
+[56e5b973][binds]: bound lshift (304) = +emote
+[56e5b973][binds]: bound print (316) = screenshot
+[56e5b973][binds]: bound mouse1 (323) = +fire
+[56e5b973][binds]: bound mouse2 (324) = +hook
+[56e5b973][console]: failed to open 'autoexec.cfg'
+[56e5b973][client]: starting...
+[56e5b973][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5b973][localization]: loaded 'languages/spanish.txt'
+[56e5b973][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e5b973][textrender]: default pFont set 0x29ae1d0
+[56e5b973][]: pFont memory usage: 2097152
+[56e5b973][gameclient]: initialisation finished after 116.27ms
+[56e5b973][client]: version 0.6 626fce9a778df4d4
+[56e5b973][engine/mastersrv]: saving addresses
+[56e5b973][]: pFont memory usage: 2621440
+[56e5b973][]: pFont memory usage: 2883584
+[56e5b973][]: pFont memory usage: 3014656
+[56e5b973][]: pFont memory usage: 3276800
+[56e5b973][]: pFont memory usage: 3407872
+[56e5b973][]: pFont memory usage: 3538944
+[56e5b973][]: pFont memory usage: 3801088
+[56e5b977][]: pFont memory usage: 3932160
+[56e5b979][client]: disconnecting. reason='unknown'
+[56e5b979][client]: connecting to '173.248.146.35:4051'
+[56e5b979][]: pFont memory usage: 4980736
+[56e5b979][client]: connected, sending info
+[56e5b97a][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e5b97a][datafile]: loading. filename='maps/ctf5.map'
+[56e5b97a][datafile]: allocsize=1516
+[56e5b97a][datafile]: readsize=1276
+[56e5b97a][datafile]: swaplen=1296
+[56e5b97a][datafile]: item_size=1008
+[56e5b97a][datafile]: loading done. datafile='maps/ctf5.map'
+[56e5b97a][client]: loaded map 'maps/ctf5.map'
+[56e5b97a][client/network]: loading done
+[56e5b97a][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e5b97a][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e5b97a][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e5b97a][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e5b97a][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e5b97a][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e5b97a][datafile]: loading data index=0 size=18 uncompressed=10
+[56e5b97a][datafile]: loading data index=1 size=18 uncompressed=10
+[56e5b97a][datafile]: loading data index=2 size=18 uncompressed=10
+[56e5b97a][datafile]: loading data index=3 size=27 uncompressed=19
+[56e5b97a][datafile]: loading data index=4 size=22 uncompressed=14
+[56e5b97a][datafile]: loading data index=5 size=19 uncompressed=11
+[56e5b97a][chat]: *** 'guau-guaU!' entered and joined the red team
+[56e5b97b][datafile]: loading data index=6 size=79 uncompressed=152
+[56e5b97b][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e5b97b][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e5b97f][chat]: *** 'Cetoran' has left the game
+[56e5b983][]: pFont memory usage: 5111808
+[56e5b9fe][chat]: *** The blue flag was captured by 'guau-guaU!'
+[56e5ba14][chat]: *** 'Adriaxoman' entered and joined the blue team
+[56e5ba15][chat]: *** 'EPICDUDE' entered and joined the red team
+[56e5ba15][chat]: Razhagal: sorry
+[56e5ba16][chat]: Razhagal: xd
+[56e5ba25][chat]: *** 'Adriaxoman' has left the game
+[56e5ba58][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+cat: /proc/422/cmdline: No existe el fichero o el directorio
+
+** (lxpanel:9348): WARNING **: ltbp: fgets 'cat /proc/422/cmdline'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+cat: /proc/422/cmdline: No existe el fichero o el directorio
+
+** (lxpanel:9348): WARNING **: ltbp: fgets 'cat /proc/422/cmdline'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+cat: /proc/422/cmdline: No existe el fichero o el directorio
+
+** (lxpanel:9348): WARNING **: ltbp: fgets 'cat /proc/422/cmdline'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5c13c][engine]: running on unix-linux-amd64
+[56e5c13c][engine]: arch is little endian
+[56e5c13c][storage]: couldn't open storage.cfg
+[56e5c13c][storage]: using standard paths
+[56e5c13c][storage]: added path '$USERDIR' ('/home/charly/.teeworlds')
+[56e5c13c][storage]: added path '$DATADIR' ('/usr/share/teeworlds/data')
+[56e5c13c][storage]: added path '$CURRENTDIR' ('/home/charly/dotfiles/lxde/.config/lxsession/LXDE')
+[56e5c13c][binds]: bound f1 (282) = toggle_local_console
+[56e5c13c][binds]: bound f2 (283) = toggle_remote_console
+[56e5c13c][binds]: bound tab (9) = +scoreboard
+[56e5c13c][binds]: bound u (117) = +show_chat
+[56e5c13c][binds]: bound f10 (291) = screenshot
+[56e5c13c][binds]: bound a (97) = +left
+[56e5c13c][binds]: bound d (100) = +right
+[56e5c13c][binds]: bound space (32) = +jump
+[56e5c13c][binds]: bound mouse1 (323) = +fire
+[56e5c13c][binds]: bound mouse2 (324) = +hook
+[56e5c13c][binds]: bound lshift (304) = +emote
+[56e5c13c][binds]: bound rshift (303) = +spectate
+[56e5c13c][binds]: bound right (275) = spectate_next
+[56e5c13c][binds]: bound left (276) = spectate_previous
+[56e5c13c][binds]: bound 1 (49) = +weapon1
+[56e5c13c][binds]: bound 2 (50) = +weapon2
+[56e5c13c][binds]: bound 3 (51) = +weapon3
+[56e5c13c][binds]: bound 4 (52) = +weapon4
+[56e5c13c][binds]: bound 5 (53) = +weapon5
+[56e5c13c][binds]: bound mousewheelup (331) = +prevweapon
+[56e5c13c][binds]: bound mousewheeldown (332) = +nextweapon
+[56e5c13c][binds]: bound t (116) = chat all
+[56e5c13c][binds]: bound y (121) = chat team
+[56e5c13c][binds]: bound f3 (284) = vote yes
+[56e5c13c][binds]: bound f4 (285) = vote no
+[56e5c13c][console]: executing 'settings.cfg'
+[56e5c13c][binds]: bound tab (9) = +scoreboard
+[56e5c13c][binds]: bound space (32) = +jump
+[56e5c13c][binds]: bound 1 (49) = +weapon1
+[56e5c13c][binds]: bound 2 (50) = +weapon2
+[56e5c13c][binds]: bound 3 (51) = +weapon3
+[56e5c13c][binds]: bound 4 (52) = +weapon4
+[56e5c13c][binds]: bound 5 (53) = +weapon5
+[56e5c13c][binds]: bound a (97) = +left
+[56e5c13c][binds]: bound d (100) = +right
+[56e5c13c][binds]: bound s (115) = +prevweapon
+[56e5c13c][binds]: bound t (116) = chat all
+[56e5c13c][binds]: bound u (117) = +show_chat
+[56e5c13c][binds]: bound w (119) = +nextweapon
+[56e5c13c][binds]: bound y (121) = chat team
+[56e5c13c][binds]: bound right (275) = spectate_next
+[56e5c13c][binds]: bound left (276) = spectate_previous
+[56e5c13c][binds]: bound f1 (282) = toggle_local_console
+[56e5c13c][binds]: bound f2 (283) = toggle_remote_console
+[56e5c13c][binds]: bound f3 (284) = vote yes
+[56e5c13c][binds]: bound f4 (285) = vote no
+[56e5c13c][binds]: bound f11 (292) = kill
+[56e5c13c][binds]: bound rshift (303) = +spectate
+[56e5c13c][binds]: bound lshift (304) = +emote
+[56e5c13c][binds]: bound print (316) = screenshot
+[56e5c13c][binds]: bound mouse1 (323) = +fire
+[56e5c13c][binds]: bound mouse2 (324) = +hook
+[56e5c13c][console]: failed to open 'autoexec.cfg'
+[56e5c13c][client]: starting...
+[56e5c13c][engine/mastersrv]: refreshing master server addresses
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+[56e5c13c][localization]: loaded 'languages/spanish.txt'
+[56e5c13c][textrender]: loaded pFont from '/usr/share/teeworlds/data/fonts/DejaVuSans.ttf'
+[56e5c13c][textrender]: default pFont set 0x28f2210
+[56e5c13c][]: pFont memory usage: 2097152
+[56e5c13c][gameclient]: initialisation finished after 344.13ms
+[56e5c13c][client]: version 0.6 626fce9a778df4d4
+[56e5c13c][]: pFont memory usage: 2621440
+[56e5c13c][]: pFont memory usage: 2883584
+[56e5c13c][]: pFont memory usage: 3014656
+[56e5c13c][]: pFont memory usage: 3276800
+[56e5c13c][]: pFont memory usage: 3407872
+[56e5c13c][]: pFont memory usage: 3538944
+[56e5c13c][]: pFont memory usage: 3801088
+[56e5c13c][engine/mastersrv]: saving addresses
+[56e5c142][]: pFont memory usage: 3932160
+[56e5c145][client]: disconnecting. reason='unknown'
+[56e5c145][client]: connecting to '173.248.146.35:4051'
+[56e5c145][]: pFont memory usage: 4980736
+[56e5c145][client]: connected, sending info
+[56e5c145][client]: loading map, map=ctf5 wanted crc=d92129a0
+[56e5c145][datafile]: loading. filename='maps/ctf5.map'
+[56e5c145][datafile]: allocsize=1516
+[56e5c145][datafile]: readsize=1276
+[56e5c145][datafile]: swaplen=1296
+[56e5c145][datafile]: item_size=1008
+[56e5c145][datafile]: loading done. datafile='maps/ctf5.map'
+[56e5c145][client]: loaded map 'maps/ctf5.map'
+[56e5c145][client/network]: loading done
+[56e5c146][datafile]: loading data index=11 size=2252 uncompressed=129600
+[56e5c146][datafile]: loading data index=9 size=797 uncompressed=119600
+[56e5c146][datafile]: loading data index=10 size=1316 uncompressed=129600
+[56e5c146][datafile]: loading data index=12 size=268 uncompressed=129600
+[56e5c146][datafile]: loading data index=13 size=2715 uncompressed=129600
+[56e5c146][datafile]: loading data index=14 size=2652 uncompressed=129600
+[56e5c146][datafile]: loading data index=0 size=18 uncompressed=10
+[56e5c146][datafile]: loading data index=1 size=18 uncompressed=10
+[56e5c146][datafile]: loading data index=2 size=18 uncompressed=10
+[56e5c146][datafile]: loading data index=3 size=27 uncompressed=19
+[56e5c146][datafile]: loading data index=4 size=22 uncompressed=14
+[56e5c146][datafile]: loading data index=5 size=19 uncompressed=11
+[56e5c147][chat]: *** 'guau-guaU!' entered and joined the red team
+[56e5c147][datafile]: loading data index=6 size=79 uncompressed=152
+[56e5c147][datafile]: loading data index=7 size=354 uncompressed=1520
+[56e5c147][datafile]: loading data index=8 size=241 uncompressed=1064
+[56e5c14f][chat]: *** 'alej' joined the blue team
+[56e5c155][chat]: *** The blue flag was captured by 't++' (18.56 seconds)
+[56e5c157][]: pFont memory usage: 5111808
+[56e5c161][chat]: *** The red flag was captured by 'alej' (8.64 seconds)
+[56e5c162][client]: disconnecting. reason='unknown'
+[56e5c17b][client]: disconnecting. reason='unknown'
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
+
+(lxpanel:9348): Wnck-WARNING **: Unhandled action type _OB_WM_ACTION_UNDECORATE
