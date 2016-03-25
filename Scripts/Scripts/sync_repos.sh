@@ -62,9 +62,20 @@ do_dotfiles(){
     cd $ROOT
 }
 
+do_yad(){
+    echo "**********************************"
+    echo "Doing yad"
+    cd ~/Clones/yad 
+    git svn rebase
+    git push
+    cd $ROOT
+
+}
+
 sync_repos() {
     do_mines
     do_dotfiles
+    do_yad
 }
 
 sync_repos
