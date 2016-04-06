@@ -74,7 +74,10 @@ map <C-b> :js FirefoxPrivate(buffer.URL)<CR><Esc>:bd<CR>
 map <C-m>  :js showFSVideo(buffer.URL)<CR>
 
 "toggle temporary  noscript perms for the current buffer
-map <C-j>  :noscript toggletemp<CR>
+"map <C-j>  :noscript toggletemp<CR>
+"Disable page style for current buffer(most time enough to show content without the obnoxious JS)
+map <C-j>  :emenu Ver.Estilo de página.Sin estilo<CR>
+
 
 "Change newtab.url in firefox>40
 "defaultPage()
