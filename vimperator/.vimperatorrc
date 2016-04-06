@@ -242,6 +242,20 @@ set! layers.offmainthreadcomposition.enabled=true
 "Disable pdf.js viewer
 set! pdfjs.disabled=true
 
+"Custom fonts only
+set! font.default.x-western=serif
+set! font.minimum-size.x-western=16
+set! font.name.monospace.x-western=Liberation Mono for Powerline
+set! font.name.sans-serif.x-western=Roboto Mono for Powerline
+set! font.name.serif.x-western=Droid Sans Mono Dotted for Powerline
+set! font.default.x-unicode=serif
+set! font.minimum-size.x-unicode=16
+"Don't change them
+set! font.internaluseonly.changed=false
+
+
+"Preload newtabs 
+set! browser.newtab.preload=true
 
 "===[ Custom style ]=================================================
 
