@@ -140,6 +140,13 @@ repeat() {
     done
 }
 
+
+#Remove a file form git history
+git_rm_history() {
+    [[ -z $1 ]] && { echo "You must pass a dir name to delete"; return 1; }
+    git filter-branch -f --tree-filter 'rm -rf $1/' HEAD
+}
+
 #############
 #  Desktop  #
 #############
