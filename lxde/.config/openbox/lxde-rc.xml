@@ -52,21 +52,21 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>sans</name>
-      <size>10</size>
+      <name>Sans</name>
+      <size>8</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>sans</name>
-      <size>10</size>
+      <name>Sans</name>
+      <size>8</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuHeader">
@@ -258,7 +258,7 @@
     </keybind>
     <keybind key="W-f">
       <action name="Execute">
-          <command>firejail --blacklist=/mnt/ --noroot --whitelist=~/Scripts/clean_firefox.sh --whitelist=~/Scripts/firefox_sync.sh --whitelist=~/Scripts/descarga.sh --whitelist=~/.vimperator/plugin firefox</command>
+        <command>firejail --blacklist=/mnt/ --noroot --whitelist=~/Scripts/clean_firefox.sh --whitelist=~/Scripts/firefox_sync.sh --whitelist=~/Scripts/descarga.sh --whitelist=~/.vimperator/plugin firefox</command>
       </action>
     </keybind>
     <keybind key="W-m">
@@ -291,14 +291,14 @@
       </action>
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
-        <action name="Execute">
-            <command>pactl -- set-sink-volume 0 +5%</command>
-        </action>
+      <action name="Execute">
+        <command>pactl -- set-sink-volume 0 +5%</command>
+      </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
-        <action name="Execute">
-            <command>pactl -- set-sink-volume 0 -5%</command>
-        </action>
+      <action name="Execute">
+        <command>pactl -- set-sink-volume 0 -5%</command>
+      </action>
     </keybind>
     <keybind key="A-Escape">
       <action name="Lower"/>
@@ -364,7 +364,7 @@
     <!-- number of pixels the mouse must move before a drag begins -->
     <doubleClickTime>200</doubleClickTime>
     <!-- in milliseconds (1000 = 1 second) -->
-    <screenEdgeWarpTime>400</screenEdgeWarpTime>
+    <screenEdgeWarpTime>0</screenEdgeWarpTime>
     <!-- Time before changing desktops when the pointer touches the edge of the
        screen while moving a window, in milliseconds (1000 = 1 second).
        Set this to 0 to disable warping -->
