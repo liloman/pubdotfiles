@@ -7,7 +7,6 @@
 
 set editor="lxterminal -e vim"
 set runtimepath=~/.vimperator
-set showstatuslinks=2
 "dont focus input automatically
 set focuscontent
 " addons downloads help javascript prefs in a new tab
@@ -32,10 +31,18 @@ set toolbars=nomenu,nobookmarks
 set messagetimeout=5000
 
 "Favorite colorcheme (broken compMore)
-"colorscheme obsidianç
+"colorscheme obsidian
 
-"Don't close firefox on with last tab
-set! browser.tabs.closeWindowWithLastTab=false
+"next version will allow view zoomlevel at last 
+"set status=input,zoomlevel,bookmark,history,tabcount,position,ssl 
+set status=input,bookmark,history,tabcount,position,ssl
+"show current mode on command mode
+set showmode=true
+"show links in the content area and not in the statusbar
+set showstatuslinks=3
+
+"show tabnumbers for alt+number
+set tabnumbers=true
 
 "===[ Custom mappings]=================================================
 
@@ -75,8 +82,10 @@ map <C-m>  :js showFSVideo(buffer.URL)<CR>
 
 "toggle temporary  noscript perms for the current buffer
 "map <C-j>  :noscript toggletemp<CR>
-"Disable page style for current buffer(most time enough to show content without the obnoxious JS)
-map <C-j>  :emenu Ver.Estilo de página.Sin estilo<CR>
+
+"Toggle page style for current buffer(most time enough to show content without the obnoxious JS)
+" setlocal usermode! in the future...
+map <C-j>  :set usermode!<CR>
 
 
 "Change newtab.url in firefox>40
@@ -107,6 +116,7 @@ autocmd VimperatorEnter .* every -interval 600 silent !~/Scripts/firefox_sync.sh
 "This event is released BEFORE firefox is closed
 command! -nargs=+ CleanFirefox autocmd VimperatorLeave .* <args>
 "Actually clean firefox profiles. Don't use quotes otherwise won't be executed!
+":set sanitizeitems of vimperator not working???
 CleanFirefox silent !~/Scripts/clean_firefox.sh default 
 CleanFirefox silent !~/Scripts/clean_firefox.sh Privado 
 "At last sync firefox PROFILE from RAM before quit
@@ -114,6 +124,9 @@ CleanFirefox silent !~/Scripts/firefox_sync.sh
 
 
 "===[ Custom firefox config ]=================================================
+
+"Don't close firefox on with last tab
+set! browser.tabs.closeWindowWithLastTab=false
 
 "Dont send referer
 set! network.http.sendRefererHeader=0
