@@ -82,6 +82,7 @@ if [[ $type != server ]]; then
     stow -vS xdg 
     stow -vS lxde 
     stow -vS Scripts 
+    stow -vS firejail 
     shopt -s dotglob
     cp -rvuP $PWD/systemd/* $HOME && { 
     systemctl --user daemon-reload;
