@@ -233,7 +233,6 @@ set! geo.enabled=false
 set! geo.wifi.uri=""
 "Disable webrtc
 set! media.peerconnection.enabled=false
-set! loop.enabled=false
 
 "Disable flash!! oh god
 set! plugin.state.flash=0
@@ -243,7 +242,9 @@ set! plugin.state.java=0
 "Let me choose when refresh the webpage for god sake
 set! accessibility.blockautorefresh=true
 
-
+"Disable firefox Hello
+set! loop.enabled=false
+"Disable firefox pocket
 set! browser.pocket.enabled=false
 set! browser.pocket.api=""
 
