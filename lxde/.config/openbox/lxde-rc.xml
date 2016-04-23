@@ -258,7 +258,7 @@
     </keybind>
     <keybind key="W-f">
       <action name="Execute">
-          <command>firejail --blacklist=/mnt/ --noroot --whitelist=~/Scripts/clean_firefox.sh --whitelist=~/Scripts/firefox_sync.sh --whitelist=~/Scripts/descarga.sh --whitelist=~/.vimperator/plugin --whitelist=/usr/bin/xscreensaver-command  firefox</command>
+          <command>firejail firefox</command>
       </action>
     </keybind>
     <keybind key="W-m">
