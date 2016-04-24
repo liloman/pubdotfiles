@@ -98,6 +98,7 @@ rbin() {
 ptree() {
     [[ -z $1 ]] && { echo "You must pass a command name"; return 1; }
     arg="-aSpuU" 
+    kflag=
 
     #Get extra pstree arguments
     OPTIND=1 #important reset!!
@@ -106,6 +107,9 @@ ptree() {
         case $opt in 
             A|l|c|s|g|G|Z|n|N|h)  
                 arg+=" -$opt"
+                ;;
+            k)  
+                kflag=yes
                 ;;
             \?)  echo -e "Option does not exist : $OPTARG\n"; return 1
                 ;;
