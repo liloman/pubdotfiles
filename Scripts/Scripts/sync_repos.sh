@@ -18,7 +18,7 @@ update_repo() {
     if [[ $(dirty) ]]; then 
         echo "Unsaved changes,doing commit so."
         git add .
-        git commit -m "auto commit for unsaved changes" || repo_failed $1
+        lxterminal -l -e 'git commit ; /bin/bash' || repo_failed $1
     fi
 
     #update refs for remote
