@@ -18,7 +18,7 @@ update_repo() {
     if [[ $(dirty) ]]; then 
         echo "Unsaved changes,doing commit so."
         git add .
-        lxterminal -l -e 'git commit ; /bin/bash' || repo_failed $1
+        lxterminal -l -e 'git commit -v; /bin/bash' || repo_failed $1
     fi
 
     #update refs for remote
@@ -59,6 +59,7 @@ do_dotfiles(){
     echo "**********************************"
     echo "Doing dotfiles"
     cd ~/dotfiles && update_repo dotfiles
+    ./install.sh -d
     cd $ROOT
 }
 
