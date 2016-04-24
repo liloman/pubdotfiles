@@ -97,19 +97,19 @@ rbin() {
 #-s to go till pid 1
 ptree() {
     [[ -z $1 ]] && { echo "You must pass a command name"; return 1; }
-    arg="-aSpuU" 
-    kflag=
+    local arg="-aSpuU" 
+    local kpid=
 
     #Get extra pstree arguments
     OPTIND=1 #important reset!!
-    while getopts ":AlcsgGZnNh" opt
+    while getopts ":AlcsgGZnNhk:" opt
     do
         case $opt in 
             A|l|c|s|g|G|Z|n|N|h)  
                 arg+=" -$opt"
                 ;;
             k)  
-                kflag=yes
+                kpid=$OPTARG
                 ;;
             \?)  echo -e "Option does not exist : $OPTARG\n"; return 1
                 ;;
@@ -121,14 +121,21 @@ ptree() {
     show_tree() {
         local -a pids
         local ppid
+        local i=1
         #Check if pid
         [[ $1 =~ ^[0-9]+$ ]] && pids=($1) || pids=($(\pgrep -f $1))
 
         for pid in ${pids[@]}; do
             #trim ppid 
             read ppid <<< $(ps hoppid $pid)
-            # if not parent on pids then pstree it
-            [[ " ${pids[@]} " =~ " $ppid " ]] || \pstree $arg -H $pid $pid 
+            if [[ -n $kpid ]]; then
+                (( i++ == kpid )) && { echo "Killing $pid"; kill -9 $pid; }
+            else
+                #Show index to kill command
+                echo -n $((i++))-
+                # if not parent on pids then pstree it
+                [[ " ${pids[@]} " =~ " $ppid " ]] || \pstree $arg -H $pid $pid 
+            fi
         done 
     }
 
