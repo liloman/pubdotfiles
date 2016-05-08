@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 #get the photo of today from nationalgeographic and use it as wallpaper
 
-. ~/Scripts/libnotify
-
-
+. $HOME/Scripts/libnotify
 
 change_wallpaper() {
     #wallpaper url and title, need to be got from $com
@@ -30,4 +28,4 @@ change_wallpaper() {
     pcmanfm -w  $wallpaper && notify "Background changed to:\n $title!" preferences-desktop-wallpaper
 }
 
-change_wallpaper
+change_wallpaper 

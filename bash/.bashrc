@@ -129,6 +129,9 @@ export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig/"
 [[ $TERM == xterm ]] && TERM=xterm-256color
 
 
+#Exported path to systemd user units 
+systemctl --user set-environment PATH=$PATH
+
 
 ###########
 #  Binds  #
