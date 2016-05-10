@@ -70,3 +70,7 @@
     path = vim/.vim/bundle/vim-git-branch-info
     url = https://github.com/taq/vim-git-branch-info
     ignore = all
+[submodule "vimperator.vim"]
+    path = vim/.vim/bundle/vimperator.vim
+    url = https://github.com/vimperator/vimperator.vim.git
+    ignore = all
