@@ -122,6 +122,8 @@ CleanFirefox silent !~/Scripts/clean_firefox.sh Privado
 "At last sync firefox PROFILE from RAM before quit
 CleanFirefox silent !~/Scripts/firefox_sync.sh
 
+" Load configuration file into current browser, useful for updating after editing this file.
+command! sourcerc :source ~/.vimperatorrc
 
 "===[ Custom firefox config ]=================================================
 
@@ -296,7 +298,8 @@ statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
 
 .tabbrowser-tab {
     -moz-appearance: none !important;
-    -moz-border-radius: 0px !important;
+" disable hints with tabnubmers=on :(
+"    -moz-border-radius: 0px !important;
     margin:0 -1px !important;
            padding:0 !important;
                    padding-top:3px !important;
