@@ -57,11 +57,14 @@ noremap k 10k
 noremap x <Esc>:
 inoremap <C-n> <Esc>:tabnext<CR>
 
+" Load configuration file into current browser, useful for updating after editing this file.
+noremap <C-r> :source ~/.vimperatorrc<CR>:echomsg "Reloaded ~/.vimperatorrc!"<CR>
+
 "inoremap <F9> <Esc>:tabprevious<CR>
 "inoremap <F10> <Esc>:tabnext<CR>
 "noremap K <Esc>:closedTabs<CR> 
 
-"===[ Custom function mappings ]=================================================
+"===[ Custom js mappings ]=================================================
 
 javascript function showFSVideo(url) {io.system('~/Scripts/descarga.sh ' + url +' &');};
 javascript function Midori() {io.system('midori -p ' + buffer.URL +' &');};
@@ -73,8 +76,10 @@ FirefoxPrivate = function(url) {
 };
 EOF
 
-"Execute priveate window and delete buffer in origin
+"Open in private window and delete buffer in origin
 map <C-b> :js FirefoxPrivate(buffer.URL)<CR><Esc>:bd<CR>
+"Open in private window 
+map <C-S-b> :js FirefoxPrivate(buffer.URL)<CR>
 
 "Show the current video in FullScreen through youtube-dl and mplayer
 "works for youtube,vimeo,rtve...
@@ -135,8 +140,6 @@ CleanFirefox silent !~/Scripts/clean_firefox.sh Privado
 "At last sync firefox PROFILE from RAM before quit
 CleanFirefox silent !~/Scripts/firefox_sync.sh
 
-" Load configuration file into current browser, useful for updating after editing this file.
-command! sourcerc -description "Reload ~/.vimperatorrc" :source ~/.vimperatorrc 
 
 
 "===[ Custom firefox config ]=================================================
