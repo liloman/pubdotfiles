@@ -83,9 +83,9 @@ map <C-m>  :js showFSVideo(buffer.URL)<CR>
 "toggle temporary  noscript perms for the current buffer
 "map <C-j>  :noscript toggletemp<CR>
 
-"Toggle page style for current buffer(most time enough to show content without the obnoxious JS)
+"Toggle page style for current buffer(most time enough to show content without the obnoxious JS otherwise see RemoveNoScriptTag... ;) )
 " setlocal usermode! in the future...
-map <C-j>  :set usermode!<CR>
+map <C-s>  :set usermode!<CR>
 
 
 "Change newtab.url in firefox>40
@@ -97,6 +97,19 @@ map <C-j>  :set usermode!<CR>
     var newTabService=Components.classes['@mozilla.org/browser/aboutnewtab-service;1'].getService(Ci.nsIAboutNewTabService);
     newTabService.newTabURL = 'about:blank';
 EOF
+
+"Remove cumbersome noscript tag... :)
+:js <<EOF
+RemoveNoScriptTag = function() {
+    var noscript = window.content.window.document.getElementsByTagName('noscript');
+    var index = noscript.length;
+    while(index--) {
+        noscript[index].parentNode.removeChild(noscript[index]);
+   }
+};
+EOF
+map <C-j>  :js RemoveNoScriptTag.call();<CR>
+
 
 "===[ Custom commands ]=================================================
 
@@ -114,7 +127,7 @@ command! -nargs=1 -complete=url -description "Open in private" pf :js FirefoxPri
 autocmd VimperatorEnter .* every -interval 600 silent !~/Scripts/firefox_sync.sh &
 
 "This event is released BEFORE firefox is closed
-command! -nargs=+ CleanFirefox autocmd VimperatorLeave .* <args>
+command! -nargs=+ CleanFirefox -description "Clean firefox trackings" autocmd VimperatorLeave .* <args>
 "Actually clean firefox profiles. Don't use quotes otherwise won't be executed!
 ":set sanitizeitems of vimperator not working???
 CleanFirefox silent !~/Scripts/clean_firefox.sh default 
@@ -123,7 +136,8 @@ CleanFirefox silent !~/Scripts/clean_firefox.sh Privado
 CleanFirefox silent !~/Scripts/firefox_sync.sh
 
 " Load configuration file into current browser, useful for updating after editing this file.
-command! sourcerc :source ~/.vimperatorrc
+command! sourcerc -description "Reload ~/.vimperatorrc" :source ~/.vimperatorrc 
+
 
 "===[ Custom firefox config ]=================================================
 
