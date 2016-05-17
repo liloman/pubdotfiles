@@ -28,12 +28,14 @@ pre: ./agent-proxy/agent-proxy 5550^5551 0 /dev/buspirate,115200  &
 # Runs after everything. Use it to attach to tmux with custom options etc.
 # post: tmux -CC attach -t kgdb
 post: \rm -f /tmp/kgdb.file
+post: pkill agent-proxy
 
 windows:
   - console: 
-      - telnet localhost 5550
-      - root
+        -  ( ( echo open "localhost 5550"; sleep 2; echo "root"; sleep 2; echo "echo ttyS0,115200 > /sys/module/kgdboc/parameters/kgdboc"; echo "remember doing echo g > /proc/sysrq-trigger"; ) | telnet )
+        - telnet localhost 5550
+        #- echo g > /proc/sysrq-trigger
   - gdb: 
       - cd linux-sunxi
-      - echo target remote localhost:5551 > /tmp/kgdb.file
-      - arm-none-eabi-gdb -x /tmp/kgdb.file vmlinux
+      - echo "target remote localhost:5551" > /tmp/kgdb.file; 
+      - echo "echo g > /proc/sysrq-trigger in target ;arm-none-eabi-gdb -x /tmp/kgdb.file vmlinux here"
