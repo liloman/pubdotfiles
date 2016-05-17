@@ -41,6 +41,17 @@ update_repo() {
     fi
 }
 
+do_others() {
+    #Repos
+    local others=" z "
+    for dir in $others; do
+        echo "**********************************"
+        echo "Doing $dir"
+        [[ ! -d $dir ]] && repo_failed "$dir not found" && continue
+        cd $dir && update_repo $dir
+        cd $ROOT
+    done
+}
 
 do_mines() {
     #Repos
@@ -77,6 +88,7 @@ sync_repos() {
     do_mines
     do_dotfiles
     do_yad
+    do_others
 }
 
 sync_repos

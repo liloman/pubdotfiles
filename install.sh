@@ -19,6 +19,9 @@
 #version 0.3 Refactoring and bash_functions
 #version 0.4 Changed to stow
 
+#TODO
+#Needs some function to "move" the files when stow fails
+
 __ScriptVersion="0.4"
 
 hash stow || { echo "Must install stow first"; exit 1; }
@@ -101,4 +104,4 @@ git submodule init
 echo Updating submodules 
 git submodule update  --init --remote
 
-echo Install script Done!.
+echo Install script done!.

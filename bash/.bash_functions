@@ -132,13 +132,14 @@ ptree() {
                 (( i++ == kpid )) && { echo "Killing $pid"; kill -9 $pid; }
             else
                 #Show index to kill command
-                echo -n $((i++))-
+                echo -n "[k:$((i++))] "
                 # if not parent on pids then pstree it
                 [[ " ${pids[@]} " =~ " $ppid " ]] || \pstree $arg -H $pid $pid 
             fi
         done 
     }
 
+    (( $# == 0 )) && echo "Needs and command name"
     for com;do
         show_tree $com
     done

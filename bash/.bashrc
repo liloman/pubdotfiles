@@ -137,7 +137,7 @@ systemctl --user set-environment PATH=$PATH
 #  Binds  #
 ###########
 
-#see .inputrc :)
+#see ~/.inputrc :)
 
 # Interesting autocompletions
 #Complete filename against complete history! :D
@@ -160,42 +160,47 @@ shopt -s histverify
 
 # PATH modified in ~/.bash_profile
 
+#source a filepath and declare variables
+import(){
+    #To work with file expansion
+    if [[ -f $(echo $1) ]]; then
+        . $1
+        shift
+        for arg; do
+            eval $arg
+        done
+    fi
+}
+
+
 #Load dir stack plugin
-[[ -f ~/Clones/dirStack/dirStack.sh ]] && .  ~/Clones/dirStack/dirStack.sh
-DIRSTACK_EXCLUDE+=":$HOME/dotfiles"
+import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles"
 
 #Z script to get the most common directories and so on
 #  https://github.com/rupa/z 
-if [[ -f ~/Clones/z/z.sh ]]; then
-    . ~/Clones/z/z.sh
-    _Z_DATA=$HOME/.zs/.z
-    #no clobber my $PROMPT_COMMAND
-    _Z_NO_PROMPT_COMMAND=true
-fi
+import ~/Clones/z/z.sh _Z_DATA=$HOME/.zs/.z _Z_NO_PROMPT_COMMAND=true
 
+# load definitions before aliases to work with custom aliases
+import ~/.bash_functions
+
+# Function definitions
+import ~/Scripts/libnotify
 
 # Alias definitions
-[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
-
-# Function definitions
-[[ -f ~/.bash_functions ]] && . ~/.bash_functions
-
-# Function definitions
-[[ -f ~/Scripts/libnotify ]] && . ~/Scripts/libnotify
+import ~/.bash_aliases
 
 #Enable Autocompletions 
-[[ -f /usr/share/bash-completion/bash_completion ]] && 
-            . /usr/share/bash-completion/bash_completion
+import /usr/share/bash-completion/bash_completion 
 
 #To work with git 
-if [[ -d /usr/share/doc/git-core-doc/contrib/completion ]]; then
-    source /usr/share/doc/git-core-doc/contrib/completion/git-completion.bash
-    source /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh
-    # else #Fedora 22
-    # source /usr/share/doc/git/contrib/completion/git-completion.bash
-    # source /usr/share/doc/git/contrib/completion/git-prompt.sh
-fi
+import /usr/share/doc/git-core-doc/contrib/completion/git-completion.bash
+import /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh
 
 # added by travis gem
-[[ -f /home/charly/.travis/travis.sh ]] && . /home/charly/.travis/travis.sh
+import /home/charly/.travis/travis.sh 
 
+#tmuxinator
+import /usr/share/gems/gems/tmuxinator*/completion/tmuxinator.bash
+
+#delete import function
+unset -f import

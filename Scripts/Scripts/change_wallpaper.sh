@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 #get the photo of today from nationalgeographic and use it as wallpaper
 
-. $HOME/Scripts/libnotify
 
 change_wallpaper() {
+    . $HOME/Scripts/libnotify
+    echo $PATH
     #wallpaper url and title, need to be got from $com
     local url= title= line=
     local regex='<img src="([^"]*)".*alt="([^"]*)" />'
     local wallpaper=$HOME/.wallpaper-of-the-day
     local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
-    local com="wget $web --quiet -O-"
+    #launch with tries for connectivity issues
+    local com="wget $web --tries=10 --quiet -O-"
 
     while IFS= read -r line; do
         if [[ $line =~ $regex ]]; then
@@ -20,12 +22,16 @@ change_wallpaper() {
     done < <($com)
 
     if [[ -z $url ]]; then
-        notify-err "doWallpaper failed.Couldn't retrieve the url" preferences-desktop-wallpaper
-        return
+        notify_err "doWallpaper failed.Couldn't retrieve the url" preferences-desktop-wallpaper
+        return 1
     fi
 
-    wget $url --quiet -O $wallpaper 
+    wget --tries=10 $url --quiet -O $wallpaper 
     pcmanfm -w  $wallpaper && notify "Background changed to:\n $title!" preferences-desktop-wallpaper
+    return 
 }
 
-change_wallpaper 
+set -x
+ret=change_wallpaper &> /tmp/changefuck.log
+set +x
+return $ret

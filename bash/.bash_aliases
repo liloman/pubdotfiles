@@ -62,7 +62,7 @@ alias tarc='tar -I lbzip2'
 alias xargs='xargs -0'
 alias open='xdg-open'
 
-alias pgrep='pgrep -af'
+needs ptree && alias pgrep='echo Did you mean ptree?' || alias pgrep='pgrep -af'
 alias tree='tree -CFpa'
 alias gd='cd ~/dotfiles/'
 alias gc='cd ~/Clones/'
