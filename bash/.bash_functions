@@ -129,7 +129,11 @@ ptree() {
             #trim ppid 
             read ppid <<< $(ps hoppid $pid)
             if [[ -n $kpid ]]; then
-                (( i++ == kpid )) && { echo "Killing $pid"; kill -9 $pid; }
+                if (( i++ == kpid )); then
+                    echo -n "Killing [k:$kpid] " 
+                    [[ " ${pids[@]} " =~ " $ppid " ]] || \pstree $arg -H $pid $pid 
+                    kill -9 $pid && echo "Done!"
+                fi
             else
                 #Show index to kill command
                 echo -n "[k:$((i++))] "
