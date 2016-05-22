@@ -29,16 +29,30 @@ show_ps1() {
     local Reset='\[\e[00m\]'
     #Copy & Paste from any unicode table... 
     local arrow=$(printf "%s" ➬)
+    local width=$(tput cols)
+    #PS1 doesn't take more than half the width prompt
+    local w2=$(( width/2 + 10))
+    local cur="$(realpath .)"
+    local home=~
+    #Substitute /home/user with ~ 
+    cur=${cur/#$home/\~}
 
 
     error="${White}$lastExit"
     (( $lastExit )) && error="${Red}$lastExit"
 
     #Print command history and error number
-    PS1=" ${Blue}[${Reset}C:${White}\#${Reset}-E:${error}"
+    PS1=" ${Blue}[${Reset}C:${White}\#${Reset}-E:${error}${Blue}:${Red}"
+
+    #Check PS1 width
+    if (( $width - ${#cur} > $w2  )); then
+        PS1+="\w"
+    else # too long. short it!
+        PS1+="...${cur: -$((width-w2))}"
+    fi
 
     # Reset the text color to the default at the end.
-    PS1+="${Blue}:${Red}\w]${Green}${arrow}${Reset}"
+    PS1+="]${Green}${arrow}${Reset}"
 }
 
 
