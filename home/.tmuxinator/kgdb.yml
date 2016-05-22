@@ -32,10 +32,11 @@ post: pkill agent-proxy
 
 windows:
   - console: 
-        -  ( ( echo open "localhost 5550"; sleep 2; echo "root"; sleep 2; echo "echo ttyS0,115200 > /sys/module/kgdboc/parameters/kgdboc"; echo "remember doing echo g > /proc/sysrq-trigger"; ) | telnet )
+        -  ( ( echo open "localhost 5550"; sleep 2; echo "root"; sleep 2; echo "echo ttyS0,115200 > /sys/module/kgdboc/parameters/kgdboc"; echo "echo remember doing echo g > /proc/sysrq-trigger"; ) | telnet )
         - telnet localhost 5550
         #- echo g > /proc/sysrq-trigger
   - gdb: 
       - cd linux-sunxi
-      - echo "target remote localhost:5551" > /tmp/kgdb.file; 
+      - echo "set remotebaud 115200" > /tmp/kgdb.file; 
+      - echo "target remote localhost:5551" >> /tmp/kgdb.file; 
       - echo "echo g > /proc/sysrq-trigger in target ;arm-none-eabi-gdb -x /tmp/kgdb.file vmlinux here"
