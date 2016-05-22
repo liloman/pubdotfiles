@@ -26,7 +26,7 @@
 #git aliases
 alias gtb='git branch -a'
 alias gtc='git commit -av'
-alias gt1='git commit '
+alias gt1='git commit -v'
 alias gts='git status'
 alias gta='git add '
 alias gtl='git log --graph --abbrev-commit --decorate --date=relative --all'
@@ -69,6 +69,7 @@ alias gc='cd ~/Clones/'
 alias gt='cd /tmp/'
 alias tmux='history -w; tmux -u2'
 alias df='df -h'
+alias dmesg='dmesg -HPku'
 
 
 #############
@@ -103,3 +104,4 @@ alias webshare='python -m SimpleHTTPServer'
 # alias identa-c='indent -kr -i8 -ts8 -sob -l80 -ss -bs -psl'
 # alias suspender='sudo s2ram --force -a 3'
 
+unset -f needs

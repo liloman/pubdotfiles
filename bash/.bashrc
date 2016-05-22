@@ -109,18 +109,23 @@ export LESS=" -eIRMX "
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
 
+needs(){ hash $1 2>/dev/null; return $?; }
+
 #Default editor
-export VISUAL=vim
-export EDITOR="$VISUAL"
-export GIT_EDITOR=vim
+needs vim && { 
+export EDITOR=vim
+export GIT_EDITOR=$EDITOR
+export VISUAL=$EDITOR
+}
+
 #Let's use most 
-export PAGER="most" 
+needs most && export PAGER="most" 
 # open  the manpages in a brower with man -H command :)
-export BROWSER="firefox" 
+needs firefox && export BROWSER="firefox" 
 # show file, line and func when set -x
 export PS4='(${BASH_SOURCE}:${LINENO})(${FUNCNAME[0]}): '
 #show messages in english
-#export LANG=C
+export LANG=C
 #Fix broken lxsession config dirs
 export XDG_CONFIG_DIRS=$HOME/.config
 
@@ -129,7 +134,7 @@ export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig/"
 [[ $TERM == xterm ]] && TERM=xterm-256color
 
 
-#Exported path to systemd user units 
+#Export path to systemd user units 
 systemctl --user set-environment PATH=$PATH
 
 
@@ -203,4 +208,4 @@ import /home/charly/.travis/travis.sh
 import /usr/share/gems/gems/tmuxinator*/completion/tmuxinator.bash
 
 #delete import function
-unset -f import
+unset -f import needs
