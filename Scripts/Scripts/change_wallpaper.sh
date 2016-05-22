@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 #get the photo of today from nationalgeographic and use it as wallpaper
 
+. $HOME/Scripts/libnotify
 
 change_wallpaper() {
-    . $HOME/Scripts/libnotify
-    echo $PATH
     #wallpaper url and title, need to be got from $com
     local url= title= line=
     local regex='<img src="([^"]*)".*alt="([^"]*)" />'
     local wallpaper=$HOME/.wallpaper-of-the-day
     local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
-    #launch with tries for connectivity issues
-    local com="wget $web --tries=10 --quiet -O-"
+    ping -c 2 $wget
+    #wait for network connectivity then
+    (( $? )) && sleep 20
+    local com="wget $web --tries=10 -O-"
 
     while IFS= read -r line; do
         if [[ $line =~ $regex ]]; then
@@ -31,7 +32,4 @@ change_wallpaper() {
     return 
 }
 
-set -x
-ret=change_wallpaper &> /tmp/changefuck.log
-set +x
-return $ret
+change_wallpaper 
