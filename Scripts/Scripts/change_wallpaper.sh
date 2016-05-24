@@ -9,10 +9,10 @@ change_wallpaper() {
     local regex='<img src="([^"]*)".*alt="([^"]*)" />'
     local wallpaper=$HOME/.wallpaper-of-the-day
     local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
-    ping -c 2 $wget
+    ping -c 2 photography.nationalgeographic.com
     #wait for network connectivity then
     (( $? )) && sleep 20
-    local com="wget $web --tries=10 -O-"
+    local com="wget $web --tries=10 --quiet -O-"
 
     while IFS= read -r line; do
         if [[ $line =~ $regex ]]; then

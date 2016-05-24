@@ -124,8 +124,8 @@ needs most && export PAGER="most"
 needs firefox && export BROWSER="firefox" 
 # show file, line and func when set -x
 export PS4='(${BASH_SOURCE}:${LINENO})(${FUNCNAME[0]}): '
-#show messages in english
-export LANG=C
+#show messages in english with UTF-8 (powerline...)
+export LANG=C.utf8
 #Fix broken lxsession config dirs
 export XDG_CONFIG_DIRS=$HOME/.config
 
