@@ -60,6 +60,9 @@ show_ps1() {
 #maybe rework with tree or alike
 tam() { du -hs "$@" | sort -h; }
 
+#show the top 10 dir sizes
+tamtop() { find "$@" -type d -exec du -hs {} + | sort -rhu | head -n 10; }
+
 #Print octal symbol ready to be used in bash 
 # or just use printf %s :D
 #Copy & Paste from any unicode table... 
