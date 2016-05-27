@@ -180,6 +180,25 @@ git_rm_history() {
     git filter-branch -f --tree-filter 'rm -rf $1/' HEAD
 }
 
+
+
+algo() {
+  clean() { 
+      echo -n "cleaning"
+      \rm -f /dev/shm/algo ~/algo 
+      echo "."
+  }
+trap clean INT
+local algo=
+read -p "Dame algo:" -se algo
+echo $algo | sha512sum | base64 > /dev/shm/algo
+unset algo
+echo "."
+ln -s /dev/shm/algo ~/algo
+#sleep execute || on INT signal
+sleep 30 && clean || clean
+}
+
 #############
 #  Desktop  #
 #############
