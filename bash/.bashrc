@@ -142,13 +142,7 @@ systemctl --user set-environment PATH=$PATH
 #  Binds  #
 ###########
 
-#see ~/.inputrc :)
-
-# Interesting autocompletions
-#Complete filename against complete history! :D
-bind -m vi-insert "\C-n":dynamic-complete-history
-#Complete filename/commands/... same than TAB but put the completion on the cli
-bind -m vi-insert "\C-p":menu-complete
+#see ~/.inputrc for all the power! (bash surround...) o_O
 
 #Custom mappings ...
 #Should clean leaving my prompt_command...
@@ -202,7 +196,7 @@ import /usr/share/doc/git-core-doc/contrib/completion/git-completion.bash
 import /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh
 
 # added by travis gem
-import /home/charly/.travis/travis.sh 
+import ~/.travis/travis.sh 
 
 #tmuxinator
 import /usr/share/gems/gems/tmuxinator*/completion/tmuxinator.bash

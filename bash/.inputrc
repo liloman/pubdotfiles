@@ -3,6 +3,105 @@
 #https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
 #http://linux.about.com/library/cmd/blcmdl3_readline.htm
 
+#VI Insert Mode functions
+#"C-D"  vi-eof-maybe
+#"C-H"  backward-delete-char
+#"C-I"  complete
+#"C-J"  accept-line
+#"C-M"  accept-line
+#"C-R"  reverse-search-history
+#"C-S"  forward-search-history
+#"C-T"  transpose-chars
+#"C-U"  unix-line-discard
+#"C-V"  quoted-insert
+#"C-W"  unix-word-rubout
+#"C-Y"  yank
+#"C-["  vi-movement-mode
+#"C-_"  undo
+#" " to "~"  self-insert
+#"C-?"  backward-delete-char
+#
+#VI Command Mode functions
+#
+#"C-D"  vi-eof-maybe
+#"C-E"  emacs-editing-mode
+#"C-G"  abort
+#"C-H"  backward-char
+#"C-J"  accept-line
+#"C-K"  kill-line
+#"C-L"  clear-screen
+#"C-M"  accept-line
+#"C-N"  next-history
+#"C-P"  previous-history
+#"C-Q"  quoted-insert
+#"C-R"  reverse-search-history
+#"C-S"  forward-search-history
+#"C-T"  transpose-chars
+#"C-U"  unix-line-discard
+#"C-V"  quoted-insert
+#"C-W"  unix-word-rubout
+#"C-Y"  yank
+#"C-_"  vi-undo
+#" "  forward-char
+#"#"  insert-comment
+#"$"  end-of-line
+#"%"  vi-match
+#"&"  vi-tilde-expand
+#"*"  vi-complete
+#"+"  next-history
+#","  vi-char-search
+#"-"  previous-history
+#"."  vi-redo
+#"/"  vi-search
+#"0"  beginning-of-line
+#"1" to "9"  vi-arg-digit
+#";"  vi-char-search
+#"="  vi-complete
+#"?"  vi-search
+#"A"  vi-append-eol
+#"B"  vi-prev-word
+#"C"  vi-change-to
+#"D"  vi-delete-to
+#"E"  vi-end-word
+#"F"  vi-char-search
+#"G"  vi-fetch-history
+#"I"  vi-insert-beg
+#"N"  vi-search-again
+#"P"  vi-put
+#"R"  vi-replace
+#"S"  vi-subst
+#"T"  vi-char-search
+#"U"  revert-line
+#"W"  vi-next-word
+#"X"  backward-delete-char
+#"Y"  vi-yank-to
+#"\"  vi-complete
+#"^"  vi-first-print
+#"_"  vi-yank-arg
+#"`"  vi-goto-mark
+#"a"  vi-append-mode
+#"b"  vi-prev-word
+#"c"  vi-change-to
+#"d"  vi-delete-to
+#"e"  vi-end-word
+#"f"  vi-char-search
+#"h"  backward-char
+#"i"  vi-insertion-mode
+#"j"  next-history
+#"k"  prev-history
+#"l"  forward-char
+#"m"  vi-set-mark
+#"n"  vi-search-again
+#"p"  vi-put
+#"r"  vi-change-char
+#"s"  vi-subst
+#"t"  vi-char-search
+#"u"  vi-undo
+#"w"  vi-next-word
+#"x"  vi-delete
+#"y"  vi-yank-to
+#"|"  vi-column
+#"~"  vi-change-case
 #########################################################################
 # Dont add any stty or shopt command here. It'll block the s key!!!!!   #
 #########################################################################
@@ -46,9 +145,10 @@ set vi-cmd-mode-string \1\e[33;1m\2(cmd)\1\e[0m\2
 "\e[C":forward-char
 "\e[D":backward-char
 
-#vi mode from
+#vi mode based from 
 #https://raw.githubusercontent.com/minos-org/bash-minos-settings/master/etc.inputrc
-# Work with ciw, diw ...
+# Work with ciw, daw, ds),cs'",ysiw[,cs][ ...
+# bind -f ~/.inputrc to test changes
 $if mode=vi
 set keymap vi-command
 Control-l: clear-screen
@@ -57,18 +157,23 @@ Control-l: clear-screen
 "|": "A | "
 "D":kill-line
 "C": "Da"
-"dw": kill-word
 "dd": kill-whole-line
 "db": backward-kill-word
 "cc": "ddi"
+#incorrect by default
 "cw": "dwi"
+#correct by default :D
+#"cW": "dWi"
 "cb": "dbi"
-"daw": "lbdW"
-"yaw": "lbyW"
-"caw": "lbcW"
-"diw": "lbdw"
-"yiw": "lbyw"
-"ciw": "lbcw"
+"daw": "bdW"
+"yaw": "byW"
+"caw": "bcW"
+"diw": "bdw"
+"diW": "BdEl"
+"yiw": "byw"
+"yiW": "ByEk"
+"ciw": "bdwa"
+"ciW": "BcE"
 "da\"": "lF\"df\""
 "di\"": "lF\"lmtf\"d`t"
 "ci\"": "di\"i"
@@ -82,48 +187,122 @@ Control-l: clear-screen
 "ci`": "di`i"
 "ca`": "da`i"
 "da(": "lF(df)"
-"di(": "lF(lmtf)d`t"
-"ci(": "di(i"
-"ca(": "da(i"
 "da)": "lF(df)"
+"di(": "lF(lmtf)d`t"
 "di)": "lF(lmtf)d`t"
+"ci(": "di(i"
 "ci)": "di(i"
+"ca(": "da(i"
 "ca)": "da(i"
-"da{": "lF{df}"
 "di{": "lF{lmtf}d`t"
-"ci{": "di{i"
 "ca{": "da{i"
+"ca}": "da{i"
+"da{": "lF{df}"
 "da}": "lF{df}"
 "di}": "lF{lmtf}d`t"
+"ci{": "di{i"
 "ci}": "di}i"
-"ca}": "da}i"
 "da[": "lF[df]"
-"di[": "lF[lmtf]d`t"
-"ci[": "di[i"
-"ca[": "da[i"
 "da]": "lF[df]"
+"di[": "lF[lmtf]d`t"
 "di]": "lF[lmtf]d`t"
+"ci[": "di[i"
 "ci]": "di]i"
+"ca[": "da[i"
 "ca]": "da]i"
-"da<": "lF<df>"
-"di<": "lF<lmtf>d`t"
-"ci<": "di<i"
-"ca<": "da<i"
 "da>": "lF<df>"
+"da<": "lF<df>"
 "di>": "lF<lmtf>d`t"
+"di<": "lF<lmtf>d`t"
 "ci>": "di>i"
+"ci<": "di<i"
 "ca>": "da>i"
+"ca<": "da<i"
 "gg": beginning-of-history
 "G": end-of-history
 ?: reverse-search-history
 /: forward-search-history
 "k": history-search-backward
 "j": history-search-forward
+"Y": yank-pop
+
+##############################
+#  BASH SURROUND POWAAA  #
+##############################
+"ds)": "mtF(xf)x`th"
+"ds(": "mtF(xf)x`th"
+"ds]": "mtF[xf]x`th"
+"ds[": "mtF[xf]x`th"
+"ds}": "mtF{xf}x`th"
+"ds{": "mtF{xf}x`th"
+"ds\"": "mtF\"xf\"x`th"
+"ds'": "mtF'xf'x`th"
+"ysiw\"": "lmtbi\"\eea"\e`t"
+"ysiW\"": "lmtBi\"\eEa"\e`t"
+"ysiw'": "lmtbi'\eea'\e`t"
+"ysiW'": "lmtBi'\eEa'\e`t"
+"ysiw)": "lmtbi(\eea)\e`t"
+"ysiw(": "lmtbi( \eea )\e`tl"
+"ysiW)": "lmtBi(\eEa)\e`t"
+"ysiW(": "lmtBi( \eEa )\e`tl"
+"ysiw]": "lmtbi[\eea]\e`t"
+"ysiw[": "lmtbi[ \eea ]\e`tl"
+"ysiW]": "lmtBi[\eEa]\e`t"
+"ysiW[": "lmtBi[ \eEa ]\e`tl"
+"ysiw}": "lmtbi{\eea}\e`t"
+"ysiw{": "lmtbi{ \eea }\e`tl"
+"ysiW}": "lmtBi{\eEa}\e`t"
+"ysiW{": "lmtBi{ \eEa }\e`tl"
+#cs)x
+"cs)]": "mtF(r[f)r]`t"
+"cs)[": "mtF(xi[ \ef)xi ]\e`tl"
+"cs)}": "mtF(r{f)r}`t"
+"cs){": "mtF(xi{ \ef)xi }\e`tl"
+"cs)'": "mtF(r'f)r'`t"
+"cs)\"": "mtF(r\"f)r\"`t"
+#cs]x
+"cs])": "mtF[r(f]r)`t"
+"cs](": "mtF[xi( \ef]xi )\e`tl"
+"cs]}": "mtF[r{f]r}`t"
+"cs]{": "mtF[xi{ \ef]xi }\e`tl"
+"cs]'": "mtF[r'f]r'`t"
+"cs]\"": "mtF[r\"f]r\"`t"
+#cs'x
+"cs')": "mtF'r(f'r)`t"
+"cs'(": "mtF'xi( \ef'xi )\e`tl"
+"cs'}": "mtF'r{f'r}`t"
+"cs'{": "mtF'xi{ \ef'xi }\e`tl"
+"cs']": "mtF'r[f'r]`t"
+"cs'[": "mtF'xi[ \ef'xi ]\e`tl"
+"cs'\"": "mtF'r\"f'r\"`t"
+#cs\"x
+"cs\")": "mtF\"r(f\"r)`t"
+"cs\"(": "mtF\"xi( \ef\"xi )\e`tl"
+"cs\"}": "mtF\"r{f\"r}`t"
+"cs\"{": "mtF\"xi{ \ef\"xi }\e`tl"
+"cs\"]": "mtF\"r[f\"r]`t"
+"cs\"[": "mtF\"xi[ \ef\"xi ]\e`tl"
+"cs\"'": "mtF\"r'f\"r'`t"
+#"Specials"
+"cs][": "mtF[a \ef]i \e`tl"
+"cs)(": "mtF(a \ef)i \e`tl"
+"cs}{": "mtF{a \ef}i \e`tl"
+#create a bash Variable
+"yv": "lmtbi${\eea}\e`tl"
+#create a bash Array
+"yr": "bi${\eea[]}\ehi"
+#delete spaces
+"dss": "mtBhxElx`t"
+
 
 set keymap vi-insert
 Control-l: clear-screen
-"\C-a": beginning-of-line
-"\C-e": end-of-line
+Control-b: beginning-of-line
+Control-e: end-of-line
+#Complete filename/commands/... same than TAB but put the completion on the cli
+Control-P: menu-complete
+#Complete filename against complete history! :D
+Control-N: dynamic-complete-history
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 $endif

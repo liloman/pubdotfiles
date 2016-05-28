@@ -20,6 +20,7 @@ cd dotfiles
 - [x] include completions dir (generate-autocompletion...)
 - [x] Fork needed submodules
 - [x] Rework install.sh 
+- [x] bash surround on ~/.inputrc ;)
 - [ ] libnotify saves notifies while not X running
 - [ ] Better color handling and reporting for .bash_functions
 - [ ] Ansible && systemd work
