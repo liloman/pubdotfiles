@@ -60,6 +60,8 @@ stty -ixon -ixoff ixany
 KERNEL=$(uname -r)
 TTY=$(tty)
 PROMPT_COMMAND='show_ps1'
+#set historyid and cmdNumber to work with the readline stuff on ~/.inputrc
+PROMPT_COMMAND+=';set_cmd_number';
 
 HISTSIZE=50000
 HISTFILESIZE=50000
@@ -138,19 +140,26 @@ export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig/"
 systemctl --user set-environment PATH=$PATH
 
 
-###########
-#  Binds  #
-###########
+###################
+#  INPUTRC STUFF  #
+###################
 
-#see ~/.inputrc for all the power! (bash surround...) o_O
+#Readline bindings for shell functions (not possible in ~/.inputrc)
+#    shell command: bind -x '"key": shell-command'
+#       keystrokes: bind    '"key":"keystrokes"'
+# readline command: bind    '"key": command'
 
-#Custom mappings ...
-#Should clean leaving my prompt_command...
-#bind -x '"\C-l":/bin/clear'
+#Start function
+bind    '"\C-gs": "\e#\C-gs1"'
+bind -x '"\C-gs1": "get_last_history_line"'
+#End function
+bind    '"\C-ge": "\eki\C-ge1"'
+bind -x '"\C-ge1": "history -d $historyid"'
 
-#Autocomplete !$,!*,!!,!cat ... after space ... :)
-# bind Space:magic-space
-#Don't execute history autocompletions but print it. Better than magic-space
+#Bind C-gr to insert relative command  number
+bind -x '"\C-gr":insert_relative_command_number'
+
+#Don't execute history autocompletions but print it. Better than the magic-space
 shopt -s histverify
 
 ###########

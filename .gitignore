@@ -3,3 +3,4 @@ vim/.vim/doc/tags/
 vim/.vim/.netrwhist
 vimperator/.vimperator/info
 *.swp
+*.swo

@@ -145,6 +145,7 @@ set vi-cmd-mode-string \1\e[33;1m\2(cmd)\1\e[0m\2
 "\e[C":forward-char
 "\e[D":backward-char
 
+
 $if mode=vi
 set keymap vi-command
 
@@ -446,18 +447,20 @@ set keymap vi-command
 "dss": "mtBhxElx`th"
 #"dss": delete-horizontal-space
 
-#############
-#  Extra    #
-#############
-#Create a bash Variable
-"gv": "lmtbi${\eea}\e`tl"
-#Create a bash Array
-"ga": "bi${\eea[]}\ehi"
-#Give me an echo
-"ge": "iecho \"\"\ei"
 #Useful
 "k": history-search-backward
 "j": history-search-forward
+
+#############
+#  Extras c #
+#############
+#Give me a bash Variable
+"gv": "lmtbi${\eea}\e`tl"
+#Give me a bash Array
+"ga": "bi${\eea[]}\ehi"
+#Give me an Echo
+"ge": "iecho \"\"\ei"
+
 
 #"gg": beginning-of-history
 #"G": end-of-history
@@ -472,9 +475,29 @@ Control-e: end-of-line
 Control-P: menu-complete
 #Complete filename against complete history! :D
 Control-N: dynamic-complete-history
-#Better than escape
-Control-P: "\el"
 #Have fun
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
+#############
+#  Extras i #
+#############
+#Better than escape
+Control-P: "\el"
+#Insert prior argument (by default) to: mv somelargefile ##
+# but also to: ls somelargefile other !#:1
+"##": "!#:$"
+
+#####################
+#  Ctr-g functions  #
+#####################
+# 1.Prepare current command line if necesary
+# 2.C-gs to "transfer" the line to bash
+# 3.Your keyboard/bash/macros
+# 4.C-ge to transfer back the command line
+# 5.Your final keyboard/bash/macros on the modified command line
+
+#Insert relative command number 
+Control-h: "\C-gs\C-gr\C-ge\e$a"
+
 $endif

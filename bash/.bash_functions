@@ -15,6 +15,70 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+####################
+#  Readline stuff  #
+####################
+
+###########
+#A.helpers#
+###########
+
+#get the last commented command line
+get_last_history_line() {
+    #get last command (it should be the one just commented out)
+    #doesn't work with fc -nl -1 :(
+    local cmd=$(history 1);
+    #and eliminate #
+    cmd=${cmd#*#}
+    [[ -z $cmd ]] && last_command_line=
+    last_command_line=$cmd
+}
+
+append_to_history_line() {
+    #remove last history entry 
+    history -d $historyid
+    #append to history line
+    history -s "$@"
+
+}
+
+#ugly hack cause not possible to get PS1 \# expanded till bash 4.4 with echo ${PS1@P}
+# and HISTCMD doesn't work outside of readline because they are different processes
+set_cmd_number() {
+    local last=($(HISTTIMEFORMAT=; history 1))
+    #get historyid
+    historyid=${last[0]}
+    #remove id
+    local prev=${last[@]:1}
+    #if not equal and not a commented out command
+    if [[ $pre_cmd != $prev && ${prev:0:1} != '#' ]]; then
+        pre_cmd=$prev
+        ((cmdNumber++))
+       # echo incrementa pre:$pre_cmd $cmdNumber not:${prev:0:1} 
+    fi
+}
+
+#######
+#B.fun#
+#######
+
+#Insert the relative command number from the actual
+insert_relative_command_number() {
+    #must be executed in the same mode as this function
+    local rel=1
+    [[ -z $last_command_line ]] && return
+    local -a cmda=($last_command_line)
+    #get last argument index
+    local last=$((${#cmda[@]}-1))
+    #get last argument
+    local arg=${cmda[$last]}
+    #substract the current command number with the destiny (last argument)
+    (( cmdNumber > arg )) && arg=!-$((cmdNumber - arg )): || arg=!!:
+    local write="${cmda[@]:0:$last} $arg"
+    #append to history line
+    append_to_history_line "$write"
+}
+
 
 ###########
 # General #
@@ -37,9 +101,9 @@ show_ps1() {
     #Substitute /home/user with ~ 
     cur=${cur/#$home/\~}
 
-
     error="${White}$lastExit"
     (( $lastExit )) && error="${Red}$lastExit"
+
 
     #Print command history and error number
     PS1=" ${Blue}[${Reset}C:${White}\#${Reset}-E:${error}${Blue}:${Red}"
