@@ -42,6 +42,9 @@ shopt -u failglob
 shopt -s dotglob
 #Allow ** globbing
 shopt -s globstar
+#Don't execute history autocompletions but print it. Better than the magic-space
+shopt -s histverify
+
 
 #Disable <C-s>(stop) and <C-q>(start) on terminal. To use <C-s> on vim (to save file)
 stty stop undef
@@ -159,9 +162,6 @@ bind -x '"\C-ge1": "history -d $historyid"'
 #Bind C-gr to insert relative command  number
 bind -x '"\C-gr":insert_relative_command_number'
 
-#Don't execute history autocompletions but print it. Better than the magic-space
-shopt -s histverify
-
 ###########
 #  Files  #
 ###########
@@ -182,7 +182,7 @@ import(){
 
 
 #Load dir stack plugin
-import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles"
+import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true
 
 #Z script to get the most common directories and so on
 #  https://github.com/rupa/z 
