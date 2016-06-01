@@ -86,7 +86,8 @@ HISTTIMEFORMAT="%c | "
 # don't put duplicate lines in the history.
 HISTCONTROL=ignoredups
 #Don't insert into history exits,histories and clear from history
-HISTIGNORE="exit:history *:clear"
+#HISTIGNORE="exit:history *:clear"
+HISTIGNORE="exit:clear"
 
 
 # to work properly with shopt -s extglob  (ls -d .*)
@@ -94,6 +95,8 @@ GLOBIGNORE=.:..
 #just show the last 2 dirs on PS1 \w dirs
 PROMPT_DIRTRIM=2
 
+cmdNumber=1
+flaginc=0
 
 ############
 #  COLORS  #

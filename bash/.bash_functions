@@ -51,10 +51,20 @@ set_cmd_number() {
     #if not equal and not a commented out command
     if [[ $pre_cmd != $prev && ${prev:0:1} != "#" ]]; then
         pre_cmd=$prev
-        [[ -z $cmdNumber ]] && cmdNumber=1
-        ((cmdNumber++))
-       #echo incrementa pre:$pre_cmd $cmdNumber not:${prev:0:1} 
+        if (($flaginc==0)); then
+            ((cmdNumber++))
+            echo incrementa cmdnumber:$cmdNumber prev:$prev   
+        else
+            echo "no incrementa cmdnumber?"
+            flaginc=0
+        fi
     fi
+    #histignore
+    # if [[ ${prev:0:1} != "#" ]]; then
+    #     echo "disminuye historyid"
+    #     ((historyid--))
+    # fi
+    echo historyid:$historyid??
 }
 
 #######
@@ -71,9 +81,14 @@ insert_relative_command_number() {
     local idx=$((${#cmda[@]}-1))
     #get last argument
     local arg=${cmda[$idx]}
+    local dif=$(( historyid - ((cmdNumber - arg)) ))
     #substract the current command number with the destiny (last argument)
     if (( cmdNumber > arg )); then
-        arg=!-$((cmdNumber - arg -1)):0 
+        echo "$historyid - $arg"
+        arg=!$dif:0 
+        ((cmdNumber++))
+        ((historyid++))
+        flaginc=0
     else
         echo "error: history line number not found."
         arg=
@@ -102,7 +117,7 @@ show_ps1() {
     (( $lastExit )) && error="${Red}$lastExit"
 
     #Print command history and error number
-    PS1=" ${Blue}[${Reset}MC:$(echo $cmdNumber)-C:${White}\#${Reset}-E:${error}${Blue}:${Red}\w"
+    PS1=" ${Blue}[${Reset}H:\!-MC:$(echo $((cmdNumber)))-C:${White}\#${Reset}-E:${error}${Blue}:${Red}\w"
 
     # Reset the text color to the default at the end.
     PS1+="]${Green}${arrow}${Reset}"
