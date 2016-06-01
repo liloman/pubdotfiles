@@ -25,10 +25,9 @@
 
 #get the last commented command line
 get_last_history_line() {
-    #get last command (it should be the one just commented out)
-    #doesn't work with fc -nl -1 :(
-    local cmd=$(history 1);
-    #and eliminate #
+    #get "current command"
+    local cmd=$(history 1)
+    #and eliminate till first #
     cmd=${cmd#*#}
     [[ -z $cmd ]] && last_command_line=
     last_command_line=$cmd
@@ -39,7 +38,6 @@ append_to_history_line() {
     history -d $historyid
     #append to history line
     history -s "$@"
-
 }
 
 #ugly hack cause not possible to get PS1 \# expanded till bash 4.4 with echo ${PS1@P}
@@ -51,10 +49,11 @@ set_cmd_number() {
     #remove id
     local prev=${last[@]:1}
     #if not equal and not a commented out command
-    if [[ $pre_cmd != $prev && ${prev:0:1} != '#' ]]; then
+    if [[ $pre_cmd != $prev && ${prev:0:1} != "#" ]]; then
         pre_cmd=$prev
+        [[ -z $cmdNumber ]] && cmdNumber=1
         ((cmdNumber++))
-       # echo incrementa pre:$pre_cmd $cmdNumber not:${prev:0:1} 
+       #echo incrementa pre:$pre_cmd $cmdNumber not:${prev:0:1} 
     fi
 }
 
@@ -69,12 +68,17 @@ insert_relative_command_number() {
     [[ -z $last_command_line ]] && return
     local -a cmda=($last_command_line)
     #get last argument index
-    local last=$((${#cmda[@]}-1))
+    local idx=$((${#cmda[@]}-1))
     #get last argument
-    local arg=${cmda[$last]}
+    local arg=${cmda[$idx]}
     #substract the current command number with the destiny (last argument)
-    (( cmdNumber > arg )) && arg=!-$((cmdNumber - arg )): || arg=!!:
-    local write="${cmda[@]:0:$last} $arg"
+    if (( cmdNumber > arg )); then
+        arg=!-$((cmdNumber - arg -1)):0 
+    else
+        echo "error: history line number not found."
+        arg=
+    fi
+    local write="${cmda[@]:0:$idx} $arg"
     #append to history line
     append_to_history_line "$write"
 }
@@ -93,27 +97,12 @@ show_ps1() {
     local Reset='\[\e[00m\]'
     #Copy & Paste from any unicode table... 
     local arrow=$(printf "%s" ➬)
-    local width=$(tput cols)
-    #PS1 doesn't take more than half the width prompt
-    local w2=$(( width/2 + 10))
-    local cur="$(realpath .)"
-    local home=~
-    #Substitute /home/user with ~ 
-    cur=${cur/#$home/\~}
 
     error="${White}$lastExit"
     (( $lastExit )) && error="${Red}$lastExit"
 
-
     #Print command history and error number
-    PS1=" ${Blue}[${Reset}C:${White}\#${Reset}-E:${error}${Blue}:${Red}"
-
-    #Check PS1 width
-    if (( $width - ${#cur} > $w2  )); then
-        PS1+="\w"
-    else # too long. short it!
-        PS1+="...${cur: -$((width-w2))}"
-    fi
+    PS1=" ${Blue}[${Reset}MC:$(echo $cmdNumber)-C:${White}\#${Reset}-E:${error}${Blue}:${Red}\w"
 
     # Reset the text color to the default at the end.
     PS1+="]${Green}${arrow}${Reset}"

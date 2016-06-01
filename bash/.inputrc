@@ -113,21 +113,27 @@
 # Dont add any stty or shopt command here. It'll block the s key!!!!!   #
 #########################################################################
 
-set input-meta On
 set mark-directories On
 set horizontal-scroll-mode On
+# Show extra file information when completing, like `ls -F` does
 set visible-stats On
+#Autocompletions with colors
+set colored-stats on
+#Set to vi mode by default
 set editing-mode vi
+#and insert mode
 set keymap vi-insert
+#disable bell
 set bell-style none
-# Para que autocomplete y muestre en la primera TAB
+# Display matches for ambiguous patterns at first tab press
 set show-all-if-ambiguous On
 #Set vi Mode 
 set -o vi
+# Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
+set input-meta on
+set output-meta on
 # Para que funcionen las ñ :D 
 set convert-meta off
-#Autocompletions with colors
-set colored-stats on
 # Show Symbolic dirs with trailing / on autocompletion
 set mark-symlinked-directories on
 #show autocompletions in horizontal ¿not working?
@@ -138,6 +144,20 @@ set show-mode-in-prompt on
 set skip-completed-text on
 #Replace prefixes on autocompletions larger than 3
 set completion-prefix-display-length 3
+#Perform file completion in a case insensitive fashion
+set completion-ignore-case on
+# Treat hyphens and underscores as equivalent
+set completion-map-case on
+# Do not autocomplete hidden files unless the pattern explicitly begins with a dot
+set match-hidden-files off
+
+# Dont show all autocomplete results at once
+set page-completions on
+# If there are more than 100 possible completions for a word, ask to show them all
+set completion-query-items 100
+
+
+
 #Dont working. Lets wait for bash 4.4 ... :(
 set vi-ins-mode-string \1\e[32;1m\2(ins)\1\e[0m\2
 set vi-cmd-mode-string \1\e[33;1m\2(cmd)\1\e[0m\2
@@ -511,6 +531,7 @@ Control-P: "\el"
 # complete filename and put into braces
 "\ecb": complete-into-braces 
 
+"\ex": "\C-gp"
 
 ####################
 #  Ctr-g functions  #
