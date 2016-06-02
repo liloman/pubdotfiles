@@ -133,7 +133,6 @@ search_substring_history(){
             if [[ ${line[@]} == *$arg* ]]; then
                 #command arg contains
                 for elem in ${line[@]}; do 
-                    echo "*$elem*"
                     if [[ $elem == *$arg* ]]; then
                         #unique elements, so you must do intensive 
                         for hay in ${!arrayhistory[@]} ; do
