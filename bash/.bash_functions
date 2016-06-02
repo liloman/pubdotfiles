@@ -23,6 +23,8 @@
 #A.helpers#
 ###########
 
+cmdNumber=0
+
 #get the last commented command line
 get_last_history_line() {
     #get "current command"
@@ -40,31 +42,30 @@ append_to_history_line() {
     history -s "$@"
 }
 
-#ugly hack cause not possible to get PS1 \# expanded till bash 4.4 with echo ${PS1@P}
+#Bash doesn't get into account of histcontrol and histignore with \#
+#so you must roll on your on solution (reported to bash bug...) 
 # and HISTCMD doesn't work outside of readline because they are different processes
+# in bash 4.4 you sould be able to use prompt expansion echo ${PS1@P}
 set_cmd_number() {
     local last=($(HISTTIMEFORMAT=; history 1))
     #get historyid
     historyid=${last[0]}
     #remove id
-    local prev=${last[@]:1}
-    #if not equal and not a commented out command
-    if [[ $pre_cmd != $prev && ${prev:0:1} != "#" ]]; then
-        pre_cmd=$prev
-        if (($flaginc==0)); then
-            ((cmdNumber++))
-            echo incrementa cmdnumber:$cmdNumber prev:$prev   
-        else
-            echo "no incrementa cmdnumber?"
-            flaginc=0
-        fi
+    local actual=${last[@]:1}
+    local -a excl
+    #if not equal,commented out command or history command
+    # from $HISTCONTROL
+    if [[ $pre_cmd != $actual ]]; then
+        #Get exclusions
+        IFS=":"; excl=($HISTIGNORE); unset IFS
+        #Check exclusions
+        for elem in "${excl[@]}"; do 
+            [[ $elem* = $actual ]] && return
+        done
+        pre_cmd=$actual
+        ((flaghistory!=1)) && ((cmdNumber++))
     fi
-    #histignore
-    # if [[ ${prev:0:1} != "#" ]]; then
-    #     echo "disminuye historyid"
-    #     ((historyid--))
-    # fi
-    echo historyid:$historyid??
+    flaghistory=0
 }
 
 #######
@@ -73,22 +74,17 @@ set_cmd_number() {
 
 #Insert the relative command number from the actual
 insert_relative_command_number() {
-    #must be executed in the same mode as this function
-    local rel=1
     [[ -z $last_command_line ]] && return
     local -a cmda=($last_command_line)
     #get last argument index
     local idx=$((${#cmda[@]}-1))
     #get last argument
     local arg=${cmda[$idx]}
-    local dif=$(( historyid - ((cmdNumber - arg)) ))
     #substract the current command number with the destiny (last argument)
     if (( cmdNumber > arg )); then
-        echo "$historyid - $arg"
-        arg=!$dif:0 
-        ((cmdNumber++))
-        ((historyid++))
-        flaginc=0
+        arg=!-$((cmdNumber - arg )):0 
+    elif (( cmdNumber == arg )); then
+        arg=!#:0 
     else
         echo "error: history line number not found."
         arg=
@@ -103,6 +99,7 @@ insert_relative_command_number() {
 # General #
 ###########
 
+#Set the ps1 bash prompt with exit status and command number
 show_ps1() {
     local lastExit=$? # Should come first...
     local Blue='\[\e[01;34m\]'
@@ -113,11 +110,14 @@ show_ps1() {
     #Copy & Paste from any unicode table... 
     local arrow=$(printf "%s" ➬)
 
+    #set historyid and cmdNumber to work with the readline stuff on B.Fun
+    set_cmd_number
+
     error="${White}$lastExit"
     (( $lastExit )) && error="${Red}$lastExit"
 
-    #Print command history and error number
-    PS1=" ${Blue}[${Reset}H:\!-MC:$(echo $((cmdNumber)))-C:${White}\#${Reset}-E:${error}${Blue}:${Red}\w"
+    #Print my command history number and error number
+    PS1=" ${Blue}[${Reset}C:${White}$(echo $(($cmdNumber)))${Reset}-E:${error}${Blue}:${Red}\w"
 
     # Reset the text color to the default at the end.
     PS1+="]${Green}${arrow}${Reset}"

@@ -70,10 +70,8 @@ stty -ixon -ixoff ixany
 KERNEL=$(uname -r)
 TTY=$(tty)
 
-#get a colored ps1 with exit value
+#get a colored ps1 with exit value (must be first on prompt_command to get exit status)
 PROMPT_COMMAND='show_ps1'
-#set historyid and cmdNumber to work with the readline stuff on ~/.inputrc
-PROMPT_COMMAND+=';set_cmd_number';
 
 #History lines (current session)
 HISTSIZE=5000
@@ -83,20 +81,17 @@ HISTFILESIZE=500000
 HISTFILE=~/.bash_history
 #Show history timestamp with current locale
 HISTTIMEFORMAT="%c | "
-# don't put duplicate lines in the history.
+#Don't insert into history exits,bg,clears and histories commands
+HISTIGNORE="exit:clear:bg:history *"
+#Don't put duplicate lines in the history.
+#if change review set_cmd_number bash<->readline ipc
 HISTCONTROL=ignoredups
-#Don't insert into history exits,histories and clear from history
-#HISTIGNORE="exit:history *:clear"
-HISTIGNORE="exit:clear"
-
-
 # to work properly with shopt -s extglob  (ls -d .*)
 GLOBIGNORE=.:..
 #just show the last 2 dirs on PS1 \w dirs
 PROMPT_DIRTRIM=2
 
-cmdNumber=1
-flaginc=0
+
 
 ############
 #  COLORS  #
@@ -206,7 +201,8 @@ systemctl --user set-environment PATH=$PATH
 #   readline macro: bind    '"key": macro'
 
 #Start function
-bind    '"\C-gs": "\e#\C-gs1"'
+bind    '"\C-gs": "\C-gs0\e#\C-gs1"'
+bind -x '"\C-gs0": "flaghistory=1"'
 bind -x '"\C-gs1": "get_last_history_line"'
 #End function
 bind    '"\C-ge": "\eki\C-ge1"'
