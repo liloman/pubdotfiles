@@ -23,7 +23,10 @@
 #A.helpers#
 ###########
 
+#set current cmdnumber for prompt and for insert_relative_command_number
 cmdNumber=0
+#for search_substring_history functions
+declare -a arrayhistory
 
 #get the last commented command line
 get_last_history_line() {
@@ -94,6 +97,81 @@ insert_relative_command_number() {
     append_to_history_line "$write"
 }
 
+#reset substring search argument
+reset_search_arg() {
+    echo "Substring search reset"
+    currentSearchArg=
+    bind -r "\C-q"
+}
+
+#Search forward/backward for a substring in the history and return it to the command line
+#It doesn't work right with arguments with spaces "dir with spaces"
+#More than enough for me use case
+search_substring_history(){
+    [[ -z $last_command_line ]] && return
+    bind -x '"\C-q": reset_search_arg'
+    local way=$1
+    local -a cmda=($last_command_line)
+    #get last argument index
+    local idx=$((${#cmda[@]}-1))
+    local arg=
+    local write=
+    local end=0
+    local found=0
+
+    #not active search
+    if [[ -z $currentSearchArg ]]; then
+        arrayhistory=()
+        #get last argument
+        arg=${cmda[$idx]}
+        #echo "Indexing."
+        #load search in arrayhistory
+        while IFS= read -r lines;
+        do
+            readarray -t line <<<"$lines"
+            #command contains 
+            if [[ ${line[@]} == *$arg* ]]; then
+                #command arg contains
+                for elem in ${line[@]}; do 
+                    echo "*$elem*"
+                    if [[ $elem == *$arg* ]]; then
+                        #unique elements, so you must do intensive 
+                        for hay in ${!arrayhistory[@]} ; do
+                            [[ ${arrayhistory[$hay]} == $elem ]] && found=1
+                        done
+                        ((!found)) && arrayhistory+=("$elem")
+                    fi
+                done
+            fi
+        done < <(fc -nlr 1)
+        echo "Enter Control-q to reset search"
+        currentSearchArg=$arg
+        currentSearchIdx=0
+    else #active search
+        if [[ $way == backward ]];then
+            if (( currentSearchIdx < ${#arrayhistory[@]} )); then
+                ((currentSearchIdx++))
+            else
+                end=1
+            fi
+        else #forward
+            if (( currentSearchIdx > 0 )); then
+                ((currentSearchIdx--))
+            else
+                end=1
+            fi
+        fi
+    fi
+
+    if ((!end)); then
+        arg=${arrayhistory[$currentSearchIdx]}
+        write="${cmda[@]:0:$idx} $arg"
+    else
+        write="${cmda[@]} "
+    fi
+    #append to history line
+    append_to_history_line "$write"
+}
 
 ###########
 # General #

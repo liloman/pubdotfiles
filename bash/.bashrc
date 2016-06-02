@@ -82,7 +82,7 @@ HISTFILE=~/.bash_history
 #Show history timestamp with current locale
 HISTTIMEFORMAT="%c | "
 #Don't insert into history exits,bg,clears and histories commands
-HISTIGNORE="exit:clear:bg:history *"
+HISTIGNORE="exit:clear:bg:history *:fc *"
 #Don't put duplicate lines in the history.
 #if change review set_cmd_number bash<->readline ipc
 HISTCONTROL=ignoredups
@@ -208,14 +208,12 @@ bind -x '"\C-gs1": "get_last_history_line"'
 bind    '"\C-ge": "\eki\C-ge1"'
 bind -x '"\C-ge1": "history -d $historyid"'
 
-#Bind C-gr to insert relative command  number
+#Bind to insert relative command  number
 bind -x '"\C-gr":insert_relative_command_number'
 
-bind    '"\C-gp":"\C-gp1\C-gp2"'
-#bind    '"\C-gp":"\C-gp1"'
-bind    '"\C-gp1": yank'
-bind -x '"\C-gp2":"history -p actual:!#"'
-
+#Bind to search for a substring argument in the history
+bind -x '"\C-gb1": search_substring_history backward'
+bind -x '"\C-gb2": search_substring_history forward'
 
 
 ###########
