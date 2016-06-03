@@ -80,7 +80,7 @@ restore_row() {
     #substract prompt_command lines
     tput cup $((CONSOLEROW-PROMPT_COMMAND_LINES)) 0
     #clean screen below PS1
-     tput ed
+    tput ed
 }
 
 
@@ -92,43 +92,17 @@ save_current_row() {
     echo "${ROW#*[}"
 }
 
-#######
-#B.fun#
-#######
-
-#Insert the relative command number from the actual
-insert_relative_command_number() {
-    [[ -z $last_command_line ]] && return
-    local -a cmda=($last_command_line)
-    #get last argument index
-    local idx=$((${#cmda[@]}-1))
-    #get last argument
-    local arg=${cmda[$idx]}
-    #substract the current command number with the destiny (last argument)
-    if (( cmdNumber > arg )); then
-        arg=!-$((cmdNumber - arg )):0 
-    elif (( cmdNumber == arg )); then
-        arg=!#:0 
-    else
-        add_restore_msg "error history line number not found" 
-        arg=
-    fi
-    local write="${cmda[@]:0:$idx} $arg"
-    #append to history line
-    append_to_history_line "$write"
-}
-
 #reset substring search argument
 reset_search_arg() {
     unset -v msgs_below_ps1["Enter Control-q to reset search"]
-    add_restore_msg "Substring search was reset"
+    add_msg_below_ps1 "Substring search was reset"
     bind -r "\C-q"
     currentSearchArg=
     show_msgs_below_ps1
 }
 
 #add a msg to show it bellow the PS1
-add_restore_msg() {
+add_msg_below_ps1() {
     local msg=$1
     local fix=${2:-no}
     msgs_below_ps1[$msg]=$fix
@@ -153,10 +127,62 @@ show_msgs_below_ps1() {
             echo $msg 
         done
         #restore
-        tput cup $((CONSOLEROW-2)) 0
+        tput cup $((CONSOLEROW-PROMPT_COMMAND_LINES)) 0
         not_delete_under_ps1=$found
+    else # needed?
+        unset -v msgs_below_ps1[@]
     fi
 }
+
+#######
+#B.fun#
+#######
+
+#Show a legend below prompt with the arguments of a relative command number
+show_relative_command_number_args() {
+    #get history id
+    local -i id=$((historyid-$1))
+    local hist=$(fc -nlr $id $id)
+    local -a hista=($hist)
+    local idx=
+    local msg=
+    local args="*)"
+    for idx in "${!hista[@]}";do
+        msg+="$idx) ${hista[$idx]}    "
+        ((idx>0)) && args+=" ${hista[$idx]} "
+    done
+
+    add_msg_below_ps1 "$msg  $args"
+}
+
+#Insert the relative command number from the actual
+insert_relative_command_number() {
+    [[ -z $last_command_line ]] && return
+    local -a cmda=($last_command_line)
+    #get last argument index
+    local idx=$((${#cmda[@]}-1))
+    #get last argument
+    local arg=${cmda[$idx]}
+    local dest=
+    #substract the current command number with the destiny (last argument)
+    #works with 0...-N to go before current session... :)
+    if (( cmdNumber > arg )); then
+        dest=!-$((cmdNumber - arg)): 
+        #show a legend with the possible arguments
+        add_msg_below_ps1 "Possible values for $arg:" 
+        show_relative_command_number_args $((cmdNumber - arg))
+    elif (( cmdNumber == arg )); then
+        dest=!#:0 
+    else
+        dest=$arg
+        add_msg_below_ps1 "error history line $dest not found" 
+    fi
+
+    local write="${cmda[@]:0:$idx} $dest"
+    #append to history line
+    append_to_history_line "$write"
+}
+
 
 #Search forward/backward for a substring in the history and return it to the command line
 #It doesn't work right with arguments with spaces "dir with spaces"
@@ -199,7 +225,7 @@ search_substring_history(){
             fi
         done < <(fc -nlr 1)
 
-        add_restore_msg  "Enter Control-q to reset search" yes
+        add_msg_below_ps1  "Enter Control-q to reset search" yes
         #and set the flag to not restore row the first time
         currentSearchArg=$arg
         currentSearchIdx=0

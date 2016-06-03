@@ -224,6 +224,9 @@ bind -x '"\C-ge3": "show_msgs_below_ps1"'
 #########
 
 #Bind to insert relative command  number
+#works for:
+#positives for current session
+#0 or negatives for older sessions ;)
 bind -x '"\C-gr":insert_relative_command_number'
 
 #Bind to search for a substring argument in the history
@@ -251,7 +254,7 @@ import(){
 
 
 #Load dir stack plugin
-import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true
+import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true || { DIRSTACK_HEADER=false &&  PROMPT_COMMAND_LINES=0; }
 
 #Z script to get the most common directories and so on
 #  https://github.com/rupa/z 
