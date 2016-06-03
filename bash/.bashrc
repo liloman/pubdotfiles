@@ -248,12 +248,16 @@ import(){
         for arg; do
             eval $arg
         done
+    else
+        #don't echo anything before first prompt or will broke show_msgs_below_ps1
+        #echo "failed import. Not found $1"
+        return 1
     fi
 }
 
 
 #Load dir stack plugin
-import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true || { DIRSTACK_HEADER=false &&  PROMPT_COMMAND_LINES=0; }
+import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true || PROMPT_COMMAND_LINES=0
 
 #Z script to get the most common directories and so on
 #  https://github.com/rupa/z 
@@ -273,7 +277,8 @@ import /usr/share/bash-completion/bash_completion
 
 #To work with git 
 import /usr/share/doc/git-core-doc/contrib/completion/git-completion.bash 
-import /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh || DIRSTACK_HEADER=false
+#count with dirstack enabled
+import /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh   || { DIRSTACK_HEADER=false; PROMPT_COMMAND_LINES=2; }
 
 # added by travis gem
 import ~/.travis/travis.sh 
