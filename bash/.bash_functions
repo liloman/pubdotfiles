@@ -26,7 +26,11 @@
 #set current cmdnumber for prompt and for insert_relative_command_number
 cmdNumber=0
 #for search_substring_history functions
-declare -a arrayhistory
+declare -ag arrayhistory
+#not restore row when first substring search 
+declare -g not_delete_under_ps1=0
+#To show msgs below PS1
+declare -gA msgs_below_ps1
 
 #get the last commented command line
 get_last_history_line() {
@@ -71,6 +75,23 @@ set_cmd_number() {
     flaghistory=0
 }
 
+#restore saved consolerow from save_current_row in ps1
+restore_row() {
+    #substract prompt_command lines
+    tput cup $((CONSOLEROW-PROMPT_COMMAND_LINES)) 0
+    #clean screen below PS1
+     tput ed
+}
+
+
+#get current screen row to restore it after ctl-g functions
+save_current_row() {
+    local COL
+    local ROW
+    IFS=';' read -sdR -p $'\E[6n' ROW COL
+    echo "${ROW#*[}"
+}
+
 #######
 #B.fun#
 #######
@@ -89,7 +110,7 @@ insert_relative_command_number() {
     elif (( cmdNumber == arg )); then
         arg=!#:0 
     else
-        echo "error: history line number not found."
+        add_restore_msg "error history line number not found" 
         arg=
     fi
     local write="${cmda[@]:0:$idx} $arg"
@@ -99,9 +120,42 @@ insert_relative_command_number() {
 
 #reset substring search argument
 reset_search_arg() {
-    echo "Substring search reset"
-    currentSearchArg=
+    unset -v msgs_below_ps1["Enter Control-q to reset search"]
+    add_restore_msg "Substring search was reset"
     bind -r "\C-q"
+    currentSearchArg=
+    show_msgs_below_ps1
+}
+
+#add a msg to show it bellow the PS1
+add_restore_msg() {
+    local msg=$1
+    local fix=${2:-no}
+    msgs_below_ps1[$msg]=$fix
+    not_delete_under_ps1=1
+}
+
+#Show msgs from ctl-g functions below the PS1
+show_msgs_below_ps1() {
+    local fix=
+    local msg=
+    local found=0
+
+    if ((not_delete_under_ps1)); then 
+        #go below 
+        tput cup $((CONSOLEROW-1)) 0
+        for msg in "${!msgs_below_ps1[@]}"; do
+            fix=${msgs_below_ps1["$msg"]}
+            [[ $fix == no ]] && unset -v msgs_below_ps1["$msg"] || found=1
+            #clean the line 
+            tput el
+            #should msg be deleted after x seconds?
+            echo $msg 
+        done
+        #restore
+        tput cup $((CONSOLEROW-2)) 0
+        not_delete_under_ps1=$found
+    fi
 }
 
 #Search forward/backward for a substring in the history and return it to the command line
@@ -138,17 +192,21 @@ search_substring_history(){
                         for hay in ${!arrayhistory[@]} ; do
                             [[ ${arrayhistory[$hay]} == $elem ]] && found=1
                         done
-                        ((!found)) && arrayhistory+=("$elem")
+                        ((!found)) && arrayhistory+=("$elem") 
+                        found=0
                     fi
                 done
             fi
         done < <(fc -nlr 1)
-        echo "Enter Control-q to reset search"
+
+        add_restore_msg  "Enter Control-q to reset search" yes
+        #and set the flag to not restore row the first time
         currentSearchArg=$arg
         currentSearchIdx=0
+
     else #active search
         if [[ $way == backward ]];then
-            if (( currentSearchIdx < ${#arrayhistory[@]} )); then
+            if (( currentSearchIdx < $(( ${#arrayhistory[@]}-1 )) )); then
                 ((currentSearchIdx++))
             else
                 end=1
@@ -176,9 +234,12 @@ search_substring_history(){
 # General #
 ###########
 
+
 #Set the ps1 bash prompt with exit status and command number
 show_ps1() {
     local lastExit=$? # Should come first...
+    #save current console row to restore it after control-g functions
+    CONSOLEROW=$(save_current_row)
     local Blue='\[\e[01;34m\]'
     local White='\[\e[01;37m\]'
     local Red='\[\e[01;31m\]'

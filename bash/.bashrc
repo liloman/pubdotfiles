@@ -90,7 +90,8 @@ HISTCONTROL=ignoredups
 GLOBIGNORE=.:..
 #just show the last 2 dirs on PS1 \w dirs
 PROMPT_DIRTRIM=2
-
+#Number of lines of your PROMPT_COMMAND for restore_row
+PROMPT_COMMAND_LINES=2
 
 
 ############
@@ -199,14 +200,28 @@ systemctl --user set-environment PATH=$PATH
 #    shell command: bind -x '"key": shell-command'
 #       keystrokes: bind    '"key":"keystrokes"'
 #   readline macro: bind    '"key": macro'
+# after a bind -x not possible to execute a bind without -x ¿?
+
+#############
+#  HELPERS  #
+#############
+
 
 #Start function
 bind    '"\C-gs": "\C-gs0\e#\C-gs1"'
 bind -x '"\C-gs0": "flaghistory=1"'
 bind -x '"\C-gs1": "get_last_history_line"'
 #End function
-bind    '"\C-ge": "\eki\C-ge1"'
+bind    '"\C-ge": "\eki\C-ge1\C-ge2\C-ge3"'
 bind -x '"\C-ge1": "history -d $historyid"'
+#put the cursor back after doing the operation and clean the screen below it
+bind -x '"\C-ge2": "restore_row"'
+#show the msgs in the queue below the PS1
+bind -x '"\C-ge3": "show_msgs_below_ps1"'
+
+#########
+#  FUN  #
+#########
 
 #Bind to insert relative command  number
 bind -x '"\C-gr":insert_relative_command_number'

@@ -70,6 +70,7 @@ alias gt='cd /tmp/'
 alias tmux='history -w; tmux -u2'
 alias df='df -h'
 alias dmesg='dmesg -HPku'
+alias fbash='env -i  bash --norc --noprofile +o history'
 
 
 #############
