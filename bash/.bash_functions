@@ -158,6 +158,8 @@ show_relative_command_number_args() {
 #Insert the relative command number from the actual
 insert_relative_command_number() {
     [[ -z $last_command_line ]] && return
+    #be sure there isn't no previous search otherwise clean msgs first
+    [[ -n $currentSearchArg  ]] && reset_search_arg
     local -a cmda=($last_command_line)
     #get last argument index
     local idx=$((${#cmda[@]}-1))

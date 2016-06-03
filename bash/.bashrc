@@ -207,6 +207,7 @@ systemctl --user set-environment PATH=$PATH
 
 
 #Start function
+#C-gs0 must go first!
 bind    '"\C-gs": "\C-gs0\e#\C-gs1"'
 bind -x '"\C-gs0": "flaghistory=1"'
 bind -x '"\C-gs1": "get_last_history_line"'
@@ -214,6 +215,7 @@ bind -x '"\C-gs1": "get_last_history_line"'
 bind    '"\C-ge": "\eki\C-ge1\C-ge2\C-ge3"'
 bind -x '"\C-ge1": "history -d $historyid"'
 #put the cursor back after doing the operation and clean the screen below it
+# bug: if put before C-gs1 with search history functions 
 bind -x '"\C-ge2": "restore_row"'
 #show the msgs in the queue below the PS1
 bind -x '"\C-ge3": "show_msgs_below_ps1"'
