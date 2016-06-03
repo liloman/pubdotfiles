@@ -17,7 +17,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 #
 
-# If not running interactively, don't do anything
+# If not running interactively return!
 [[ -z $PS1 ]] && return
 
 ###################
@@ -147,9 +147,10 @@ fi;
 #  EXPORTED VARIABLES  #
 ########################
 
+needs(){ hash $1 2>/dev/null; return $?; }
+
 #Default vagrant provider to virtualbox otherwise libvirt
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
-
 #less options applied
 export LESS=" -eIRMX " 
 #less colored when possible... :S
@@ -160,8 +161,6 @@ export LESS=" -eIRMX "
 # -X dont send de/initialization strings to the terminal
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
-
-needs(){ hash $1 2>/dev/null; return $?; }
 
 #Default editor
 needs vim && { 
@@ -273,8 +272,8 @@ import ~/.bash_aliases
 import /usr/share/bash-completion/bash_completion 
 
 #To work with git 
-import /usr/share/doc/git-core-doc/contrib/completion/git-completion.bash
-import /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh
+import /usr/share/doc/git-core-doc/contrib/completion/git-completion.bash 
+import /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh || DIRSTACK_HEADER=false
 
 # added by travis gem
 import ~/.travis/travis.sh 
