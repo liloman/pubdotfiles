@@ -90,8 +90,6 @@ HISTCONTROL=ignoredups
 GLOBIGNORE=.:..
 #just show the last 2 dirs on PS1 \w dirs
 PROMPT_DIRTRIM=2
-#Number of lines of your PROMPT_COMMAND for restore_row_position
-PROMPT_COMMAND_LINES=2
 
 
 ############
@@ -190,48 +188,6 @@ export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig/"
 #Export path to systemd user units 
 systemctl --user set-environment PATH=$PATH
 
-
-###################
-#  INPUTRC STUFF  #
-###################
-
-#Readline bindings for shell functions (not possible in ~/.inputrc)
-#    shell command: bind -x '"key": shell-command'
-#       keystrokes: bind    '"key":"keystrokes"'
-#   readline macro: bind    '"key": macro'
-# after a bind -x not possible to execute a bind without -x ¿?
-
-#############
-#  HELPERS  #
-#############
-
-#Start function
-#C-gs0 must be executed first!
-bind    '"\C-gs": "\C-gs0\e#"'
-bind -x '"\C-gs0": "flag_ctl_g=1"'
-
-#End function
-bind    '"\C-ge": "\eki\C-ge1\C-ge2"'
-#delete just rewrote history line 
-bind -x '"\C-ge1": "history -d $historyid"'
-#show the msgs in the queue below the PS1
-bind -x '"\C-ge2": "show_msgs_below_ps1"'
-
-#########
-#  FUN  #
-#########
-
-#Bind to insert relative command  number
-#works for:
-#positives for current session
-#0 or negatives for older sessions ;)
-bind -x '"\C-gr":insert_relative_command_number'
-
-#Bind to search for a substring argument in the history
-bind -x '"\C-gb1": search_substring_history backward'
-bind -x '"\C-gb2": search_substring_history forward'
-
-
 ###########
 #  Files  #
 ###########
@@ -248,15 +204,18 @@ import(){
             eval $arg
         done
     else
-        #don't echo anything before first prompt or will broke show_msgs_below_ps1
-        #echo "failed import. Not found $1"
+        #Don't print anything before first prompt to not tamper asyncBash_consolerow
+        #echo "Failed import:$1 not found"
         return 1
     fi
 }
 
 
-#Load dir stack plugin
-import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true || PROMPT_COMMAND_LINES=0
+#Load asyncBash plugin
+import ~/Clones/asyncBash/asyncBash.sh asyncBash_prompt_command_lines=2 
+
+#Load dirStack plugin
+import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true || asyncBash_prompt_command_lines=0
 
 #Z script to get the most common directories and so on
 #  https://github.com/rupa/z 
@@ -277,7 +236,7 @@ import /usr/share/bash-completion/bash_completion
 #To work with git 
 import /usr/share/doc/git-core-doc/contrib/completion/git-completion.bash 
 #count with dirstack enabled
-import /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh   || { DIRSTACK_HEADER=false; PROMPT_COMMAND_LINES=2; }
+import /usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh   || { DIRSTACK_HEADER=false; asyncBash_prompt_command_lines=2; }
 
 # added by travis gem
 import ~/.travis/travis.sh 
