@@ -24,25 +24,40 @@
 ###########
 
 #set current cmdnumber for prompt and for insert_relative_command_number
-cmdNumber=0
-#for search_substring_history functions
-declare -ag arrayhistory
-#not restore row when first substring search 
-declare -g not_delete_under_ps1=0
-#To show msgs below PS1
+declare -g cmdNumber=0
+#last command line without comment
+declare -g last_command_line
+#Arrays whith messages to show below PS1
 declare -gA msgs_below_ps1
+declare -ga msgs_below_ps1_order
+#not clean messages below PS1
+declare -g not_delete_under_ps1=0
 
-#get the last commented command line
-get_last_history_line() {
-    #get "current command"
-    local cmd=$(history 1)
-    #and eliminate till first #
-    cmd=${cmd#*#}
-    [[ -z $cmd ]] && last_command_line=
-    last_command_line=$cmd
+#For search_substring_history functions
+#Hold the result of the substring search
+declare -ag arrayhistory
+#Current position on arrayhistory
+declare -gi currentSearchIdx=0
+#Current substring searched for
+declare -g  currentSearchArg=
+
+#Hook function to insert on your PS1 to work with ctl-g functions
+prepare_ps1() {
+    if ((!flag_ctl_g)); then
+        #save current console row to restore it after control-g functions
+        save_current_row
+        #clean possible previous msgs
+        clean_screen_msgs
+    else #it's in a ctl-g function so just restore row
+        restore_row_position
+    fi
+    #set historyid and cmdNumber to work with the readline stuff on B.Fun
+    set_cmd_number
 }
 
-append_to_history_line() {
+
+#Substitute last command with $1
+substitute_command_line() {
     #remove last history entry 
     history -d $historyid
     #append to history line
@@ -70,43 +85,56 @@ set_cmd_number() {
             [[ $elem* = $actual ]] && return
         done
         pre_cmd=$actual
-        ((flaghistory!=1)) && ((cmdNumber++))
+        ((!flag_ctl_g)) && ((cmdNumber++))
     fi
-    flaghistory=0
+    flag_ctl_g=0
+    #eliminate till first #
+    local cmd=${actual#*#}
+    #set global variable
+    last_command_line=$cmd
 }
 
 #restore saved consolerow from save_current_row in ps1
-restore_row() {
+restore_row_position() {
     #substract prompt_command lines
-    tput cup $((CONSOLEROW-PROMPT_COMMAND_LINES)) 0
+    tput cup $((CONSOLEROW+1-PROMPT_COMMAND_LINES)) 0
     #clean screen below PS1
     tput ed
 }
 
 
-#get current screen row to restore it after ctl-g functions
+#get current PS1 row to restore it after ctl-g functions
 save_current_row() {
     local COL
     local ROW
     IFS=';' read -sdR -p $'\E[6n' ROW COL
-    echo "${ROW#*[}"
+    CONSOLEROW="${ROW#*[}"
 }
 
-#reset substring search argument
-reset_search_arg() {
-    unset -v msgs_below_ps1["Enter Control-q to reset search"]
-    add_msg_below_ps1 "Substring search was reset"
-    bind -r "\C-q"
-    currentSearchArg=
-    show_msgs_below_ps1
-}
 
-#add a msg to show it bellow the PS1
+#add a msg to show it below the PS1
 add_msg_below_ps1() {
     local msg=$1
     local fix=${2:-no}
+    msgs_below_ps1_order+=("$msg")
     msgs_below_ps1[$msg]=$fix
     not_delete_under_ps1=1
+}
+
+#del a/all msg to not show it again below the PS1
+del_msg_below_ps1() {
+    local id=$1
+    local msg=
+    if ((id>=0)); then
+        msg=${msgs_below_ps1_order[$id]}
+        unset -v msgs_below_ps1_order[$id]
+        unset -v msgs_below_ps1["$msg"] 
+    else
+        msgs_below_ps1_order=()
+        msgs_below_ps1=()
+        #clean screen
+        tput ed
+    fi
 }
 
 #Show msgs from ctl-g functions below the PS1
@@ -114,23 +142,42 @@ show_msgs_below_ps1() {
     local fix=
     local msg=
     local found=0
+    local -i id=0
 
     if ((not_delete_under_ps1)); then 
-        #go below 
-        tput cup $((CONSOLEROW-1)) 0
-        for msg in "${!msgs_below_ps1[@]}"; do
+        #go 1 below PS1
+        tput cup $((CONSOLEROW+PROMPT_COMMAND_LINES)) 0
+        for id in ${!msgs_below_ps1_order[@]}; do
+            msg=${msgs_below_ps1_order[$id]}
             fix=${msgs_below_ps1["$msg"]}
-            [[ $fix == no ]] && unset -v msgs_below_ps1["$msg"] || found=1
+            [[ $fix == no ]] && del_msg_below_ps1 $id || found=1
             #clean the line 
             tput el
             #should msg be deleted after x seconds?
             echo $msg 
         done
-        #restore
-        tput cup $((CONSOLEROW-PROMPT_COMMAND_LINES)) 0
+        #go to PS1
+        tput cup $((CONSOLEROW+PROMPT_COMMAND_LINES-1)) 0
         not_delete_under_ps1=$found
-    else # needed?
-        unset -v msgs_below_ps1[@]
+    # else # needed?
+    #     del_msg_below_ps1 -1
+    fi
+}
+
+
+#Clean screen messages,reset env variables showing a message on finish if wanted
+clean_screen_msgs() {
+    local msg=$1
+    #delete all messages arrays and clean screen 
+    del_msg_below_ps1 -1
+    #unbind Ctrl-q 
+    bind -r "\C-q"
+    #reset substring history search
+    currentSearchArg=
+    currentSearchIdx=0
+    if [[ -n $msg ]]; then
+        add_msg_below_ps1 "$msg"
+        show_msgs_below_ps1
     fi
 }
 
@@ -158,8 +205,10 @@ show_relative_command_number_args() {
 #Insert the relative command number from the actual
 insert_relative_command_number() {
     [[ -z $last_command_line ]] && return
-    #be sure there isn't no previous search otherwise clean msgs first
-    [[ -n $currentSearchArg  ]] && reset_search_arg
+    #Clean possible previous ctl-g functions
+    clean_screen_msgs
+    #and hook Ctrl-q to clean the messages without a msg
+    bind -x '"\C-q": clean_screen_msgs'
     local -a cmda=($last_command_line)
     #get last argument index
     local idx=$((${#cmda[@]}-1))
@@ -171,6 +220,8 @@ insert_relative_command_number() {
     if (( cmdNumber > arg )); then
         dest=!-$((cmdNumber - arg)): 
         #show a legend with the possible arguments
+        #do not tamper with shopt -s histverify
+        add_msg_below_ps1 "Enter Control-q to clean screen messages" yes
         add_msg_below_ps1 "Possible values for $arg:" 
         show_relative_command_number_args $((cmdNumber - arg))
     elif (( cmdNumber == arg )); then
@@ -181,17 +232,16 @@ insert_relative_command_number() {
     fi
 
     local write="${cmda[@]:0:$idx} $dest"
-    #append to history line
-    append_to_history_line "$write"
+    #Substitute history line
+    substitute_command_line "$write"
 }
-
 
 #Search forward/backward for a substring in the history and return it to the command line
 #It doesn't work right with arguments with spaces "dir with spaces"
 #More than enough for me use case
 search_substring_history(){
     [[ -z $last_command_line ]] && return
-    bind -x '"\C-q": reset_search_arg'
+    bind -x '"\C-q": clean_screen_msgs "Search substring was reset"'
     local way=$1
     local -a cmda=($last_command_line)
     #get last argument index
@@ -203,6 +253,9 @@ search_substring_history(){
 
     #not active search
     if [[ -z $currentSearchArg ]]; then
+        #delete all previous messages and clean the screen
+        del_msg_below_ps1 -1
+        #reset 
         arrayhistory=()
         #get last argument
         arg=${cmda[$idx]}
@@ -216,7 +269,7 @@ search_substring_history(){
                 #command arg contains
                 for elem in ${line[@]}; do 
                     if [[ $elem == *$arg* ]]; then
-                        #unique elements, so you must do intensive 
+                        #unique elements, so you must do "exhaustive" 
                         for hay in ${!arrayhistory[@]} ; do
                             [[ ${arrayhistory[$hay]} == $elem ]] && found=1
                         done
@@ -254,20 +307,17 @@ search_substring_history(){
     else
         write="${cmda[@]} "
     fi
-    #append to history line
-    append_to_history_line "$write"
+    #Substitute history line
+    substitute_command_line "$write"
 }
 
 ###########
 # General #
 ###########
 
-
 #Set the ps1 bash prompt with exit status and command number
 show_ps1() {
-    local lastExit=$? # Should come first...
-    #save current console row to restore it after control-g functions
-    CONSOLEROW=$(save_current_row)
+    local lastExit=$?  # MUST come first...
     local Blue='\[\e[01;34m\]'
     local White='\[\e[01;37m\]'
     local Red='\[\e[01;31m\]'
@@ -276,8 +326,8 @@ show_ps1() {
     #Copy & Paste from any unicode table... 
     local arrow=$(printf "%s" ➬)
 
-    #set historyid and cmdNumber to work with the readline stuff on B.Fun
-    set_cmd_number
+    #Prepare ps1 for ctl-g functions
+    prepare_ps1
 
     error="${White}$lastExit"
     (( $lastExit )) && error="${Red}$lastExit"
