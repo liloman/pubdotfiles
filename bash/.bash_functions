@@ -20,8 +20,7 @@
 ###########
 
 #Set the ps1 bash prompt with exit status and command number
-show_ps1() {
-    local lastExit=$?  # MUST come first...
+set_ps1() {
     local Blue='\[\e[01;34m\]'
     local White='\[\e[01;37m\]'
     local Red='\[\e[01;31m\]'
@@ -30,14 +29,11 @@ show_ps1() {
     #Copy & Paste from any unicode table... 
     local arrow=$(printf "%s" ➬)
 
-    #Hook asyncBash
-    asyncBash_hook
-
     error="${White}$lastExit"
     (( $lastExit )) && error="${Red}$lastExit"
 
     #Print my command history number and error number
-    PS1=" ${Blue}[${Reset}C:${White}$(echo $(($cmdnumber)))${Reset}-E:${error}${Blue}:${Red}\w"
+    PS1=" ${Blue}[${Reset}R:$(echo $asyncBash_consolerow)C:${White}$(echo $(($cmdnumber)))${Reset}-E:${error}${Blue}:${Red}\w"
 
     # Reset the text color to the default at the end.
     PS1+="]${Green}${arrow}${Reset}"

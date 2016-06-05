@@ -70,8 +70,8 @@ stty -ixon -ixoff ixany
 KERNEL=$(uname -r)
 TTY=$(tty)
 
-#get a colored ps1 with exit value (must be first on prompt_command to get exit status)
-PROMPT_COMMAND='show_ps1'
+# MUST come first...
+PROMPT_COMMAND='lastExit=$?' 
 
 #History lines (current session)
 HISTSIZE=5000
@@ -243,6 +243,10 @@ import ~/.travis/travis.sh
 
 #tmuxinator
 import /usr/share/gems/gems/tmuxinator*/completion/tmuxinator.bash
+
+#set a colored ps1 with exit value,command number and vi mode
+#not ; starting cause z has wrong prompt_command append
+PROMPT_COMMAND+='set_ps1'
 
 #delete import function
 unset -f import needs

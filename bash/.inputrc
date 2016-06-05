@@ -531,25 +531,4 @@ Control-P: "\el"
 # complete filename and put into braces
 "\ecb": complete-into-braces 
 
-
-#############
-# asyncBash #
-#############
-# bash <-> readline communication
-# You can execute pseudo async bash commands on readline and get the results back
-# 1.C-gs to "transfer" the line to bash
-# 2.Your keyboard/bash/macro
-# 3.C-ge to transfer back the modified command line
-# 4.Your final keyboard/bash/macros on the modified command line
-
-#Insert relative command number 
-Control-h: "\C-gs\C-gr\C-ge\C-e"
-
-# Search for a substring *argument* into history 
-# c-n dynamic-complete-history on steroids 
-# backward
-Control-r: "\C-gs\C-gb1\C-ge\C-e"
-# forward
-Control-s: "\C-gs\C-gb2\C-ge\C-e"
-
 $endif
