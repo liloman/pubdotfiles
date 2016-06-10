@@ -33,7 +33,8 @@ set_ps1() {
     (( $lastExit )) && error="${Red}$lastExit"
 
     #Print my command history number and error number
-    PS1=" ${Blue}[${Reset}R:$(echo $asyncBash_consolerow)C:${White}$(echo $(($cmdnumber)))${Reset}-E:${error}${Blue}:${Red}\w"
+    #PS1=" ${Blue}[${Reset}R:$(echo $asyncBash_consolerow)C:${White}$(echo $(($cmdnumber)))${Reset}-E:${error}${Blue}:${Red}\w"
+    PS1=" ${Blue}[${Reset}C:${White}$(echo $(($cmdnumber)))${Reset}-E:${error}${Blue}:${Red}\w"
 
     # Reset the text color to the default at the end.
     PS1+="]${Green}${arrow}${Reset}"
