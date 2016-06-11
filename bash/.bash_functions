@@ -33,7 +33,6 @@ set_ps1() {
     (( $lastExit )) && error="${Red}$lastExit"
 
     #Print my command history number and error number
-    #PS1=" ${Blue}[${Reset}R:$(echo $asyncBash_consolerow)C:${White}$(echo $(($cmdnumber)))${Reset}-E:${error}${Blue}:${Red}\w"
     PS1=" ${Blue}[${Reset}C:${White}$(echo $(($cmdnumber)))${Reset}-E:${error}${Blue}:${Red}\w"
 
     # Reset the text color to the default at the end.
@@ -166,22 +165,23 @@ git_rm_history() {
 }
 
 
-
 algo() {
+  local sec=180
+  local algo=
+  local file=~/algo.key
   clean() { 
-      echo -n "cleaning"
-      \rm -f /dev/shm/algo ~/algo 
+      echo -n "removing $file"
+      \rm -f $file
       echo "."
   }
 trap clean INT
-local algo=
 read -p "Dame algo:" -se algo
-echo $algo | sha512sum | base64 > /dev/shm/algo
+echo $algo | sha512sum | base64 > $file
 unset algo
-echo "."
-ln -s /dev/shm/algo ~/algo
-#sleep execute || on INT signal
-sleep 30 && clean || clean
+echo " "
+echo "Waiting $sec seconds"
+inotifywait -q -t $sec -e close $file
+clean 
 }
 
 #############
