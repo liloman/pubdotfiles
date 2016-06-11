@@ -498,7 +498,8 @@ Control-l: clear-screen
 Control-b: beginning-of-line
 Control-e: end-of-line
 #Same than TAB but put the completion on the cli (inline)
-Control-Tab: menu-complete
+#breaks tab completion ¿?
+#Control-Tab: menu-complete
 #Complete filename against complete history!
 # but should work with substrings :(
 Control-n: dynamic-complete-history
