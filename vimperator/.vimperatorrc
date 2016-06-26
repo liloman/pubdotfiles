@@ -116,6 +116,49 @@ EOF
 map <C-j>  :js RemoveNoScriptTag.call();<CR>
 
 
+
+"Change to googlebot
+:js <<EOF
+function addToStatusLine() {
+    //Create it if not exists
+    if (!document.getElementById('liberator-status-google')) {
+        var google_st = document.createElement('label');
+        google_st.setAttribute('id', 'liberator-status-google');
+        statusline._statuslineWidget.appendChild(google_st);
+    }   
+
+    var googleObs = {
+     observe: function(subject, topic, data) { statusline.updateField('google'); }
+    }
+
+    Services.prefs.addObserver('general.useragent.override', googleObs, false);
+    statusline.addField('google','change to googlebot','liberator-status-google',
+    function updateGoogle (node) {
+      var agent=options.getPref('general.useragent.override');
+      if ( agent != null )
+        node.value = agent+" on!";
+      else
+      node.value = "";
+     }
+    );
+    liberator.execute(':set status+=google');
+    statusline.updateField('google');
+}
+
+changeToGoogle = function() {
+    var agent=(options.getPref('general.useragent.override',null) ? null : 'Googlebot 2.1' );
+    if ( agent != null ){
+        options.setPref('general.useragent.override',agent);
+        addToStatusLine();
+        liberator.echomsg('Changed to google');
+    }else{
+        options.resetPref('general.useragent.override');
+        liberator.echomsg('Changed to the default useragent');
+    }
+}
+EOF
+map <C-G>  :js changeToGoogle.call();<CR>
+
 "===[ Custom commands ]=================================================
 
 "help :command to see options
@@ -139,6 +182,8 @@ CleanFirefox silent !~/Scripts/clean_firefox.sh default
 CleanFirefox silent !~/Scripts/clean_firefox.sh Privado 
 "At last sync firefox PROFILE from RAM before quit
 CleanFirefox silent !~/Scripts/firefox_sync.sh
+"Reset to default useragent
+CleanFirefox set! general.useragent.override&
 
 
 
@@ -289,6 +334,9 @@ set! font.internaluseonly.changed=false
 
 "Preload newtabs 
 set! browser.newtab.preload=true
+
+
+
 
 "===[ Custom style ]=================================================
 

@@ -255,6 +255,8 @@ let g:git_branch_status_ignore_remotes=1
 
 colorscheme Monokai
 
+"Change default "l" latex for vim surround (ysiwlgls)
+let g:surround_108 = "\\\1environment:\1{\r}"
 
 
 """"""""""""""
