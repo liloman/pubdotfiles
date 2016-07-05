@@ -6,7 +6,8 @@
 change_wallpaper() {
     #wallpaper url and title, need to be got from $com
     local url= title= line=
-    local regex='<img src="([^"]*)".*alt="([^"]*)" />'
+    #they make a breakline in alt, so no trailing "
+    local regex='<img src="([^"]*742.jpg)".*alt="([^"]*)'
     local wallpaper=$HOME/.wallpaper-of-the-day
     local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
     ping -c 2 photography.nationalgeographic.com
