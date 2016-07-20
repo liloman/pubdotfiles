@@ -3,33 +3,34 @@
 
 #Needs
 # 1- Allow youtube-dl and block python
-# 2- private-etc without blocking 
-# 3- whitelist .mplayer
+# 2- whitelist .mplayer
 
 
 
 #For youtube-dl 
 #
-#not working???
+#not working?
 blacklist /usr/sbin
-#same issue with symlinks than for .mplayer dir??
+read-only /usr/sbin
 blacklist /bin
-#read-only /bin
+read-only /bin
 
-#Allow python for youtube-dl
+##Allow python for youtube-dl
 noblacklist /usr/bin/python3*
 noblacklist /usr/lib/python3*
+#
+##not working! (disables all binaries!)
+#private-bin python3 
+#private-bin du
+#private-bin killall 
+#private-bin mplayer 
 
-#not working?
-private-bin python3 du killall mplayer 
+whitelist ~/dotfiles/mplayer/
+read-only ~/dotfiles/mplayer/
+#FIXED https://github.com/netblue30/firejail/issues/386 !
+whitelist ~/.mplayer/
+read-only ~/.mplayer/
 
-whitelist ${HOME}/dotfiles/mplayer/
-#not working for symlink https://github.com/netblue30/firejail/issues/386
-whitelist ${HOME}/.mplayer/
-# read-only ${HOME}/.mplayer/
-
-#include main profile
-include /usr/local/etc/firejail/firefox.profile
 
 #my settings
 whitelist ~/Scripts/clean_firefox.sh 
@@ -57,6 +58,9 @@ blacklist /run
 blacklist /sbin
 blacklist /srv
 blacklist /var
+read-only /lib
+read-only /lib64
+read-only /usr
 #warning
 #blacklist /sys
 #working properly
@@ -64,8 +68,6 @@ private-dev
 #disable ssl graphic drivers ... needs debugging
 #private-etc alternatives,firefox,fonts,hosts,localtime,nsswitch.conf,resolv.conf ssl pki
 #private-etc hosts,passwd,mime.types,fonts/,mailcap,,xdg/,gtk-3.0/,resolv.conf,X11/,pulse/,gcrypt/,alternatives/
-#if...
-read-only /lib
-read-only /lib64
-read-only /usr
-
+#
+#include main profile
+include /usr/local/etc/firejail/firefox.profile
