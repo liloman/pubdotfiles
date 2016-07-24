@@ -56,7 +56,7 @@ do_others() {
 do_mines() {
     #Repos
     local mines="dirty dirStack checkUndocumented generate-autocompletion pomodoroTasks "
-    mines+=" rmalias easyPcRecovery Proyecto kbp asyncBash"
+    mines+=" rmalias easyPcRecovery kbp asyncBash"
     for dir in $mines; do
         echo "**********************************"
         echo "Doing $dir"
@@ -69,7 +69,7 @@ do_mines() {
 do_dotfiles(){
     echo "**********************************"
     echo "Doing dotfiles"
-    cd ~/dotfiles && update_repo dotfiles
+    cd ~/dotfiles && update_repo dotfiles || return 
     ./install.sh -d
     cd $ROOT
 }
@@ -77,7 +77,7 @@ do_dotfiles(){
 do_yad(){
     echo "**********************************"
     echo "Doing yad"
-    cd ~/Clones/yad 
+    cd ~/Clones/yad || return 
     git svn rebase
     git push
     cd $ROOT
