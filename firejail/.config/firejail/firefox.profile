@@ -6,14 +6,11 @@
 # 2- whitelist .mplayer
 
 
-
 #For youtube-dl 
 #
+blacklist /sbin
 #not working?
-blacklist /usr/sbin
-read-only /usr/sbin
 blacklist /bin
-read-only /bin
 
 ##Allow python for youtube-dl
 noblacklist /usr/bin/python3*
@@ -25,11 +22,10 @@ noblacklist /usr/lib/python3*
 #private-bin killall 
 #private-bin mplayer 
 
-whitelist ~/dotfiles/mplayer/
-read-only ~/dotfiles/mplayer/
-#FIXED https://github.com/netblue30/firejail/issues/386 !
-whitelist ~/.mplayer/
-read-only ~/.mplayer/
+#You have to whitelist just the symlink dir
+#and firejail whitelist the target dirs and files
+whitelist ~/.mplayer
+read-only ~/.mplayer
 
 
 #my settings
@@ -37,9 +33,11 @@ whitelist ~/Scripts/clean_firefox.sh
 read-only ~/Scripts/clean_firefox.sh
 whitelist ~/Scripts/firefox_sync.sh 
 read-only ~/Scripts/firefox_sync.sh
-#It whitelist automatically everything inside
+#It doesn't whitelist automatically everything inside
 whitelist ~/Scripts/descarga.sh 
 read-only ~/Scripts/descarga.sh
+whitelist ~/Scripts/libnotify
+read-only ~/Scripts/libnotify
 
 #
 ## from http://blog.swwomm.com/2015/11/sandboxing-firefox-with-firejail.html
