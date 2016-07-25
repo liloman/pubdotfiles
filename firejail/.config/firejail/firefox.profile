@@ -22,10 +22,13 @@ noblacklist /usr/lib/python3*
 #private-bin killall 
 #private-bin mplayer 
 
-#You have to whitelist just the symlink dir
-#and firejail whitelist the target dirs and files
-whitelist ~/.mplayer
-read-only ~/.mplayer
+#You have to whitelist the symlink FILES
+#and firejail whitelists the target FILES
+#no working globbing 
+whitelist ~/.mplayer/config
+read-only ~/.mplayer/config
+whitelist ~/.mplayer/input.conf
+read-only ~/.mplayer/input.conf
 
 
 #my settings
@@ -52,13 +55,17 @@ blacklist /media
 blacklist /mnt
 blacklist /opt
 blacklist /proc
-blacklist /run
 blacklist /sbin
 blacklist /srv
 blacklist /var
 read-only /lib
 read-only /lib64
 read-only /usr
+#for pulseaudio
+#noblacklist /run/user/1000/pulse
+#noblacklist not working :(
+#blacklist /run
+#
 #warning
 #blacklist /sys
 #working properly
