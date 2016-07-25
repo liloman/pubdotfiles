@@ -17,10 +17,10 @@ noblacklist /usr/bin/python3*
 noblacklist /usr/lib/python3*
 #
 ##not working! (disables all binaries!)
-#private-bin python3 
-#private-bin du
-#private-bin killall 
-#private-bin mplayer 
+# private-bin python3,du,killall,mplayer
+# private-bin basename,uname,pidof,mkdir,cat,sed,bash,sh
+# private-bin chmod,rm,readlink,rsync
+# private-bin firefox,firejail,run-mozilla.sh
 
 #You have to whitelist the symlink FILES
 #and firejail whitelists the target FILES
