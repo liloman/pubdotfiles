@@ -168,7 +168,7 @@ git_rm_history() {
 algo() {
   local sec=180
   local algo=
-  local file=~/algo.key
+  local file=/dev/shm/algo.key
   clean() { 
       echo -n "removing $file"
       \rm -f $file
@@ -182,6 +182,11 @@ echo " "
 echo "Waiting $sec seconds"
 inotifywait -q -t $sec -e close $file
 clean 
+}
+
+# 921536
+quedan() { 
+    echo $((1000 - 300 - $(</sys/class/net/wlp16s0/statistics/rx_bytes)/2**20 ))MB in wlp16s0
 }
 
 #############

@@ -71,7 +71,6 @@ alias tmux='history -r; tmux -u2'
 alias df='df -h'
 alias dmesg='dmesg -HPku'
 alias fbash='env -i  bash --norc --noprofile +o history'
-alias sent='echo $(( $(</sys/class/net/wlp16s0/statistics/rx_bytes)/2**20))MB in wlp16s0'
 
 #############
 #  Desktop  # 
