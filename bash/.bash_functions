@@ -184,11 +184,6 @@ inotifywait -q -t $sec -e close $file
 clean 
 }
 
-# 921536
-quedan() { 
-    echo $((1000 - 300 - $(</sys/class/net/wlp16s0/statistics/rx_bytes)/2**20 ))MB in wlp16s0
-}
-
 #############
 #  Desktop  #
 #############
