@@ -41,6 +41,9 @@ whitelist ~/Scripts/descarga.sh
 read-only ~/Scripts/descarga.sh
 whitelist ~/Scripts/libnotify
 read-only ~/Scripts/libnotify
+#simple dir
+whitelist ~/tests
+read-only ~/tests
 
 #
 ## from http://blog.swwomm.com/2015/11/sandboxing-firefox-with-firejail.html
