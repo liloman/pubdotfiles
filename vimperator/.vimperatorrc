@@ -80,6 +80,8 @@ EOF
 map <C-b> :js FirefoxPrivate(buffer.URL)<CR><Esc>:bd<CR>
 "Open in private window 
 map <C-S-b> :js FirefoxPrivate(buffer.URL)<CR>
+"Open tests in private window
+map <C-t> :js FirefoxPrivate("file:///home/charly/tests/index.html")<CR>
 
 "Show the current video in FullScreen through youtube-dl and mplayer
 "works for youtube,vimeo,rtve...
@@ -158,6 +160,7 @@ changeToGoogle = function() {
 }
 EOF
 map <C-G>  :js changeToGoogle.call();<CR>
+
 
 "===[ Custom commands ]=================================================
 
