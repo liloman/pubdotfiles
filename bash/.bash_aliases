@@ -55,7 +55,7 @@ needs vim.gtk && alias vi='vim.gtk'
 needs rmalias && alias rm='rmalias -v'
 needs rmdiralias && alias rmdir='rmdiralias -v'
 alias grep='grep --color=auto'
-alias search='grep --color=auto --exclude-dir=.git -rin '
+alias search='grep --color=auto --exclude-dir=.git -Rin '
 alias cp="cp -v"
 alias cpfolder='rsync --progress -rva'
 alias tarc='tar -I lbzip2'

@@ -184,6 +184,16 @@ inotifywait -q -t $sec -e close $file
 clean 
 }
 
+#WIP ...
+#need some time to finish it
+search2() {
+local path=${2:-"."}
+[[ -z $1 ]] && { echo "You need a pattern at least"; return; }
+local pattern=${1}
+#it needs to use parallel, xargs or neither
+find $path -type f -print0 | parallel -k -j+1 -n 1000 -m  grep --color=auto --exclude-dir=.git -in $pattern {}
+
+}
 #############
 #  Desktop  #
 #############

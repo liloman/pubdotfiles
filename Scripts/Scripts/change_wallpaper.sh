@@ -7,7 +7,9 @@ change_wallpaper() {
     #wallpaper url and title, need to be got from $com
     local url= title= line=
     #they make a breakline in alt, so no trailing "
-    local regex='<img src="([^"]*742.jpg)".*alt="([^"]*)'
+    #local regex='<img src="([^"]*742.jpg)".*alt="([^"]*)'
+    local regexD='property="og:description" content="(.*)"'
+    local regexI='property="og:image" content="(.*)"'
     local wallpaper=$HOME/.wallpaper-of-the-day
     local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
     ping -c 2 photography.nationalgeographic.com
@@ -16,9 +18,10 @@ change_wallpaper() {
     local com="wget $web --tries=10 --quiet -O-"
 
     while IFS= read -r line; do
-        if [[ $line =~ $regex ]]; then
-            url="http:${BASH_REMATCH[1]}"
-            title="${BASH_REMATCH[2]}"
+        if [[ $line =~ $regexD ]]; then
+            title="${BASH_REMATCH[1]}"
+        elif [[ $line =~ $regexI ]]; then
+            url="${BASH_REMATCH[1]}"
             break
         fi
     done < <($com)
@@ -28,9 +31,9 @@ change_wallpaper() {
         return 1
     fi
 
-    wget --tries=10 $url --quiet -O $wallpaper 
+    # wget --tries=10 $url --quiet -O $wallpaper 
+    wget --tries=10 $url -O $wallpaper 
     pcmanfm -w  $wallpaper && notify "Background changed to:\n $title!" preferences-desktop-wallpaper
-    return 
 }
 
 change_wallpaper 
