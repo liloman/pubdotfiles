@@ -10,7 +10,10 @@ port=8080
 echo -n "
 server.document-root = \"$dir\"
 server.port          = $port
-#server.dir-listing = "enable"
+server.username      = \"$USER\"
+server.groupname     = \"$USER\"
+#server.errorlog      = \"/tmp/lighttpd-error.log\"
+dir-listing.activate = \"enable\"
 " > $config
 
 killall -q lighttpd 
