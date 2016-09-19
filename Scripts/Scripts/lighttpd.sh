@@ -12,7 +12,8 @@ server.document-root = \"$dir\"
 server.port          = $port
 server.username      = \"$USER\"
 server.groupname     = \"$USER\"
-#server.errorlog      = \"/tmp/lighttpd-error.log\"
+server.errorlog      = \"/tmp/lighttpd-error.log\"
+accesslog.filename   = \"/tmp/lighttpd-access.log\"
 dir-listing.activate = \"enable\"
 " > $config
 
