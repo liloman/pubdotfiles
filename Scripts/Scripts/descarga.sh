@@ -5,13 +5,14 @@
 
 descarga() {
     local latest=false
-    local dest=$HOME/Descargas/videoFlash
+    #local dest=$HOME/Descargas/videoFlash
+    local dest=/tmp/videoFlash
     local url="$1"
     # local options=" $url --add-metadata  --verbose -o $dest -f best --no-part "
     # failing --add-metadata option
     local options=" $url --verbose -o $dest -f best --no-part "
     killall -q youtube-dl
-    cd ~ # youtube-dl doesn't get DEST right ¿?
+    cd /tmp # youtube-dl doesn't get DEST right ¿?
     \rm -f $dest
     > $dest
     #Failback for latest youtube-dl in case of errors on fedora's one

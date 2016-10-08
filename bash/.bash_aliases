@@ -85,6 +85,7 @@ alias verflash="mplayer -fs ~/Descargas/videoFlash"
 alias verflashl="tail -f /tmp/youtube.log" 
 alias spotify="~/Scripts/alternate_vbox.sh Spotify" 
 alias webshare='python -m SimpleHTTPServer'
+alias vbsound='VBoxManage controlvm Spotify acpipowerbutton && sleep 20 && VBoxManage startvm Spotify'
 
 
 #################
