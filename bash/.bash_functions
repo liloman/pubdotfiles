@@ -200,36 +200,24 @@ find $path -type f -print0 | parallel -k -j+1 -n 1000 -m  grep --color=auto --ex
 
 
 
-#Listen to several radios
-# radios(){
-#     [ "$1" = "xfm" ] && mplayer http://mediasrv-sov.musicradio.com/XFMLondon
-#     [ "$1" = "virgin" ] && mplayer http://www.smgradio.com/core/audio/ogg/live.pls?service=vrbb
-#     [ "$1" = "capital" ] && mplayer http://mediasrv-the.musicradio.com/CapitalRadio
-#     [ "$1" = "bbcworld" ] && mplayer -playlist  http://bbc.co.uk/radio/worldservice/meta/tx/nb/live_infent_au_nb.asx
-#     [ "$1" = "bbc1" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r1.asx
-#     [ "$1" = "bbc1x" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r1x.asx
-#     [ "$1" = "bbc2" ] && mplayer -softvol -softvol-max 200 -playlist  http://bbc.co.uk/radio/listen/live/r2.asx
-#     [ "$1" = "bbc3" ] && mplayer -softvol -softvol-max 200 -playlist  http://bbc.co.uk/radio/listen/live/r3.asx
-#     [ "$1" = "bbc4" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r4.asx
-#     [ "$1" = "bbc5" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r5.asx
-#     [ "$1" = "bbc6" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/r6.asx
-#     [ "$1" = "bbcman" ] && mplayer -playlist  http://bbc.co.uk/radio/listen/live/bbcmanchester.asx
-#     [ "$1" = "vaughan" ] && mplayer http://server01.streaming-pro.com:8012 
-#     [ "$1" = "radio3" ] && mplayer -cache 500 -playlist http://rtve.stream.flumotion.com/rtve/radio3.mp3.m3u
-#     [ "$1" = "folk-eu" ] && mplayer http://www.live365.com/play/wumb919fast
-#     [ "$1" = "folk" ] && mplayer -cache 500 -playlist http://public.wavepanel.net/3LACLKLS7UVKONE4/listen/m3u
-#     # alias folkradio_graba='mplayer -cache 500 http://www.live365.com/play/wumb919fast -ao pcm:file=radio.wav -vo null -vc null'
-#     #FRANCE
-#     [ "$1" = "nrj" ] && mplayer mms://vipnrj.yacast.fr/encodernrj
-#     [ "$1" = "rtl" ] && mplayer http://streaming.radio.rtl.fr/rtl-1-44-96
-#     [ "$1" = "rtl2" ] && mplayer http://streaming.radio.rtl.fr/rtl2-1-44-96
-#     [ "$1" = "europe2" ] && mplayer mms://vipmms9.yacast.fr/encodereurope2
-#     [ "$1" = "fip" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/fip_hd.m3u
-#     [ "$1" = "franceculture" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/franceculture_hd.m3u
-#     [ "$1" = "franceinter" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/franceculture_hd.m3u
-#     [ "$1" = "lemouv" ] && mplayer http://viphttp.yacast.net/V4/radiofrance/lemouv_hd.m3u
-#     echo "Posibles opciones: xfm virgin capital bbcworld bbc1 bbc1x bbc2 bbc3 bbc4 bbc5 bbc6 vaughan radio3 folk-eu folk rtl rtl2 nostalgie europe2 (broken links galore) "
-# }
+#Cut videos from start to end duration. See join_video in Scripts also
+cut_video() {
+    local video=$1
+    local start=$2
+    local end=$3
+    local dest=${4:-"dest.mp4"}
+    [[ -z $video ]] && { echo "You need to pass a video file"; return; }
+    [[ -z $start ]] && { echo "You need the start time, ie  00:03:1"; return; }
+    [[ -z $end ]] && { echo "You need the end time, ie 2 seconds"; return; }
+    ffmpeg -i "$video" -ss $start -t $end -async 1 -strict -2 "$dest"
+}
+
+#Launch mplayer with a playlist with or without loop (0 for infinite)
+mp() {
+    local list=${1:-"playlist"}
+    local loop=${2:-1}
+    mplayer -fs -playlist $list -loop $loop
+}
 
 
 #Let's use vim to read manpages right!
