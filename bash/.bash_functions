@@ -216,7 +216,7 @@ cut_video() {
 mp() {
     local list=${1:-"playlist"}
     local loop=${2:-1}
-    mplayer -fs -playlist $list -loop $loop
+    ${BASH_ALIASES[mplayer]} -playlist $list -loop $loop
 }
 
 
