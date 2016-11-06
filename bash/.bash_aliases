@@ -79,13 +79,14 @@ alias fbash='env -i  bash --norc --noprofile +o history'
 needs smplayer && alias verflashgui="smplayer  ~/Descargas/videoFlash" 
 needs fastboot && alias fastboot="fastboot  -i 0x1f3a" 
 needs gpicview && alias fotos='gpicview'
-alias mplayer='mplayer -use-filename-title -fs'
-alias mplayer-masvolumen='mplayer -softvol -softvol-max 900'
-alias verflash="mplayer -fs ~/Descargas/videoFlash" 
+needs mplayer && alias mplayer='mplayer -use-filename-title -fs'
+needs mplayer && alias mplayer-masvolumen='mplayer -softvol -softvol-max 900'
+needs mplayer && alias verflash="mplayer -fs ~/Descargas/videoFlash" 
 alias verflashl="tail -f /tmp/youtube.log" 
 alias spotify="~/Scripts/alternate_vbox.sh Spotify" 
 alias webshare='python -m SimpleHTTPServer'
-alias vbsound='VBoxManage controlvm Spotify acpipowerbutton && sleep 20 && VBoxManage startvm Spotify'
+needs VBoxManage && alias vbsound='VBoxManage controlvm Spotify acpipowerbutton && sleep 20 && VBoxManage startvm Spotify'
+alias notas='vi ~/OPOS/Ingles/thesoundofenglish/notas.txt'
 
 
 #################
