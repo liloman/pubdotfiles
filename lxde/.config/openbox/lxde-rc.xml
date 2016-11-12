@@ -292,12 +292,17 @@
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <command>pactl -- set-sink-volume 0 +5%</command>
+        <command>~/Scripts/control-volume.sh raise</command>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <command>pactl -- set-sink-volume 0 -5%</command>
+        <command>~/Scripts/control-volume.sh lower</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioMute">
+      <action name="Execute">
+        <command>~/Scripts/control-volume.sh mute</command>
       </action>
     </keybind>
     <keybind key="A-Escape">

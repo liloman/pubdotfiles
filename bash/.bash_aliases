@@ -87,6 +87,7 @@ alias spotify="~/Scripts/alternate_vbox.sh Spotify"
 alias webshare='python -m SimpleHTTPServer'
 needs VBoxManage && alias vbsound='VBoxManage controlvm Spotify acpipowerbutton && sleep 20 && VBoxManage startvm Spotify'
 alias notas='vi ~/OPOS/Ingles/thesoundofenglish/notas.txt'
+alias bajaurl='wget -m -np -nd -p '
 
 
 #################
