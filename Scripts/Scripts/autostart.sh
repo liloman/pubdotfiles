@@ -48,7 +48,7 @@ monitor ~/Scripts/sync_repos.sh
 monitor ~/Scripts/firefox_sync.sh 
 
 #Get current song from Spotify VB (daemon)
-monitor ~/Scripts/current_spotify_song.sh
+# monitor ~/Scripts/current_spotify_song.sh
 
 #Launch pomodoroTasks (daemon) 
 monitor ~/Clones/pomodoroTasks/pomodoro-daemon.sh 

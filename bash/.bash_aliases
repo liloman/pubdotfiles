@@ -77,16 +77,15 @@ alias fbash='env -i  bash --norc --noprofile +o history'
 ############# 
 
 needs smplayer && alias verflashgui="smplayer  ~/Descargas/videoFlash" 
+#for the tablet (fastboot reboot when boot-looped)
 needs fastboot && alias fastboot="fastboot  -i 0x1f3a" 
 needs gpicview && alias fotos='gpicview'
 needs mplayer && alias mplayer='mplayer -use-filename-title -fs'
 needs mplayer && alias mplayer-masvolumen='mplayer -softvol -softvol-max 900'
 needs mplayer && alias verflash="mplayer -fs ~/Descargas/videoFlash" 
 alias verflashl="tail -f /tmp/youtube.log" 
-alias spotify="~/Scripts/alternate_vbox.sh Spotify" 
-alias webshare='python -m SimpleHTTPServer'
-needs VBoxManage && alias vbsound='VBoxManage controlvm Spotify acpipowerbutton && sleep 20 && VBoxManage startvm Spotify'
 alias notas='vi ~/OPOS/Ingles/thesoundofenglish/notas.txt'
+alias webshare='python -m SimpleHTTPServer'
 alias bajaurl='wget -m -np -nd -p '
 
 
@@ -107,5 +106,7 @@ alias bajaurl='wget -m -np -nd -p '
 # alias cambia_fondo='wmsetbg --center --maxscale "$(ls ~/.wallpapers/* | shuf -n1)"'
 # alias identa-c='indent -kr -i8 -ts8 -sob -l80 -ss -bs -psl'
 # alias suspender='sudo s2ram --force -a 3'
+# alias spotify="~/Scripts/alternate_vbox.sh Spotify" 
+# needs VBoxManage && alias vbsound='VBoxManage controlvm Spotify acpipowerbutton && sleep 20 && VBoxManage startvm Spotify'
 
 unset -f needs
