@@ -33,9 +33,9 @@ set messagetimeout=5000
 "Favorite colorcheme (broken compMore)
 "colorscheme obsidian
 
-"next version will allow view zoomlevel at last 
-"set status=input,zoomlevel,bookmark,history,tabcount,position,ssl 
-set status=input,bookmark,history,tabcount,position,ssl
+"Set status 
+set status=input,zoomlevel,bookmark,history,tabcount,position,ssl 
+"set status=input,bookmark,history,tabcount,position,ssl
 "show current mode on command mode
 set showmode=true
 "show links in the content area and not in the statusbar
@@ -72,7 +72,7 @@ javascript function Midori() {io.system('midori -p ' + buffer.URL +' &');};
 "For multiline javascript, to remember it...
 :js <<EOF
 FirefoxPrivate = function(url) {
-    io.system('firefox -P Privado  --private-window ' + url +' &');
+    io.system('firefox -P Privado  --private-window "' + url +'" &');
 };
 EOF
 
@@ -166,7 +166,7 @@ map <C-G>  :js changeToGoogle.call();<CR>
 
 "help :command to see options
 " Run :pf to open the url in a new private session 
-command! -nargs=1 -complete=url -description "Open in private" pf :js FirefoxPrivate("<args>");
+command! -nargs=+ -complete=url -description "Open in private" pf :js FirefoxPrivate("<args>");
 
 "===[ Custom autocommands ]=================================================
 
