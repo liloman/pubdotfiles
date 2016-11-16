@@ -3,9 +3,13 @@
 
 get_virtualbox_extpack() {
     local version=$(VBoxManage --version)
-    local ver=${version:0:6}
+    #cut till first r
+    local len=${version%r*}
+    #get the r position
+    len=${#len}
+    local ver=${version:0:$len}
     local base="http://download.virtualbox.org/virtualbox"
-    local pkg="Oracle_VM_VirtualBox_Extension_Pack-$ver-${version: -6}.vbox-extpack"
+    local pkg="Oracle_VM_VirtualBox_Extension_Pack-$ver-${version:$len+1}.vbox-extpack"
     local url="$base/$ver/$pkg"
     cd /tmp/
     echo "wgeting-> $url"
