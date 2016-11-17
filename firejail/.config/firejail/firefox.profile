@@ -60,7 +60,8 @@ blacklist /opt
 blacklist /proc
 blacklist /sbin
 blacklist /srv
-blacklist /var
+# not working anymore
+# blacklist /var
 read-only /lib
 read-only /lib64
 read-only /usr
@@ -77,5 +78,9 @@ private-dev
 #private-etc alternatives,firefox,fonts,hosts,localtime,nsswitch.conf,resolv.conf ssl pki
 #private-etc hosts,passwd,mime.types,fonts/,mailcap,,xdg/,gtk-3.0/,resolv.conf,X11/,pulse/,gcrypt/,alternatives/
 #
+#prevent lxterminal connecting to an existing lxterminal session 
+#included in main profile from include /usr/local/etc/firejail/disable-common.inc
+#blacklist /tmp/.lxterminal-socket*
+
 #include main profile
 include /usr/local/etc/firejail/firefox.profile
