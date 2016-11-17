@@ -194,6 +194,42 @@ local pattern=${1}
 find $path -type f -print0 | parallel -k -j+1 -n 1000 -m  grep --color=auto --exclude-dir=.git -in $pattern {}
 
 }
+
+#Insert a new symlink into Scripts dir
+script_insert() {
+    local new=$1
+    [[ -x $new ]] || { echo "$new doesn't exist or not executable"; return; }
+    mv $new ~/dotfiles/Scripts/Scripts/
+    #get just the file name 
+    local file=${new##*/}
+    cd ~/Scripts
+    ln -s ../dotfiles/Scripts/Scripts/$file .
+    echo "symlink for $file created."
+    ls -l $file
+}
+
+#Remove a symlink from Scripts dir
+script_remove() {
+    local file=${1##*/}
+    #remove the file
+    [[ -e ~/Scripts/$file ]] && echo "$file removed from Scripts"
+    rm -f ~/Scripts/$file
+    rm -f ~/dotfiles/Scripts/Scripts/$file 
+}
+
+#Insert a new app for the lxde menus
+icon_insert() {
+    local file=${1##*/}.desktop
+    local lapp=~/.local/share/applications
+    local app=/usr/share/applications/$file
+    #check for app
+    [[ -e $app  ]] || { echo "$app doesn't exist"; return; }
+    [[ -d $lapp ]] || mkdir -p $lapp
+    cp  $app $lapp
+    cd $lapp
+    echo "Edit $file then execute 'lxpanelctl restart' to update the menus"
+}
+
 #############
 #  Desktop  #
 #############
