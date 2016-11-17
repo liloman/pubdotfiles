@@ -266,16 +266,16 @@
         <command>firejail thunderbird</command>
       </action>
     </keybind>
-    <keybind key="W-p">
-      <action name="Execute">
-        <command>~/Scripts/alternate_vbox.sh Spotify</command>
-      </action>
-    </keybind>
-    <keybind key="W-A-p">
-      <action name="Execute">
-        <command>~/Scripts/alternate_vbox.sh Spotify paused</command>
-      </action>
-    </keybind>
+    <!-- <keybind key="W&#45;p"> -->
+    <!--   <action name="Execute"> -->
+    <!--     <command>~/Scripts/alternate_vbox.sh Spotify</command> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
+    <!-- <keybind key="W&#45;A&#45;p"> -->
+    <!--   <action name="Execute"> -->
+    <!--     <command>~/Scripts/alternate_vbox.sh Spotify paused</command> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
       <action name="If">
@@ -715,7 +715,18 @@
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
   <applications>
-    <!--
+      <!-- Default desktop for apps -->
+      <!-- uses second element of 'xprop WM_CLASS' -->
+      <application class="Spotify">
+          <desktop>4</desktop>
+      </application>
+      <application class="Thunderbird">
+          <desktop>3</desktop>
+      </application>
+      <application class="Firefox">
+          <desktop>1</desktop>
+      </application>
+      <!--
   # this is an example with comments through out. use these to make your
   # own rules, but without the comments of course.
 
