@@ -29,12 +29,11 @@ THE POSSIBILITY OF SUCH DAMAGE.
 # http://sourceforge.jp/projects/opensource/wiki/licenses%2Fnew_BSD_license       #
 # に参考になる日本語訳がありますが、有効なのは上記英文となります。                #
 ###################################################################################
-wget https://raw.githubusercontent.com/vimpr/vimperator-plugins/3.6/every.js
 
 }}} */
 
 // PLUGIN_INFO {{{
-let PLUGIN_INFO = xml`
+var PLUGIN_INFO = xml`
 <VimperatorPlugin>
   <name>every.js</name>
   <description>to run a specified command every time at specified interval.</description>
@@ -95,10 +94,11 @@ ps = [];
 
 (function () {
 
-  let (every = liberator.plugins.every) {
+  (function () {
+    let every = liberator.plugins.every;
     if (every && every.ps)
       kill('*');
-  }
+  })();
 
   function defined (value)
     (typeof value !== 'undefined');
