@@ -76,12 +76,18 @@ FirefoxPrivate = function(url) {
 };
 EOF
 
+:js <<EOF
+opos = function(url) {
+    io.system('firefox -P Oposiciones "' + url +'" &');
+};
+EOF
+
 "Open in private window and delete buffer in origin
 map <C-b> :js FirefoxPrivate(buffer.URL)<CR><Esc>:bd<CR>
 "Open in private window 
 map <C-S-b> :js FirefoxPrivate(buffer.URL)<CR>
-"Open tests in private window
-map <C-t> :js FirefoxPrivate("file:///home/charly/tests/index.html")<CR>
+"Open opos profile
+map <C-t> :js opos("file:///home/charly/tests/index.html")<CR>
 
 "Show the current video in FullScreen through youtube-dl and mplayer
 "works for youtube,vimeo,rtve...

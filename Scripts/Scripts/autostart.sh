@@ -41,6 +41,9 @@ monitor() {
 #Sync tasks
 task sync
 
+#Remove that shit out of here all along (not able to disable/modify...)
+rm -rf ~/Downloads/ ~/Desktop/
+
 #Sync local repos with origin for my repos ...
 monitor ~/Scripts/sync_repos.sh 
 
