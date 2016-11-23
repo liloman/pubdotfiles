@@ -93,8 +93,8 @@ map <C-t> :js opos("file:///home/charly/tests/index.html")<CR>
 "works for youtube,vimeo,rtve...
 map <C-m>  :js showFSVideo(buffer.URL)<CR>
 
-"toggle temporary  noscript perms for the current buffer
-"map <C-j>  :noscript toggletemp<CR>
+"toggle temporary  noscript for the current buffer
+map <C-z>  :noscript toggletemp<CR>
 
 "Toggle page style for current buffer(most time enough to show content without the obnoxious JS otherwise see RemoveNoScriptTag... ;) )
 " setlocal usermode! in the future...
