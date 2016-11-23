@@ -1,93 +1,41 @@
 " vim: set ft=vimperator:
 "2.1 Initial
 "3.0 Refactoring 
+"3.1 Separation in profiles (~/.vimperator/vimperatorrc-*)
 
-
-"===[ Custom vimperator settings]=================================================
-
-set editor="lxterminal -e vim"
-set runtimepath=~/.vimperator
-"dont focus input automatically
-set focuscontent
-" addons downloads help javascript prefs in a new tab
-set newtab=all
-"Focus on download 
-set activate=downloads
-"show  current url
-"let g:buftabs_showCurrentUrl=1
-" Proper hints
-set hintchars=hjklasdfgyuiopqwertnmzxcvb
-let g:hintsio="io"
-
-"No more than 5 items in statusline
-set maxitems=5
-" No autocomplete local files for selinux jail...
-set complete=sl
-"Show scrollbars when needed
-set scrollbars
-"Hide menu and no bookmarks 
-set toolbars=nomenu,nobookmarks
-" keep messages around for 5 seconds
-set messagetimeout=5000
-
-"Favorite colorcheme (broken compMore)
-"colorscheme obsidian
-
-"Set status 
-set status=input,zoomlevel,bookmark,history,tabcount,position,ssl 
-"set status=input,bookmark,history,tabcount,position,ssl
-"show current mode on command mode
-set showmode=true
-"show links in the content area and not in the statusbar
-set showstatuslinks=3
-
-"show tabnumbers for alt+number
-set tabnumbers=true
+source ~/.vimperator/vimperatorrc-common
 
 "===[ Custom mappings]=================================================
 
-" Show previous tab urls with J
-noremap J <Esc>:jumps<CR>:back 
-"Show downloads
-noremap D <Esc>:dl<CR> 
-"Proper scrolling
-noremap j 10j
-noremap k 10k
-"Go to eXecute prompt (command)
-noremap x <Esc>:
-inoremap <C-n> <Esc>:tabnext<CR>
-
 " Load configuration file into current browser, useful for updating after editing this file.
-noremap <C-r> :source ~/.vimperatorrc<CR>:echomsg "Reloaded ~/.vimperatorrc!"<CR>
+noremap <C-r> :source $HOME/.vimperatorrc<CR>:echomsg "Reloaded ~/.vimperatorrc!"<CR>
 
 "inoremap <F9> <Esc>:tabprevious<CR>
 "inoremap <F10> <Esc>:tabnext<CR>
 "noremap K <Esc>:closedTabs<CR> 
+
 
 "===[ Custom js mappings ]=================================================
 
 javascript function showFSVideo(url) {io.system('~/Scripts/descarga.sh ' + url +' &');};
 javascript function Midori() {io.system('midori -p ' + buffer.URL +' &');};
 
-"For multiline javascript, to remember it...
+"Open in profile the url or search passed
 :js <<EOF
-FirefoxPrivate = function(url) {
-    io.system('firefox -P Privado  --private-window "' + url +'" &');
+OpenInFireFox = function(profile,url) {
+    /* needs the sleep hack due a race condition */
+    /* and the export needs to be in the same line than the firefox call */
+    io.system('export VIMPERATOR_INIT=":source $HOME/.vimperator/vimperatorrc-'+profile+'" && firefox -P '+profile+' -vimperator "+c \'javascript liberator.sleep(1000) && liberator.open(\\"'+url+'\\"); \' ++noplugin  "&');
 };
 EOF
 
-:js <<EOF
-opos = function(url) {
-    io.system('firefox -P Oposiciones "' + url +'" &');
-};
-EOF
 
 "Open in private window and delete buffer in origin
-map <C-b> :js FirefoxPrivate(buffer.URL)<CR><Esc>:bd<CR>
+map <C-b> :js OpenInFireFox("Privado","buffer.URL")<CR><Esc>:bd<CR>
 "Open in private window 
-map <C-S-b> :js FirefoxPrivate(buffer.URL)<CR>
+map <C-S-b> :js OpenInFireFox("Privado","buffer.URL")<CR>
 "Open opos profile
-map <C-t> :js opos("file:///home/charly/tests/index.html")<CR>
+map <C-t> :js OpenInFireFox("Oposiciones","file:///home/charly/tests/index.html")<CR>
 
 "Show the current video in FullScreen through youtube-dl and mplayer
 "works for youtube,vimeo,rtve...
@@ -104,11 +52,11 @@ map <C-s>  :set usermode!<CR>
 "Change newtab.url in firefox>40
 "defaultPage()
 :js <<EOF
-    //For firefox 40-43
-    /* Cu.import('resource:///modules/NewTabURL.jsm').NewTabURL.override('about:blank'); */
-    //For the next Firefox 44
-    var newTabService=Components.classes['@mozilla.org/browser/aboutnewtab-service;1'].getService(Ci.nsIAboutNewTabService);
-    newTabService.newTabURL = 'about:blank';
+//For firefox 40-43
+/* Cu.import('resource:///modules/NewTabURL.jsm').NewTabURL.override('about:blank'); */
+//For the next Firefox 44
+var newTabService=Components.classes['@mozilla.org/browser/aboutnewtab-service;1'].getService(Ci.nsIAboutNewTabService);
+newTabService.newTabURL = 'about:blank';
 EOF
 
 "Remove cumbersome noscript tag... :)
@@ -118,7 +66,7 @@ RemoveNoScriptTag = function() {
     var index = noscript.length;
     while(index--) {
         noscript[index].parentNode.removeChild(noscript[index]);
-   }
+    }
 };
 EOF
 map <C-j>  :js RemoveNoScriptTag.call();<CR>
@@ -136,19 +84,19 @@ function addToStatusLine() {
     }   
 
     var googleObs = {
-     observe: function(subject, topic, data) { statusline.updateField('google'); }
+observe: function(subject, topic, data) { statusline.updateField('google'); }
     }
 
     Services.prefs.addObserver('general.useragent.override', googleObs, false);
     statusline.addField('google','change to googlebot','liberator-status-google',
-    function updateGoogle (node) {
-      var agent=options.getPref('general.useragent.override');
-      if ( agent != null )
-        node.value = agent+" on!";
-      else
-      node.value = "";
-     }
-    );
+            function updateGoogle (node) {
+            var agent=options.getPref('general.useragent.override');
+            if ( agent != null )
+            node.value = agent+" on!";
+            else
+            node.value = "";
+            }
+            );
     liberator.execute(':set status+=google');
     statusline.updateField('google');
 }
@@ -172,7 +120,7 @@ map <C-G>  :js changeToGoogle.call();<CR>
 
 "help :command to see options
 " Run :pf to open the url in a new private session 
-command! -nargs=+ -complete=url -description "Open in private" pf :js FirefoxPrivate("<args>");
+command! -nargs=+ -complete=url -description "Open in private" pf :js OpenInFireFox("Privado","<args>");
 
 "===[ Custom autocommands ]=================================================
 
@@ -359,7 +307,7 @@ statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
     margin-top: -3px!important;
     margin-bottom: -3px!important;
     border-top: 0px solid !important;
-    padding:0 !important;
+padding:0 !important;
 }
 
 .tabs-bottom {
@@ -367,40 +315,40 @@ statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
     border-bottom: 0px solid !important;
     margin-bottom: 3px!important;
     min-height: 21px !important;
-    background: #4e4e4e !important;
+background: #4e4e4e !important;
 }
 
 .tabbrowser-tab {
     -moz-appearance: none !important;
-" disable hints with tabnubmers=on :(
-"    -moz-border-radius: 0px !important;
-    margin:0 -1px !important;
-           padding:0 !important;
-                   padding-top:3px !important;
-                   border-right: 0 !important;
-                   font-family: monospace !important;
-                   font-size: 10pt !important;
-                   color: #d7d7af !important;
-                          background: #4e4e4e !important;
+    " disable hints with tabnubmers=on :(
+        "    -moz-border-radius: 0px !important;
+margin:0 -1px !important;
+padding:0 !important;
+        padding-top:3px !important;
+        border-right: 0 !important;
+        font-family: monospace !important;
+        font-size: 10pt !important;
+color: #d7d7af !important;
+background: #4e4e4e !important;
 }
 
 .tabbrowser-tab[selected="true"] {
-    background: #242421 !important;
-                font-weight: bold !important;
-                color: #d7d7d7 !important;
+background: #242421 !important;
+            font-weight: bold !important;
+color: #d7d7d7 !important;
 }
 
 .tabbrowser-tab .tab-text {
-    border:0px !important;
+border:0px !important;
 }
 
 .tabbrowser-arrowscrollbox {
     max-height: 21px !important;
-    background: #4e4e4e !important;
+background: #4e4e4e !important;
 }
 
 .tabs-closebutton-box, .tab-close-button, .tabs-newtab-button, .tabs-alltabs-button, .tabbrowser-arrowscrollbox > .scrollbutton-up, .tabbrowser-arrowscrollbox > .scrollbutton-down {
-    display: none !important;
+display: none !important;
 }
 EOF
 

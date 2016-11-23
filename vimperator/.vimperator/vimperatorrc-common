@@ -1,0 +1,66 @@
+" vim: set ft=vimperator:
+
+"===[ Custom vimperator settings]=================================================
+
+set editor="lxterminal -e vim"
+set runtimepath=~/.vimperator
+"dont focus input automatically
+set focuscontent
+" addons downloads help javascript prefs in a new tab
+set newtab=all
+"Focus on download 
+set activate=downloads
+"show  current url
+"let g:buftabs_showCurrentUrl=1
+" Proper hints
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+let g:hintsio="io"
+
+"No more than 5 items in statusline
+set maxitems=5
+" No autocomplete local files for selinux jail...
+set complete=sl
+"Show scrollbars when needed
+set scrollbars
+"Hide menu and no bookmarks 
+set toolbars=nomenu,nobookmarks
+" keep messages around for 5 seconds
+set messagetimeout=5000
+
+"Favorite colorcheme (broken compMore)
+"colorscheme obsidian
+
+"Set status 
+set status=input,zoomlevel,bookmark,history,tabcount,position,ssl 
+"set status=input,bookmark,history,tabcount,position,ssl
+"show current mode on command mode
+set showmode=true
+"show links in the content area and not in the statusbar
+set showstatuslinks=3
+
+"show tabnumbers for alt+number
+set tabnumbers=true
+
+
+"===[ Custom settings for profiles]=====================================
+"See OpenInFirefox to open a custom rc for each profile (~/.vimperatorrc-profileName)
+:js <<EOF
+var profile=liberator.profileName;
+/* Set title window according */
+options.store.set("titlestring","Profile:"+profile);
+EOF
+
+
+"===[ Custom mappings]=================================================
+
+" Show previous tab urls with J
+noremap J <Esc>:jumps<CR>:back 
+"Show downloads
+noremap D <Esc>:dl<CR> 
+"Proper scrolling
+noremap j 10j
+noremap k 10k
+"Go to eXecute prompt (command)
+noremap x <Esc>:
+inoremap <C-n> <Esc>:tabnext<CR>
+
