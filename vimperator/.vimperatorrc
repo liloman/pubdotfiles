@@ -25,7 +25,9 @@ javascript function Midori() {io.system('midori -p ' + buffer.URL +' &');};
 OpenInFireFox = function(profile,url) {
     /* needs the sleep hack due a race condition */
     /* and the export needs to be in the same line than the firefox call */
-    io.system('export VIMPERATOR_INIT=":source $HOME/.vimperator/vimperatorrc-'+profile+'" && firefox -P '+profile+' -vimperator "+c \'javascript liberator.sleep(1000) && liberator.open(\\"'+url+'\\"); \' ++noplugin  "&');
+    var exp='export VIMPERATOR_INIT=":source $HOME/.vimperator/vimperatorrc-'+profile+'"'
+    var vimp_opt=' "+c \'javascript liberator.sleep(1000) && liberator.open(\\"'+url+'\\"); \' ++noplugin "'  
+    io.system(exp+' && firefox -P '+profile+' -vimperator '+ vimp_opt +' &');
 };
 EOF
 
@@ -146,9 +148,6 @@ CleanFirefox set! general.useragent.override&
 
 "===[ Custom firefox config ]=================================================
 
-"Don't close firefox on with last tab
-set! browser.tabs.closeWindowWithLastTab=false
-
 "Dont send referer
 set! network.http.sendRefererHeader=0
 "Nice default zoom level
@@ -156,8 +155,6 @@ set! browser.zoom.siteSpecific=false
 set! font.minimum-size.x-western=16
 "Out tracking from default page (broken from firefox 40. See defaultPage()  )
 "set! browser.newtab.url=about:blank
-"No html5 fullscreen confirmation msg
-set! full-screen-api.approval-required=false
 
 "Dont do any telemetry about:telemetry
 "Sadly needs chmod -w in saved-telemetry-pings dir as well
@@ -228,10 +225,6 @@ set! network.http.referer.spoofSource=true
 set! network.http.referer.trimmingPolicy=2
 "end from
 
-"Remove tracking with sync activated also
-" set about:networking 
-set! services.sync.prefs.sync.browser.safebrowsing.enabled=false
-set! services.sync.prefs.sync.browser.safebrowsing.malware.enabled=false
 
 "Go away heartbeat (more tracking...)
 set! browser.selfsupport.url=""
@@ -245,8 +238,6 @@ set! browser.newtabpage.directory.ping=""
 
 "search for single words 
 set! browser.fixup.alternate.enabled=false
-"disable suggestions
-set! browser.search.suggest.enabled=false
 "dont ping each day to mozilla with startup times...
 set! extensions.getAddons.cache.enabled=false
 "Disable geolocalization
@@ -288,9 +279,6 @@ set! font.minimum-size.x-unicode=16
 "Don't change them
 set! font.internaluseonly.changed=false
 
-
-"Preload newtabs 
-set! browser.newtab.preload=true
 
 
 

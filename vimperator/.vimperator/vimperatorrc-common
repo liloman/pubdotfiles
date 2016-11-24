@@ -64,3 +64,19 @@ noremap k 10k
 noremap x <Esc>:
 inoremap <C-n> <Esc>:tabnext<CR>
 
+"===[ Custom firefox config ]=================================================
+
+"Don't close firefox on with last tab
+set! browser.tabs.closeWindowWithLastTab=false
+"No html5 fullscreen confirmation msg
+set! full-screen-api.approval-required=false
+"Remove tracking with sync activated also
+" set about:networking 
+set! services.sync.prefs.sync.browser.safebrowsing.enabled=false
+set! services.sync.prefs.sync.browser.safebrowsing.malware.enabled=false
+"Preload newtabs 
+set! browser.newtab.preload=true
+"disable suggestions
+set! browser.search.suggest.enabled=false
+
+
