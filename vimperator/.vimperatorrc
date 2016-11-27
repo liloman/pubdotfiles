@@ -33,9 +33,9 @@ EOF
 
 
 "Open in private window and delete buffer in origin
-map <C-b> :js OpenInFireFox("Privado","buffer.URL")<CR><Esc>:bd<CR>
+map <C-b> :js OpenInFireFox("Privado",buffer.URL)<CR><Esc>:bd<CR>
 "Open in private window 
-map <C-S-b> :js OpenInFireFox("Privado","buffer.URL")<CR>
+map <C-S-b> :js OpenInFireFox("Privado",buffer.URL)<CR>
 "Open opos profile
 map <C-t> :js OpenInFireFox("Oposiciones","file:///home/charly/tests/index.html")<CR>
 
