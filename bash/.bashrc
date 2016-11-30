@@ -184,6 +184,9 @@ export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig/"
 
 [[ $TERM == xterm ]] && TERM=xterm-256color
 
+#Realtime logs file
+export RTLOG=/tmp/.output_logs.txt
+
 
 #Export path to systemd user units 
 systemctl --user set-environment PATH=$PATH

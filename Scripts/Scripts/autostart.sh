@@ -50,6 +50,9 @@ monitor ~/Scripts/sync_repos.sh
 #Move firefox profile to RAM
 monitor ~/Scripts/firefox_sync.sh 
 
+#Sync google drive dir
+monitor ~/Scripts/grive.sh 
+
 #Get current song from Spotify VB (daemon)
 # monitor ~/Scripts/current_spotify_song.sh
 
