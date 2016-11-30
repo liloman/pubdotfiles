@@ -246,6 +246,11 @@
         <desktop>4</desktop>
       </action>
     </keybind>
+    <keybind key="W-Tab">
+        <action name="GoToDesktop">
+            <to>last</to>
+        </action>
+     </keybind>
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
