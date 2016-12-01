@@ -264,12 +264,12 @@
     </keybind>
     <keybind key="W-f">
       <action name="Execute">
-          <command>firejail firefox</command>
+          <command>firejail --name=firefox firefox</command>
       </action>
     </keybind>
     <keybind key="W-m">
       <action name="Execute">
-        <command>firejail thunderbird</command>
+        <command>firejail --name=thunderbird thunderbird</command>
       </action>
     </keybind>
     <keybind key="W-p">
