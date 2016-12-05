@@ -85,35 +85,10 @@ private-dev
 #private-etc hosts,passwd,mime.types,fonts/,mailcap,,xdg/,gtk-3.0/,resolv.conf,X11/,pulse/,gcrypt/,alternatives/
 #
 
+# private-tmp not working for my firefox setup  (cache in /tmp)
+# or need fix the script to work with firejail --get
+# the ignore must be first to the include
+ignore private-tmp
+
 #include main profile
-#include /usr/local/etc/firejail/firefox.profile
-# (Pasted below cause private-temp not working for my setup)
-# Firejail profile for Mozilla Firefox 
-noblacklist ~/.mozilla
-noblacklist ~/.cache/mozilla
-include /usr/local/etc/firejail/disable-common.inc
-include /usr/local/etc/firejail/disable-programs.inc
-include /usr/local/etc/firejail/disable-devel.inc
-
-caps.drop all
-netfilter
-nonewprivs
-noroot
-protocol unix,inet,inet6,netlink
-seccomp
-tracelog
-
-mkdir ~/.mozilla
-whitelist ~/.mozilla
-mkdir ~/.cache/mozilla/firefox
-whitelist ~/.cache/mozilla/firefox
-whitelist ~/.vimperatorrc
-whitelist ~/.vimperator
-
-include /usr/local/etc/firejail/whitelist-common.inc
-
-# experimental features
-#private-bin firefox,which,sh,dbus-launch,dbus-send,env
-#private-etc passwd,group,hostname,hosts,localtime,nsswitch.conf,resolv.conf,xdg,gtk-2.0,gtk-3.0,X11,pango,fonts,firefox,mime.types,mailcap,asound.conf,pulse
-private-dev
-#private-tmp
+include /usr/local/etc/firejail/firefox.profile
