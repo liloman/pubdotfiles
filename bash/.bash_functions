@@ -203,6 +203,7 @@ script_insert() {
     #get just the file name 
     local file=${new##*/}
     cd ~/Scripts
+    #Needs to be done relative to work with stow
     ln -s ../dotfiles/Scripts/Scripts/$file .
     echo "symlink for $file created."
     ls -l $file
