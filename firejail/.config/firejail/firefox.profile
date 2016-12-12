@@ -45,8 +45,8 @@ read-only ~/Scripts/libnotify
 whitelist ~/tests
 read-only ~/tests
 
-#no dbus access 
-blacklist /run/user/1000/bus
+#no dbus access  (not working ?)
+#blacklist /run/user/1000/bus
 #prevent lxterminal connecting to an existing lxterminal session 
 blacklist /tmp/.lxterminal-socket*
 

@@ -247,10 +247,10 @@
       </action>
     </keybind>
     <keybind key="W-Tab">
-        <action name="GoToDesktop">
-            <to>last</to>
-        </action>
-     </keybind>
+      <action name="GoToDesktop">
+        <to>last</to>
+      </action>
+    </keybind>
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
@@ -264,7 +264,7 @@
     </keybind>
     <keybind key="W-f">
       <action name="Execute">
-          <command>firejail --name=firefox firefox</command>
+        <command>firejail --name=firefox firefox</command>
       </action>
     </keybind>
     <keybind key="W-m">
@@ -726,22 +726,21 @@
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
   <applications>
-      <!-- Default desktop for apps -->
-      <!-- uses second element of 'xprop WM_CLASS' -->
-      <application class="Spotify">
-          <desktop>4</desktop>
-      </application>
-      <application class="Thunderbird">
-          <desktop>3</desktop>
-      </application>
-      <application class="Firefox">
-          <desktop>1</desktop>
-      </application>
-      <application name="tilda">
-          <layer>below</layer>
-      </application>
-
-      <!--
+    <!-- Default desktop for apps -->
+    <!-- uses second element of 'xprop WM_CLASS' -->
+    <application class="Spotify">
+      <desktop>4</desktop>
+    </application>
+    <application class="Thunderbird">
+      <desktop>3</desktop>
+    </application>
+    <application class="Firefox">
+      <desktop>1</desktop>
+    </application>
+    <application name="tilda">
+      <layer>below</layer>
+    </application>
+    <!--
   # this is an example with comments through out. use these to make your
   # own rules, but without the comments of course.
 
