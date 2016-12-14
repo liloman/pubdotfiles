@@ -41,6 +41,8 @@ monitor() {
 #Sync tasks
 task sync
 
+
+
 #Remove that shit out of here all along (not able to disable/modify...)
 rm -rf ~/Downloads/ ~/Desktop/
 
@@ -52,6 +54,9 @@ monitor ~/Scripts/firefox_sync.sh
 
 #Sync google drive dir
 monitor ~/Scripts/grive.sh 
+
+#Track shutdown time on timewarrior (no argument for just the last one)
+monitor ~/.local/bin/last-boots.sh
 
 #Get current song from Spotify VB (daemon)
 # monitor ~/Scripts/current_spotify_song.sh
