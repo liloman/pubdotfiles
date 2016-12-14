@@ -92,6 +92,16 @@ if [[ $type != server ]]; then
     systemctl --user enable change-wallpaper.timer;
     systemctl --user start change-wallpaper.timer;
     }
+    echo "*****START******"
+    echo "Let's install the root stuff"
+    # $USER == local user (not the root user)
+    su -c '
+    echo "Enabling sleep@$USER "
+    cp -v root/sleep@.service /etc/systemd/system/
+    systemctl daemon-reload
+    systemctl enable sleep@$USER
+    echo "*****END******"
+    '
 fi
 
 #######################

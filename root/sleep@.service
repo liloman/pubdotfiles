@@ -1,0 +1,15 @@
+[Unit]
+Description=User sleep actions
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+User=%I
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/bash /home/%I/Scripts/suspend_resume.sh suspend
+ExecStop=/usr/bin/bash /home/%I/Scripts/suspend_resume.sh resume
+
+[Install]
+WantedBy=sleep.target
+
