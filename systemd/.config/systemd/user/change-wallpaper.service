@@ -4,6 +4,6 @@ Description=Change wallpaper from national geographic photo of today
 
 [Service]
 Type=oneshot
-ExecStart=/home/charly/Scripts/change_wallpaper.sh
+ExecStart=/usr/bin/bash %h/Scripts/change_wallpaper.sh
 ExecStop=
 
