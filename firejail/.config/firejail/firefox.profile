@@ -1,34 +1,20 @@
 # My custom profile for firefox
 
-
 #Needs
 # 1- Allow youtube-dl and block python
-# 2- whitelist .mplayer
-
-
-#For youtube-dl 
-#
-blacklist /sbin
-#not working?
-blacklist /bin
 
 ##Allow python for youtube-dl
 noblacklist /usr/bin/python3*
 noblacklist /usr/lib/python3*
 
-#not working! (disables all binaries!)
-#private-bin python3,du,killall,mplayer
-#private-bin basename,uname,pidof,mkdir,cat,sed,bash,sh
-#private-bin chmod,rm,readlink,rsync
-#private-bin firefox,firejail,run-mozilla.sh
+#Working?
+private-bin python3,python3.5,du,killall,mplayer,basename,uname,pidof,mkdir,cat,sed,bash,sh,chmod,rm,readlink,rsync,firefox,firejail,run-mozilla.sh,lxterminal,ls,env,sleep,wget,youtube-dl,nohup,mv,touch,tar,ln,notify-send
 
-#You have to whitelist the symlink FILES
+#You have to whitelist the symlink dir
 #and firejail whitelists the target FILES
-#no working globbing 
-whitelist ~/.mplayer/config
-read-only ~/.mplayer/config
-whitelist ~/.mplayer/input.conf
-read-only ~/.mplayer/input.conf
+#globbing no working  
+whitelist ~/.mplayer
+read-only ~/.mplayer
 
 
 #my settings
