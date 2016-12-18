@@ -70,7 +70,8 @@ do_dotfiles(){
     echo "**********************************"
     echo "Doing dotfiles"
     cd ~/dotfiles && update_repo dotfiles || return 
-    ./install.sh -d
+    # No automatic anymore (needs root password)
+    # ./install.sh -d
     cd $ROOT
 }
 
