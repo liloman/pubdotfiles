@@ -8,7 +8,7 @@ noblacklist /usr/bin/python3*
 noblacklist /usr/lib/python3*
 
 #Working?
-private-bin python3,python3.5,du,killall,mplayer,basename,uname,pidof,mkdir,cat,sed,bash,sh,chmod,rm,readlink,rsync,firefox,firejail,run-mozilla.sh,lxterminal,ls,env,sleep,wget,youtube-dl,nohup,mv,touch,tar,ln,notify-send
+private-bin python3,python3.5,du,killall,mplayer,basename,uname,pidof,mkdir,cat,sed,bash,sh,chmod,rm,readlink,rsync,firefox,firejail,run-mozilla.sh,lxterminal,ls,env,sleep,wget,youtube-dl,nohup,mv,touch,tar,ln,notify-send,mupdf
 
 #You have to whitelist the symlink dir
 #and firejail whitelists the target FILES
