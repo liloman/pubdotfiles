@@ -64,6 +64,9 @@ monitor ~/.local/bin/last-boots.sh
 #Launch pomodoroTasks (daemon) 
 monitor ~/Clones/pomodoroTasks/pomodoro-daemon.sh 
 
+#Stop active task on logout
+systemctl --user start on-logout.service
+
 
 # This script ($$) will run forever cause the some jobs above are daemons
 # so maybe you can reutilize it to do some other tasks in the final loop ... :D

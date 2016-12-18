@@ -91,6 +91,7 @@ if [[ $type != server ]]; then
     systemctl --user daemon-reload;
     systemctl --user enable change-wallpaper.timer;
     systemctl --user start change-wallpaper.timer;
+    systemctl --user start on-logout.service;
     }
     echo "*****START******"
     echo "Let's install the root stuff"
