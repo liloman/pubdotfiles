@@ -39,3 +39,11 @@ taskd.key=\/home\/charly\/.task\/freecinc_d3f452c3.key.pem
 taskd.certificate=\/home\/charly\/.task\/freecinc_d3f452c3.cert.pem
 taskd.ca=\/home\/charly\/.task\/freecinc_d3f452c3.ca.pem
 taskd.credentials=FreeCinc\/freecinc_d3f452c3\/e9ddb336-d858-49ad-8ffb-480c8cb1fcf1
+
+#Default date format (dd/mm/yy)
+dateformat=D-M-Y
+dateformat.report=D-M-Y
+dateformat.edit=D-M-Y H:N:S
+dateformat.holiday=DMY
+dateformat.info=D-M-Y H:N:S
+
