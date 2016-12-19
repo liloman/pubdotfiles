@@ -71,6 +71,8 @@ alias tmux='history -r; tmux -u2'
 alias df='df -h'
 alias dmesg='dmesg -HPku'
 alias fbash='env -i  bash --norc --noprofile +o history'
+#Create an executable file
+alias e='install -bvm 755 /dev/null '
 
 #############
 #  Desktop  # 
