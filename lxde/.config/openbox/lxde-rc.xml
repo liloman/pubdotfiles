@@ -277,6 +277,11 @@
         <command>~/Scripts/lanza_spotify.sh</command>
       </action>
     </keybind>
+    <keybind key="W-t">
+      <action name="Execute">
+        <command>~/Clones/pomodoroTasks/change_task_form.sh</command>
+      </action>
+    </keybind>
     <!-- <keybind key="W&#45;p"> -->
     <!--   <action name="Execute"> -->
     <!--     <command>~/Scripts/alternate_vbox.sh Spotify</command> -->
