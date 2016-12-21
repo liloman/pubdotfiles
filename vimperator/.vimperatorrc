@@ -151,8 +151,9 @@ CleanFirefox set! general.useragent.override&
 
 "Dont send referer
 set! network.http.sendRefererHeader=0
+"Record the zoom level for each page
+set! browser.zoom.siteSpecific=true
 "Nice default zoom level
-set! browser.zoom.siteSpecific=false
 set! font.minimum-size.x-western=16
 "Out tracking from default page (broken from firefox 40. See defaultPage()  )
 "set! browser.newtab.url=about:blank
