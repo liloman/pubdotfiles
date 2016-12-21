@@ -18,7 +18,7 @@ if [[ $action == suspend ]]; then
     /home/$USER/.local/bin/pomodoro-client.sh pause
     #Starting timew pomodoro
     echo "Starting timew pomodoro"
-    timew start 'Suspend'
+    timew start 'Suspend' +work
 
 else #resuming
     echo "Stopping timew pomodoro"
