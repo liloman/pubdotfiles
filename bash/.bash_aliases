@@ -90,6 +90,7 @@ alias notas='vi ~/OPOS/Ingles/thesoundofenglish/notas.txt'
 alias webshare='python -m SimpleHTTPServer'
 alias bajaurl='wget -m -np -nd -p '
 alias pc='pomodoro-client.sh '
+alias kspotify='pid=$(ptree spotify | grep Watchdog ) && kill ${pid#*,}'
 
 
 #################
