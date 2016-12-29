@@ -61,8 +61,8 @@ monitor ~/.local/bin/last-boots.sh
 #Get current song from Spotify VB (daemon)
 # monitor ~/Scripts/current_spotify_song.sh
 
-#Launch pomodoroTasks (daemon) 
-monitor ~/Clones/pomodoroTasks/pomodoro-daemon.sh 
+#Launch pomodoroTasks2 (daemon) 
+monitor ~/.local/bin/pomodoro-daemon.py
 
 #Stop active task on logout
 systemctl --user start on-logout.service
