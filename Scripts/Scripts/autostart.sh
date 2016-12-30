@@ -4,6 +4,20 @@
 #Load notification library
 . ~/Scripts/libnotify
 
+try=0
+no_conexion=0
+
+#wait for 150 seconds for connectivity before doing anything network related
+while ! ping -c 1 google.es &> /dev/null;
+do
+    ((try++))
+    if ((try == 30));
+    then
+        notify_err "no conexion"
+        no_conexion=1
+    fi
+    sleep 5
+done
 
 #Associative array for processes indexed by pid
 declare -A procs
@@ -39,7 +53,7 @@ monitor() {
 
 
 #Sync tasks
-task sync ||  notify_err "task sync failed"
+((no_conexion)) || { task sync ||  notify_err "task sync failed" }
 
 tilda ||  notify_err "tilda failed to start"
 
@@ -48,7 +62,7 @@ tilda ||  notify_err "tilda failed to start"
 rm -rf ~/Downloads/ ~/Desktop/
 
 #Sync local repos with origin for my repos ...
-monitor ~/Scripts/sync_repos.sh 
+((no_conexion)) || monitor ~/Scripts/sync_repos.sh 
 
 #Move firefox profile to RAM
 monitor ~/Scripts/firefox_sync.sh 
