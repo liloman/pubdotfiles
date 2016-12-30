@@ -55,8 +55,8 @@ do_others() {
 
 do_mines() {
     #Repos
-    local mines="dirty dirStack checkUndocumented generate-autocompletion pomodoroTasks2 "
-    mines+=" rmalias easyPcRecovery kbp asyncBash warriors"
+    local mines="dirty dirStack checkUndocumented generate-autocompletion pomodoroTasks"
+    mines+=" pomodoroTasks2 rmalias easyPcRecovery kbp asyncBash warriors"
     for dir in $mines; do
         echo "**********************************"
         echo "Doing $dir"
@@ -70,8 +70,8 @@ do_dotfiles(){
     echo "**********************************"
     echo "Doing dotfiles"
     cd ~/dotfiles && update_repo dotfiles || return 
-    # No automatic anymore (needs root password)
-    # ./install.sh -d
+    # update the desktop version without passwords
+    ./install.sh -d -a
     cd $ROOT
 }
 

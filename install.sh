@@ -36,18 +36,22 @@ cat <<- EOT
   -h|help       Display this message
   -v|version    Display script version
   -d|desktop    Full version  
+  -a|ask        Dont ask for passwords
   -s|server     Server version
 
 EOT
 }   
 
-while getopts ":hvds" opt
+ask=1
+
+while getopts ":hvdsa" opt
 do
   case $opt in
     h|help     )  usage; exit 0   ;;
     v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
-    d|desktop  )  type=desktop ; break ;;
-    s|server   )  type=server ; break ;;
+    d|desktop  )  type=desktop ; ;;
+    s|server   )  type=server  ; ;;
+    a|ask      )  ask=0        ; ;;
     \? )  echo -e "\n  Option does not exist : $OPTARG\n"; usage; exit 1   ;;
      : )  echo "Option -$OPTARG needs an argument"; exit 1 ;;
   esac 
@@ -93,16 +97,18 @@ if [[ $type != server ]]; then
     systemctl --user start change-wallpaper.timer;
     systemctl --user start on-logout.service;
     }
-    echo "*****START******"
-    echo "Let's install the root stuff"
-    # $USER == local user (not the root user)
-    su -c '
-    echo "Enabling sleep@$USER "
-    cp -v root/sleep@.service /etc/systemd/system/
-    systemctl daemon-reload
-    systemctl enable sleep@$USER
-    echo "*****END******"
-    '
+    if ((ask)); then
+        echo "*****START******"
+        echo "Let's install the root stuff"
+        # $USER == local user (not the root user)
+        su -c '
+        echo "Enabling sleep@$USER "
+        cp -v root/sleep@.service /etc/systemd/system/
+        systemctl daemon-reload
+        systemctl enable sleep@$USER
+        echo "*****END******"
+        '
+    fi
 fi
 
 #######################
