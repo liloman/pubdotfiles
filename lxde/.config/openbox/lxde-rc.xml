@@ -279,7 +279,7 @@
     </keybind>
     <keybind key="W-t">
       <action name="Execute">
-        <command>~/Clones/pomodoroTasks/change_task_form.sh</command>
+          <command>~/.local/bin/pomodoro-client.py systray</command>
       </action>
     </keybind>
     <!-- <keybind key="W&#45;p"> -->
