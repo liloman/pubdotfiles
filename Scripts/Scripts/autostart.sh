@@ -39,8 +39,9 @@ monitor() {
 
 
 #Sync tasks
-task sync
+task sync ||  notify_err "task sync failed"
 
+tilda ||  notify_err "tilda failed to start"
 
 
 #Remove that shit out of here all along (not able to disable/modify...)
