@@ -1,0 +1,108 @@
+#!/bin/bash
+
+VERSION="0.0.1"
+SPOTIFY_DBUS="org.mpris.MediaPlayer2.spotify"
+SPOTIFY_DBUS_OBJECT_PATH="/org/mpris/MediaPlayer2"
+SPOTIFY_DBUS_BASE_INTERFACE="org.mpris.MediaPlayer2.Player"
+
+function error() {
+	echo "ERROR: $1" 1>&2
+	if [[ $2 =~ ^[0-9]+$ ]]; then
+		exit $2
+	fi
+}
+
+function help() {
+	echo "$(basename -- $0) v$VERSION - Utility to manage Spotify Linux client."
+	echo "GPLv3 Diego Lago González <diego.lago.gonzalez@gmail.com>"
+	echo "Usage: $(basename -- $0) [options] <command>"
+	echo "Commands:"
+	echo "  play        Play/pause current song."
+	echo "  pause       Pause current song."
+	echo "  next        Next song."
+	echo "  prev        Previous song."
+	echo "  open <URL>  Open given URL."
+	echo "  help        Show this help and exit."
+}
+
+function checkCommand() {
+	if ! type "$1" &>/dev/null; then
+		if [ -z "$2" ]; then
+			error "Command not found: $1" 1
+		else
+			error "$2" 1
+		fi
+	fi
+}
+
+function spotifyDbusCommand() {
+	local command="$1"
+	shift
+	dbus-send --type=method_call --dest=$SPOTIFY_DBUS $SPOTIFY_DBUS_OBJECT_PATH ${SPOTIFY_DBUS_BASE_INTERFACE}.$command "$@"
+}
+
+function checkSpotifyIsRunning() {
+	if ! pidof spotify &>/dev/null; then
+		error "Spotify is not running." 1
+	fi
+}
+
+function processOptions() {
+	:
+	return 0
+}
+
+function spotifyPlay() {
+	spotifyDbusCommand PlayPause
+}
+
+function spotifyPause() {
+	spotifyDbusCommand Pause
+}
+
+function spotifyNext() {
+	spotifyDbusCommand Next
+}
+
+function spotifyPrev() {
+	spotifyDbusCommand Previous
+}
+
+function spotifyOpen() {
+	error "Unimplemented." 1
+}
+
+function main() {
+	checkCommand dbus-send
+	checkSpotifyIsRunning
+
+	processOptions
+	shift $?
+
+	case "$1" in
+		play)
+			spotifyPlay
+		;;
+		pause)
+			spotifyPause
+		;;
+		next)
+			spotifyNext
+		;;
+		prev)
+			spotifyPrev
+		;;
+		help)
+			help
+			exit 1
+		;;
+		"")
+			error "Must specify a command. Use '$(basename -- $0) help' to show help." 1
+		;;
+		*)
+			error "Invalid command: $1" 1
+		;;
+	esac
+}
+
+main "$@"
