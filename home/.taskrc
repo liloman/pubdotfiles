@@ -35,10 +35,10 @@ include /usr/share/task/dark-blue-256.theme
 uda.totalactivetime.type=duration
 uda.totalactivetime.values=
 taskd.server=freecinc.com:53589
-taskd.key=\/home\/charly\/.task\/freecinc_d3f452c3.key.pem
-taskd.certificate=\/home\/charly\/.task\/freecinc_d3f452c3.cert.pem
-taskd.ca=\/home\/charly\/.task\/freecinc_d3f452c3.ca.pem
-taskd.credentials=FreeCinc\/freecinc_d3f452c3\/e9ddb336-d858-49ad-8ffb-480c8cb1fcf1
+taskd.key=\/home\/charly\/.task\/freecinc_73dc464f.key.pem
+taskd.certificate=\/home\/charly\/.task\/freecinc_73dc464f.cert.pem
+taskd.ca=\/home\/charly\/.task\/freecinc_73dc464f.ca.pem
+taskd.credentials=FreeCinc\/freecinc_73dc464f\/6b913ca2-1389-40f9-8b25-e23b762d1efb
 
 #Default date format (dd/mm/yy)
 dateformat=D-M-Y
