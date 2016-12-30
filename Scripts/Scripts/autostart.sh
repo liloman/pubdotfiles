@@ -57,6 +57,8 @@ monitor() {
 
 tilda ||  notify_err "tilda failed to start"
 
+task diagnostics | grep "Found duplicate"  && notify_err "duplicates on taskwarrior use remove-du..."
+
 
 #Remove that shit out of here all along (not able to disable/modify...)
 rm -rf ~/Downloads/ ~/Desktop/
