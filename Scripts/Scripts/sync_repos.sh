@@ -55,7 +55,7 @@ do_others() {
 
 do_mines() {
     #Repos
-    local mines="dirty dirStack checkUndocumented generate-autocompletion pomodoroTasks "
+    local mines="dirty dirStack checkUndocumented generate-autocompletion pomodoroTasks2 "
     mines+=" rmalias easyPcRecovery kbp asyncBash warriors"
     for dir in $mines; do
         echo "**********************************"

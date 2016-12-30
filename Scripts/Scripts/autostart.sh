@@ -61,6 +61,12 @@ monitor ~/.local/bin/last-boots.sh
 #Get current song from Spotify VB (daemon)
 # monitor ~/Scripts/current_spotify_song.sh
 
+#default pomodoro session (minutes)
+export POMODORO_TIMEOUT=25
+#default pomodoro short break (minutes)
+export POMODORO_STIMEOUT=5
+#default pomodoro long break (minutes)
+export POMODORO_LTIMEOUT=15
 #Launch pomodoroTasks2 (daemon) 
 monitor ~/.local/bin/pomodoro-daemon.py
 
