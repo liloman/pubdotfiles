@@ -55,7 +55,7 @@ monitor() {
 #Sync tasks
 ((no_conexion)) || { task sync ||  notify_err "task sync failed" }
 
-tilda ||  notify_err "tilda failed to start"
+( tilda  ||  notify_err "tilda failed to start" ) &
 
 task diagnostics | grep "Found duplicate"  && notify_err "duplicates on taskwarrior use remove-du..."
 
