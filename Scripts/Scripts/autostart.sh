@@ -6,7 +6,7 @@
 
 try=0
 no_conexion=0
-
+#
 #wait for 150 seconds for connectivity before doing anything network related
 while ! ping -c 1 google.es &> /dev/null;
 do
@@ -53,7 +53,7 @@ monitor() {
 
 
 #Sync tasks
-((no_conexion)) || { task sync ||  notify_err "task sync failed" }
+((no_conexion)) || ( task sync ||  notify_err "task sync failed" )
 
 ( tilda  ||  notify_err "tilda failed to start" ) &
 
