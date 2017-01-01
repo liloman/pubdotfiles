@@ -27,8 +27,8 @@ set toolbars=nomenu,nobookmarks
 " keep messages around for 5 seconds
 set messagetimeout=5000
 
-"Favorite colorcheme (broken compMore)
-"colorscheme obsidian
+"Favorite colorcheme 
+colorscheme myzenburn
 
 "Set status 
 set status=input,zoomlevel,bookmark,history,tabcount,position,ssl 
