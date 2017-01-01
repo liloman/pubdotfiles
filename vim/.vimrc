@@ -171,7 +171,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsListSnippets="<tab><tab>"
-"let g:snippets_dir = "~/.vim/ownsnippets/"
+"custom dirs: mine and UltiSnips by default :)
+let g:UltiSnipsSnippetDirectories = ['ownsnippets', 'UltiSnips']
 
 "Disable Lua inspect...
 let g:loaded_luainspect = 1

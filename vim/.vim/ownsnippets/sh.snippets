@@ -1,0 +1,84 @@
+#use more that -50 to overwrite (-50 to show both matches)
+priority -50
+
+snippet while "(mine) while read line by line output of command"
+local com line 
+local regex='^(.*)$'; 
+com=(${1:#command})
+
+while IFS= read -r line
+do
+    if [[ $line =~ $regex ]]; then
+		    ${0:echo "$line"}
+		fi
+done < <("${com[@]}" 2>&1)
+endsnippet
+
+
+snippet getopt "(mine) power getopt with indepent order of options"
+usage(){
+    local msg=(
+    "$0 options"
+    " "
+    "General options:"
+    "  -h, -help  Show this help"
+    )
+
+    printf '%s\n' "${msg[@]}"
+}
+
+
+#global array that hold the arguments without options
+declare -a fargs
+
+#parset the argumets and remove the options 
+parse_args() {
+    local -A oargs
+    local idx=0
+    #global value
+    fargs=("${@}")
+
+    while getopts ":d:shv" opt; do
+        case $opt in
+            d )  echo -e "doing $OPTARG\n"; 
+                #option with arguments
+                oargs[$opt]=$OPTARG;;
+
+            s )  echo -e "doing $opt\n";
+                #option without arguments
+                oargs[$opt]="oargs";;
+
+                #options with exit
+                h|help) usage; 
+                exit 0;;
+
+            : ) echo " Option $OPTARG needs an argument"; 
+                exit 1;;
+
+            \? )echo  "Option does not exist : $OPTARG";
+                usage; exit 1;;
+
+            esac    
+        done
+
+        for arg; do
+            # match arguments
+            for key in "${!oargs[@]}"; do 
+                if [[ "-"$key == $arg ]] ; then
+                    unset fargs[$idx]
+                    [[ ${oargs[$key]} != "oargs" ]]  && unset fargs[$idx+1]
+                fi 
+            done
+            ((idx++))
+        done
+} #end of parse_args
+
+
+parse_args "${@}"
+#set the final arguments then
+set -- "${fargs[@]}"
+endsnippet
+
+
+
+# vim:ft=snippets:
