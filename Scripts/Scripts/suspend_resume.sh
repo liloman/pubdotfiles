@@ -13,9 +13,9 @@ if [[ $action == suspend ]]; then
     done
     echo "$1-ing done!" 
 
-    #Pause current task
-    echo "Pause current task"
-    /home/$USER/.local/bin/pomodoro-client.sh pause
+    #Stop current task
+    echo "Stopping current task"
+    /home/$USER/.local/bin/pomodoro-client.py stop
     #Starting timew pomodoro
     echo "Starting timew pomodoro"
     timew start 'Suspend' +nowork
@@ -23,7 +23,7 @@ if [[ $action == suspend ]]; then
 else #resuming
     echo "Stopping timew pomodoro"
     timew stop
-    #Restart current task
-    echo "Restart current task"
-    /home/$USER/.local/bin/pomodoro-client.sh reset
+    #Start current task
+    echo "Starting current task"
+    /home/$USER/.local/bin/pomodoro-client.py start
 fi
