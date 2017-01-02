@@ -51,6 +51,8 @@ shopt -s globstar
 #Don't execute history autocompletions but print it. Better than the magic-space
 shopt -s histverify
 
+#Load ~/.inputrc-surround keybinds
+bind -f ~/.inputrc-surround
 
 
 #Disable <C-s>(stop) and <C-q>(start) on terminal. To use <C-s> on vim (to save file)

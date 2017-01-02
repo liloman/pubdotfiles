@@ -42,6 +42,12 @@ cat <<- EOT
 EOT
 }   
 
+function do_symlink ()
+{
+  local orig=$1 dest=$2
+  [[ -f $orig ]] && ln -s $orig $dest
+}
+
 ask=1
 
 while getopts ":hvdsa" opt
@@ -90,6 +96,8 @@ if [[ $type != server ]]; then
     stow -vS lxde 
     stow -vS Scripts 
     stow -vS firejail 
+    #symlinks
+    do_symlink "~/Clones/bash-surround/inputrc-surround" "~/.inputrc-surround"
     shopt -s dotglob
     cp -rvuP $PWD/systemd/* $HOME && { 
     systemctl --user daemon-reload;
