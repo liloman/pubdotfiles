@@ -5,7 +5,7 @@ snippet arr "(mine) make array"
 \$\{${1:name}[${2:@}]\} $0
 endsnippet
 
-snippet while "(mine) while read line by line output of command"
+snippet while "(mine) while read line by line output of command" b
 local com line 
 local regex='^(.*)$'; 
 com=(${1:#command})
@@ -19,7 +19,7 @@ done < <("${com[@]}" 2>&1)
 endsnippet
 
 
-snippet getopts "(mine) power getopt with indepent order of options"
+snippet getopts "(mine) power getopt with indepent order of options" b
 usage(){
     local msg=(
     "$0 options"
@@ -98,6 +98,22 @@ set -- "${fargs[@]}"
 
 endsnippet
 
+
+snippet [[ "(mine) My normal [[ ]]" 
+[[ $${0:name} ]]
+endsnippet
+
+snippet if[[ "(mine) My normal if [[ ]]" 
+if [[ $${1:name} ]]; then
+      $0
+fi
+endsnippet
+
+snippet ga "(mine) Declare a array" 
+$0 ${${1:name}[${2:idx}]}
+
+fi
+endsnippet
 
 
 # vim:ft=snippets:
