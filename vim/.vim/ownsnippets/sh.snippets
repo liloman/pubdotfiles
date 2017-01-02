@@ -1,6 +1,10 @@
 #use more that -50 to overwrite (-50 to show both matches)
 priority -50
 
+snippet arr "(mine) make array"
+\$\{${1:name}[${2:@}]\} $0
+endsnippet
+
 snippet while "(mine) while read line by line output of command"
 local com line 
 local regex='^(.*)$'; 
@@ -15,68 +19,83 @@ done < <("${com[@]}" 2>&1)
 endsnippet
 
 
-snippet getopt "(mine) power getopt with indepent order of options"
+snippet getopts "(mine) power getopt with indepent order of options"
 usage(){
     local msg=(
     "$0 options"
     " "
     "General options:"
-    "  -h, -help  Show this help"
+    "  -h, -help, --help  Show this help"
     )
 
     printf '%s\n' "${msg[@]}"
+    exit 0
 }
+
+
+
+#parset the arguments and remove the options 
+parse_args() {
+    local -A largs
+    local idx=0 OPTIND val
+    #global value (copy arguments)
+    fargs=("${@}")
+
+    #iterate over arguments shifting to be able to use getopts in all positions
+    for arg in "${fargs[@]}"; do
+        [[ $arg != -* ]] && shift 
+        [[ $arg == -- ]] && break 
+        #allow longopts -- with the "-:" ending (no arguments just flags! )
+        while getopts ":h-:" opt; do 
+            case $opt in
+                #Options WITH argument (shift required)
+                # d ) echo "doing $opt with $OPTARG"; 
+                #    shift;; 
+
+                #Options without argument
+                # s )  echo "doing $opt"; ;;
+
+                - ) #longopts -> --option. catch literal not 
+                case "$OPTARG" in 
+                   #catch the whole word due not using getopts
+                    help ) 
+                        usage; ;;
+                    * )echo  "Option --$OPTARG does not exist" ; exit 1;;
+                esac;;
+
+                # default options (with exit)
+                h) usage ;;
+
+                : ) echo " Option $OPTARG needs an argument"; exit 1;;
+
+                \? )echo  "Option -$OPTARG does not exist "; exit 1;;
+            esac #set according to longoption or not
+            [[ $opt != -* ]] && largs[$opt]=${OPTARG:-optionwithoutarg} || largs[$OPTARG]="optionwithoutarg"
+        done
+    done
+
+    #recover arguments
+    set -- "${fargs[@]}"
+    #eliminate options from arguments
+    for arg; do
+        # match arguments
+        for key in "${!largs[@]}"; do 
+            if [[ $arg =~ ^[-]{1,2}$key$ ]] ; then # if one or two dashes
+                unset fargs[$idx]
+                [[ ${largs[$key]} != optionwithoutarg ]]  && unset fargs[$idx+1]
+            fi 
+        done
+        ((idx++))
+    done
+} #end of parse_args
 
 
 #global array that hold the arguments without options
 declare -a fargs
-
-#parset the argumets and remove the options 
-parse_args() {
-    local -A oargs
-    local idx=0
-    #global value
-    fargs=("${@}")
-
-    while getopts ":d:shv" opt; do
-        case $opt in
-            d )  echo -e "doing $OPTARG\n"; 
-                #option with arguments
-                oargs[$opt]=$OPTARG;;
-
-            s )  echo -e "doing $opt\n";
-                #option without arguments
-                oargs[$opt]="oargs";;
-
-                #options with exit
-                h|help) usage; 
-                exit 0;;
-
-            : ) echo " Option $OPTARG needs an argument"; 
-                exit 1;;
-
-            \? )echo  "Option does not exist : $OPTARG";
-                usage; exit 1;;
-
-            esac    
-        done
-
-        for arg; do
-            # match arguments
-            for key in "${!oargs[@]}"; do 
-                if [[ "-"$key == $arg ]] ; then
-                    unset fargs[$idx]
-                    [[ ${oargs[$key]} != "oargs" ]]  && unset fargs[$idx+1]
-                fi 
-            done
-            ((idx++))
-        done
-} #end of parse_args
-
-
 parse_args "${@}"
 #set the final arguments then
 set -- "${fargs[@]}"
+
 endsnippet
 
 
