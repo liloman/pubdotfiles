@@ -231,6 +231,9 @@ icon_insert() {
     echo "Edit $file then execute 'lxpanelctl restart' to update the menus"
 }
 
+#Create an executable file
+e() { install -bvm 755 /dev/null $1 ; vimx $1; } 
+
 #############
 #  Desktop  #
 #############

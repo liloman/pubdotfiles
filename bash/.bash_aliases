@@ -61,6 +61,7 @@ alias cpfolder='rsync --progress -rva'
 alias tarc='tar -I lbzip2'
 alias xargs='xargs -0'
 alias open='xdg-open'
+alias free='free -h'
 
 needs ptree && alias pgrep='echo Did you mean ptree?' || alias pgrep='pgrep -af'
 alias tree='tree -CFpa'
@@ -71,8 +72,6 @@ alias tmux='history -r; tmux -u2'
 alias df='df -h'
 alias dmesg='dmesg -HPku'
 alias fbash='env -i  bash --norc --noprofile +o history'
-#Create an executable file
-alias e='install -bvm 755 /dev/null '
 
 #############
 #  Desktop  # 
