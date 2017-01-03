@@ -25,5 +25,5 @@ else #resuming
     timew stop
     #Start current task
     echo "Starting current task"
-    /home/$USER/.local/bin/pomodoro-client.py start
+    /home/$USER/.local/bin/pomodoro-client.py reset
 fi
