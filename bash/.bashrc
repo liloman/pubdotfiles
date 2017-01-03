@@ -51,15 +51,12 @@ shopt -s globstar
 #Don't execute history autocompletions but print it. Better than the magic-space
 shopt -s histverify
 
-#Load ~/.inputrc-surround keybinds
-bind -f ~/.inputrc-surround
-
-
 #Disable <C-s>(stop) and <C-q>(start) on terminal. To use <C-s> on vim (to save file)
 stty stop undef
 stty start undef
 #Disable control flow completely and press any key to start
 stty -ixon -ixoff ixany
+
 
 #Disable caps bloq  (needs work)
 # setxkbmap -option ctrl:nocaps
@@ -127,6 +124,7 @@ else
     white="\e[1;37m";
     yellow="\e[1;33m";
 fi;
+
 
 ###################
 #  Stderr in red  #
@@ -216,8 +214,11 @@ import(){
 }
 
 
-#Load asyncBash plugin
+
+#Load asyncBash plugin 
 import ~/Clones/asyncBash/asyncBash.sh asyncBash_prompt_command_lines=2 
+#load bash-surround keybindings AFTER asyncBash otherwise asyncBash doesn't work ¿?
+bind -f ~/.inputrc-surround
 
 #Load dirStack plugin
 import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true || asyncBash_prompt_command_lines=0
@@ -255,3 +256,5 @@ PROMPT_COMMAND+='set_ps1'
 
 #delete import function
 unset -f import needs
+
+
