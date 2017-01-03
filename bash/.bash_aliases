@@ -30,7 +30,7 @@ alias gt1='git commit -v'
 alias gts='git status'
 alias gta='git add '
 alias gtl='git log --graph --abbrev-commit --decorate --date=relative --all'
-alias gtpush='git commit -a && git push'
+alias gtpush='git commit -av && git push'
 alias gtpull='git pull --rebase'
 
 
