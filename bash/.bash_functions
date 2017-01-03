@@ -234,6 +234,16 @@ icon_insert() {
 #Create an executable file
 e() { install -bvm 755 /dev/null $1 ; vimx $1; } 
 
+
+#Remove hint from asyncBash (alt + h/e)
+dhint() {
+    # path="~/something" isn't expanded ??
+    local path=~/.local/hints
+    local hint=$path/$1.txt
+    [[ -f $hint ]] && rm -v $hint || echo "$hint doesn't exist"
+}
+
+
 #############
 #  Desktop  #
 #############
