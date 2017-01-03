@@ -73,7 +73,8 @@ monitor ~/Scripts/firefox_sync.sh
 monitor ~/Scripts/grive.sh 
 
 #Track shutdown time on timewarrior (no argument for just the last one)
-monitor ~/.local/bin/last-boots.sh
+# not a good idea cause multiple pc -> overlapping of tasks
+# monitor ~/.local/bin/last-boots.sh
 
 #Get current song from Spotify VB (daemon)
 # monitor ~/Scripts/current_spotify_song.sh
