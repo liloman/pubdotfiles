@@ -268,4 +268,5 @@ let g:surround_108 = "\\\1environment:\1{\r}"
 autocmd FileType tex colorscheme zellner | colo zellner
 
 au BufRead,BufNewFile *.bats set filetype=sh
+au BufNewFile,BufRead *.gitignore set filetype=gitignore
 
