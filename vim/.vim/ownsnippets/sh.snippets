@@ -6,14 +6,14 @@ snippet arr "(mine) make array"
 endsnippet
 
 snippet while "(mine) while read line by line output of command" b
-local com line 
+local line=
+local -a com=(${1:#command})
 local regex='^(.*)$'; 
-com=(${1:#command})
 
 while IFS= read -r line
 do
     if [[ $line =~ $regex ]]; then
-		    ${0:echo "$line"}
+		    ${0:echo "${line}"}
 		fi
 done < <("${com[@]}" 2>&1)
 endsnippet
