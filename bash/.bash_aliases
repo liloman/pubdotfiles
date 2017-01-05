@@ -32,6 +32,7 @@ alias gta='git add '
 alias gtl='git log --graph --abbrev-commit --decorate --date=relative --all'
 alias gtpush='git commit -av && git push'
 alias gtpull='git pull --rebase'
+alias gtca='git commit -v --amend'
 
 
 # enable color support of ls 
