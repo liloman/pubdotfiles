@@ -168,8 +168,9 @@ export GIT_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 }
 
-#Let's use most 
-needs most && export PAGER="most" 
+#Let's use most  (case sensitive search not working ¿? ). 
+# TODO: map shift-space to page-up in ~/.mostrc
+needs most && export PAGER="most" MOST_SWITCHES="-c"
 # open  the manpages in a brower with man -H command :)
 needs firefox && export BROWSER="firefox" 
 # show file, line and func when set -x
