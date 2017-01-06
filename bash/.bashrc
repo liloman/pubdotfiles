@@ -72,10 +72,12 @@ TTY=$(tty)
 # MUST come first...
 PROMPT_COMMAND='lastExit=$?' 
 
-#History lines (current session)
-HISTSIZE=5000
 #History file (all sessions)
 HISTFILESIZE=500000
+#History lines (current session)
+#be generous to be able to work with asyncBash (fc) when history > histsize
+# "out of range" error
+HISTSIZE=$HISTFILESIZE
 #Maybe I should rework this to make it dinamic again...
 HISTFILE=~/.bash_history
 #Show history timestamp with current locale
