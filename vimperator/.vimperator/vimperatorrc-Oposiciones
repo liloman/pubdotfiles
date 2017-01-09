@@ -1,6 +1,7 @@
 " vim: set ft=vimperator:
 
 source ~/.vimperator/vimperatorrc-common
+set toolbars=addons,bookmarks,nomenu,navigation,tabs
 
 " Load configuration file into current browser, useful for updating after editing this file.
 noremap <C-r> :source $HOME/.vimperator/vimperatorrc-Oposiciones<CR>:echomsg "Reloaded oposiciones profile!"<CR>
