@@ -40,6 +40,8 @@ spotify_sync() {
     fi
 }
 
+pidof spotify && { echo "$0 already running"; exit 1;  }
+
 echo "Preparando"
 spotify_sync
 echo "Lanza spotify"
