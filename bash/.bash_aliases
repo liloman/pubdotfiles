@@ -74,6 +74,9 @@ alias df='df -h'
 alias dmesg='dmesg -HPku'
 alias fbash='env -i  bash --norc --noprofile +o history'
 
+needs timew && alias twt='timew work today'
+needs timew && alias tww='timew work :week'
+
 #############
 #  Desktop  # 
 ############# 
