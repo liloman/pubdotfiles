@@ -59,5 +59,6 @@ record() {
     makegif 
 }
 
+clear
 #If argument live session for arg seconds
 [[ -z $1 ]] && record || makegif $1
