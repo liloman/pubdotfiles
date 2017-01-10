@@ -133,6 +133,9 @@ command! -nargs=+ -complete=url -description "Open in private" pf :js OpenInFire
 "Sync firefox profile from RAM each 10 minutes (600 secs)
 autocmd VimperatorEnter .* every -interval 600 silent !~/Scripts/firefox_sync.sh &
 
+"Link my indexedDB
+autocmd VimperatorEnter .* silent !~/Scripts/link_indexedDB.sh 
+
 "This event is released BEFORE firefox is closed
 command! -nargs=+ CleanFirefox -description "Clean firefox trackings" autocmd VimperatorLeave .* <args>
 "Actually clean firefox profiles. Don't use quotes otherwise won't be executed!

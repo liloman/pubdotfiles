@@ -22,6 +22,9 @@ whitelist ~/Scripts/clean_firefox.sh
 read-only ~/Scripts/clean_firefox.sh
 whitelist ~/Scripts/firefox_sync.sh 
 read-only ~/Scripts/firefox_sync.sh
+whitelist ~/Scripts/link_indexedDB.sh 
+read-only ~/Scripts/link_indexedDB.sh
+
 #It doesn't whitelist automatically everything inside
 whitelist ~/Scripts/descarga.sh 
 read-only ~/Scripts/descarga.sh
@@ -30,6 +33,7 @@ read-only ~/Scripts/libnotify
 #simple dir
 whitelist ~/tests
 read-only ~/tests
+whitelist ~/OPOS/apuntes/Varios/file++++home+charly+tests+index.html
 
 #no dbus access  (not working ?)
 #blacklist /run/user/1000/bus
