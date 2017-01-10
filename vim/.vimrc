@@ -89,6 +89,8 @@ nnoremap <F5> :let @/.='<'.expand("<CWORD>").'\>'<CR>n
 "Execute current file with Bexec plugin
 nmap <silent> <unique> <Leader>e :Bexec()<CR>
 vmap <silent> <unique> <Leader>e :BexecVisual()<CR>
+"default output buffer size
+let bexec_splitsize=10
 
 "To group with ease from the command line
 cmap ;\ \(\)<Left><Left>

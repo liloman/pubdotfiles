@@ -39,7 +39,9 @@ set showmode=true
 set showstatuslinks=3
 
 "show tabnumbers for alt+number
-set tabnumbers=true
+"disable hints for more than 5 tabs
+"https://github.com/vimperator/vimperator-labs/issues/484
+set tabnumbers=false
 
 
 "===[ Custom settings for profiles]=====================================
