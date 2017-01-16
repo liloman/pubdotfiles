@@ -87,13 +87,17 @@ needs fastboot && alias fastboot="fastboot  -i 0x1f3a"
 needs gpicview && alias fotos='gpicview'
 needs mplayer && alias mplayer='mplayer -use-filename-title -fs'
 needs mplayer && alias mplayer-masvolumen='mplayer -softvol -softvol-max 900'
-needs mplayer && alias verflash="mplayer -fs ~/Descargas/videoFlash" 
+needs mplayer && alias verflash="mplayer -fs /tmp/videoFlash" 
 alias verflashl="tail -f /tmp/youtube.log" 
 alias notas='vi ~/OPOS/Ingles/thesoundofenglish/notas.txt'
 alias webshare='python -m SimpleHTTPServer'
 alias bajaurl='wget -m -np -nd -p '
 alias pc='pomodoro-client.py '
 alias kspotify='pid=$(ptree spotify | grep Watchdog ) && kill ${pid#*,}'
+#from: pip install grip --user
+needs grip && alias markdown-view='grip -b '
+#from: wget https://raw.githubusercontent.com/ekalinin/github-markdown-toc/master/gh-md-toc
+needs gh-md-toc && alias markdown-generate-toc='gh-md-toc'
 
 
 #################
