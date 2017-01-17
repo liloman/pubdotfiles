@@ -124,6 +124,9 @@ map <C-G>  :js changeToGoogle.call();<CR>
 " Run :pf to open the url in a new private session 
 command! -nargs=+ -complete=url -description "Open in private" pf :js OpenInFireFox("Privado","<args>");
 
+" Run :pl to open the url in a new private Limpio session 
+command! -nargs=+ -complete=url -description "Open in Limpio" pl :js io.system('firefox -P Limpio --private-window '+"<args>"+' &');
+
 "===[ Custom autocommands ]=================================================
 
 "Old trickery for megaupload and cia
