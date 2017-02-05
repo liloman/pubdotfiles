@@ -1,0 +1,13 @@
+
+#correr comandos en background
+nohup yes & 
+#accounting
+sa || ac
+#mejor que lsof
+fuser -um /mnt
+# Show users of a group or groups of a user (must be root!)
+lid adm
+#cambiar de grupo sin salir
+chgrp newgrupo
+
+

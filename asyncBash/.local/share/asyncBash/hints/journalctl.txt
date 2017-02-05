@@ -1,0 +1,9 @@
+DATES
+-b: shows current boot
+--list-boots: list boots
+-b -N: previous N boot
+--since yesterday/09:00/"2015-01-10"
+--until yesterday/09:00/"2015-01-10"/"2015-01-10 17:15:00"
+PROCESS
+-u nginx.service
+_PID=444  / _UID=345 /  SYSLOG_IDENTIFIER=firejail / ...
