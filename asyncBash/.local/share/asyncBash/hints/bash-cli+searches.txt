@@ -1,0 +1,20 @@
+
+3 possible methods)
+
+1-autocomplete incremental search with total history
+>echo yu(ctl+n)
+yudo
+yuls
+...
+
+2-autocomplete entire cmd line with total history
+>echo yu (up/down)
+echo yudo ...
+echo huls ...
+...
+
+3-autocomplete partial search with total history
+>echo yu (ctl+r/s)
+echo kkyu
+echo yudo
+...
