@@ -5,6 +5,6 @@ Description=Execute on logout
 [Service]
 Type=oneshot
 ExecStart=
-ExecStop=/usr/bin/task +ACTIVE stop
+ExecStop=/usr/bin/bash %h/Scripts/on-logout.sh
 RemainAfterExit=yes
 

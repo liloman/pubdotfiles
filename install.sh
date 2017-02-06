@@ -78,6 +78,7 @@ echo Lets install type:$type for $USER then!
 echo Installing dotfiles for $type
 
 stow -vS bash
+stow -vS asyncBash
 stow -vS vim
 stow -vS home
 stow -vS htop 
