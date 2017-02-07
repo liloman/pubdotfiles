@@ -302,7 +302,15 @@
           <command>~/.local/bin/pomodoro-client.py pause</command>
       </action>
     </keybind>
-    <!-- <keybind key="W&#45;p"> -->
+    <keybind key="S-W-t">
+      <action name="Execute">
+          <command>
+              bash -c 'msg=$(~/.local/bin/pomodoro-client.py status) ; notify-send -t 10000 --hint=int:transient:1 "Current working task" "$msg"'
+          </command>
+      </action>
+    </keybind>
+
+        <!-- <keybind key="W&#45;p"> -->
     <!--   <action name="Execute"> -->
     <!--     <command>~/Scripts/alternate_vbox.sh Spotify</command> -->
     <!--   </action> -->
