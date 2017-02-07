@@ -297,6 +297,11 @@
           <command>~/.local/bin/pomodoro-client.py systray</command>
       </action>
     </keybind>
+    <keybind key="A-W-t">
+      <action name="Execute">
+          <command>~/.local/bin/pomodoro-client.py pause</command>
+      </action>
+    </keybind>
     <!-- <keybind key="W&#45;p"> -->
     <!--   <action name="Execute"> -->
     <!--     <command>~/Scripts/alternate_vbox.sh Spotify</command> -->
