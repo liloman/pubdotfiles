@@ -2,7 +2,8 @@
 #Stuff to do on logout
 
 #Stop current taskwarrior task
-task +ACTIVE stop
+# done with stop-task-on-logout.service from pomodoroTasks2 package
+# task +ACTIVE stop
 
 #syncronize tasks
 task sync
