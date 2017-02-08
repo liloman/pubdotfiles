@@ -51,7 +51,7 @@ if [[ "$cur" = -* ]]; then
 fi
 
 local -A VERBS=(
-[STANDALONE]='join tema notify reminder'
+[STANDALONE]='join tema notify'
 [FLAG]=''
 )
 
