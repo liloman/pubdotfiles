@@ -47,8 +47,8 @@ dateformat.edit=D-M-Y H:N:S
 dateformat.holiday=DMY
 dateformat.info=D-M-Y H:N:S
 
-#Don't show the reminders by default
-report.next.filter=status:pending limit:page -reminder
+#Show the pending reminders as well as in pomodoroTasks2 form
+report.next.filter=status:pending limit:page #-reminder
 
 #Custom report for reminders
 report.reminders.description=List current reminders
