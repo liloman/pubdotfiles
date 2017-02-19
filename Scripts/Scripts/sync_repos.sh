@@ -57,7 +57,7 @@ do_mines() {
     #Repos
     local mines="dirty dirStack checkUndocumented generate-autocompletion "
     mines+=" pomodoroTasks2 rmalias easyPcRecovery kbp asyncBash warriors bash-surround"
-    mines+=" Server "
+    mines+=" Server heal-bitrots do_vault"
     for dir in $mines; do
         echo "**********************************"
         echo "Doing $dir"
