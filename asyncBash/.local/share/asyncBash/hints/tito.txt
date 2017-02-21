@@ -1,0 +1,7 @@
+To make a new release:
+1-tito tag 
+And this create a new local tag 
+2-Just push it into github 
+3-Create a new release from the tag in github
+4-Make one more remote commit to actually launch a new release in copr for the new release ¿?
+
