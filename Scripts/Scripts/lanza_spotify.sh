@@ -42,9 +42,14 @@ spotify_sync() {
 
 pidof spotify && { echo "$0 already running"; exit 1;  }
 
+if [[ $HOSTNAME != uni ]]; then
 echo "Preparando"
 spotify_sync
 echo "Lanza spotify"
 spotify
 echo "syncronizando"
 spotify_sync
+else
+echo "Lanza spotify"
+spotify
+fi
