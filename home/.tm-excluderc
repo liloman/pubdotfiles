@@ -1,0 +1,7 @@
++ /Clones/***
++ /Descargas/***
++ /.mozilla/***
+#no hidden files
+- .*
+#no rest of all
+- *

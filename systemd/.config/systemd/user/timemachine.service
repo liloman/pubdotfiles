@@ -1,0 +1,9 @@
+
+[Unit]
+Description=Make time machine snapshots
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash %h/Scripts/make-timemachine-snapshot.sh
+ExecStop=
+

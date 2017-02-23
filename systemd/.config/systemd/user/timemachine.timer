@@ -1,0 +1,12 @@
+[Unit]
+Description=Timer to make a time machine like snapshot
+
+[Timer]
+#15 after boot
+OnBootSec=15min
+#And then each hour
+OnUnitActiveSec=1h
+Persistent=True
+
+[Install]
+WantedBy=timers.target
