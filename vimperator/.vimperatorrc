@@ -270,7 +270,10 @@ set! browser.pocket.api=""
 
 
 "https://wiki.archlinux.org/index.php/Firefox_Tips_and_Tweaks#Defragment_the_profile.27s_SQLite_databases
-set! layers.acceleration.force-enabled=true
+"for some reason it started to give me a black firefox screen on my laptop disable it so
+"it seems related to the gpu module maybe with other kernels ...
+"set! layers.acceleration.force-enabled=true
+
 set! layers.offmainthreadcomposition.enabled=true
 
 "Disable pdf.js viewer
