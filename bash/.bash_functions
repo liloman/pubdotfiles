@@ -244,6 +244,17 @@ dhint() {
 }
 
 
+jlog() {
+    [[ -z $1 ]] && { echo "Must pass a systemd unit name"; return; }
+    # journalctl --user -u $1 , will work someday xD
+    local opt=
+    for arg; do 
+        opt+=" --user-unit=$arg"
+    done
+    journalctl --user $opt
+}
+
+
 #############
 #  Desktop  #
 #############
