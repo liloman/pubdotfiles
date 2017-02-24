@@ -92,7 +92,16 @@ alias verflashl="tail -f /tmp/youtube.log"
 alias notas='vi ~/OPOS/Ingles/thesoundofenglish/notas.txt'
 alias webshare='python -m SimpleHTTPServer'
 alias bajaurl='wget -m -np -nd -p '
-alias pc='pomodoro-client.py '
+
+#Load alias and its autocompletition 
+if needs pomodoro-client.py; then
+    alias pc='pomodoro-client.py '
+    [[ -e ~/.local/share/bash-completion/completions/pomodoro-client.py ]]
+    #load _pomodoro-client.py
+    . ~/.local/share/bash-completion/completions/pomodoro-client.py 
+    complete -F _pomodoro-client.py pc
+fi
+
 alias kspotify='pid=$(ptree spotify | grep Watchdog ) && kill ${pid#*,}'
 #from: pip install grip --user
 needs grip && alias markdown-view='grip -b '
