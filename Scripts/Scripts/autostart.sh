@@ -4,27 +4,35 @@
 #Load notification library
 . ~/Scripts/libnotify
 
-try=0
-no_conexion=0
-#
-#wait for 150 seconds for connectivity before doing anything network related
-while ! ping -c 1 google.es &> /dev/null;
-do
-    ((try++))
-    if ((try == 30));
-    then
-        notify_err "no conexion"
-        no_conexion=1
-    fi
-    sleep 5
-done
-
 #Associative array for processes indexed by pid
 declare -A procs
 #Enable job control
 set -m
 #Execute control_child each 1 sec till jobs remaining (see kill -l for signals)
 trap "control_child" SIGCHLD
+
+
+#wait for 150 seconds for connectivity before doing anything network related
+do_network_jobs() {
+    local -i network=0
+    local -i try=0
+    while ! ping -c 1 google.es &> /dev/null;
+    do
+        ((try++))
+        if ((try == 30));
+        then
+            notify_err "no conexion"
+            network=1
+        fi
+        sleep 5
+    done
+    #Sync tasks
+    if ! ((network)); then 
+        task sync ||  notify_err "task sync failed" 
+        #Sync local repos with origin for my repos ...
+        monitor ~/Scripts/sync_repos.sh 
+    fi
+}
 
 #Control the childs notifying on error 
 control_child() {
@@ -52,32 +60,18 @@ monitor() {
 }
 
 
-#Sync tasks
-((no_conexion)) || ( task sync ||  notify_err "task sync failed" )
+#Remove that shit out of here all along (not able to disable/modify...)
+rm -rf ~/Downloads/ ~/Desktop/
 
 ( tilda  ||  notify_err "tilda failed to start" ) &
 
 task diagnostics | grep "Found duplicate"  && notify_err "duplicates on taskwarrior use remove-du..."
-
-
-#Remove that shit out of here all along (not able to disable/modify...)
-rm -rf ~/Downloads/ ~/Desktop/
-
-#Sync local repos with origin for my repos ...
-((no_conexion)) || monitor ~/Scripts/sync_repos.sh 
 
 #Move firefox profile to RAM
 monitor ~/Scripts/firefox_sync.sh 
 
 #Sync google drive dir
 monitor ~/Scripts/grive.sh 
-
-#Track shutdown time on timewarrior (no argument for just the last one)
-# not a good idea cause multiple pc -> overlapping of tasks
-# monitor ~/.local/bin/last-boots.sh
-
-#Get current song from Spotify VB (daemon)
-# monitor ~/Scripts/current_spotify_song.sh
 
 #default pomodoro session (minutes)
 export POMODORO_TIMEOUT=25
@@ -88,13 +82,13 @@ export POMODORO_LTIMEOUT=15
 #Launch pomodoroTasks2 (daemon) 
 monitor ~/.local/bin/pomodoro-daemon.py
 
-#Stop active task on logout
-#systemctl --user start on-logout.service
+#Launch network jobs
+do_network_jobs &
+
 
 
 # This script ($$) will run forever cause the some jobs above are daemons
 # so maybe you can reutilize it to do some other tasks in the final loop ... :D
-
 
 # Wait until all jobs are done!
 while (( ${#procs[@]}> 0)); do sleep 10; done

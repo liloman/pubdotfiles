@@ -87,10 +87,10 @@ do_yad(){
 }
 
 sync_repos() {
-    do_mines
+    do_yad &
+    do_others &
     do_dotfiles
-    do_yad
-    do_others
+    do_mines
 }
 
 sync_repos
