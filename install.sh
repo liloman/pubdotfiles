@@ -106,7 +106,9 @@ if [[ $type != server ]]; then
     systemctl --user start change-wallpaper.timer;
     systemctl --user enable timemachine.timer;
     systemctl --user start timemachine.timer;
-    systemctl --user start on-logout.service;
+    #The user services need to be enabled and WantedBy in [Install]
+    #otherwise they need to be started manually
+    systemctl --user enable on-logout.service;
     }
     if ((ask)); then
         echo "*****START******"

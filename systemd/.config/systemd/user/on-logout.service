@@ -8,3 +8,5 @@ ExecStart=
 ExecStop=/usr/bin/bash %h/Scripts/on-logout.sh
 RemainAfterExit=yes
 
+[Install]
+WantedBy=dbus.socket

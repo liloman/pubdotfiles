@@ -89,7 +89,7 @@ export POMODORO_LTIMEOUT=15
 monitor ~/.local/bin/pomodoro-daemon.py
 
 #Stop active task on logout
-systemctl --user start on-logout.service
+#systemctl --user start on-logout.service
 
 
 # This script ($$) will run forever cause the some jobs above are daemons
