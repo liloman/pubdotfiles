@@ -292,6 +292,25 @@ set! font.internaluseonly.changed=false
 
 
 
+""""""""""""""""""""""""""""""""""""""""""
+"        Some ideas from here :          "
+"  https://github.com/pyllyukko/user.js  "
+""""""""""""""""""""""""""""""""""""""""""
+
+
+"https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration
+"https://www.macromedia.com/support/documentation/en/flashplayer/help/help01.html
+"https://github.com/dillbyrne/random-agent-spoofer/issues/74
+set! gfx.direct2d.disabled=true
+set! layers.acceleration.disabled=true
+" and so on ...
+
+"Captive portals might not let OCSP requests through before authentication, so setting 
+" might be required before internet access is grant
+set! security.OCSP.require=false
+
+
+
 
 
 "===[ Custom style ]=================================================

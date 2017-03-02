@@ -91,7 +91,11 @@ needs mplayer && alias verflash="mplayer-masvolumen -fs /tmp/videoFlash"
 alias verflashl="tail -f /tmp/youtube.log" 
 alias notas='vi ~/OPOS/Ingles/thesoundofenglish/notas.txt'
 alias webshare='python -m SimpleHTTPServer'
-alias bajaurl='wget -m -np -nd -p '
+
+if needs wget; then
+    alias wget="wget -c" 
+    alias bajaurl='wget -m -np -nd -p '
+fi
 
 #Load alias and its autocompletition 
 if needs pomodoro-client.py; then
