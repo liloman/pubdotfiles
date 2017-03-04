@@ -157,13 +157,54 @@ repeat() {
     done
 }
 
+##################################################
+#  the need to be .sh to work like git commands  #
+##################################################
+
 
 #Remove a file form git history
-git_rm_history() {
+git-rm-history() {
     [[ -z $1 ]] && { echo "You must pass a dir name to delete"; return 1; }
     git filter-branch -f --tree-filter 'rm -rf $1/' HEAD
 }
 
+#Create a new repo in remote server
+git-make-remote() {
+    local git_server="git.server.int"
+    local git_user="git"
+    local repo=$1
+
+    if [[ -z $repo ]]; then
+        echo "${FUNCNAME[0]} reponame"
+        return 1
+    fi
+
+    ssh $git_user@$git_server "mkdir -p $repo.git && cd $repo.git && git init --bare"
+    git remote add origin.int $git_user@$git_server:$repo.GIT
+}
+
+
+#set the current origin to github/gitlab
+git-set-remote() {
+    local git_server="github.com"
+    local git_user="liloman"
+    local repo=$1
+    if [[ -n $2 ]]; then
+        git_server="gitlab.com"
+    fi
+    local git_url="git@$git_server:$git_user/$repo.git"
+
+    if [[ -z $repo ]]; then
+        echo "${FUNCNAME[0]} reponame (for github)"
+        echo "${FUNCNAME[0]} reponame 1 (for gitlab)"
+        return 1
+    fi
+
+    #if remote modify, otherwise add it
+    if ! git remote set-url origin $git_url; then
+       git remote add origin  $git_url
+    fi
+}
 
 algo() {
   local sec=180
