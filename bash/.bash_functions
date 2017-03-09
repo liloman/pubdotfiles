@@ -285,6 +285,7 @@ dhint() {
 }
 
 
+#view last journalctl log of units
 jlog() {
     [[ -z $1 ]] && { echo "Must pass a systemd unit name"; return; }
     # journalctl --user -u $1 , will work someday xD
@@ -292,14 +293,34 @@ jlog() {
     for arg; do 
         opt+=" --user-unit=$arg"
     done
-    journalctl --user $opt
+    journalctl --user -r $opt
 }
+
+
+#sync folder/s to local/remote dir
+cpfolders() {
+    (( $# < 2 )) && { echo "Must pass at least source and target"; return; }
+    # a=archive, z=compress when possible, P=partial and progress
+    # h=human, u=dont update if older,v=verbose
+    # stats = show final stats
+    local sync='rsync -azPhuv --stats'
+    local -a args=("${@}")
+    local target=${args[-1]}
+
+    # remove trailing back slash if exists
+    # cause rsync would sync contents without source dir
+    for (( i = 0; i < $(($# -1)); i++ )); do
+        args[$i]=${args[$i]%\/}
+    done
+
+    $sync "${args[@]}" "$target"
+}
+
 
 
 #############
 #  Desktop  #
 #############
-
 
 
 #Cut videos from start to end duration. See join_video in Scripts also

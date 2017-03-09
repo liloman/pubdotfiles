@@ -58,8 +58,6 @@ needs rmdiralias && alias rmdir='rmdiralias -v'
 alias grep='grep --color=auto'
 alias search='grep --color=auto --exclude-dir=.git -Rin '
 alias cp="cp -v"
-# a=archive, z=compress, P=partial and progress, h=human, u=dont update if older,v=verbose
-alias cpfolder='rsync -azPhuv --stats'
 alias tarc='tar -I lbzip2'
 alias xargs='xargs -0'
 alias open='xdg-open'
