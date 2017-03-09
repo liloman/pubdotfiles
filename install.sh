@@ -134,7 +134,7 @@ git submodule init
 echo Updating submodules 
 git submodule update  --init --remote
 
-if [[ ! -e ~/.local/share/fonts/Literation Mono Powerline.ttf ]]; then
+if [[ ! -e "$HOME/.local/share/fonts/Literation Mono Powerline.ttf" ]]; then
     echo "Installing powerline fonts"
     ./vim/.vim/bundle/powerline-fonts/install.sh
 fi

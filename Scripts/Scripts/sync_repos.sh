@@ -67,7 +67,7 @@ do_mines() {
         echo "Doing $dir"
         [[ ! -d $dir ]] && repo_failed "$dir not found" && continue
         cd $dir && update_repo $dir
-        cd $ROOT
+        cd $ROOT/mine
     done
 }
 
