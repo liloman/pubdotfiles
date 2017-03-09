@@ -219,16 +219,16 @@ import(){
 
 
 #Load asyncBash plugin 
-import ~/Clones/asyncBash/asyncBash.sh asyncBash_prompt_command_lines=2 
+import ~/Clones/mine/asyncBash/asyncBash.sh asyncBash_prompt_command_lines=2 
 #load bash-surround keybindings AFTER asyncBash otherwise asyncBash doesn't work ¿?
 bind -f ~/.inputrc-surround
 
 #Load dirStack plugin
-import  ~/Clones/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true || asyncBash_prompt_command_lines=0
+import  ~/Clones/mine/dirStack/dirStack.sh DIRSTACK_EXCLUDE+=":$HOME/dotfiles" DIRSTACK_HEADER=true || asyncBash_prompt_command_lines=0
 
 #Z script to get the most common directories and so on
 #  https://github.com/rupa/z 
-import ~/Clones/z/z.sh _Z_DATA=$HOME/.zs/.z _Z_NO_PROMPT_COMMAND=true
+import ~/Clones/third/z/z.sh _Z_DATA=$HOME/.zs/.z _Z_NO_PROMPT_COMMAND=true
 
 # load definitions before aliases to work with custom aliases
 import ~/.bash_functions

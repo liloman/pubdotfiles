@@ -7,7 +7,6 @@
 readonly ROOT=~/Clones
 
 #Change dir to $root
-cd $ROOT
 
 repo_failed() { notify_err "$1"; }
 
@@ -44,6 +43,8 @@ update_repo() {
 do_others() {
     #Repos
     local others=" z "
+    cd ~/Clones/third || { repo_failed "Couldn't cd to ~/Clones/third dir"; return ; }
+
     for dir in $others; do
         echo "**********************************"
         echo "Doing $dir"
@@ -58,6 +59,9 @@ do_mines() {
     local mines="dirty dirStack checkUndocumented generate-autocompletion "
     mines+=" pomodoroTasks2 rmalias easyPcRecovery kbp asyncBash warriors bash-surround"
     mines+=" Server heal-bitrots do_vault"
+
+    cd ~/Clones/mine/ || { repo_failed "Couldn't cd to ~/Clones/mine dir"; return ; }
+
     for dir in $mines; do
         echo "**********************************"
         echo "Doing $dir"
@@ -79,7 +83,8 @@ do_dotfiles(){
 do_yad(){
     echo "**********************************"
     echo "Doing yad"
-    cd ~/Clones/yad || return 
+    cd ~/Clones/third/yad || { repo_failed "Couldn't cd to ~/Clones/third/yad dir"; return ; }
+
     git svn rebase
     git push
     cd $ROOT
@@ -87,6 +92,7 @@ do_yad(){
 }
 
 sync_repos() {
+    cd $ROOT || { repo_failed "Couldn't cd to $ROOT dir"; return ; }
     do_yad &
     do_others &
     do_dotfiles

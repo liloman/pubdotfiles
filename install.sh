@@ -45,7 +45,7 @@ EOT
 function do_symlink ()
 {
   local orig=$1 dest=$2
-  [[ ! -f $orig ]] && echo "Warning: $orig doesn't exist." || ln -s $orig $dest   
+  [[ ! -f $orig ]] && echo "Warning: $orig doesn't exist." || ln -sf $orig $dest   
 }
 
 ask=1
@@ -98,7 +98,7 @@ if [[ $type != server ]]; then
     stow -vS Scripts 
     stow -vS firejail 
     #symlinks
-    do_symlink "$HOME/Clones/bash-surround/inputrc-surround" "$HOME/.inputrc-surround"
+    do_symlink "$HOME/Clones/mine/bash-surround/inputrc-surround" "$HOME/.inputrc-surround"
     shopt -s dotglob
     cp -rvuP $PWD/systemd/* $HOME && { 
     systemctl --user daemon-reload;
