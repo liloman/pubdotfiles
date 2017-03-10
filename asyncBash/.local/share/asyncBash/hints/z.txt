@@ -1,0 +1,14 @@
+    -c     restrict matches to current directory
+    -x     remove the current directory 
+    -e     echo the best match, don't cd
+    -l     list only
+    -r     match by rank only
+    -t     match by recent access only
+
+EXAMPLES
+       z foo bar     cd to most frecent dir matching foo, then bar
+       z -r foo      cd to highest ranked dir matching foo
+       z -t foo      cd to most recently accessed dir matching foo
+       z -x .        remove current
+
+
