@@ -312,7 +312,8 @@ cpfolders() {
     for (( i = 0; i < $(($# -1)); i++ )); do
         args[$i]=${args[$i]%\/}
     done
-
+    #delete last argument
+    args[-1]=
     $sync "${args[@]}" "$target"
 }
 
