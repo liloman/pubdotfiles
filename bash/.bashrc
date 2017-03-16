@@ -97,6 +97,8 @@ PROMPT_DIRTRIM=2
 #  COLORS  #
 ############
 
+# A lot of script to for colors 
+# https://github.com/pvinis/colortools
 if tput setaf 1 &> /dev/null; then
     tput sgr0; # reset colors
     bold=$(tput bold);

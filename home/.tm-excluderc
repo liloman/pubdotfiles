@@ -1,4 +1,7 @@
 + /Clones/
+#the directory itself
++ /Clones/mine/
+#and everything inside it :)
 + /Clones/mine/***
 + /Descargas/***
 + /.mozilla/***
