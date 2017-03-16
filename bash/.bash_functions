@@ -314,7 +314,7 @@ cpfolders() {
     done
     #delete last argument
     args[-1]=
-    $sync "${args[@]}" "$target"
+    $sync $(echo "${args[@]}") "$target"
 }
 
 
