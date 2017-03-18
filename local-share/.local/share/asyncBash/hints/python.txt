@@ -1,0 +1,6 @@
+
+para profiling:
+python -m profile -o salida.pstats ./script.py
+luego para depurar:
+pip install --user cprofilev
+cprofilev  -f salida.pstats
