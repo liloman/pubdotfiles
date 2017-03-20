@@ -17,7 +17,7 @@ noremap <C-r> :source $HOME/.vimperatorrc<CR>:echomsg "Reloaded ~/.vimperatorrc!
 
 "===[ Custom js mappings ]=================================================
 
-javascript function showFSVideo(url) {io.system('~/Scripts/descarga.sh ' + url +' &');};
+javascript function showFSVideo(url) {io.system('~/dotfiles/Scripts/Scripts/descarga.sh ' + url +' &');};
 javascript function Midori() {io.system('midori -p ' + buffer.URL +' &');};
 
 "Open in profile the url or search passed
@@ -134,20 +134,20 @@ command! -nargs=+ -complete=url -description "Open in Limpio" pl :js io.system('
 
 "This event is released AFTER firefox is started. 
 "Sync firefox profile from RAM each 10 minutes (600 secs)
-autocmd VimperatorEnter .* every -interval 600 silent !~/Scripts/firefox_sync.sh &
+autocmd VimperatorEnter .* every -interval 600 silent !~/dotfiles/Scripts/Scripts/firefox_sync.sh &
 
 "Link my indexedDB
-autocmd VimperatorEnter .* silent !~/Scripts/link_indexedDB.sh 
+autocmd VimperatorEnter .* silent !~/dotfiles/Scripts/Scripts/link_indexedDB.sh 
 
 "This event is released BEFORE firefox is closed
 command! -nargs=+ CleanFirefox -description "Clean firefox trackings" autocmd VimperatorLeave .* <args>
 "Actually clean firefox profiles. Don't use quotes otherwise won't be executed!
 ":set sanitizeitems of vimperator not working???
-CleanFirefox silent !~/Scripts/clean_firefox.sh default 
-CleanFirefox silent !~/Scripts/clean_firefox.sh Privado 
-CleanFirefox silent !~/Scripts/clean_firefox.sh Oposiciones
+CleanFirefox silent !~/dotfiles/Scripts/Scripts/clean_firefox.sh default 
+CleanFirefox silent !~/dotfiles/Scripts/Scripts/clean_firefox.sh Privado 
+CleanFirefox silent !~/dotfiles/Scripts/Scripts/clean_firefox.sh Oposiciones
 "At last sync firefox PROFILE from RAM before quit
-CleanFirefox silent !~/Scripts/firefox_sync.sh
+CleanFirefox silent !~/dotfiles/Scripts/Scripts/firefox_sync.sh
 "Reset to default useragent
 CleanFirefox set! general.useragent.override&
 
@@ -273,6 +273,7 @@ set! browser.pocket.api=""
 "for some reason it started to give me a black firefox screen on my laptop disable it so
 "it seems related to the gpu module maybe with other kernels ...
 "set! layers.acceleration.force-enabled=true
+set! layers.acceleration.force-enabled=false
 
 set! layers.offmainthreadcomposition.enabled=true
 
