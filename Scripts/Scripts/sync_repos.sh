@@ -58,7 +58,7 @@ do_mines() {
     #Repos
     local mines="dirty dirStack checkUndocumented generate-autocompletion "
     mines+=" pomodoroTasks2 rmalias easyPcRecovery kbp asyncBash warriors bash-surround"
-    mines+=" Server heal-bitrots do_vault"
+    mines+=" Server heal-bitrots do_vault containers "
 
     cd ~/Clones/mine/ || { repo_failed "Couldn't cd to ~/Clones/mine dir"; return ; }
 
