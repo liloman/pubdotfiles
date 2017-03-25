@@ -1,0 +1,6 @@
+[Default Applications]
+inode/directory=pcmanfm.desktop
+application/pdf=mupdf.desktop
+
+[Added Associations]
+inode/directory=pcmanfm.desktop;
