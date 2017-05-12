@@ -16,7 +16,7 @@ trap "control_child" SIGCHLD
 do_network_jobs() {
     local -i network=0
     local -i try=0
-    while ! ping -c 1 google.es &> /dev/null;
+    while ! wget -t 1 -O - google.com &> /dev/null;
     do
         ((try++))
         if ((try == 30));
