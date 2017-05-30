@@ -298,12 +298,15 @@ jlog() {
 
 
 #sync folder/s to local/remote dir
+# Changed:
+# 1-Swapped u=dont update if older with --checksum (if size and time match, check-summed it)
+# due to problems with git commits not syncing with the -u option
 cpfolders() {
     (( $# < 2 )) && { echo "Must pass at least source and target"; return; }
     # a=archive, z=compress when possible, P=partial and progress
-    # h=human, u=dont update if older,v=verbose
+    # h=human,v=verbose
     # stats = show final stats
-    local sync='rsync -azPhuv --stats'
+    local sync='rsync -azPhv --stats --checksum'
     local -a args=("${@}")
     local target=${args[-1]}
 
