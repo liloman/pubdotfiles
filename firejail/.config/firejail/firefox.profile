@@ -12,10 +12,14 @@ noblacklist /usr/lib/python3*
 
 #You have to whitelist the symlink dir
 #and firejail whitelists the target FILES
-#globbing no working  
+#Globbing doesn't work! 
+
+# noblacklist this case first otherwise target dir will be mount 
+# as nfsnobody:nfsnobody therefore without permissions
+noblacklist ~/.mplayer
+#business as usual then
 whitelist ~/.mplayer
 read-only ~/.mplayer
-
 
 #my settings
 whitelist ~/Scripts/clean_firefox.sh 
@@ -25,11 +29,13 @@ read-only ~/Scripts/firefox_sync.sh
 whitelist ~/Scripts/link_indexedDB.sh 
 read-only ~/Scripts/link_indexedDB.sh
 
+
 #It doesn't whitelist automatically everything inside
 whitelist ~/Scripts/descarga.sh 
 read-only ~/Scripts/descarga.sh
 whitelist ~/Scripts/libnotify
 read-only ~/Scripts/libnotify
+
 #simple dir
 whitelist ~/tests
 read-only ~/tests
