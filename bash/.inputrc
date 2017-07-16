@@ -149,7 +149,9 @@ set completion-ignore-case on
 # Treat hyphens and underscores as equivalent
 set completion-map-case on
 # Do not autocomplete hidden files unless the pattern explicitly begins with a dot
-set match-hidden-files off
+# set match-hidden-files off
+# Enable it
+set match-hidden-files on
 
 # Dont show all autocomplete results at once
 set page-completions on
