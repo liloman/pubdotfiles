@@ -1,0 +1,11 @@
+1- To show the target dir of a symlinked dir, 
+type the dir withouth the ending /, otherwise will list the files of the target dir
+
+[C:13-E:0:~]➬ll Scripts
+lrwxrwxrwx. 1 user user 24 Mar  5 19:15 Scripts -> dotfiles/Scripts/Scripts/
+
+NOTE: It only works for symlinked dirs, for normal dirs works as usual:
+
+[C:14-E:0:~]➬ll dotfiles
+lrwxrwxrwx. 1 user user 24 Mar  5 19:15 .git/
+...
