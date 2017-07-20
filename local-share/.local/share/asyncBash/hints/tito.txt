@@ -1,7 +1,22 @@
 To make a new release:
+
+0-Commit local changes 
 1-tito tag 
-And this create a new local tag 
-2-Just push it into github 
-3-Create a new release from the tag in github
-4-Make one more remote commit to actually launch a new release in copr for the new release ¿?
+And this create a new local tag with an automatic message 
+2-git checkout stable  (the releases branch)
+3-git merge master or git merge tag-name 
+4-Just push it all to github 
+git push --all
+git push --tags
+5-Create a new release from the tag in github (in stable)
+6- Make one more remote commit (in any branch) to actually launch a new release in copr for the new release ¿? 
+(Using an old delivery doesn't work either :( )
+
+
+GOTCHAS:
+
+You must use the push event in the github webhooks.
+I'll be great to be able to use the release event o anything else
+but copr is not prepared for that so before any commit in any branch a 
+build will be released. :((((
 
