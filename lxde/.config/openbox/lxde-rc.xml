@@ -119,7 +119,7 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>4</number>
+    <number>5</number>
     <firstdesk>1</firstdesk>
     <names>
       <!-- set names up here if you want to, like this:
@@ -246,6 +246,11 @@
         <desktop>4</desktop>
       </action>
     </keybind>
+    <keybind key="W-5">
+      <action name="Desktop">
+        <desktop>5</desktop>
+      </action>
+    </keybind>
     <keybind key="W-Tab">
       <action name="GoToDesktop">
         <to>last</to>
@@ -264,17 +269,17 @@
     </keybind>
     <keybind key="W-Right">
       <action name="Execute">
-          <command>~/Scripts/spotify-cli next</command>
+        <command>~/Scripts/spotify-cli next</command>
       </action>
     </keybind>
     <keybind key="W-Left">
       <action name="Execute">
-          <command>sh -c '~/Scripts/spotify-cli prev;  ~/Scripts/spotify-cli prev'</command>
+        <command>sh -c '~/Scripts/spotify-cli prev;  ~/Scripts/spotify-cli prev'</command>
       </action>
     </keybind>
     <keybind key="W-Down">
       <action name="Execute">
-          <command>~/Scripts/spotify-cli play</command>
+        <command>~/Scripts/spotify-cli play</command>
       </action>
     </keybind>
     <keybind key="W-f">
@@ -294,23 +299,22 @@
     </keybind>
     <keybind key="W-t">
       <action name="Execute">
-          <command>~/.local/bin/pomodoro-client.py systray</command>
+        <command>~/.local/bin/pomodoro-client.py systray</command>
       </action>
     </keybind>
     <keybind key="A-W-t">
       <action name="Execute">
-          <command>~/.local/bin/pomodoro-client.py pause</command>
+        <command>~/.local/bin/pomodoro-client.py pause</command>
       </action>
     </keybind>
     <keybind key="S-W-t">
       <action name="Execute">
-          <command>
+        <command>
               bash -c 'msg=$(~/.local/bin/pomodoro-client.py status) ; notify-send -t 10000 --hint=int:transient:1 "Current working task" "$msg"'
           </command>
       </action>
     </keybind>
-
-        <!-- <keybind key="W&#45;p"> -->
+    <!-- <keybind key="W&#45;p"> -->
     <!--   <action name="Execute"> -->
     <!--     <command>~/Scripts/alternate_vbox.sh Spotify</command> -->
     <!--   </action> -->
