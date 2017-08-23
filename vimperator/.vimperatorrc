@@ -3,7 +3,6 @@
 "3.0 Refactoring 
 "3.1 Separation in profiles (~/.vimperator/vimperatorrc-*)
 
-source ~/.vimperator/vimperatorrc-common
 
 "===[ Custom mappings]=================================================
 
@@ -13,6 +12,8 @@ noremap <C-r> :source $HOME/.vimperatorrc<CR>:echomsg "Reloaded ~/.vimperatorrc!
 "inoremap <F9> <Esc>:tabprevious<CR>
 "inoremap <F10> <Esc>:tabnext<CR>
 "noremap K <Esc>:closedTabs<CR> 
+
+source ~/.vimperator/vimperatorrc-common
 
 
 "===[ Custom js mappings ]=================================================

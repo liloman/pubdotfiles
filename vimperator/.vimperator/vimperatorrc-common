@@ -50,6 +50,8 @@ set tabnumbers=false
 var profile=liberator.profileName;
 /* Set title window according */
 options.store.set("titlestring","Profile:"+profile);
+/* Source the vimperatorrc-Profile file */
+io.source("~/.vimperator/vimperatorrc-"+profile,"true")
 EOF
 
 
