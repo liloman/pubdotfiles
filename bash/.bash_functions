@@ -272,8 +272,12 @@ icon_insert() {
     echo "Edit $file then execute 'lxpanelctl restart' to update the menus"
 }
 
-#Create an executable file
-e() { install -bvm 755 /dev/null $1 ; vimx $1; } 
+#Create an executable file if doesn't exist otherwise open it
+e() {
+    local file=$1
+    [[ -f $file  ]] && chmod 755 $file || install -bvm 755 /dev/null $file
+    vimx $file
+}
 
 
 #Remove hint from asyncBash (alt + h/e)
