@@ -5,7 +5,7 @@
 " Load configuration file into current browser, useful for updating after editing this file.
 noremap <C-r> :source $HOME/.vimperator/vimperatorrc-Privado<CR>:echomsg "Reloaded privado profile!"<CR>
 
-
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
 "can't be call from javascript :(
 "finish
 
