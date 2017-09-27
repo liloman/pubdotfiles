@@ -4,7 +4,7 @@
 . ~/Scripts/libnotify
 
 descarga() {
-    local latest=true
+    local latest=false
     #local dest=$HOME/Descargas/videoFlash
     local dest=/tmp/videoFlash
     local url="$1"
