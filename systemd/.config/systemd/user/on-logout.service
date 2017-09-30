@@ -5,8 +5,11 @@ Description=Execute on logout
 [Service]
 Type=oneshot
 ExecStart=
-ExecStop=/usr/bin/bash %h/Scripts/on-logout.sh
+#Dont execute ExecStop right after ExecStart
 RemainAfterExit=yes
+ExecStop=/usr/bin/bash %h/Scripts/on-logout.sh
+#2 sec and kill it
+TimeoutStopSec=2
 
 [Install]
 WantedBy=dbus.socket
