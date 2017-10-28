@@ -325,6 +325,11 @@ cpfolders() {
 }
 
 
+#Dont ask for the passphrase for 8 hours
+ssh-cache-pass() {
+    ssh-add -t 8H ~/.ssh/id_rsa
+}
+
 
 #############
 #  Desktop  #
