@@ -21,6 +21,7 @@ function help() {
 	echo "  pause       Pause current song."
 	echo "  next        Next song."
 	echo "  prev        Previous song."
+	echo "  status      Show status."
 	echo "  open <URL>  Open given URL."
 	echo "  help        Show this help and exit."
 }
@@ -72,6 +73,18 @@ function spotifyOpen() {
 	error "Unimplemented." 1
 }
 
+function spotifyStatus() {
+    local resul=$(dbus-send --print-reply --session --type=method_call \
+        --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2  \
+        org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata')
+    #    echo "$resul"
+    local img=$(echo "$resul" |egrep -A 1 "mpris:artUrl"|egrep -v "mpris:artUrl"|cut -b 44-|cut -d '"' -f 1|egrep -v ^$)
+    local artist=$(echo "$resul" |egrep -A 2 "artist"|egrep -v "artist"|egrep -v "array"|cut -b 27-|cut -d '"' -f 1|egrep -v ^$)
+    local album=$(echo "$resul" |egrep -A 2 "album"|egrep -v "album"|egrep -v "array"|cut -b 44-|cut -d '"' -f 1|egrep -v ^$)
+    local title=$(echo "$resul" |egrep -A 1 "title"|egrep -v "title"|cut -b 44-|cut -d '"' -f 1|egrep -v ^$)
+    echo "$artist \n ($album) \n $title"
+}
+
 function main() {
 	checkCommand dbus-send
 	checkSpotifyIsRunning
@@ -91,6 +104,9 @@ function main() {
 		;;
 		prev)
 			spotifyPrev
+		;;
+		status)
+			spotifyStatus
 		;;
 		help)
 			help
