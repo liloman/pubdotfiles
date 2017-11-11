@@ -331,16 +331,6 @@ ssh-cache-pass() {
 }
 
 
-
-
-#Show a sticky popup with a msg when certain time passes (switch the stove off, check something, ...) ;)
-notify_at() {
-    local msg=$1 when=$2
-    (( $# < 2 )) && { echo "Must pass at least msg and time"; return; }
-    systemd-run  --user  /usr/bin/bash -c "sleep $when; . ~/Scripts/libnotify; notify $msg appointment-soon 0"
-    echo "The notification will be shown after $when"
-}
-
 #############
 #  Desktop  #
 #############
