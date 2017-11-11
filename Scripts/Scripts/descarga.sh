@@ -37,7 +37,7 @@ descarga() {
         ((  count > 120 )) && break
     done
     #It needs nohup to work on bash cli also
-    nohup mplayer -fs $dest >/dev/null & 
+    nohup mplayer -softvol -softvol-max 900  -fs $dest >/dev/null & 
     #it'd be better get the metadata working on local file but it doesn't work already
     local title="$(youtube-dl -e "$url")"
     wait $downloading && notify "Video downloaded for $title!" smplayer
