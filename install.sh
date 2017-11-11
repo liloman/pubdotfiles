@@ -116,9 +116,10 @@ if [[ $type != server ]]; then
         # $USER == local user (not the root user)
         su -c '
         echo "Enabling sleep@$USER "
-        cp -v root/sleep@.service /etc/systemd/system/
+        cp -v root/*.service /etc/systemd/system/
         systemctl daemon-reload
         systemctl enable sleep@$USER
+        systemctl enable intel-popping
         echo "*****END******"
         '
     fi

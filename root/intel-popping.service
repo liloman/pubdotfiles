@@ -1,0 +1,9 @@
+[Unit]
+Description=Disable inte-snd-hda popping
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/bash -c "[[ -e /sys/module/snd_hda_intel ]] && { sleep 20; echo 0 > /sys/module/snd_hda_intel/parameters/power_save; }"
+
+[Install]
+WantedBy=multi-user.target
