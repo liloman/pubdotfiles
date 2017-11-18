@@ -39,6 +39,8 @@ map <C-b> :js OpenInFireFox("Privado",buffer.URL)<CR><Esc>:bd<CR>
 map <C-S-b> :js OpenInFireFox("Privado",buffer.URL)<CR>
 "Open opos profile
 map <C-t> :js OpenInFireFox("Oposiciones","file:///home/charly/tests/index.html")<CR>
+"Open in Quantum window and delete buffer in origin
+map <C-q> :js io.system('~/Clones/third/firefoxQuantum/firefox -P Quantum --private-window '+buffer.URL+' &')<CR><Esc>:bd<CR>
 
 "Show the current video in FullScreen through youtube-dl and mplayer
 "works for youtube,vimeo,rtve...
@@ -128,6 +130,8 @@ command! -nargs=+ -complete=url -description "Open in private" pf :js OpenInFire
 " Run :pl to open the url in a new private Limpio session 
 command! -nargs=+ -complete=url -description "Open in Limpio" pl :js io.system('firefox -P Limpio --private-window '+"<args>"+' &');
 
+" Run :pq to open the url in a new private Quantum session 
+command! -nargs=+ -complete=url -description "Open in Quantum" pq :js io.system('~/Clones/third/firefoxQuantum/firefox -P Quantum --private-window '+"<args>"+' &');
 "===[ Custom autocommands ]=================================================
 
 "Old trickery for megaupload and cia

@@ -42,6 +42,9 @@ read-only ~/Scripts/descarga.sh
 whitelist ~/Scripts/libnotify
 read-only ~/Scripts/libnotify
 
+whitelist ~/Clones/third/firefoxQuantum
+read-only ~/Clones/third/firefoxQuantum
+
 #simple dir
 whitelist ~/tests
 read-only ~/tests
