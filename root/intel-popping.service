@@ -2,8 +2,12 @@
 Description=Disable inte-snd-hda popping
 
 [Service]
-Type=idle
-ExecStart=/usr/bin/bash -c "[[ -e /sys/module/snd_hda_intel ]] && { sleep 20; echo 0 > /sys/module/snd_hda_intel/parameters/power_save; }"
+Type=oneshot
+RemainAfterExit=yes
+#It needs to be enabled and then disabled on resume without sound playing ... ¿?
+ExecStart=/usr/bin/bash -c "[[ -e /sys/module/snd_hda_intel ]] && { sleep 2; echo 1 > /sys/module/snd_hda_intel/parameters/power_save; sleep 2; echo 0 > /sys/module/snd_hda_intel/parameters/power_save; }"
+#Execute on login 
+ExecStop=/usr/bin/bash -c "[[ -e /sys/module/snd_hda_intel ]] && { sleep 2; echo 0 > /sys/module/snd_hda_intel/parameters/power_save; }"
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target sleep.target
