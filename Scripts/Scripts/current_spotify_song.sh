@@ -15,7 +15,7 @@ current_spotify_song() {
     local album=$(echo "$resul" |egrep -A 2 "album"|egrep -v "album"|egrep -v "array"|cut -b 44-|cut -d '"' -f 1|egrep -v ^$)
     echo "($album)\n"
     local title=$(echo "$resul" |egrep -A 1 "title"|egrep -v "title"|cut -b 44-|cut -d '"' -f 1|egrep -v ^$)
-    echo "$title"
+    echo "${title//'/\'}"
 }
 
 mapfile -t res <<< "$(current_spotify_song)"

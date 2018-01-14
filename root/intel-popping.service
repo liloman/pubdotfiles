@@ -1,13 +1,16 @@
 [Unit]
 Description=Disable inte-snd-hda popping
+Before=sleep.target
+StopWhenUnneeded=yes
 
 [Service]
 Type=oneshot
-RemainAfterExit=yes
 #It needs to be enabled and then disabled on resume without sound playing ... ¿?
 ExecStart=/usr/bin/bash -c "[[ -e /sys/module/snd_hda_intel ]] && { sleep 2; echo 1 > /sys/module/snd_hda_intel/parameters/power_save; sleep 2; echo 0 > /sys/module/snd_hda_intel/parameters/power_save; }"
 #Execute on login 
 ExecStop=/usr/bin/bash -c "[[ -e /sys/module/snd_hda_intel ]] && { sleep 2; echo 0 > /sys/module/snd_hda_intel/parameters/power_save; }"
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target sleep.target
+
