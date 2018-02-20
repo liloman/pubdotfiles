@@ -193,6 +193,8 @@ export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig/"
 export RTLOG=/tmp/.output_logs.txt
 
 
+#Sometimes the systemd user instance fails and this fix it... ¿?
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
 #Export path to systemd user units 
 systemctl --user set-environment PATH=$PATH
 
