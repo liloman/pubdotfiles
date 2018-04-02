@@ -95,5 +95,10 @@ private-dev
 # the ignore must be first to the include
 ignore private-tmp
 
+noblacklist ~/vimperatorrc
+noblacklist ~/vimperator
+whitelist ~/vimperatorrc
+whitelist ~/vimperator
+
 #include main profile
 include /usr/local/etc/firejail/firefox.profile

@@ -11,6 +11,7 @@ change_wallpaper() {
     local regexD='property="og:description" content="(.*)"'
     local regexI='property="og:image" content="(.*)"'
     local wallpaper=$HOME/.wallpaper-of-the-day
+    local wtitle=/tmp/.wallpaper-of-the-day-title
     local web=http://photography.nationalgeographic.com/photography/photo-of-the-day/
     ping -c 2 photography.nationalgeographic.com
     #wait for network connectivity then
@@ -34,6 +35,7 @@ change_wallpaper() {
     # wget --tries=10 $url --quiet -O $wallpaper 
     wget --tries=10 $url -O $wallpaper 
     pcmanfm -w  $wallpaper && notify "Background changed to:\n $title!" preferences-desktop-wallpaper 10
+    echo $title > $wtitle
 }
 
 change_wallpaper 
