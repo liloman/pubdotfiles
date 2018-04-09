@@ -123,12 +123,14 @@ set colored-stats on
 set editing-mode vi
 #and insert mode
 set keymap vi-insert
+#Set vi Mode 
+#set -o vi
+#Show vi mode in prompt (+/:) (ins/cmd)
+set show-mode-in-prompt off
 #disable bell
 set bell-style none
 # Display matches for ambiguous patterns at first tab press
 set show-all-if-ambiguous On
-#Set vi Mode 
-set -o vi
 # Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
 set input-meta on
 set output-meta on
@@ -138,8 +140,6 @@ set convert-meta off
 set mark-symlinked-directories on
 #show autocompletions in horizontal ¿not working?
 set print-completions-horizontally on
-#Show vi mode in prompt (+/:) (ins/cmd)
-set show-mode-in-prompt on
 #Don't repeat partial autocompletion
 set skip-completed-text on
 #Replace prefixes on autocompletions larger than 3
