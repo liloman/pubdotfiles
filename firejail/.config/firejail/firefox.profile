@@ -44,11 +44,13 @@ read-only ~/Scripts/libnotify
 
 whitelist ~/Clones/third/firefoxQuantum
 read-only ~/Clones/third/firefoxQuantum
+whitelist ~/Clones/mine/firefoxESR
+read-only ~/Clones/mine/firefoxESR
 
 #simple dir
-whitelist ~/tests
-read-only ~/tests
-whitelist ~/OPOS/apuntes/Varios/file++++home+charly+tests+index.html
+#whitelist ~/tests
+#read-only ~/tests
+#whitelist ~/OPOS/apuntes/Varios/file++++home+charly+tests+index.html
 
 #no dbus access  (not working ?)
 #blacklist /run/user/1000/bus
@@ -95,10 +97,10 @@ private-dev
 # the ignore must be first to the include
 ignore private-tmp
 
-noblacklist ~/vimperatorrc
-noblacklist ~/vimperator
-whitelist ~/vimperatorrc
-whitelist ~/vimperator
+noblacklist ~/.vimperatorrc
+noblacklist ~/.vimperator
+whitelist ~/.vimperatorrc
+whitelist ~/.vimperator
 
 #include main profile
 include /usr/local/etc/firejail/firefox.profile

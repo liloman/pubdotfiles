@@ -289,7 +289,7 @@
     </keybind>
     <keybind key="W-f">
       <action name="Execute">
-        <command>firejail --name=firefox firefox -P default</command>
+          <command>firejail --name=firefox ~/Clones/mine/firefoxESR/firefox -P default</command>
       </action>
     </keybind>
     <keybind key="S-W-f">
