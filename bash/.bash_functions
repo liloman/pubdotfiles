@@ -331,6 +331,10 @@ ssh-cache-pass() {
 }
 
 
+ssh() {
+    command ssh $@ -t "bash -o vi"
+}
+
 #############
 #  Desktop  #
 #############
