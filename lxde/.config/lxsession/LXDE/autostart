@@ -21,4 +21,4 @@
 ########################
 
 #Fedora 23 lxsession don't get $HOME here ...
-/home/charly/Scripts/autostart.sh
+# /home/charly/Scripts/autostart.sh
