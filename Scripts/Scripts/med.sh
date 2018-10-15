@@ -6,17 +6,17 @@ repeat() {
     local -i i=0
     notify_dark "$1" " ..."
     for(( i = 0; i <= $2; i++ )) { 
-        echo -ne "$1      \r"; echo -ne "$1 $i\r"
+        echo -ne "$1 $i   \r"
         sleep 1
     }
-   echo " "
+    echo "$1"
 }
 
 prana () {
     repeat "1->Aspira " 8
-    repeat "2->.Aguanta " 8
-    repeat "3->.Exhala " 8
-    repeat "4->.Aguanta " 8
+    repeat "2->Aguanta " 8
+    repeat "3->Exhala " 8
+    repeat "4->Aguanta " 8
 }
 
 wim () {
@@ -40,13 +40,13 @@ wim () {
 # https://www.youtube.com/watch?v=LPuCXc5MSgY
 if [[ $1 == prana ]]; then
     for (( i = 1; i <= 7; i++ )); do
-        echo "Iteraccion $i"
+        echo "Iteraccion $i    "
         echo "=============="
         prana 
     done
 elif [[ $1 == wim ]]; then #wim hoff
     for (( i = 1; i <= 4; i++ )); do
-        echo "Iteraccion $i"
+        echo "Iteraccion $i    "
         echo "=============="
         wim 
     done
