@@ -297,6 +297,11 @@
           <command>~/Clones/mine/firefoxQuantum/firefox -P Quantum</command>
       </action>
     </keybind>
+    <keybind key="S-W-d">
+      <action name="Execute">
+        <command>~/Clones/mine/firefoxQuantum/firefox -P D</command>
+      </action>
+    </keybind>
     <keybind key="S-W-f">
       <action name="Execute">
         <command>firejail --name=firefox firefox -P Limpio</command>
