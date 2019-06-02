@@ -102,7 +102,8 @@ ptree() {
     local kpid=
 
     #Get extra pstree arguments
-    OPTIND=1 #important reset!!
+    #important to use local here ...
+    local OPTIND=1 #important reset!!
     while getopts ":AlcsgGZnNhk:" opt
     do
         case $opt in 
@@ -273,11 +274,16 @@ icon_insert() {
 }
 
 #Create an executable file if doesn't exist otherwise open it
-e() {
+e() { 
     local file=$1
-    [[ -f $file  ]] && chmod 755 $file || install -bvm 755 /dev/null $file
+    if [[ -f $file  ]]; then
+        chmod 755 $file
+    else
+        install -bvm 755 /dev/null $file 
+        echo "#!/usr/bin/env bash" > $file
+    fi
     vimx $file
-}
+} 
 
 
 #Remove hint from asyncBash (alt + h/e)
@@ -331,8 +337,19 @@ ssh-cache-pass() {
 }
 
 
+
+#Use my settings for any server
 ssh() {
-    command ssh $@ -t "bash -o vi"
+    local opt OPTIND
+    local dir=
+    while getopts ":d:" opt                                                        
+    do                                                                             
+      case $opt in                                                                 
+        d)  dir="cd $OPTARG ;" ;;                                                      
+      esac    # --- end of case ---                                                
+    done                                                                           
+    shift $(($OPTIND-1))  
+    command ssh "$@" -t "$dir bash -o vi "
 }
 
 #############

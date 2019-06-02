@@ -158,7 +158,12 @@ CleanFirefox set! general.useragent.override&
 
 
 
+
+
 "===[ Custom firefox config ]=================================================
+
+" Que no intente autocompletar los dominios en la bar del browser
+set!  browser.fixup.alternate.enabled
 
 "Dont send referer
 set! network.http.sendRefererHeader=0

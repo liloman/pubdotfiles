@@ -34,6 +34,7 @@ change_wallpaper() {
 
     # wget --tries=10 $url --quiet -O $wallpaper 
     wget --tries=10 $url -O $wallpaper 
+    echo $title > /tmp/.change_wallpaper.title
     pcmanfm -w  $wallpaper && notify "Background changed to:\n $title!" preferences-desktop-wallpaper 10
     echo $title > $wtitle
 }

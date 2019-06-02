@@ -29,7 +29,8 @@ alias gtc='git commit -av'
 alias gt1='git commit -v'
 alias gts='git status'
 alias gta='git add '
-alias gtl='git log --graph --abbrev-commit --decorate --date=relative --all'
+#log to follow moved files ...
+alias gtl='git log --graph --abbrev-commit --decorate --date=relative --follow'
 alias gtpush='git commit -av && git push'
 alias gtpull='git pull --rebase'
 alias gtca='git commit -v --amend'
@@ -38,13 +39,16 @@ alias gtca='git commit -v --amend'
 # enable color support of ls 
 eval "`dircolors -b`"
 #handy ls aliases
-LS_COMMAND="/bin/ls -Fh --color=auto"
+LS_COMMAND="/bin/ls -Fh --color=auto  --group-directories-first"
 #normal listing 
 alias ls='$LS_COMMAND -C'
 #extended column listing sorted by name by default
 alias lc='$LS_COMMAND -CA'
-#extended flat listing sorted by name by default
-alias ll='$LS_COMMAND -lA'
+#extended flat listing sorted by time by default
+alias ll='$LS_COMMAND -lAtrh'
+
+#Show full commandline without wrap
+alias ps='ps -ww'
 
 
 needs(){ hash $1 2>/dev/null; return $?; }
@@ -61,7 +65,8 @@ alias cp="cp -v"
 alias tarc='tar -I lbzip2'
 alias xargs='xargs -0'
 alias open='xdg-open'
-alias free='free -h'
+alias free='free -hw'
+alias ver_config='grep -nvE "'"^[ ]*(#|;)|^$"'" '
 
 needs ptree && alias pgrep='echo Did you mean ptree?' || alias pgrep='pgrep -af'
 alias tree='tree -CFpa'

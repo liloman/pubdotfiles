@@ -18,6 +18,20 @@ do
 done < <("${com[@]}" 2>&1)
 endsnippet
 
+snippet getopts "(mine) Reduced getopt" b
+#Importante que su scope sea local y que se destruya al finalizar
+local opt OPTIND
+local VAR=root                                                                      
+while getopts ":u:" opt                                                        
+do                                                                             
+  case $opt in                                                                 
+    u)  VAR=$OPTARG   ;;                                                      
+    * )  echo -e "\n  Option does not exist : $OPTARG\n"; exit 1   ;;          
+  esac    # --- end of case ---                                                
+done                                                                           
+shift $(($OPTIND-1))  
+endsnippet
+
 
 snippet getopts "(mine) power getopt with indepent order of options" b
 usage(){

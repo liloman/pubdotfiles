@@ -72,8 +72,8 @@ TTY=$(tty)
 # MUST come first...
 PROMPT_COMMAND='lastExit=$?' 
 
-#History file (all sessions)
-HISTFILESIZE=500000
+#Unlimited History file (all sessions)
+HISTFILESIZE=
 #History lines (current session)
 #be generous to be able to work with asyncBash (fc) when history > histsize
 # "out of range" error

@@ -267,6 +267,12 @@
         <command>lxterminal</command>
       </action>
     </keybind>
+    <!-- Lock screen -->
+    <keybind key="W-l">
+      <action name="Execute">
+        <command>bash -c '~/Scripts/spotifycli --pause ; xscreensaver-command -lock'</command>
+      </action>
+    </keybind>
     <keybind key="W-Right">
       <action name="Execute">
         <command>~/Scripts/spotify-cli next</command>
