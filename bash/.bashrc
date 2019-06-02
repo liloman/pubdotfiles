@@ -244,7 +244,7 @@ import ~/Scripts/libnotify
 import ~/.bash_aliases
 
 #Enable Autocompletions 
-import /usr/share/bash-completion/bash_completion 
+. /usr/share/bash-completion/bash_completion 
 
 #To work with git 
 import /usr/share/doc/git-core-doc/contrib/completion/git-completion.bash 

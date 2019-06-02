@@ -53,8 +53,8 @@ needs(){ hash $1 2>/dev/null; return $?; }
 # To use the clipboard  from vim...
 needs vimx && alias vi='vimx'
 needs vim.gtk && alias vi='vim.gtk'
-needs rmalias && alias rm='rmalias -v'
-needs rmdiralias && alias rmdir='rmdiralias -v'
+needs rmalias && { alias rm='rmalias -v'; alias rrm='command rm'; }
+needs rmdiralias && { alias rmdir='rmdiralias -v'; alias rrmdir='command rmdir'; }
 alias grep='grep --color=auto'
 alias search='grep --color=auto --exclude-dir=.git -Rin '
 alias cp="cp -v"
