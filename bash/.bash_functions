@@ -226,6 +226,13 @@ inotifywait -q -t $sec -e close $file
 clean 
 }
 
+algo2() {
+  (( $# != 1 )) && { echo "Malamente ..."; return; }
+   local algo2= salt="$(< ~/.salt)"
+  salt=$(echo $salt$1 | sha512sum | base64 )
+  echo ${salt:0:10}
+}
+
 #WIP ...
 #need some time to finish it
 search2() {

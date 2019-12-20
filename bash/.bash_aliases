@@ -117,7 +117,7 @@ needs grip && alias markdown-view='grip -b '
 #from: wget https://raw.githubusercontent.com/ekalinin/github-markdown-toc/master/gh-md-toc
 needs gh-md-toc && alias markdown-generate-toc='gh-md-toc'
 
-needs pactl && alias reset_pulseaudio='pactl set-card-profile 0 off ; pactl set-card-profile 0 output:analog-stereo'
+needs pactl && alias reset_pulseaudio='pactl set-card-profile 0 off ; sleep 1; pactl set-card-profile 0 output:analog-stereo'
 
 #################
 #  Old aliases  # 

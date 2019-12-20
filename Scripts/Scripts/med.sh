@@ -3,11 +3,12 @@
 . ~/Scripts/libnotify
 
 repeat() {
-    local -i i=0
+    local -i i=0 
+    local end=
     notify_dark "$1" " ..."
     for(( i = 0; i <= $2; i++ )) { 
         echo -ne "$1 $i   \r"
-        sleep 1
+        read -s -N 1 -t 1 end ; [[ $end ]] && i=$2+1 
     }
     echo "$1"
 }
@@ -20,17 +21,24 @@ prana () {
 }
 
 wim () {
-    local -i i=0
+    local -i i=0 iter=$1
     repeat "1->Tummo! " 120
     notify_dark "Exhalaaaaaaaa" " ..."
-    read -p "2->Exhalo y comienzo a esperar!" pause
+    read -s -n 1 -p "2->Exhalo y comienzo a esperar!"  
+    echo ""
     start=$SECONDS
-    for(( i = 0; i < 300; i++ )) { echo -ne "$i\r"; read -p "Duracion: " -N 1 -t 1 end; [[ $end ]] && i=3000; }
-    echo "Duracion $((SECONDS - start))."
+    for(( i = 0; i < 300; i++ )) { echo -ne "$i\r"; read -s -p "Duracion: " -N 1 -t 1 end; [[ $end ]] && i=99999; }
+    echo -ne "\rDuracion: $((SECONDS - start)).\n"
     echo "3->Inhala y aguanta"
     sleep 18
-    notify_dark "4->Exhala y preparate para la siguiente iteracion" "..."
-    sleep 20
+    if (( iter != 4 )); then
+        echo "4->Exhala y preparate para la siguiente iteracion" 
+        notify_dark "4->Exhala y preparate para la siguiente iteracion" "..."
+        sleep 20
+    else
+        echo "4->Exhala " 
+        notify_dark "4->Exhala " "..."
+    fi
 }
 
 #Check it out!
@@ -47,7 +55,7 @@ elif [[ $1 == wim ]]; then #wim hoff
     for (( i = 1; i <= 4; i++ )); do
         echo "Iteraccion $i    "
         echo "=============="
-        wim 
+        wim $i
     done
 fi
 

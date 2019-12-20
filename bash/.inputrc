@@ -220,10 +220,14 @@ set keymap vi-command
 "gg": beginning-of-history
 "G": end-of-history
 
+
 ####################
 #  ON INSERT MODE  #
 ####################
 set keymap vi-insert
+
+#Go back in history and replay step one by one ... :)
+Control-o: operate-and-get-next
 
 Control-l: clear-screen
 Control-b: beginning-of-line
