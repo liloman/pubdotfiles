@@ -93,7 +93,7 @@ do_yad(){
 
 sync_repos() {
     cd $ROOT || { repo_failed "Couldn't cd to $ROOT dir"; return ; }
-    do_yad &
+    #do_yad &
     do_others &
     do_dotfiles
     do_mines
