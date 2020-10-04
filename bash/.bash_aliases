@@ -50,6 +50,9 @@ alias ll='$LS_COMMAND -lAtrh'
 #Show full commandline without wrap
 alias ps='ps -ww'
 
+#User friendly ip
+alias ip='ip -c -br'
+
 
 needs(){ hash $1 2>/dev/null; return $?; }
 
@@ -90,7 +93,7 @@ needs smplayer && alias verflashgui="smplayer  ~/Descargas/videoFlash"
 #for the tablet (fastboot reboot when boot-looped)
 needs fastboot && alias fastboot="fastboot  -i 0x1f3a" 
 needs gpicview && alias fotos='gpicview'
-needs mplayer && alias mplayer='mplayer -use-filename-title -fs'
+needs mplayer && alias mplayer='mplayer -softvol -softvol-max 900 -use-filename-title -fs'
 needs mplayer && alias mplayer-masvolumen='mplayer -softvol -softvol-max 900'
 needs mplayer && alias verflash="mplayer-masvolumen -fs /tmp/videoFlash" 
 alias verflashl="tail -f /tmp/youtube.log" 

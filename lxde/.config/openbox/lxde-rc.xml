@@ -318,6 +318,16 @@
         <command>firefox -P Limpio</command>
       </action>
     </keybind>
+    <keybind key="W-S-t">
+      <action name="Execute">
+        <command>firefox -P Tra</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-p">
+      <action name="Execute">
+        <command>firefox -P Privado</command>
+      </action>
+    </keybind>
     <keybind key="W-m">
       <action name="Execute">
         <command>firejail --name=thunderbird thunderbird</command>
@@ -328,23 +338,23 @@
         <command>~/Scripts/lanza_spotify.sh</command>
       </action>
     </keybind>
-    <keybind key="W-t">
-      <action name="Execute">
-        <command>~/.local/bin/pomodoro-client.py systray</command>
-      </action>
-    </keybind>
-    <keybind key="A-W-t">
-      <action name="Execute">
-        <command>~/.local/bin/pomodoro-client.py pause</command>
-      </action>
-    </keybind>
-    <keybind key="S-W-t">
-      <action name="Execute">
-        <command>
-              bash -c 'msg=$(~/.local/bin/pomodoro-client.py status) ; notify-send -t 10000 --hint=int:transient:1 "Current working task" "$msg"'
-          </command>
-      </action>
-    </keybind>
+    <!-- <keybind key="W&#45;t"> -->
+    <!--   <action name="Execute"> -->
+    <!--     <command>~/.local/bin/pomodoro&#45;client.py systray</command> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
+    <!-- <keybind key="A&#45;W&#45;t"> -->
+    <!--   <action name="Execute"> -->
+    <!--     <command>~/.local/bin/pomodoro&#45;client.py pause</command> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
+    <!-- <keybind key="S&#45;W&#45;t"> -->
+    <!--   <action name="Execute"> -->
+    <!--     <command> -->
+    <!--           bash &#45;c 'msg=$(~/.local/bin/pomodoro&#45;client.py status) ; notify&#45;send &#45;t 10000 &#45;&#45;hint=int:transient:1 "Current working task" "$msg"' -->
+    <!--       </command> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
     <!-- <keybind key="W&#45;p"> -->
     <!--   <action name="Execute"> -->
     <!--     <command>~/Scripts/alternate_vbox.sh Spotify</command> -->
